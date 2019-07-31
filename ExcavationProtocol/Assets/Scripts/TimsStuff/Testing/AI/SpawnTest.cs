@@ -69,6 +69,10 @@ public class SpawnTest : MonoBehaviour
         }
     }
 
+    public int GetCurrentWave()
+    {
+        return wave;
+    }
 
     public void Waves()
     {
