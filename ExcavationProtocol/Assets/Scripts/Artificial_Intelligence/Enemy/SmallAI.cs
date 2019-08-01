@@ -11,9 +11,19 @@ public class SmallAI : Agent
         m_type = EnemyType.BASIC;
 
         m_state_machine = new StateMachine();
-        //m_target = null;
+        m_target = GameObject.Find("FPS_Controller");
 
-        m_state_machine.ChangeState(this, new ChaseTargetState());
+        State state = new IdleState();
+        state.AddTransition(new Transition("CHASETARGET", 
+            a => Vector3.Distance(a.transform.position, m_target.transform.position) > 3));
+        m_state_machine.AddState(state);
+
+        state = new ChaseTargetState();
+        state.AddTransition(new Transition("IDLE",
+            a => Vector3.Distance(a.transform.position, m_target.transform.position) < 3));
+        m_state_machine.AddState(state);
+
+        m_state_machine.InitiateStateMachine(this, "IDLE");
     }
 
     private void Update()

@@ -11,13 +11,13 @@ public class Agent : MonoBehaviour
         BOSS
     }
 
-    protected int               m_health;
-    protected int               m_damage;
-    protected float             m_speed;
-    protected EnemyType         m_type;
-    protected Rigidbody         m_rigidbody;
-    protected StateMachine    m_state_machine;
-    public GameObject           m_target;
+    protected int           m_health;
+    protected int           m_damage;
+    protected float         m_speed;
+    protected EnemyType     m_type;
+    protected Rigidbody     m_rigidbody;
+    protected StateMachine  m_state_machine;
+    protected GameObject    m_target;
 
     public float GetSpeed() { return m_speed; }
     public ref Rigidbody GetRB() { return ref m_rigidbody; }

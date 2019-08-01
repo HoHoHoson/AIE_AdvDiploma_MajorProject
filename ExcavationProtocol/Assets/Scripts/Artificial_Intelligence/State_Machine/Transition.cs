@@ -1,7 +1,20 @@
-﻿
+﻿using System;
+
 public class Transition
 {
-    protected State m_to_state;
+    private string              m_state_index;
+    private Func<Agent, bool>   m_condition;
 
-    public virtual bool ConditionCheck() { return false; }
+    public string GetStateIndex() { return m_state_index; }
+
+    public Transition(string index, Func<Agent, bool> condition)
+    {
+        m_state_index = index;
+        m_condition = condition;
+    }
+
+    public bool ConditionMet(in Agent ai)
+    {
+        return m_condition(ai);
+    }
 }
