@@ -6,12 +6,13 @@ using UnityEngine.UI;
 
 public class UiTesting : MonoBehaviour
 {
+    public GameManager script_gamemanager;
     public SpawnTest script_spawntest;
     private int player_hp = 100;
 
     private int player_energy = 150;
 
-    private int wave_current;
+    private int wave_current, wave;
 
     [Range(0, 100)]
     public int current_player_hp;
@@ -29,6 +30,10 @@ public class UiTesting : MonoBehaviour
 
     public bool player_take_dmg = false, player_restore_hp = false;
 
+    public float fire_rate;
+    private float fire_rate_timer;
+    private bool shooting;
+
     // skills
     public float player_skill_1 = 20;
     public float player_skill_2 = 10;
@@ -44,16 +49,29 @@ public class UiTesting : MonoBehaviour
     private bool active_2;
     private bool active_3;
 
+    // resources
+    public int resource;
+    public Text res_cost_text;
+    public int hp_cost;
+    public int ammo_cost;
+    public int wave_reward;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        script_gamemanager = GetComponent<GameManager>();
+
         current_player_hp = player_hp;
         current_player_energy = player_energy;
 
         skill_cooldown_timer_1 = player_skill_1;
         skill_cooldown_timer_2 = player_skill_2;
         skill_cooldown_timer_3 = player_skill_3;
+
+        skill_1.maxValue = player_skill_1;
+        skill_2.maxValue = player_skill_2;
+        skill_3.maxValue = player_skill_3;
 
         wave_current = script_spawntest.GetCurrentWave();
     }
@@ -92,7 +110,9 @@ public class UiTesting : MonoBehaviour
         energy_bar.value = current_player_energy;
 
         wave_current = script_spawntest.GetCurrentWave();
+        wave = script_spawntest.GetWave();
 
+        fire_rate_timer += Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -115,28 +135,40 @@ public class UiTesting : MonoBehaviour
             player_take_dmg = false;
         }
 
-        if (player_restore_hp == true && current_player_hp < player_hp)
+        if (player_restore_hp == true && current_player_hp < player_hp && resource >= hp_cost)
         {
             current_player_hp += 20;
+            resource -= hp_cost;
             player_restore_hp = false;
         }
 
         if (Input.GetMouseButton(0) && current_player_energy > 0)
         {
-            current_player_energy--;
+            if(fire_rate_timer > fire_rate)
+            {
+                Fire();
+                fire_rate_timer = 0;
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && current_player_energy < player_energy)
+        if (Input.GetKeyDown(KeyCode.E) && current_player_energy < player_energy && resource >= hp_cost)
         {
             if (current_player_energy > player_energy - 10 && current_player_energy != player_energy)
             {
                 tempgain = player_energy - current_player_energy;
                 current_player_energy += tempgain;
+                resource -= ammo_cost;
             }
             else
             {
                 current_player_energy += 10;
+                resource -= ammo_cost;
             }           
+        }
+
+        if (wave > wave_current)
+        {
+            resource += wave_reward;
         }
 
         UpdateUI();
@@ -146,6 +178,8 @@ public class UiTesting : MonoBehaviour
     {
         wave_count.GetComponent<Text>().text = wave_current.ToString();
         EnergyValue.GetComponent<Text>().text = current_player_energy.ToString();
+
+        res_cost_text.GetComponent<Text>().text = resource.ToString();
 
         skill_1.value = skill_cooldown_timer_1;
         skill_2.value = skill_cooldown_timer_2;
@@ -180,5 +214,10 @@ public class UiTesting : MonoBehaviour
         active_3 = false;
         skill_cooldown_timer_3 = 0;
         active_3 = true;
+    }
+
+    public void Fire()
+    {
+        current_player_energy--;
     }
 }

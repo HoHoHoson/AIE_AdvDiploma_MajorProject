@@ -36,6 +36,7 @@ public class SpawnTest : MonoBehaviour
     public bool next_wave_now = false;
     private bool spawned_all = false;
     int current_wave;
+    
 
     public GameObject[] enemy_list;
 
@@ -65,11 +66,14 @@ public class SpawnTest : MonoBehaviour
         if (wave > current_wave)
         {
             Waves();
-            
         }
     }
 
     public int GetCurrentWave()
+    {
+        return current_wave;
+    }
+    public int GetWave()
     {
         return wave;
     }
