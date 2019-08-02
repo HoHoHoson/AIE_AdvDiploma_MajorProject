@@ -80,7 +80,7 @@ public class StateMachine
     private bool CanTransition(in Agent agent)
     {
         foreach (Transition t in m_current_state.GetTransitions())
-            if (t.ConditionMet(agent))
+            if (t.CheckConditions() == true)
             {
                 State transition_state;
 

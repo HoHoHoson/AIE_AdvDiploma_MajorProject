@@ -14,13 +14,13 @@ public class SmallAI : Agent
         m_target = GameObject.Find("FPS_Controller");
 
         State state = new IdleState();
-        state.AddTransition(new Transition("CHASETARGET", 
-            a => Vector3.Distance(a.transform.position, m_target.transform.position) > 3));
+        state.AddTransition(new Transition("CHASETARGET",
+            new Condition[] { new DistanceCondition(transform, m_target.transform, 3, DistanceCondition.Comparator.GREATER) }));
         m_state_machine.AddState(state);
 
         state = new ChaseTargetState();
         state.AddTransition(new Transition("IDLE",
-            a => Vector3.Distance(a.transform.position, m_target.transform.position) < 3));
+            new Condition[] { new DistanceCondition(transform, m_target.transform, 3, DistanceCondition.Comparator.LESS) }));
         m_state_machine.AddState(state);
 
         m_state_machine.InitiateStateMachine(this, "IDLE");

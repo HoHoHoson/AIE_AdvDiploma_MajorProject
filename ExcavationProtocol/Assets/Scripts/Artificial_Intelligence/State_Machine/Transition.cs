@@ -1,19 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// Class to be used in behavior states on order to setup transitions to different states when a condition is met.
 /// </summary>
 public class Transition
 {
-    private string              m_state_index;
-    private Func<Agent, bool>   m_condition;
+    private string          m_state_index;
+    private List<Condition> m_conditions;
 
     public string GetStateIndex() { return m_state_index; }
 
-    public Transition(string index, Func<Agent, bool> condition)
+    public Transition(string index, Condition[] conditions)
     {
         m_state_index = index;
-        m_condition = condition;
+        m_conditions = new List<Condition>(conditions);
     }
 
     /// <summary>
@@ -21,8 +22,12 @@ public class Transition
     /// </summary>
     /// <param name="agent">Reference the Agent that owns the StateMachine in order to make changes to it.</param>
     /// <returns>True/False</returns>
-    public bool ConditionMet(in Agent agent)
+    public bool CheckConditions()
     {
-        return m_condition(agent);
+        foreach (Condition c in m_conditions)
+            if (c.Check())
+                return true;
+
+        return false;
     }
 }
