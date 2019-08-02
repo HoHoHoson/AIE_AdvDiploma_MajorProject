@@ -47,6 +47,9 @@ public class FPSControl : MonoBehaviour
             PlayerInputMovement();
     }
 
+    /// <summary>
+    /// Handles the camera movement based on mouse movement input
+    /// </summary>
     void PlayerInputCamera()
     {
         m_camera_yaw += Input.GetAxis("Mouse X") * cameraSensitivity;
@@ -57,6 +60,11 @@ public class FPSControl : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, m_camera_yaw, 0);
     }
 
+    /// <summary>
+    /// Keeps the player grounded.
+    /// <para>Returns True/False depending on if the player is grounded or not.</para>
+    /// </summary>
+    /// <returns></returns>
     bool GroundPlayer()
     {
         RaycastHit hit;
@@ -74,6 +82,9 @@ public class FPSControl : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Moves the player in the direction of the player keyboard input, relative to the first person camera.
+    /// </summary>
     void PlayerInputMovement()
     {
         Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
