@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SpawnTest : MonoBehaviour
 {
+    public GameManager script_gamemanager;
     
-    [Tooltip("How many enemies need to be spawned.")]
-    public int enemies_to_spawn;
+    private int enemies_to_spawn;
 
     // spawn width(x) and height(z) for the area that the enemies will spawn
     [Tooltip("Enter Spawn Area. \n width = x, height = z")]
@@ -69,15 +69,6 @@ public class SpawnTest : MonoBehaviour
         }
     }
 
-    public int GetCurrentWave()
-    {
-        return current_wave;
-    }
-    public int GetWave()
-    {
-        return wave;
-    }
-
     public void Waves()
     {
         current_wave = wave;
@@ -101,7 +92,6 @@ public class SpawnTest : MonoBehaviour
         }
     }
 
-    
     IEnumerator SpawnNormalEnemies(int NumOfEnemies)
     {
         enemy_list = new GameObject[NumOfEnemies];

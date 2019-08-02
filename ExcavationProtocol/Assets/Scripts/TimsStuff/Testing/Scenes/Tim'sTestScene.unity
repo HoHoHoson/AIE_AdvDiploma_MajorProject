@@ -1802,7 +1802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9076a4b60ed5de04cb80bdd22044c8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies_to_spawn: 100
+  script_gamemanager: {fileID: 0}
   spawn_width: 10
   spawn_height: 10
   enemy_normal: {fileID: 170241511}
@@ -1831,28 +1831,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script_gamemanager: {fileID: 0}
-  script_spawntest: {fileID: 901988415}
-  current_player_hp: 100
-  current_player_energy: 150
   hp_bar: {fileID: 770407028}
   energy_bar: {fileID: 1142489286}
   wave_count: {fileID: 1724849056}
   wave_enemiesleft: {fileID: 1463407692}
   EnergyValue: {fileID: 318600905}
-  player_take_dmg: 0
-  player_restore_hp: 0
-  fire_rate: 0.2
-  player_skill_1: 20
-  player_skill_2: 10
-  player_skill_3: 30
   skill_1: {fileID: 742633238}
   skill_2: {fileID: 641717487}
   skill_3: {fileID: 2023800636}
-  resource: 20
   res_cost_text: {fileID: 1714355053}
-  hp_cost: 1
-  ammo_cost: 1
-  wave_reward: 20
 --- !u!114 &901988417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1865,9 +1852,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e80f7bf14995294ea5de05cb7d12329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  script_UI: {fileID: 901988416}
+  active_mines: 1
+  player_take_dmg: 0
+  player_restore_hp: 0
   player_hp: 100
   player_energy: 150
+  player_hp_current: 0
+  player_energy_current: 0
+  fire_rate: 0.2
   wave_no: 0
+  current_wave: 0
+  num_of_enemies: 0
+  currency: 20
+  wave_reward: 5
+  cost_HP: 1
+  cost_ammo: 1
+  cost_mine: 0
+  skill_1: 20
+  skill_2: 10
+  skill_3: 50
+  skill_timer_1: 0
+  skill_timer_2: 0
+  skill_timer_3: 0
 --- !u!4 &901988418
 Transform:
   m_ObjectHideFlags: 0
