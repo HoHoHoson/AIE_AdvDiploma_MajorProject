@@ -6,15 +6,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // scripts
-    public UiTesting script_UI;
+    public UiTesting script_UI; // Ui
+    public FPSControl script_fps; // fps controller script
 
     // Main Game Variables
     [Header("GameLoop Variables")]
     public int active_mines = 1;
-
+    
     public bool player_take_dmg = false, player_restore_hp = false;
-
-
 
 
     // Player Values
@@ -29,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     private int energy_gain_temp;
 
+    
     public float fire_rate = 0.2f;
     private float fire_rate_timer;
     private bool is_shooting;
@@ -57,12 +57,15 @@ public class GameManager : MonoBehaviour
     public float skill_2 = 10;
     public float skill_3 = 50;
 
+    [Tooltip("percent of damage reduced by skill 3 ( half = 2 )")]
+    public float skill_3_dmg_reduction = 2;
+
     [HideInInspector]
     public float skill_timer_1, skill_timer_2, skill_timer_3;
 
     private bool active_1;
     private bool active_2;
-    private bool active_3;
+    private bool active_3, is_used;
 
     // Start is called before the first frame update
     void Start()
@@ -171,6 +174,7 @@ public class GameManager : MonoBehaviour
 
         active_1 = false;
         skill_timer_1 = 0;
+        script_fps.SkillActive1();
         active_1 = true;
     }
 
@@ -181,6 +185,7 @@ public class GameManager : MonoBehaviour
 
         active_2 = false;
         skill_timer_2 = 0;
+        script_fps.SkillActive2();
         active_2 = true;
     }
 
@@ -191,16 +196,32 @@ public class GameManager : MonoBehaviour
 
         active_3 = false;
         skill_timer_3 = 0;
+        is_used = true;
         active_3 = true;
     }
 
     public void Fire()
     {
         player_energy_current--;
+        script_fps.GunFire();
     }
 
     public void Interaction(GameObject interactable)
     {
 
+    }
+
+    public int PlayerTakenDamage(float damage)
+    {
+        if(is_used)
+        {
+            player_hp_current -= Mathf.RoundToInt(damage / skill_3_dmg_reduction);
+            return player_hp_current;
+        }
+        else
+        {
+            player_hp_current -= (int)damage;
+            return player_hp_current;
+        }
     }
 }

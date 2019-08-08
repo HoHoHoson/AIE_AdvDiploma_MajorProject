@@ -94,4 +94,33 @@ public class FPSControl : MonoBehaviour
 
         m_player_rb.velocity = direction;
     }
+
+    /// <summary>
+    /// Performs skill 1 ( Knockback AOE from Player )
+    /// </summary>
+    public void SkillActive1()
+    {
+
+    }
+
+    /// <summary>
+    /// Performs skill 2 ( Disengage to point behind Player )
+    /// </summary>
+    public void SkillActive2()
+    {
+
+    }
+
+    /// <summary>
+    /// Fires the gun with raycasts
+    /// </summary>
+    public void GunFire()
+    {
+        RaycastHit hit_Target;
+
+        if(Physics.Raycast(transform.position,transform.forward,out hit_Target,10f))
+        {
+            
+        }
+    }
 }
