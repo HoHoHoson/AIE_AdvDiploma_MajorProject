@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class Agent : MonoBehaviour
 {
-    protected enum EnemyType
+    public enum EnemyType
     {
         BASIC = 0,
         EXPLOSIVE,
@@ -24,6 +24,7 @@ public class Agent : MonoBehaviour
     protected GameObject    m_target;
 
     public float GetSpeed() { return m_speed; }
+    public EnemyType GetEnemyType() { return m_type; }
     public ref Rigidbody GetRB() { return ref m_rigidbody; }
     public ref GameObject GetTarget() { return ref m_target; }
 

@@ -1802,22 +1802,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9076a4b60ed5de04cb80bdd22044c8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  script_gamemanager: {fileID: 0}
-  spawn_width: 10
-  spawn_height: 10
-  enemy_normal: {fileID: 170241511}
-  enemy_explosion: {fileID: 384616447}
-  enemy_boss: {fileID: 1241440149}
-  spawn_point1: {fileID: 1441951732}
-  spawn_point2: {fileID: 1973826603}
-  spawn_point3: {fileID: 1744616632}
-  spawn_point4: {fileID: 1212605912}
   wave: 1
-  wave_next: 0
-  enemy_explosion_spawnrate: 5
-  boss_spawnrate: 20
-  next_wave_now: 0
-  enemy_list: []
+  spawnWidth: 0
+  spawnHeight: 0
+  normalSpawnRate: 0
+  explosiveSpawnrate: 0
+  bossSpawnrate: 0
+  nextWave: 0
+  gameManager: {fileID: 0}
+  enemyNormal: {fileID: 0}
+  enemyExplosive: {fileID: 0}
+  enemyBoss: {fileID: 0}
+  spawnPoints: []
+  m_activeEnemiesLimit: 20
 --- !u!114 &901988416
 MonoBehaviour:
   m_ObjectHideFlags: 0
