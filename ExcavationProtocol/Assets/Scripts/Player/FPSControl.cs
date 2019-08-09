@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class FPSControl : MonoBehaviour
 {
+    #region PlayerMovement
     public Transform playerCamera;
 
     public float playerSpeed = 300;
@@ -20,6 +21,23 @@ public class FPSControl : MonoBehaviour
     private float m_camera_yaw = 0;
     private float m_camera_pitch = 0;
 
+    private bool has_jumped;
+    #endregion
+
+    #region FPSgun
+    public int gun_damage = 1;
+    public float fire_rate = 0.25f;
+    public float weapon_range = 50f;
+    public float hit_force = 100f;
+    public Transform gun_end;
+
+    private Camera fps_cam;
+    private WaitForSeconds shot_duration = new WaitForSeconds(0.07f);
+    private LineRenderer laser_line;
+    private float next_fire;
+
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,10 +46,17 @@ public class FPSControl : MonoBehaviour
         m_player_rb = GetComponent<Rigidbody>();
         m_player_collider = GetComponent<CapsuleCollider>();
         m_player_offset = m_player_collider.height * 0.5f + 0.075f;
+
+        laser_line = GetComponent<LineRenderer>();
+        fps_cam = GetComponentInChildren<Camera>();
+
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space) && GroundPlayer() == true)
+            StartCoroutine(Jumping());
+
         if (Input.GetKeyDown(KeyCode.Escape))
             Cursor.lockState = CursorLockMode.None;
     }
@@ -43,7 +68,7 @@ public class FPSControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (GroundPlayer())
+        if (has_jumped == true || GroundPlayer())
             PlayerInputMovement();
     }
 
@@ -73,7 +98,6 @@ public class FPSControl : MonoBehaviour
         {
             Vector3 new_pos = hit.point;
             new_pos.y += m_player_offset;
-
             transform.position = new_pos;
 
             return true;
@@ -91,6 +115,9 @@ public class FPSControl : MonoBehaviour
         direction = transform.TransformDirection(direction);
         direction = direction.normalized;
         direction *= playerSpeed * Time.deltaTime;
+
+        if (has_jumped == true)
+            direction.y = m_player_rb.velocity.y;
 
         m_player_rb.velocity = direction;
     }
@@ -114,13 +141,48 @@ public class FPSControl : MonoBehaviour
     /// <summary>
     /// Fires the gun with raycasts
     /// </summary>
-    public void GunFire()
+    public void GunFire(ref int current_en)
     {
-        RaycastHit hit_Target;
-
-        if(Physics.Raycast(transform.position,transform.forward,out hit_Target,10f))
+        if (Time.time > next_fire)
         {
-            
+            next_fire = Time.time + fire_rate;
+            current_en--;
+            StartCoroutine(ShotEffect());
+
+            Vector3 ray_origin = fps_cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
+
+            RaycastHit hit_target;
+
+            laser_line.SetPosition(0, gun_end.position);
+
+            if (Physics.Raycast(ray_origin, fps_cam.transform.forward, out hit_target, weapon_range))
+            {
+                laser_line.SetPosition(1, hit_target.point);
+
+                if (hit_target.rigidbody != null)
+                {
+                    hit_target.rigidbody.AddForce(-hit_target.normal * hit_force);
+                }
+
+            }
+            else
+            {
+                laser_line.SetPosition(1,ray_origin + (fps_cam.transform.forward * weapon_range));
+            }
         }
+    }
+
+    private IEnumerator ShotEffect()
+    {
+        laser_line.enabled = true;
+        yield return shot_duration;
+        laser_line.enabled = false;
+    }
+    private IEnumerator Jumping()
+    {
+        has_jumped = true;
+        m_player_rb.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
+        yield return new WaitForSecondsRealtime(.5f);
+        has_jumped = false;
     }
 }
