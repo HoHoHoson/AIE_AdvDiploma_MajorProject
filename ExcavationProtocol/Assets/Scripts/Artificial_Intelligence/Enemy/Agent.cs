@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 /// <summary>
 /// Base class for all AI. 
 /// <para>Should be derived from to create custom AI.</para>
@@ -37,5 +38,7 @@ public class Agent : MonoBehaviour
         m_state_machine.UpdateState(this);
     }
 
-    public virtual void AttackAgent() { }
+    public void TakeDamage(int dmg) { m_health -= dmg; }
+
+    public bool IsDead() { return m_health <= 0; }
 }

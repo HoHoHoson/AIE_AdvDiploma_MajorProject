@@ -4,16 +4,30 @@ using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        float test_float = Random.value;
-        return;
+        Derived b = new Derived();
+        TestFun(b);
     }
 
-    // Update is called once per frame
-    void Update()
+    void TestFun(in Base b)
     {
-        
+        b.Over();
+    }
+}
+
+public class Base
+{
+    public virtual void Over()
+    {
+        Debug.Log("Base class");
+    }
+}
+
+public class Derived : Base
+{
+    public override void Over()
+    {
+        Debug.Log("Childed class");
     }
 }

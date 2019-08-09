@@ -4,13 +4,15 @@ public class SmallAI : Agent
 {
     void Start()
     {
-        m_health = 0;
-        m_damage = 0;
+        m_health = 3;
+        m_damage = 5;
         m_speed = 300;
         m_rigidbody = GetComponent<Rigidbody>();
         m_type = EnemyType.BASIC;
 
         m_state_machine = new StateMachine();
+
+        // Got to make a proper target selecting function
         m_target = GameObject.Find("FPS_Controller");
 
         State state = new IdleState();

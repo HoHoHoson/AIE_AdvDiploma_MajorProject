@@ -6,7 +6,6 @@ public class ChaseTargetState : State
 
     public override void OnInitialise(in Agent agent)
     {
-        Debug.Log("Entering Chase State.");
     }
 
     public override void UpdateState(in Agent agent)
@@ -21,6 +20,5 @@ public class ChaseTargetState : State
 
     public override void OnExit(in Agent agent)
     {
-        Debug.Log("Exiting Chase State.");
     }
 }
