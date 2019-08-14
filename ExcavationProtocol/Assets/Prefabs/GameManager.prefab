@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3317138830722218741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3317138830722218633}
+  - component: {fileID: 3317138830722218634}
+  - component: {fileID: 3317138830722218635}
+  - component: {fileID: 3317138830722218740}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3317138830722218633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3317138830722218741}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 536.8062, y: 221.34903, z: -240.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3317138830722218634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3317138830722218741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e80f7bf14995294ea5de05cb7d12329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  script_UI: {fileID: 3317138830722218635}
+  script_fps: {fileID: 0}
+  active_mines: 1
+  player_take_dmg: 0
+  player_restore_hp: 0
+  camera_transform: {fileID: 0}
+  player_hp: 100
+  player_energy: 150
+  player_hp_current: 0
+  player_energy_current: 0
+  wave_no: 0
+  current_wave: 0
+  num_of_enemies: 0
+  currency: 20
+  wave_reward: 5
+  cost_HP: 1
+  cost_ammo: 1
+  cost_mine: 0
+  skill_1: 20
+  skill_2: 10
+  skill_3: 50
+  skill_3_duration: 20
+  skill_3_dmg_reduction: 2
+  skill_timer_1: 0
+  skill_timer_2: 0
+  skill_timer_3: 0
+--- !u!114 &3317138830722218635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3317138830722218741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b84c439563b0646aada38cb5ad4611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  script_gamemanager: {fileID: 0}
+  hp_bar: {fileID: 0}
+  energy_bar: {fileID: 0}
+  wave_count: {fileID: 0}
+  wave_enemiesleft: {fileID: 0}
+  energy_value: {fileID: 0}
+  max_energy_value: {fileID: 0}
+  skill_1: {fileID: 0}
+  skill_2: {fileID: 0}
+  skill_3: {fileID: 0}
+  res_cost_text: {fileID: 0}
+--- !u!114 &3317138830722218740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3317138830722218741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9076a4b60ed5de04cb80bdd22044c8db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_gameManager: {fileID: 0}
+  m_enemyNormal: {fileID: 0}
+  m_enemyExplosive: {fileID: 0}
+  m_enemyBoss: {fileID: 0}
+  m_normalSpawnRate: 80
+  m_explosiveSpawnrate: 15
+  m_bossSpawnrate: 5
+  m_spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_enemyCount: 50
+  m_activeEnemiesLimit: 20
