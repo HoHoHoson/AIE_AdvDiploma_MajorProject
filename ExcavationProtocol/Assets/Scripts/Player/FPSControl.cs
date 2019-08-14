@@ -59,6 +59,7 @@ public class FPSControl : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
             Cursor.lockState = CursorLockMode.None;
+
     }
 
     void LateUpdate()
@@ -149,7 +150,7 @@ public class FPSControl : MonoBehaviour
             current_en--;
             StartCoroutine(ShotEffect());
 
-            Vector3 ray_origin = fps_cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
+            Vector3 ray_origin = fps_cam.ScreenToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
 
             RaycastHit hit_target;
 
