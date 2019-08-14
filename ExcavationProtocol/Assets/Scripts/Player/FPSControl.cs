@@ -165,6 +165,10 @@ public class FPSControl : MonoBehaviour
                     hit_target.rigidbody.AddForce(-hit_target.normal * hit_force);
                 }
 
+                if (hit_target.transform.GetComponent<Agent>() != null)
+                {
+                    hit_target.transform.GetComponent<Agent>().TakeDamage(gun_damage);
+                }
             }
             else
             {
