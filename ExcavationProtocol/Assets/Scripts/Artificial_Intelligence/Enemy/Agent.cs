@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 /// <summary>
 /// Base class for all AI. 
 /// <para>Should be derived from to create custom AI.</para>
 /// </summary>
 public class Agent : MonoBehaviour
 {
-    protected enum EnemyType
+    public enum EnemyType
     {
         BASIC = 0,
         EXPLOSIVE,
@@ -24,6 +25,7 @@ public class Agent : MonoBehaviour
     protected GameObject    m_target;
 
     public float GetSpeed() { return m_speed; }
+    public EnemyType GetEnemyType() { return m_type; }
     public ref Rigidbody GetRB() { return ref m_rigidbody; }
     public ref GameObject GetTarget() { return ref m_target; }
 
@@ -36,5 +38,7 @@ public class Agent : MonoBehaviour
         m_state_machine.UpdateState(this);
     }
 
-    public virtual void AttackAgent() { }
+    public void TakeDamage(int dmg) { m_health -= dmg; }
+
+    public bool IsDead() { return m_health <= 0; }
 }
