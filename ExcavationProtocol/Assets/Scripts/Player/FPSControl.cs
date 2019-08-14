@@ -14,6 +14,10 @@ public class FPSControl : MonoBehaviour
     public float maxCameraPitch = 50;
     public float minCameraPitch = -50;
 
+    public float jump_force_z = 100, jump_force_y=10;
+    private Vector3 jump_back;
+
+
     private Rigidbody m_player_rb;
     private CapsuleCollider m_player_collider;
     private float m_player_offset = 0;
@@ -22,6 +26,7 @@ public class FPSControl : MonoBehaviour
     private float m_camera_pitch = 0;
 
     private bool has_jumped;
+
     #endregion
 
     #region FPSgun
@@ -128,15 +133,15 @@ public class FPSControl : MonoBehaviour
     /// </summary>
     public void SkillActive1()
     {
-
+        
     }
 
     /// <summary>
     /// Performs skill 2 ( Disengage to point behind Player )
     /// </summary>
     public void SkillActive2()
-    {
-
+    { 
+        m_player_rb.AddRelativeForce(0, jump_force_y,-jump_force_z, ForceMode.Acceleration);
     }
 
     /// <summary>
