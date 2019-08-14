@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6046390268978255423}
   m_Layer: 0
   m_Name: Terminal_001
-  m_TagString: Untagged
+  m_TagString: EnergyTerminal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

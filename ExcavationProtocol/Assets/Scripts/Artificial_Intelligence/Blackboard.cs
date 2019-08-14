@@ -28,7 +28,7 @@ public class Blackboard : MonoBehaviour
     private List<GameObject>        m_inactive_explosive    = new List<GameObject>();
     private List<GameObject>        m_inactive_boss         = new List<GameObject>();
 
-    private bool                    m_wave_ongoing          = false;
+    private bool                    m_wave_ongoing          = true;
 
     private void Start()
     {

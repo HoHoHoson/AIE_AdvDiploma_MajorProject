@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6802906567779807609}
   m_Layer: 0
   m_Name: Drill_001
-  m_TagString: Untagged
+  m_TagString: Mine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
