@@ -45,14 +45,17 @@ public class Blackboard : MonoBehaviour
         for (int i = 0; i < m_activeEnemiesLimit; ++i)
         {
             GameObject new_enemy = Instantiate(m_enemyNormal, stored_enemy_instances.transform);
+            new_enemy.AddComponent<Agent>().SetBlackboard(this);
             new_enemy.SetActive(false);
             m_inactive_normal.Add(new_enemy);
 
             new_enemy = Instantiate(m_enemyExplosive, stored_enemy_instances.transform);
+            new_enemy.AddComponent<Agent>().SetBlackboard(this);
             new_enemy.SetActive(false);
             m_inactive_explosive.Add(new_enemy);
 
             new_enemy = Instantiate(m_enemyBoss, stored_enemy_instances.transform);
+            new_enemy.AddComponent<Agent>().SetBlackboard(this);
             new_enemy.SetActive(false);
             m_inactive_boss.Add(new_enemy);
         }

@@ -16,13 +16,17 @@ public class Agent : MonoBehaviour
         BOSS
     }
 
-    protected int           m_health;
-    protected int           m_damage;
-    protected float         m_speed;
+    [SerializeField]
+    protected int           m_health = 3, m_damage = 5;
+    [SerializeField]
+    protected float         m_speed = 600;
     protected EnemyType     m_type;
     protected Rigidbody     m_rigidbody;
     protected StateMachine  m_state_machine;
+    protected Blackboard    m_blackboard;
     protected GameObject    m_target;
+
+    public void SetBlackboard(in Blackboard blackboard) { m_blackboard = blackboard; }
 
     public float GetSpeed() { return m_speed; }
     public EnemyType GetEnemyType() { return m_type; }
