@@ -27,6 +27,9 @@ public class FPSControl : MonoBehaviour
 
     private bool has_jumped;
 
+    public float skill_1_radius = 5.0f;
+    public float skill_1_power = 10.0f;
+
     #endregion
 
     #region FPSgun
@@ -133,7 +136,17 @@ public class FPSControl : MonoBehaviour
     /// </summary>
     public void SkillActive1()
     {
-        
+        Vector3 explosionPos = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, skill_1_radius);
+
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            if (rb != null && hit.transform.tag != "Player")
+            {
+                rb.AddExplosionForce(skill_1_power, explosionPos, skill_1_radius, 3.0f);
+            }
+        }
     }
 
     /// <summary>
