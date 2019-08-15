@@ -14,6 +14,10 @@ public class FPSControl : MonoBehaviour
     public float maxCameraPitch = 50;
     public float minCameraPitch = -50;
 
+    public float jump_force_z = 100, jump_force_y=10;
+    private Vector3 jump_back;
+
+
     private Rigidbody m_player_rb;
     private CapsuleCollider m_player_collider;
     private float m_player_offset = 0;
@@ -22,6 +26,10 @@ public class FPSControl : MonoBehaviour
     private float m_camera_pitch = 0;
 
     private bool has_jumped;
+
+    public float skill_1_radius = 5.0f;
+    public float skill_1_power = 10.0f;
+
     #endregion
 
     #region FPSgun
@@ -128,15 +136,25 @@ public class FPSControl : MonoBehaviour
     /// </summary>
     public void SkillActive1()
     {
+        Vector3 explosionPos = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, skill_1_radius);
 
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            if (rb != null && hit.transform.tag != "Player")
+            {
+                rb.AddExplosionForce(skill_1_power, explosionPos, skill_1_radius, 3.0f);
+            }
+        }
     }
 
     /// <summary>
     /// Performs skill 2 ( Disengage to point behind Player )
     /// </summary>
     public void SkillActive2()
-    {
-
+    { 
+        m_player_rb.AddRelativeForce(0, jump_force_y,-jump_force_z, ForceMode.Acceleration);
     }
 
     /// <summary>
