@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 366442169}
   m_Layer: 0
   m_Name: FPS_Controller
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,10 +108,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 3262474647881643129}
-  playerSpeed: 300
+  playerSpeed: 600
   cameraSensitivity: 1
   maxCameraPitch: 50
   minCameraPitch: -50
+  jump_force_z: 1000
+  jump_force_y: 300
+  skill_1_radius: 50
+  skill_1_power: 1000
   gun_damage: 1
   fire_rate: 0.25
   weapon_range: 50
