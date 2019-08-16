@@ -21,9 +21,17 @@ public class GameManager : MonoBehaviour
     public Transform camera_transform;
     #endregion
 
+    #region Animator
+
+    private Animator animator;
+
+    #endregion
+
     // Player Values
     #region Player
     [Header("Player Values")]
+
+    public GameObject player_gameobject;
     // Health
     public int player_hp = 100;
     // Energy
@@ -78,6 +86,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = player_gameobject.GetComponent<Animator>();
         player_hp_current = player_hp;
         player_energy_current = player_energy;
 
@@ -141,16 +150,19 @@ public class GameManager : MonoBehaviour
         {
             script_fps.GunFire(ref player_energy_current);
         }
+        else if (Input.GetMouseButton(0) && player_energy_current <= 0)
+        {
+            StartCoroutine(OutOfAmmo());
+        }
 
        
 
-        if (Input.GetKeyDown(KeyCode.E) && player_energy_current < player_energy && currency >= cost_HP)
+        if (Input.GetKeyDown(KeyCode.E) && currency >= cost_HP)
         {
             RaycastHit hit;
-            if(Physics.Raycast(camera_transform.position, camera_transform.forward, out hit, 2.0f))
+            if(Physics.Raycast(camera_transform.position, camera_transform.forward, out hit, 5.0f))
             {
                 Interaction(hit.transform.gameObject);
-
             }
         }
 
@@ -192,7 +204,7 @@ public class GameManager : MonoBehaviour
 
     public void Interaction(GameObject interactable)
     {
-        if (interactable.tag == "EnergyTerminal")
+        if (interactable.tag == "EnergyTerminal" && player_energy_current < player_energy)
         {
             if (player_energy_current > player_energy - 10 && player_energy_current != player_energy)
             {
@@ -206,15 +218,15 @@ public class GameManager : MonoBehaviour
                 currency -= cost_ammo;
             }
         }
-        if (interactable.tag == "HealthTerminal")
+        else if (interactable.tag == "HealthTerminal" && player_hp_current < player_hp)
         {
-            if (player_hp_current < player_hp && currency >= cost_HP)
+            if (player_hp_current < player_hp)
             {
                 player_hp_current += 20;
                 currency -= cost_HP;
             }
         }
-        if (interactable.tag == "Mine")
+        else if (interactable.tag == "Mine")
         {
 
         }
@@ -232,5 +244,12 @@ public class GameManager : MonoBehaviour
             player_hp_current -= (int)damage;
             return player_hp_current;
         }
+    }
+
+    private IEnumerator OutOfAmmo()
+    {
+        animator.SetBool("OutOfAmmo", true);
+        yield return new WaitForSeconds(2);
+        animator.SetBool("OutOfAmmo", false);
     }
 }
