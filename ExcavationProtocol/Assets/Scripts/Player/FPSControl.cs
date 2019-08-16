@@ -50,6 +50,7 @@ public class FPSControl : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         m_player_rb = GetComponent<Rigidbody>();
         m_player_collider = GetComponent<CapsuleCollider>();
@@ -66,8 +67,10 @@ public class FPSControl : MonoBehaviour
             StartCoroutine(Jumping());
 
         if (Input.GetKeyDown(KeyCode.Escape))
+        {
             Cursor.lockState = CursorLockMode.None;
-
+            Cursor.visible = true;
+        }
     }
 
     void LateUpdate()
