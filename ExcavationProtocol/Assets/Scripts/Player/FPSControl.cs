@@ -167,6 +167,10 @@ public class FPSControl : MonoBehaviour
         foreach (Collider hit in colliders)
         {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
+            if (rb == null)
+            {
+                rb = hit.GetComponentInChildren<Rigidbody>();
+            }
             if (rb != null && hit.transform.tag != "Player")
             {
                 rb.AddExplosionForce(skill_1_power, explosionPos, skill_1_radius, 3.0f);
@@ -189,6 +193,10 @@ public class FPSControl : MonoBehaviour
         foreach (Collider hit in colliders)
         {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
+            if (rb == null)
+            {
+                rb = hit.GetComponentInChildren<Rigidbody>();
+            }
             if (rb != null && hit.transform.tag != "Player")
             {
                 rb.AddExplosionForce(skill_2_power, explosionPos, skill_2_radius, 3.0f);

@@ -249,7 +249,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator OutOfAmmo()
     {
         animator.SetBool("OutOfAmmo", true);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         animator.SetBool("OutOfAmmo", false);
     }
 }
