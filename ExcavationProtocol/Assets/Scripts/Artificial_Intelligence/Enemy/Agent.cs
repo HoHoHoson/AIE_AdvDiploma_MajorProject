@@ -16,10 +16,9 @@ public class Agent : MonoBehaviour
         BOSS
     }
 
-    [SerializeField]
-    protected int           m_health = 3, m_damage = 5;
-    [SerializeField]
-    protected float         m_speed = 600;
+    protected int           m_health;
+    protected int           m_damage;
+    protected int           m_speed;
     protected EnemyType     m_type;
     protected Rigidbody     m_rigidbody;
     protected StateMachine  m_state_machine;
@@ -40,6 +39,13 @@ public class Agent : MonoBehaviour
     public virtual void UpdateAgent()
     {
         m_state_machine.UpdateState(this);
+    }
+
+    public void SetStats(int hp, int dmg, int speed)
+    {
+        m_health = hp;
+        m_damage = dmg;
+        m_speed = speed;
     }
 
     public void TakeDamage(int dmg) { m_health -= dmg; }

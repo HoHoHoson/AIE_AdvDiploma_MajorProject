@@ -5,10 +5,13 @@ public class SmallAI : Agent
     [SerializeField]
     private Transform   m_childedModel;
     [SerializeField]
-    private float        m_leapAngle = 45, m_leapForce = 2;
+    private float       m_leapAngle = 45, m_leapForce = 2;
 
     void Start()
     {
+        m_health    = 3;
+        m_damage    = 5;
+        m_speed     = 300;
         m_type      = EnemyType.BASIC;
         m_rigidbody = GetComponent<Rigidbody>();
 
