@@ -5,7 +5,7 @@ using UnityEngine;
 public class Grenade : MonoBehaviour
 {
     FPSControl script_fps;
-    public float bomb_timer = 2.0f;
+    public float bomb_timer = 3f;
     bool has_exploded;
     public float skill_1_radius = 5.0f;
     public float skill_1_power = 10.0f;

@@ -173,8 +173,6 @@ public class FPSControl : MonoBehaviour
         expl.GetComponent<Rigidbody>().AddForce(g_throw_point.transform.forward * throw_force, ForceMode.Impulse);
     }
 
-   
-
     /// <summary>
     /// Performs skill 2 ( Disengage to point behind Player )
     /// </summary>
