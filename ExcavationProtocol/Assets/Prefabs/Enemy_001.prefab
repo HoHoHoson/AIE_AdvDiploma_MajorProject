@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2455372979600114909}
   - component: {fileID: 2455372979600114911}
   - component: {fileID: 2455372979600114910}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,9 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_childedModel: {fileID: 2455372980087394999}
-  m_healthValue: 3
-  m_damageValue: 5
-  m_speedValue: 300
   m_leapAngle: 45
   m_leapForce: 2
 --- !u!54 &2455372979600114910
@@ -77,7 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2455372980087394999}
   - component: {fileID: 2455372980087394992}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,6 +120,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: bf7c09b2bf0e29c47a3f5e37330f54f5, type: 3}
       propertyPath: m_Name
       value: Enemy_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bf7c09b2bf0e29c47a3f5e37330f54f5, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bf7c09b2bf0e29c47a3f5e37330f54f5, type: 3}
       propertyPath: m_LocalPosition.x

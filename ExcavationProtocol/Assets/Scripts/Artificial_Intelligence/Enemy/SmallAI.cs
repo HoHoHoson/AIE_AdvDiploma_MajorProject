@@ -33,16 +33,15 @@ public class SmallAI : Agent
         m_state_machine.InitiateStateMachine(this, "CHASETARGET");
     }
 
-    private void Update()
-    {
-        UpdateAgent();
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (m_blackboard == null)
         {
             Debug.Log("ERROR: AI Blackboard has not been set.");
+        }
+        else if (m_blackboard.m_gameManager == null)
+        {
+            Debug.Log("ERROR: AI Blackboard doesn't have an instance of a GameManager.");
         }
         else if (m_state_machine.GetCurrentState().GetIndex() == "LEAPAT" && collision.collider.GetComponent<FPSControl>())
         {
