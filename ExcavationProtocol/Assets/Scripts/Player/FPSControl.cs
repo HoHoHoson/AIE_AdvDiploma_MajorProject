@@ -25,6 +25,9 @@ public class FPSControl : MonoBehaviour
     private float m_camera_yaw = 0;
     private float m_camera_pitch = 0;
 
+    [SerializeField]
+    private float jump_cooldown = 0.01f;
+    private float jump_timer;
     private bool has_jumped;
 
     public float skill_1_radius = 5.0f;
@@ -64,7 +67,7 @@ public class FPSControl : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && GroundPlayer() == true)
-            StartCoroutine(Jumping());
+            Jump();
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -80,8 +83,13 @@ public class FPSControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (has_jumped == true || GroundPlayer())
+        if (has_jumped == true || GroundPlayer(true))
+        {
             PlayerInputMovement();
+
+            if (Time.time > jump_timer && GroundPlayer())
+                has_jumped = false;
+        }
     }
 
     /// <summary>
@@ -102,15 +110,17 @@ public class FPSControl : MonoBehaviour
     /// <para>Returns True/False depending on if the player is grounded or not.</para>
     /// </summary>
     /// <returns></returns>
-    bool GroundPlayer()
+    bool GroundPlayer(bool ground = false)
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, -transform.up, out hit, m_player_offset + 0.1f))
+        Vector3 spherecast_origin;
+        spherecast_origin = transform.position + (m_player_collider.height * 0.5f - m_player_collider.radius) * -transform.up;
+
+        if (Physics.SphereCast(spherecast_origin, m_player_collider.radius - 0.075f, -transform.up, out hit, 0.2f, 1 << 9))
         {
-            Vector3 new_pos = hit.point;
-            new_pos.y += m_player_offset;
-            transform.position = new_pos;
+            if (ground == true)
+                transform.position -= (hit.distance - 0.15f) * transform.up;
 
             return true;
         }
@@ -204,11 +214,16 @@ public class FPSControl : MonoBehaviour
         yield return shot_duration;
         laser_line.enabled = false;
     }
-    private IEnumerator Jumping()
+    private void Jump()
     {
+        jump_timer = Time.time + jump_cooldown;
         has_jumped = true;
         m_player_rb.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
-        yield return new WaitForSecondsRealtime(.5f);
-        has_jumped = false;
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (has_jumped == true && Time.time > jump_timer)
+            has_jumped = false;
     }
 }
