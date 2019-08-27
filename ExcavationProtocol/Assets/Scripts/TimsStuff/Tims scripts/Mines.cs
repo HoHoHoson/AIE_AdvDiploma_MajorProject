@@ -58,6 +58,7 @@ public class Mines : MonoBehaviour
     {
         return is_active;
     }
+
     public int GetCurrentHp()
     {
         return mine_hp;
