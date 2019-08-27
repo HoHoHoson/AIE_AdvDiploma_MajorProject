@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
+    private CapsuleCollider cap;
+    
     private void Start()
     {
+        cap = GetComponent<CapsuleCollider>();
+
         Derived b = new Derived();
         TestFun(b);
     }
@@ -13,6 +17,13 @@ public class TestScript : MonoBehaviour
     void TestFun(in Base b)
     {
         b.Over();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        if (cap != null)
+            Gizmos.DrawCube(transform.position, cap.bounds.extents * 2);
     }
 }
 

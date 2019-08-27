@@ -1,22 +1,14 @@
 fileFormatVersion: 2
-guid: 23d39a6629ba9034ca72cfea97863c45
+guid: 1d9a443db18851949a4cf126bdaae441
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: playerCharacterC
-    100002: //RootNode
-    100004: wep
-    400000: playerCharacterC
-    400002: //RootNode
-    400004: wep
-    2100000: lambert3
-    2100002: lambert2
-    2300000: playerCharacterC
-    2300002: wep
-    3300000: playerCharacterC
-    3300002: wep
-    4300000: wep
-    4300002: playerCharacterC
+    100000: //RootNode
+    400000: //RootNode
+    2100000: lambert1
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Terminal8
   externalObjects: {}
   materials:
     importMaterials: 1

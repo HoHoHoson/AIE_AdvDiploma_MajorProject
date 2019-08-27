@@ -7163,6 +7163,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 568990cd1a8f2d740994a9932fc7f969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_childedModel: {fileID: 0}
+  m_healthValue: 3
+  m_damageValue: 5
+  m_speedValue: 300
+  m_leapAngle: 45
+  m_leapForce: 2
 --- !u!54 &384616453
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18993,6 +18999,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 568990cd1a8f2d740994a9932fc7f969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_childedModel: {fileID: 0}
+  m_healthValue: 3
+  m_damageValue: 5
+  m_speedValue: 300
+  m_leapAngle: 45
+  m_leapForce: 2
 --- !u!54 &1241440155
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -31887,7 +31899,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_enemyNormal
       value: 
-      objectReference: {fileID: 170241511}
+      objectReference: {fileID: 2455372979600114904, guid: 67aab124b094c634e8a7653f400f72a4,
+        type: 3}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyExplosive
