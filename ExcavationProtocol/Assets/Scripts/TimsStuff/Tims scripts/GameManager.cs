@@ -9,21 +9,34 @@ public class GameManager : MonoBehaviour
     #region Scripts
     public UiTesting script_UI; // Ui
     public FPSControl script_fps; // fps controller script
+    
     #endregion
 
     // Main Game Variables
     #region Loop
     [Header("GameLoop Variables")]
     public int active_mines = 1;
+    public int mine_rep_cost = 1;
+    public int mine_cost = 1;
+
+    public GameObject[] mines_list;
 
     public bool player_take_dmg = false, player_restore_hp = false;
 
     public Transform camera_transform;
     #endregion
 
+    #region Animator
+
+    private Animator animator;
+
+    #endregion
+
     // Player Values
     #region Player
     [Header("Player Values")]
+
+    public GameObject player_gameobject;
     // Health
     public int player_hp = 100;
     // Energy
@@ -42,6 +55,8 @@ public class GameManager : MonoBehaviour
     public int wave_no;
     public int current_wave;
 
+    public int time_to_next_wave;
+
     [Tooltip("Max amount of enemies that need to be spawned.")]
     public int num_of_enemies;
     #endregion
@@ -52,8 +67,6 @@ public class GameManager : MonoBehaviour
     public int currency = 20;
     public int wave_reward = 5;
     public int cost_HP, cost_ammo;
-    [HideInInspector]
-    public int cost_mine;
     #endregion
 
     // Player Ability Values
@@ -78,6 +91,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = player_gameobject.GetComponent<Animator>();
         player_hp_current = player_hp;
         player_energy_current = player_energy;
 
@@ -108,6 +122,7 @@ public class GameManager : MonoBehaviour
         {
             skill_timer_2 = skill_2;
         }
+        
 
         if (active_3)
         {
@@ -141,16 +156,17 @@ public class GameManager : MonoBehaviour
         {
             script_fps.GunFire(ref player_energy_current);
         }
+        else if (Input.GetMouseButton(0) && player_energy_current <= 0)
+        {
+            StartCoroutine(OutOfAmmo());
+        }
 
-       
-
-        if (Input.GetKeyDown(KeyCode.E) && player_energy_current < player_energy && currency >= cost_HP)
+        if (Input.GetKeyDown(KeyCode.E) && currency >= cost_HP)
         {
             RaycastHit hit;
-            if(Physics.Raycast(camera_transform.position, camera_transform.forward, out hit, 2.0f))
+            if (Physics.Raycast(camera_transform.position, camera_transform.forward, out hit, 5.0f))
             {
                 Interaction(hit.transform.gameObject);
-
             }
         }
 
@@ -192,7 +208,7 @@ public class GameManager : MonoBehaviour
 
     public void Interaction(GameObject interactable)
     {
-        if (interactable.tag == "EnergyTerminal")
+        if (interactable.tag == "EnergyTerminal" && player_energy_current < player_energy)
         {
             if (player_energy_current > player_energy - 10 && player_energy_current != player_energy)
             {
@@ -206,23 +222,32 @@ public class GameManager : MonoBehaviour
                 currency -= cost_ammo;
             }
         }
-        if (interactable.tag == "HealthTerminal")
+        else if (interactable.tag == "HealthTerminal" && player_hp_current < player_hp)
         {
-            if (player_hp_current < player_hp && currency >= cost_HP)
+            if (player_hp_current < player_hp)
             {
                 player_hp_current += 20;
                 currency -= cost_HP;
             }
         }
-        if (interactable.tag == "Mine")
+        else if (interactable.tag == "Mine")
         {
-
+            if(interactable.GetComponent<Mines>().GetActive() == false && currency > mine_cost)
+            {
+                interactable.GetComponent<Mines>().Activate(ref active_mines, mines_list);
+                currency -= mine_cost;
+            }
+            else if (interactable.GetComponent<Mines>().GetCurrentHp() < interactable.GetComponent<Mines>().mine_max_hp && currency > mine_rep_cost)
+            {
+                interactable.GetComponent<Mines>().AddMineHP();
+                currency -= mine_rep_cost;
+            }
         }
     }
 
     public int PlayerTakenDamage(float damage)
     {
-        if(is_used)
+        if (is_used)
         {
             player_hp_current -= Mathf.RoundToInt(damage / skill_3_dmg_reduction);
             return player_hp_current;
@@ -232,5 +257,12 @@ public class GameManager : MonoBehaviour
             player_hp_current -= (int)damage;
             return player_hp_current;
         }
+    }
+
+    private IEnumerator OutOfAmmo()
+    {
+        animator.SetBool("OutOfAmmo", true);
+        yield return new WaitForSeconds(1);
+        animator.SetBool("OutOfAmmo", false);
     }
 }

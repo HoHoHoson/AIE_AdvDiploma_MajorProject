@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class FPSControl : MonoBehaviour
@@ -30,8 +31,25 @@ public class FPSControl : MonoBehaviour
     private float jump_timer;
     private bool has_jumped;
 
-    public float skill_1_radius = 5.0f;
-    public float skill_1_power = 10.0f;
+    public int skill_damage = 1;
+
+    public GameObject bomb, g_throw_point;
+    public float throw_force = 100;
+
+    public float skill_2_radius = 5.0f;
+    public float skill_2_power = 10.0f;
+
+
+    #endregion
+
+    #region Animator
+
+    private Animator animator;
+
+    #endregion
+
+    #region Particle
+    
 
     #endregion
 
@@ -47,6 +65,8 @@ public class FPSControl : MonoBehaviour
     private LineRenderer laser_line;
     private float next_fire;
 
+
+    bool unlocked_mouse;
     #endregion
 
     // Start is called before the first frame update
@@ -54,6 +74,7 @@ public class FPSControl : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        animator = GetComponent<Animator>();
 
         m_player_rb = GetComponent<Rigidbody>();
         m_player_collider = GetComponent<CapsuleCollider>();
@@ -69,10 +90,21 @@ public class FPSControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && GroundPlayer() == true)
             Jump();
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && unlocked_mouse == false)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            unlocked_mouse = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && unlocked_mouse == true)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            unlocked_mouse = false;
+        }
+        if(Input.GetKey(KeyCode.P))
+        {
+            ReloadScene();
         }
     }
 
@@ -138,6 +170,8 @@ public class FPSControl : MonoBehaviour
         direction = direction.normalized;
         direction *= playerSpeed * Time.deltaTime;
 
+        animator.SetFloat("Speed", Input.GetAxisRaw("Vertical"));
+
         if (has_jumped == true)
             direction.y = m_player_rb.velocity.y;
 
@@ -149,25 +183,36 @@ public class FPSControl : MonoBehaviour
     /// </summary>
     public void SkillActive1()
     {
-        Vector3 explosionPos = transform.position;
-        Collider[] colliders = Physics.OverlapSphere(explosionPos, skill_1_radius);
-
-        foreach (Collider hit in colliders)
-        {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
-            if (rb != null && hit.transform.tag != "Player")
-            {
-                rb.AddExplosionForce(skill_1_power, explosionPos, skill_1_radius, 3.0f);
-            }
-        }
+        GameObject expl = Instantiate(bomb);
+        expl.transform.position = g_throw_point.transform.position;
+        expl.GetComponent<Rigidbody>().AddForce(g_throw_point.transform.forward * throw_force, ForceMode.Impulse);
     }
 
     /// <summary>
     /// Performs skill 2 ( Disengage to point behind Player )
     /// </summary>
     public void SkillActive2()
-    { 
-        m_player_rb.AddRelativeForce(0, jump_force_y,-jump_force_z, ForceMode.Acceleration);
+    {
+        Vector3 explosionPos = new Vector3(transform.position.x, transform.position.y,transform.position.z);
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, skill_2_radius);
+
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            if (rb == null)
+            {
+                rb = hit.GetComponentInChildren<Rigidbody>();
+            }
+            if (rb != null && hit.transform.tag != "Player")
+            {
+                rb.AddExplosionForce(skill_2_power, explosionPos, skill_2_radius, 3.0f);
+                if (hit.GetComponent<Agent>() != null)
+                {
+                    hit.GetComponent<Agent>().TakeDamage(skill_damage);
+                }
+            }
+        }
+        m_player_rb.AddRelativeForce(0, jump_force_y, -jump_force_z, ForceMode.Acceleration);
     }
 
     /// <summary>
@@ -211,8 +256,10 @@ public class FPSControl : MonoBehaviour
     private IEnumerator ShotEffect()
     {
         laser_line.enabled = true;
+        animator.SetBool("Shooting", true);
         yield return shot_duration;
         laser_line.enabled = false;
+        animator.SetBool("Shooting", false);
     }
     private void Jump()
     {
@@ -225,5 +272,20 @@ public class FPSControl : MonoBehaviour
     {
         if (has_jumped == true && Time.time > jump_timer)
             has_jumped = false;
+    }
+
+    void LoadAnotherScene(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
+
+    void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void QuitGame()
+    {
+        Application.Quit();
     }
 }
