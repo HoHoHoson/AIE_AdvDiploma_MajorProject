@@ -209,7 +209,7 @@ public class FPSControl : MonoBehaviour
             Rigidbody rb = hit.GetComponent<Rigidbody>();
             if (rb == null)
             {
-                rb = hit.GetComponentInChildren<Rigidbody>();
+                rb = hit.GetComponentInParent<Rigidbody>();
             }
             if (rb != null && hit.transform.tag != "Player")
             {

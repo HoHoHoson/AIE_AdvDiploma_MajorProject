@@ -18,7 +18,7 @@ public class SmallAI : Agent
         m_state_machine = new StateMachine();
 
         // Got to make a proper target selecting function
-        m_target = GameObject.Find("FPS_Controller");
+        m_target = GameObject.FindGameObjectWithTag("Player");
 
         State state = new LeapAtState(m_leapAngle, m_leapForce);
         state.AddTransition(new Transition("CHASETARGET",

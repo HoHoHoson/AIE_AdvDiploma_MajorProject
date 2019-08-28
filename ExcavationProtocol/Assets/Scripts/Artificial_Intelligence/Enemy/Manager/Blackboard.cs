@@ -29,7 +29,7 @@ public class Blackboard : MonoBehaviour
 
         m_eMap = m_enemyTypes.ToDictionary(e => e.GetEnemyType());
 
-        BeginWave(); // DEBUG - Remove this line when done
+        //BeginWave(); // DEBUG - Remove this line when done
     }
 
     private void Update()
@@ -49,7 +49,7 @@ public class Blackboard : MonoBehaviour
     public void EndWave()
     {
         m_wave_ongoing = false;
-
+        m_gameManager.AddCurrency();
         while (m_active_enemies.Count > 0)
         {
             RemoveEnemy(m_active_enemies.Last.Value);
@@ -153,5 +153,14 @@ public class Blackboard : MonoBehaviour
         agent.gameObject.SetActive(false);
 
         m_eMap[agent.GetEnemyType()].DeactivateEnemy(agent);
+    }
+
+    public bool GetWaveOngoing()
+    {
+        return m_wave_ongoing;
+    }
+    public int GetEnemyNum()
+    {
+        return m_enemyCount;
     }
 }

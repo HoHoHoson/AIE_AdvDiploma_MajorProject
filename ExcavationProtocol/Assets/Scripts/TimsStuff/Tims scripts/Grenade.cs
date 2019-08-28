@@ -41,14 +41,14 @@ public class Grenade : MonoBehaviour
             Rigidbody rb = hit.GetComponent<Rigidbody>();
             if (rb == null)
             {
-                rb = hit.GetComponentInChildren<Rigidbody>();
+                rb = hit.GetComponentInParent<Rigidbody>();
             }
             if (rb != null && hit.transform.tag != "Player")
             {
                 rb.AddExplosionForce(skill_1_power, explosionPos, skill_1_radius, 3.0f);
-                if (hit.GetComponent<Agent>() != null)
+                if (hit.GetComponentInParent<Agent>() != null)
                 {
-                    hit.GetComponent<Agent>().TakeDamage(skill_damage);
+                    hit.GetComponentInParent<Agent>().TakeDamage(skill_damage);
                 }
             }
         }
