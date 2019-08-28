@@ -15,8 +15,6 @@ public class EnemyTemplate
     private int         m_groupSize         = 1;
     private GameObject  m_group_nodes       = null;
     private Vector3     m_grid_extents       = Vector3.zero;
-    private float       m_grid_bounds_x     = 0;
-    private float       m_grid_bounds_z     = 0;
 
     private List<Agent> m_inactive_enemies  = new List<Agent>();
 

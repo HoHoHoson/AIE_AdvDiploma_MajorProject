@@ -31,6 +31,7 @@ public class Agent : MonoBehaviour
     public EnemyType GetEnemyType() { return m_type; }
     public ref Rigidbody GetRB() { return ref m_rigidbody; }
     public ref GameObject GetTarget() { return ref m_target; }
+    public void SetTarget(in GameObject value) { m_target = value; }
 
     /// <summary>
     /// Updates the Agent by running the currently loaded behavior state.

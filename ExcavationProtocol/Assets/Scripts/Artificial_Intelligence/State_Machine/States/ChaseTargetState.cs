@@ -15,9 +15,6 @@ public class ChaseTargetState : State
         Vector3 new_velocity = target_direction * agent.GetSpeed() * Time.deltaTime;
         new_velocity.y = agent.GetRB().velocity.y;
 
-        //RaycastHit hit;
-        //if (Physics.CapsuleCast(agent.transform.position, 0.1f, out hit))
-
         agent.GetRB().velocity = new_velocity;
     }
 }
