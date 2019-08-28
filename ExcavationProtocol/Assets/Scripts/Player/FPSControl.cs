@@ -1,10 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class FPSControl : MonoBehaviour
 {
+    #region Scripts
+    public GameManager script_gm;
+    #endregion
+
+
     #region PlayerMovement
     public Transform playerCamera;
 
@@ -37,6 +43,8 @@ public class FPSControl : MonoBehaviour
 
     public float skill_2_radius = 5.0f;
     public float skill_2_power = 10.0f;
+
+    private int player_hp;
 
 
     #endregion
@@ -82,6 +90,7 @@ public class FPSControl : MonoBehaviour
         laser_line = GetComponent<LineRenderer>();
         fps_cam = GetComponentInChildren<Camera>();
 
+        player_hp = script_gm.player_hp_current;
     }
 
     void Update()
@@ -100,6 +109,10 @@ public class FPSControl : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             unlocked_mouse = false;
+        }
+        if(Input.GetKey(KeyCode.P))
+        {
+            ReloadScene();
         }
     }
 
@@ -267,5 +280,28 @@ public class FPSControl : MonoBehaviour
     {
         if (has_jumped == true && Time.time > jump_timer)
             has_jumped = false;
+    }
+
+    void LoadAnotherScene(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
+
+    void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public bool GetPlayerHP()
+    {
+        if (player_hp <= 0)
+            return true;
+        else
+            return false;
     }
 }
