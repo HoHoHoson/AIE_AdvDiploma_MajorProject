@@ -6,6 +6,7 @@ public class SelectTargetState : State
 {
     private GameManager m_game_manager          = null;
     private float       m_player_detect_range   = 0;
+    private bool        m_ignore_player         = false;
 
     private GameObject  m_target_aquired        = null;
 
@@ -14,11 +15,12 @@ public class SelectTargetState : State
         m_index = "SELECTTARGET";
         m_game_manager = gm;
         m_player_detect_range = detect_range;
+        m_ignore_player = ignore_player;
     }
 
     public override void OnInitialise(in Agent agent)
     {
-        if (m_game_manager.player_gameobject.transform.position.sqrMagnitude < Mathf.Pow(m_player_detect_range, 2))
+        if ((agent.transform.position - m_game_manager.player_gameobject.transform.position).sqrMagnitude < Mathf.Pow(m_player_detect_range, 2))
         {
             m_target_aquired = m_game_manager.player_gameobject;
         }
@@ -51,9 +53,11 @@ public class SelectTargetState : State
 
             m_target_aquired = closest_mine;
         }
+
+        agent.SetTarget(m_target_aquired);
     }
 
-    public bool NewTargetSet()
+    public bool HasSetTarget()
     {
         if (m_target_aquired == null)
             return false;

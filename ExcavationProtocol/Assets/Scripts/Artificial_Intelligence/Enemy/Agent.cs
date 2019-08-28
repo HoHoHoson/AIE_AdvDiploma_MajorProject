@@ -16,9 +16,14 @@ public class Agent : MonoBehaviour
         BOSS
     }
 
-    protected int           m_health;
-    protected int           m_damage;
-    protected int           m_speed;
+    [SerializeField] private int m_health = 3;
+    [SerializeField] private int m_damage = 5;
+    [SerializeField] private int m_speed  = 500;
+
+    protected int           m_current_health;
+    protected int           m_current_damage;
+    protected int           m_current_speed;
+
     protected EnemyType     m_type;
     protected Rigidbody     m_rigidbody;
     protected StateMachine  m_state_machine;
@@ -27,10 +32,11 @@ public class Agent : MonoBehaviour
 
     public void SetBlackboard(in Blackboard blackboard) { m_blackboard = blackboard; }
 
-    public float GetSpeed() { return m_speed; }
+    public float GetSpeed() { return m_current_speed; }
     public EnemyType GetEnemyType() { return m_type; }
     public ref Rigidbody GetRB() { return ref m_rigidbody; }
     public ref GameObject GetTarget() { return ref m_target; }
+
     public void SetTarget(in GameObject value) { m_target = value; }
 
     /// <summary>
@@ -42,14 +48,14 @@ public class Agent : MonoBehaviour
         m_state_machine.UpdateState(this);
     }
 
-    public void SetStats(int hp, int dmg, int speed)
+    public virtual void InstantiateStats()
     {
-        m_health = hp;
-        m_damage = dmg;
-        m_speed = speed;
+        m_current_health    = m_health;
+        m_current_damage    = m_damage;
+        m_current_speed     = m_speed;
     }
 
-    public void TakeDamage(int dmg) { m_health -= dmg; }
+    public void TakeDamage(int dmg) { m_current_health -= dmg; }
 
-    public bool IsDead() { return m_health <= 0; }
+    public bool IsDead() { return m_current_health <= 0; }
 }
