@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class FPSControl : MonoBehaviour
@@ -100,6 +101,10 @@ public class FPSControl : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             unlocked_mouse = false;
+        }
+        if(Input.GetKey(KeyCode.P))
+        {
+            ReloadScene();
         }
     }
 
@@ -267,5 +272,20 @@ public class FPSControl : MonoBehaviour
     {
         if (has_jumped == true && Time.time > jump_timer)
             has_jumped = false;
+    }
+
+    void LoadAnotherScene(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
+
+    void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void QuitGame()
+    {
+        Application.Quit();
     }
 }
