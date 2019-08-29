@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 9115637781967525165}
   - component: {fileID: 6947446796649199729}
   - component: {fileID: 5083768227649879658}
-  m_Layer: 0
+  - component: {fileID: 2844893685984595284}
+  m_Layer: 9
   m_Name: Metal_Platform_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,3 +78,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &2844893685984595284
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4535730072572992658}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 607f9620d0c2d6445a53e226306bf9b4, type: 3}
