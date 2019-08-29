@@ -17,7 +17,11 @@ public class State
     /// Logic runs when this state gets loaded.
     /// </summary>
     /// <param name="agent">Reference the Agent that owns the StateMachine in order to make changes to it.</param>
-    public virtual void OnInitialise(in Agent agent) { }
+    public virtual void OnInitialise(in Agent agent)
+    {
+        foreach (Transition t in m_state_transitions)
+            t.InitiateConditions();
+    }
 
     /// <summary>
     /// Update logic of this script to be called preferably each frame.

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class ChaseTargetState : State
+public class SeekTargetState : State
 {
-    public ChaseTargetState() { m_index = "CHASETARGET"; }
+    public SeekTargetState() { m_index = "SEEKTARGET"; }
 
     public override void UpdateState(in Agent agent)
     {

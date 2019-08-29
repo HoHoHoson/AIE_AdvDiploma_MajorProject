@@ -20,6 +20,8 @@ public class SelectTargetState : State
 
     public override void OnInitialise(in Agent agent)
     {
+        base.OnInitialise(agent);
+
         if ((agent.transform.position - m_game_manager.player_gameobject.transform.position).sqrMagnitude < Mathf.Pow(m_player_detect_range, 2))
         {
             m_target_aquired = m_game_manager.player_gameobject;

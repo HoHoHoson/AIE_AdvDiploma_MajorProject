@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 /// <summary>
 /// Base class for all AI. 
 /// <para>Should be derived from to create custom AI.</para>

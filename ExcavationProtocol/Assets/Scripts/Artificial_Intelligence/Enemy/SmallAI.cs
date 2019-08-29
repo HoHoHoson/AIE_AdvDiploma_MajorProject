@@ -10,32 +10,7 @@ public class SmallAI : Agent
         m_type      = EnemyType.BASIC;
         m_rigidbody = GetComponent<Rigidbody>();
 
-        m_state_machine = new StateMachine();
-
-        // Got to make a proper target selecting function
-        m_target = GameObject.Find("FPS_Controller");
-
-        State state = new SelectTargetState(m_blackboard.m_gameManager, 5);
-        state.AddTransition(new Transition("IDLE",
-            new Condition[] { new BoolCondition((state as SelectTargetState).HasSetTarget, true) }));
-        state.AddTransition(new Transition("CHASETARGET",
-            new Condition[] { new BoolCondition((state as SelectTargetState).HasSetTarget) }));
-        m_state_machine.AddState(state);
-
-        state = new IdleState();
-        m_state_machine.AddState(state);
-
-        //state = new LeapAtState(m_leapAngle, m_leapForce);
-        //state.AddTransition(new Transition("CHASETARGET",
-        //    new Condition[] { new DistanceCondition(transform, m_target.transform, 3, DistanceCondition.Comparator.GREATER) }));
-        //m_state_machine.AddState(state);
-
-        state = new ChaseTargetState();
-        //state.AddTransition(new Transition("LEAPAT",
-        //    new Condition[] { new DistanceCondition(transform, m_target.transform, 3, DistanceCondition.Comparator.LESS) }));
-        m_state_machine.AddState(state);
-
-        m_state_machine.InitiateStateMachine(this, "SELECTTARGET");
+        InitiateStateMachine();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -52,5 +27,41 @@ public class SmallAI : Agent
         {
             m_blackboard.m_gameManager.PlayerTakenDamage(m_current_damage);
         }
+    }
+
+    private void InitiateStateMachine()
+    {
+        m_state_machine = new StateMachine();
+
+        // Selects a target for the AI
+        State state = new SelectTargetState(m_blackboard.m_gameManager, 5);
+        // Idles if it can't find a single target
+        state.AddTransition(new Transition("IDLE",
+            new Condition[] { new BoolCondition((state as SelectTargetState).HasSetTarget, true) }));
+        // Seeks target when a target is found
+        state.AddTransition(new Transition("SEEKTARGET",
+            new Condition[] { new BoolCondition((state as SelectTargetState).HasSetTarget) }));
+        m_state_machine.AddState(state);
+
+        // AI does absolutely nothing
+        state = new IdleState();
+        m_state_machine.AddState(state);
+
+        // Chases after the AI's set target
+        state = new SeekTargetState();
+        // Leaps at the targets face when in range
+        state.AddTransition(new Transition("LEAPAT",
+            new Condition[] { new DistanceCondition(transform, m_target.transform, 3, DistanceCondition.Comparator.LESS) }));
+        m_state_machine.AddState(state);
+
+        // LEAP 4 FACE
+        state = new LeapAtState(m_leapAngle, m_leapForce);
+        // Goes back to seeking its target when out of range or after a cooldown
+        state.AddTransition(new Transition("CHASETARGET",
+            new Condition[] { new DistanceCondition(transform, m_target.transform, 3, DistanceCondition.Comparator.GREATER)
+            , new TimerCondition(2) }));
+        m_state_machine.AddState(state);
+
+        m_state_machine.InitiateStateMachine(this, "SELECTTARGET");
     }
 }

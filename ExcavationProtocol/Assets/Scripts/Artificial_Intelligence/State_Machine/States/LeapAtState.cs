@@ -14,6 +14,8 @@ public class LeapAtState : State
 
     public override void OnInitialise(in Agent agent)
     {
+        base.OnInitialise(agent);
+
         Vector3 target_direction;
         target_direction = agent.GetTarget().transform.position - agent.transform.position;
         target_direction = Quaternion.Euler(-m_angle, 0, 0) * target_direction;
