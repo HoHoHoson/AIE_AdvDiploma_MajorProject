@@ -8,6 +8,7 @@ public class Blackboard : MonoBehaviour
     public Transform[]          m_spawnPoints;
     public List<EnemyTemplate>  m_enemyTypes            = new List<EnemyTemplate>();
     public int                  m_enemyCount            = 50;
+    private int                 m_enemyCountReset;
 
     [SerializeField]
     private int                 m_activeEnemiesLimit    = 20;
@@ -28,11 +29,11 @@ public class Blackboard : MonoBehaviour
         }
 
         m_eMap = m_enemyTypes.ToDictionary(e => e.GetEnemyType());
-
+        m_enemyCountReset = m_enemyCount;
         //BeginWave(); // DEBUG - Remove this line when done
     }
 
-    private void Update()
+    public void Update()
     {
         foreach (Agent a in m_active_enemies)
             a.UpdateAgent();
@@ -44,6 +45,7 @@ public class Blackboard : MonoBehaviour
     public void BeginWave()
     {
         m_wave_ongoing = true;
+        m_enemyCount = m_enemyCountReset;
     }
 
     public void EndWave()

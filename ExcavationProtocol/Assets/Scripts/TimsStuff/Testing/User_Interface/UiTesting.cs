@@ -50,6 +50,8 @@ public class UiTesting : MonoBehaviour
 
         res_cost_text.GetComponent<Text>().text = script_gamemanager.currency.ToString();
 
+        wave_enemiesleft.GetComponent<Text>().text = script_gamemanager.num_of_enemies.ToString();
+
         skill_1.value = script_gamemanager.skill_timer_1;
         skill_2.value = script_gamemanager.skill_timer_2;
         skill_3.value = script_gamemanager.skill_timer_3;

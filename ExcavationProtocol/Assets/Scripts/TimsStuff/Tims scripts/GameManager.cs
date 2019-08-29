@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
         animator = player_gameobject.GetComponent<Animator>();
         player_hp_current = player_hp;
         player_energy_current = player_energy;
-
+        num_of_enemies = script_bb.m_enemyCount;
         player_hp_current = 10;
 
         skill_timer_1 = skill_1;
@@ -232,7 +232,7 @@ public class GameManager : MonoBehaviour
         }
         else if (interactable.tag == "Mine")
         {
-            if(interactable.GetComponent<Mines>().GetActive() == false && currency > mine_cost)
+            if(interactable.GetComponent<Mines>().GetActive() == true && currency > mine_cost)
             {
                 interactable.GetComponent<Mines>().Activate(ref active_mines, mines_list);
                 currency -= mine_cost;
@@ -268,25 +268,26 @@ public class GameManager : MonoBehaviour
 
     public void GameLoop()
     {
-
+        num_of_enemies = script_bb.m_enemyCount;
         if(script_bb.GetWaveOngoing() == false)
         {
             wave_timer += Time.deltaTime;
-        }
-        //if(script_bb.GetWaveOngoing() == true && wave_timer > 0)
-        //{
-        //    wave_timer = 0;
-        //}
-        if(script_bb.GetWaveOngoing() == false && wave_timer >= time_to_next_wave)
-        {
-            wave_no++;
-            script_bb.BeginWave();
-        }
+            if(wave_timer >= time_to_next_wave)
+            {
+                wave_no++;
 
+                script_bb.BeginWave();
+            }
+        }
+        if(script_bb.GetWaveOngoing() == true && wave_timer > 0)
+        {
+            wave_timer = 0;
+        }
+        script_bb.Update();
     }
 
     public void AddCurrency()
     {
-        currency += wave_reward * active_mines;
+        currency += wave_reward * (active_mines + 1);
     }
 }

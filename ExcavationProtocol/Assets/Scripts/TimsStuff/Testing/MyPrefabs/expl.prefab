@@ -121,6 +121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5470a48414b840e42b69a05066f42a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bomb_timer: 2
-  skill_1_radius: 100
-  skill_1_power: 1000
+  bomb_timer: 1
+  skill_1_radius: 50
+  skill_1_power: 100
