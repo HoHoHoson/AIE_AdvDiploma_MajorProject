@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
         player_hp_current = player_hp;
         player_energy_current = player_energy;
         num_of_enemies = script_bb.m_enemyCount;
-        player_hp_current = 10;
+        player_hp_current = player_hp;
 
         skill_timer_1 = skill_1;
         skill_timer_2 = skill_2;
@@ -202,7 +202,7 @@ public class GameManager : MonoBehaviour
 
         active_3 = false;
         skill_timer_3 = 0;
-        is_used = true;
+        script_fps.SkillActive3();
         active_3 = true;
     }
 
@@ -247,16 +247,8 @@ public class GameManager : MonoBehaviour
 
     public int PlayerTakenDamage(float damage)
     {
-        if (is_used)
-        {
-            player_hp_current -= Mathf.RoundToInt(damage / skill_3_dmg_reduction);
-            return player_hp_current;
-        }
-        else
-        {
-            player_hp_current -= (int)damage;
-            return player_hp_current;
-        }
+        player_hp_current -= (int)damage;
+        return player_hp_current;   
     }
 
     private IEnumerator OutOfAmmo()
