@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     #region Scripts
     public UiTesting script_UI; // Ui
     public FPSControl script_fps; // fps controller script
-    
+    public Blackboard script_bb; // blackboard script
     #endregion
 
     // Main Game Variables
@@ -53,9 +53,9 @@ public class GameManager : MonoBehaviour
     [Header("Wave Values")]
 
     public int wave_no;
-    public int current_wave;
 
-    public int time_to_next_wave;
+    public float time_to_next_wave = 20;
+    private float wave_timer;
 
     [Tooltip("Max amount of enemies that need to be spawned.")]
     public int num_of_enemies;
@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
         animator = player_gameobject.GetComponent<Animator>();
         player_hp_current = player_hp;
         player_energy_current = player_energy;
-
+        num_of_enemies = script_bb.m_enemyCount;
         player_hp_current = 10;
 
         skill_timer_1 = skill_1;
@@ -122,7 +122,6 @@ public class GameManager : MonoBehaviour
         {
             skill_timer_2 = skill_2;
         }
-        
 
         if (active_3)
         {
@@ -170,6 +169,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        GameLoop();
         script_UI.UpdateUI();
     }
 
@@ -232,7 +232,7 @@ public class GameManager : MonoBehaviour
         }
         else if (interactable.tag == "Mine")
         {
-            if(interactable.GetComponent<Mines>().GetActive() == false && currency > mine_cost)
+            if(interactable.GetComponent<Mines>().GetActive() == true && currency > mine_cost)
             {
                 interactable.GetComponent<Mines>().Activate(ref active_mines, mines_list);
                 currency -= mine_cost;
@@ -264,5 +264,30 @@ public class GameManager : MonoBehaviour
         animator.SetBool("OutOfAmmo", true);
         yield return new WaitForSeconds(1);
         animator.SetBool("OutOfAmmo", false);
+    }
+
+    public void GameLoop()
+    {
+        num_of_enemies = script_bb.m_enemyCount;
+        if(script_bb.GetWaveOngoing() == false)
+        {
+            wave_timer += Time.deltaTime;
+            if(wave_timer >= time_to_next_wave)
+            {
+                wave_no++;
+
+                script_bb.BeginWave();
+            }
+        }
+        if(script_bb.GetWaveOngoing() == true && wave_timer > 0)
+        {
+            wave_timer = 0;
+        }
+        script_bb.Update();
+    }
+
+    public void AddCurrency()
+    {
+        currency += wave_reward * (active_mines + 1);
     }
 }

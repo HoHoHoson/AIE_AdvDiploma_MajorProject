@@ -43,12 +43,14 @@ public class UiTesting : MonoBehaviour
         hp_bar.value = script_gamemanager.player_hp_current;
         energy_bar.value = script_gamemanager.player_energy_current;
 
-        wave_count.GetComponent<Text>().text = script_gamemanager.current_wave.ToString();
+        wave_count.GetComponent<Text>().text = script_gamemanager.wave_no.ToString();
         energy_value.GetComponent<Text>().text = script_gamemanager.player_energy_current.ToString();
 
         max_energy_value.GetComponent<Text>().text = "/ " + script_gamemanager.player_energy.ToString();
 
         res_cost_text.GetComponent<Text>().text = script_gamemanager.currency.ToString();
+
+        wave_enemiesleft.GetComponent<Text>().text = script_gamemanager.num_of_enemies.ToString();
 
         skill_1.value = script_gamemanager.skill_timer_1;
         skill_2.value = script_gamemanager.skill_timer_2;
