@@ -47,24 +47,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   script_UI: {fileID: 3317138830722218635}
   script_fps: {fileID: 0}
-  active_mines: 1
+  script_bb: {fileID: 3317138830722218740}
+  active_mines: 0
+  mine_rep_cost: 1
+  mine_cost: 1
+  mines_list:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   player_take_dmg: 0
   player_restore_hp: 0
   camera_transform: {fileID: 0}
+  player_gameobject: {fileID: 0}
   player_hp: 100
-  player_energy: 150
+  player_energy: 100
   player_hp_current: 0
   player_energy_current: 0
   wave_no: 0
-  current_wave: 0
+  time_to_next_wave: 10
   num_of_enemies: 0
   currency: 20
   wave_reward: 5
   cost_HP: 1
   cost_ammo: 1
-  cost_mine: 0
-  skill_1: 20
-  skill_2: 10
+  skill_1: 2
+  skill_2: 2
   skill_3: 50
   skill_3_duration: 20
   skill_3_dmg_reduction: 2
@@ -106,17 +113,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9076a4b60ed5de04cb80bdd22044c8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_gameManager: {fileID: 0}
-  m_enemyNormal: {fileID: 0}
-  m_enemyExplosive: {fileID: 0}
-  m_enemyBoss: {fileID: 0}
-  m_normalSpawnRate: 80
-  m_explosiveSpawnrate: 15
-  m_bossSpawnrate: 5
+  m_gameManager: {fileID: 3317138830722218634}
   m_spawnPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  m_enemyTypes:
+  - m_enemyPrefab: {fileID: 2455372979600114904, guid: 67aab124b094c634e8a7653f400f72a4,
+      type: 3}
+    m_health: 3
+    m_damage: 1
+    m_speed: 500
+    m_spawnRate: 2
+    m_groupSize: 6
   m_enemyCount: 50
   m_activeEnemiesLimit: 20
