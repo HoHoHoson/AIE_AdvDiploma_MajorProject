@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -186,8 +187,9 @@ public class FPSControl : MonoBehaviour
         m_player_rb.velocity = direction;
     }
 
+
     /// <summary>
-    /// Performs skill 1 ( Knockback AOE from Player )
+    /// Performs skill 1 ( Throws Grenade / Damages targets within a Radius with some knockback )
     /// </summary>
     public void SkillActive1()
     {
@@ -197,7 +199,8 @@ public class FPSControl : MonoBehaviour
     }
 
     /// <summary>
-    /// Performs skill 2 ( Disengage to point behind Player )
+    /// Performs skill 2 ( Places a Mine / allows the player to place and deternate a mine
+    /// dealing damage to targets and knocking everything with a RB away from it )
     /// </summary>
     public void SkillActive2()
     {
@@ -221,6 +224,14 @@ public class FPSControl : MonoBehaviour
             }
         }
         m_player_rb.AddRelativeForce(0, jump_force_y, -jump_force_z, ForceMode.Acceleration);
+    }
+
+    /// <summary>
+    /// Performs skill 3 ( Throws frost Grenade / Freezes targets within a Radius )
+    /// </summary>
+    public void SkillActive3()
+    {
+        
     }
 
     /// <summary>
