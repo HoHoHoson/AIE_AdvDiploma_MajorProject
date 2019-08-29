@@ -13059,18 +13059,6 @@ Transform:
   m_Father: {fileID: 1373482166}
   m_RootOrder: 102
   m_LocalEulerAnglesHint: {x: 0, y: 88.329, z: 0}
---- !u!114 &841025464 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
-    type: 3}
-  m_PrefabInstance: {fileID: 3317138831565224651}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9076a4b60ed5de04cb80bdd22044c8db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &841025466 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
@@ -13876,11 +13864,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Drill_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 3110612153371333922, guid: 4edcd9d792fdc8f4aad1cf79e6705952,
-        type: 3}
-      propertyPath: m_TagString
-      value: Mine
       objectReference: {fileID: 0}
     - target: {fileID: 3984272913826212253, guid: 4edcd9d792fdc8f4aad1cf79e6705952,
         type: 3}
@@ -26879,21 +26862,6 @@ PrefabInstance:
       propertyPath: script_gm
       value: 
       objectReference: {fileID: 841025466}
-    - target: {fileID: 161447437416827734, guid: 1cffc7320b358ff42992872e87e2aa5e,
-        type: 3}
-      propertyPath: fire_rate
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 161447437416827734, guid: 1cffc7320b358ff42992872e87e2aa5e,
-        type: 3}
-      propertyPath: hit_force
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 161447437416827734, guid: 1cffc7320b358ff42992872e87e2aa5e,
-        type: 3}
-      propertyPath: skill_2_power
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 262854713188246283, guid: 1cffc7320b358ff42992872e87e2aa5e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27611,20 +27579,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 902357790}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1854299252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1854299250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bcddfe31bad8214cac694ad6cb097f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mine_hp_recover: 10
-  mine_max_hp: 100
 --- !u!1 &1877727780
 GameObject:
   m_ObjectHideFlags: 0
@@ -31261,41 +31215,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1774508644424032790, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1774508644424032790, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1774508644424032789, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_Name
-      value: Dot
-      objectReference: {fileID: 0}
-    - target: {fileID: 1774508644424032791, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 1774508644424032791, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.013349922
-      objectReference: {fileID: 0}
-    - target: {fileID: 1774508644424032791, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.9433962
-      objectReference: {fileID: 0}
-    - target: {fileID: 1774508644424032791, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.20043422
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a, type: 3}
 --- !u!1001 &3317138831565224651
@@ -31312,32 +31231,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
-      propertyPath: m_spawnPoints.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: m_enemyTypes.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: m_enemyNormal
-      value: 
-      objectReference: {fileID: 2455372979600114904, guid: 67aab124b094c634e8a7653f400f72a4,
-        type: 3}
-    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: m_enemyExplosive
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: m_enemyBoss
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
       propertyPath: m_spawnPoints.Array.data[0]
       value: 
       objectReference: {fileID: 1441951733}
@@ -31351,92 +31244,11 @@ PrefabInstance:
       propertyPath: m_spawnPoints.Array.data[2]
       value: 
       objectReference: {fileID: 256725829}
-    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: m_spawnPoints.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: m_gameManager
-      value: 
-      objectReference: {fileID: 841025466}
-    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: m_enemyTypes.Array.data[0].m_enemyPrefab
-      value: 
-      objectReference: {fileID: 2455372979600114904, guid: 67aab124b094c634e8a7653f400f72a4,
-        type: 3}
-    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: m_enemyTypes.Array.data[0].m_health
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: m_enemyTypes.Array.data[0].m_damage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: m_enemyTypes.Array.data[0].m_speed
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: m_enemyTypes.Array.data[0].m_spawnRate
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: m_enemyTypes.Array.data[0].m_groupSize
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: mines_list.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: script_fps
       value: 
       objectReference: {fileID: 933872207}
-    - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: camera_transform
-      value: 
-      objectReference: {fileID: 1056841759}
-    - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: skill_2
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: skill_1
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: game_manager
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: player_gameobject
-      value: 
-      objectReference: {fileID: 933872205}
-    - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: player_energy
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: mines_list.Array.data[0]
@@ -31454,19 +31266,14 @@ PrefabInstance:
       objectReference: {fileID: 879751944}
     - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
-      propertyPath: active_mines
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: script_bb
+      propertyPath: camera_transform
       value: 
-      objectReference: {fileID: 841025464}
+      objectReference: {fileID: 1056841759}
     - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
-      propertyPath: time_to_next_wave
-      value: 10
-      objectReference: {fileID: 0}
+      propertyPath: player_gameobject
+      value: 
+      objectReference: {fileID: 933872205}
     - target: {fileID: 3317138830722218633, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_LocalPosition.x
