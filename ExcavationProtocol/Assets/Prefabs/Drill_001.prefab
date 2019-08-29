@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3984272913826212253}
   - component: {fileID: 8638077222216571308}
   - component: {fileID: 8389706959244704662}
-  - component: {fileID: 6802906567779807609}
   - component: {fileID: 1854299252}
+  - component: {fileID: 8496259801393612215}
   m_Layer: 0
   m_Name: Drill_001
   m_TagString: Mine
@@ -79,19 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &8496259801393612215
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3110612153371333922}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6.742872, y: 16.242718, z: 6.629917}
-  m_Center: {x: 0.5406033, y: 7.724819, z: -0.15255773}
 --- !u!114 &1854299252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,3 +93,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mine_hp_recover: 10
   mine_max_hp: 100
+--- !u!136 &8496259801393612215
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3110612153371333922}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 4
+  m_Height: 19.207802
+  m_Direction: 1
+  m_Center: {x: 0, y: 5.3360996, z: 0}
