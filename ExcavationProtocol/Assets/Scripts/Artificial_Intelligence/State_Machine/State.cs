@@ -6,12 +6,13 @@
 public class State
 {
     protected string m_index;
+    protected StateMachine m_state_machine;
     protected List<Transition> m_state_transitions = new List<Transition>();
 
     public string GetIndex() { return m_index; }
     public List<Transition> GetTransitions() { return m_state_transitions; }
 
-    protected State() { m_index = "NULL"; }
+    protected State(in StateMachine state_machine) { m_index = "NULL"; }
 
     /// <summary>
     /// Logic runs when this state gets loaded.
@@ -43,5 +44,15 @@ public class State
     public void AddTransition(Transition new_transition)
     {
         m_state_transitions.Add(new_transition);
+    }
+
+    public void TransitionCheck(in Agent agent)
+    {
+        foreach (Transition t in m_state_transitions)
+            if (t.CheckConditions() == true)
+            {
+                m_state_machine.StateTransition(agent, t);
+                break;
+            }
     }
 }

@@ -9,12 +9,12 @@ public class DistanceCondition : Condition
         EQUAL
     }
 
-    private Transform m_start;
-    private Transform m_end;
+    private GameObject m_start;
+    private GameObject m_end;
     private float m_sqr_threshold;
     private Comparator m_comparator;
 
-    public DistanceCondition(in Transform start, in Transform end, float threshold, Comparator comparator)
+    public DistanceCondition(in GameObject start, in GameObject end, float threshold, Comparator comparator)
     {
         m_start = start;
         m_end = end;
@@ -24,27 +24,28 @@ public class DistanceCondition : Condition
 
     public override bool Check()
     {
-        switch(m_comparator)
-        {
-            case Comparator.LESS:
-                return SqrMag() < m_sqr_threshold;;
+        if (m_start != null && m_end != null)
+            switch(m_comparator)
+            {
+                case Comparator.LESS:
+                    return SqrMag() < m_sqr_threshold;;
                                  
-            case Comparator.GREATER:
-                return SqrMag() > m_sqr_threshold;;
+                case Comparator.GREATER:
+                    return SqrMag() > m_sqr_threshold;;
                                  
-            case Comparator.EQUAL:
-                return SqrMag() == m_sqr_threshold;
+                case Comparator.EQUAL:
+                    return SqrMag() == m_sqr_threshold;
 
-            default:
-                Debug.Log("ERROR: DistanceCondition switch default.");
-                break;
-        }
+                default:
+                    break;
+            }
 
+        Debug.Log("ERROR: DistanceCondition switch statement failed.");
         return false;
     }
 
     private float SqrMag()
     {
-        return Vector3.SqrMagnitude(m_end.position - m_start.position);
+        return Vector3.SqrMagnitude(m_end.transform.position - m_start.transform.position);
     }
 }

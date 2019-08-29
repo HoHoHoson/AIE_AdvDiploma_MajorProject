@@ -2,6 +2,9 @@
 
 public class SmallAI : Agent
 {
+    [SerializeField] private float m_playerDetectionRange = 7;
+    [SerializeField] private float m_leapRange = 5;
+    [SerializeField] private float m_leapCooldown = 2;
     [SerializeField] private float m_leapAngle = 45;
     [SerializeField] private float m_leapForce = 2;
 
@@ -9,6 +12,7 @@ public class SmallAI : Agent
     {
         m_type      = EnemyType.BASIC;
         m_rigidbody = GetComponent<Rigidbody>();
+        m_target    = m_blackboard.m_gameManager.player_gameobject;
 
         InitiateStateMachine();
     }
@@ -34,34 +38,24 @@ public class SmallAI : Agent
         m_state_machine = new StateMachine();
 
         // Selects a target for the AI
-        State state = new SelectTargetState(m_blackboard.m_gameManager, 5);
-        // Idles if it can't find a single target
-        state.AddTransition(new Transition("IDLE",
-            new Condition[] { new BoolCondition((state as SelectTargetState).HasSetTarget, true) }));
-        // Seeks target when a target is found
-        state.AddTransition(new Transition("SEEKTARGET",
-            new Condition[] { new BoolCondition((state as SelectTargetState).HasSetTarget) }));
-        m_state_machine.AddState(state);
-
-        // AI does absolutely nothing
-        state = new IdleState();
+        State state = new IdleState(); 
         m_state_machine.AddState(state);
 
         // Chases after the AI's set target
-        state = new SeekTargetState();
+        state = new SeekTargetState(m_blackboard, m_playerDetectionRange);
         // Leaps at the targets face when in range
         state.AddTransition(new Transition("LEAPAT",
-            new Condition[] { new DistanceCondition(transform, m_target.transform, 3, DistanceCondition.Comparator.LESS) }));
+            new Condition[] { new DistanceCondition(gameObject, m_target, m_leapRange, DistanceCondition.Comparator.LESS) }));
         m_state_machine.AddState(state);
 
         // LEAP 4 FACE
         state = new LeapAtState(m_leapAngle, m_leapForce);
         // Goes back to seeking its target when out of range or after a cooldown
-        state.AddTransition(new Transition("CHASETARGET",
-            new Condition[] { new DistanceCondition(transform, m_target.transform, 3, DistanceCondition.Comparator.GREATER)
-            , new TimerCondition(2) }));
+        state.AddTransition(new Transition("SEEKTARGET",
+            new Condition[] { new DistanceCondition(gameObject, m_target, m_leapRange, DistanceCondition.Comparator.GREATER)
+            , new TimerCondition(m_leapCooldown) }));
         m_state_machine.AddState(state);
 
-        m_state_machine.InitiateStateMachine(this, "SELECTTARGET");
+        m_state_machine.InitiateStateMachine(this, "SEEKTARGET");
     }
 }

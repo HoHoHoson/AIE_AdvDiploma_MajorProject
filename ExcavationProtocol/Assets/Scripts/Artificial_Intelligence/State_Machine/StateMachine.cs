@@ -41,7 +41,6 @@ public class StateMachine
         }
 
         m_current_state.UpdateState(agent);
-        CanTransition(agent);
     }
 
     /// <summary>
@@ -77,25 +76,19 @@ public class StateMachine
     /// </summary>
     /// <param name="agent">Reference the Agent that owns the StateMachine in order to make changes to it.</param>
     /// <returns>True if a state change was made, False otherwise.</returns>
-    private bool CanTransition(in Agent agent)
+    public bool StateTransition(in Agent agent, in Transition transition)
     {
-        foreach (Transition t in m_current_state.GetTransitions())
-            if (t.CheckConditions() == true)
-            {
-                State transition_state;
+        State transition_state;
 
-                if (m_states.TryGetValue(t.GetStateIndex(), out transition_state))
-                {
-                    ChangeState(agent, transition_state);
-                    return true;
-                }
-                else
-                {
-                    Debug.Log("ERROR: Transition condition was met but the state wasn't found.");
-                    return false;
-                }
-            }
-
-        return false;
+        if (m_states.TryGetValue(transition.GetStateIndex(), out transition_state))
+        {
+            ChangeState(agent, transition_state);
+            return true;
+        }
+        else
+        {
+            Debug.Log("ERROR: Transition condition was met but the state wasn't found.");
+            return false;
+        }        
     }
 }
