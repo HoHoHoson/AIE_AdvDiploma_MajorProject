@@ -6,17 +6,12 @@ using UnityEngine;
 public class EnemyTemplate
 {
     [SerializeField] private GameObject m_enemyPrefab   = null;
-    [SerializeField] private int        m_health        = 3;
-    [SerializeField] private int        m_damage        = 5;
-    [SerializeField] private int        m_speed         = 300;
     [SerializeField] private int        m_spawnRate     = 100;
 
     [SerializeField]
-    private int         m_groupSize         = 1;
-    private GameObject  m_group_nodes       = null;
-    private Vector3     m_grid_extents       = Vector3.zero;
-    private float       m_grid_bounds_x     = 0;
-    private float       m_grid_bounds_z     = 0;
+    private int         m_groupSize     = 1;
+    private GameObject  m_group_nodes   = null;
+    private Vector3     m_grid_extents  = Vector3.zero;
 
     private List<Agent> m_inactive_enemies  = new List<Agent>();
 
@@ -89,7 +84,7 @@ public class EnemyTemplate
             Agent agent_instance = m_inactive_enemies[m_inactive_enemies.Count - 1];
             m_inactive_enemies.RemoveAt(m_inactive_enemies.Count - 1);
 
-            agent_instance.SetStats(m_health, m_damage, m_speed);
+            agent_instance.InstantiateStats();
             agent_instance.transform.position = m_group_nodes.transform.GetChild(i).position;
 
             agent_instance.gameObject.SetActive(true);

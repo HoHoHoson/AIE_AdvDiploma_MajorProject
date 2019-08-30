@@ -5,5 +5,7 @@
 /// </summary>
 public class Condition
 {
+    public virtual void InitiateCondition() { }
+    
     public virtual bool Check() { return false; }
 }
