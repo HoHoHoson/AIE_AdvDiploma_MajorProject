@@ -26862,17 +26862,6 @@ PrefabInstance:
       propertyPath: script_gm
       value: 
       objectReference: {fileID: 841025466}
-    - target: {fileID: 161447437416827734, guid: 1cffc7320b358ff42992872e87e2aa5e,
-        type: 3}
-      propertyPath: fire_rate
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 161447437416827734, guid: 1cffc7320b358ff42992872e87e2aa5e,
-        type: 3}
-      propertyPath: frost_G
-      value: 
-      objectReference: {fileID: 7999437011567384472, guid: 52275d03994b6924db376b3c07f7f2c3,
-        type: 3}
     - target: {fileID: 262854713188246283, guid: 1cffc7320b358ff42992872e87e2aa5e,
         type: 3}
       propertyPath: m_LocalPosition.x
