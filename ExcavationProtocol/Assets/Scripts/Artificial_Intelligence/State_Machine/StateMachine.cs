@@ -40,7 +40,7 @@ public class StateMachine
             return;
         }
 
-        m_current_state.UpdateState(agent);
+        m_current_state.UpdateState();
     }
 
     /// <summary>
@@ -63,16 +63,16 @@ public class StateMachine
     private void ChangeState(in Agent agent, in State state)
     {
         if (m_current_state != null)
-            m_current_state.OnExit(agent);
+            m_current_state.ExitState();
 
         m_previous_state = m_current_state;
         m_current_state = state;
 
-        m_current_state.OnInitialise(agent);
+        m_current_state.InitialiseState();
     }
 
     /// <summary>
-    /// Checks all the transition conditions of the currently loaded state. Transitions to that state if the condition is triggered.
+    /// Checks if the requested Transition's state is valid. Transitions to that state if it is.
     /// </summary>
     /// <param name="agent">Reference the Agent that owns the StateMachine in order to make changes to it.</param>
     /// <returns>True if a state change was made, False otherwise.</returns>

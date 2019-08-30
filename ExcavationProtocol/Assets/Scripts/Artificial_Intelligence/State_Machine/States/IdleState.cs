@@ -2,5 +2,5 @@
 
 public class IdleState : State
 {
-    public IdleState() { m_index = "IDLE"; }
+    public IdleState(in Agent agent) : base(agent) { m_index = "IDLE"; }
 }

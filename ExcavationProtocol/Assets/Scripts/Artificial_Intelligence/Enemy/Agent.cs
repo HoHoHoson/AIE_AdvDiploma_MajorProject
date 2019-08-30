@@ -32,9 +32,11 @@ public class Agent : MonoBehaviour
 
     public void SetBlackboard(in Blackboard blackboard) { m_blackboard = blackboard; }
 
-    public float GetSpeed() { return m_current_speed; }
+    public int GetDamage() { return m_damage; }
+    public int GetSpeed() { return m_current_speed; }
     public EnemyType GetEnemyType() { return m_type; }
     public ref Rigidbody GetRB() { return ref m_rigidbody; }
+    public ref StateMachine GetStateMachine() { return ref m_state_machine; }
     public ref GameObject GetTarget() { return ref m_target; }
 
     public void SetTarget(in GameObject value) { m_target = value; }
