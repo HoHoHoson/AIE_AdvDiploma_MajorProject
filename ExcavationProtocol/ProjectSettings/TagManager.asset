@@ -7,6 +7,7 @@ TagManager:
   - EnergyTerminal
   - HealthTerminal
   - Mine
+  - Frost
   layers:
   - Default
   - TransparentFX

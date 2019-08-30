@@ -136,31 +136,31 @@ public class GameManager : MonoBehaviour
             is_used = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             CompleteAction1();
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             CompleteAction2();
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             CompleteAction3();
         }
 
-        if (Input.GetMouseButton(0) && player_energy_current > 0)
+        if (Input.GetMouseButtonDown(0) && player_energy_current > 0)
         {
             script_fps.GunFire(ref player_energy_current);
         }
-        else if (Input.GetMouseButton(0) && player_energy_current <= 0)
+        else if (Input.GetMouseButtonDown(0) && player_energy_current <= 0)
         {
             StartCoroutine(OutOfAmmo());
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && currency >= cost_HP)
+        if (Input.GetKey(KeyCode.E))
         {
             RaycastHit hit;
             if (Physics.Raycast(camera_transform.position, camera_transform.forward, out hit, 5.0f))
@@ -168,7 +168,6 @@ public class GameManager : MonoBehaviour
                 Interaction(hit.transform.gameObject);
             }
         }
-
         GameLoop();
         script_UI.UpdateUI();
     }
@@ -208,7 +207,7 @@ public class GameManager : MonoBehaviour
 
     public void Interaction(GameObject interactable)
     {
-        if (interactable.tag == "EnergyTerminal" && player_energy_current < player_energy)
+        if (interactable.tag == "EnergyTerminal" && player_energy_current < player_energy && currency >= cost_ammo)
         {
             if (player_energy_current > player_energy - 10 && player_energy_current != player_energy)
             {
@@ -222,7 +221,7 @@ public class GameManager : MonoBehaviour
                 currency -= cost_ammo;
             }
         }
-        else if (interactable.tag == "HealthTerminal" && player_hp_current < player_hp)
+        else if (interactable.tag == "HealthTerminal" && player_hp_current < player_hp && currency >= cost_HP)
         {
             if (player_hp_current < player_hp)
             {
@@ -232,7 +231,7 @@ public class GameManager : MonoBehaviour
         }
         else if (interactable.tag == "Mine")
         {
-            if(interactable.GetComponent<Mines>().GetActive() == true && currency > mine_cost)
+            if(interactable.GetComponent<Mines>().GetActive() == true && currency >= mine_cost)
             {
                 interactable.GetComponent<Mines>().Activate(ref active_mines, mines_list);
                 currency -= mine_cost;
@@ -275,7 +274,6 @@ public class GameManager : MonoBehaviour
         {
             wave_timer = 0;
         }
-        script_bb.Update();
     }
 
     public void AddCurrency()

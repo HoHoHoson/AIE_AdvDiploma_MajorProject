@@ -39,7 +39,8 @@ public class FPSControl : MonoBehaviour
 
     public int skill_damage = 1;
 
-    public GameObject bomb, g_throw_point;
+    public GameObject bomb, g_throw_point, frost_G;
+
     public float throw_force = 100;
 
     public float skill_2_radius = 5.0f;
@@ -231,7 +232,9 @@ public class FPSControl : MonoBehaviour
     /// </summary>
     public void SkillActive3()
     {
-        
+        GameObject expl = Instantiate(frost_G);
+        expl.transform.position = g_throw_point.transform.position;
+        expl.GetComponent<Rigidbody>().AddForce(g_throw_point.transform.forward * throw_force, ForceMode.Impulse);
     }
 
     /// <summary>
