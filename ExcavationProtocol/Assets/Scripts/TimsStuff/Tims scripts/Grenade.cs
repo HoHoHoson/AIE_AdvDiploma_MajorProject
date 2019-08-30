@@ -48,6 +48,7 @@ public class Grenade : MonoBehaviour
                 rb.AddExplosionForce(skill_1_power, explosionPos, skill_1_radius, 3.0f);
                 if (hit.GetComponentInParent<Agent>() != null)
                 {
+                    
                     hit.GetComponentInParent<Agent>().TakeDamage(skill_damage);
                 }
             }
