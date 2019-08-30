@@ -108,7 +108,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 568990cd1a8f2d740994a9932fc7f969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_childedModel: {fileID: 4629985850070516916}
+  m_health: 3
+  m_damage: 5
+  m_speed: 650
+  m_playerDetectionRange: 10
+  m_leapRange: 5
+  m_leapCooldown: 2
   m_leapAngle: 45
   m_leapForce: 2
 --- !u!136 &1070604875

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3780007332554304944}
   - component: {fileID: 2429254545557539183}
   m_Layer: 0
-  m_Name: Crystal_001
+  m_Name: Crystal_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 80e4fe437519b1b4685bb6481326fbf3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
