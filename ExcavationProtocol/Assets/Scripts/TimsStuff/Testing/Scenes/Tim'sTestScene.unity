@@ -31295,6 +31295,16 @@ PrefabInstance:
       propertyPath: m_spawnPoints.Array.data[2]
       value: 
       objectReference: {fileID: 256725829}
+    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: m_enemyCount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: m_activeEnemiesLimit
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218633, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_LocalPosition.x

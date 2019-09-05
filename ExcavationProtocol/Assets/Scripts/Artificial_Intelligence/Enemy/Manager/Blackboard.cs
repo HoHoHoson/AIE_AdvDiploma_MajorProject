@@ -104,44 +104,54 @@ public class Blackboard : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        // Checks if the spawn limit has been reached and that the enemy cap is higher than the spawn count
-        if (m_active_enemies.Count > m_activeEnemiesLimit)
-            Debug.Log("ERROR: Active enemies count exceede the limit.");
-        else if (m_active_enemies.Count == m_activeEnemiesLimit || m_enemyCount == m_active_enemies.Count)
-            return;
+        if (m_active_enemies.Count > m_activeEnemiesLimit || m_active_enemies.Count > m_enemyCount)         // Checks if the spawn limit has been breached
+        {                                                                                                   
+            Debug.Log("ERROR: Active enemies exceedes a limit.");                                           // Errors if it occurs
+            return;                                                                                         // then skips spawn function
+        }
+        else if (m_active_enemies.Count == m_activeEnemiesLimit || m_active_enemies.Count == m_enemyCount)  // Also checks if a cap has been reached
+            return;                                                                                         // skips spawn function if so
 
-        int spawn_slots = m_activeEnemiesLimit - m_active_enemies.Count;
+        // This variable will store an enemy type and attempt to spawn it at the end of this function
+        EnemyTemplate enemy_spawn = null;
 
-        // If there is an enemy waiting for free space to spawn, it will spawn it
-        if (m_hold_spawn != null && spawn_slots >= m_hold_spawn.GetGroupSize())
+        if (m_hold_spawn != null) 
         {
-            m_hold_spawn.ActivateEnemy(RandomSpawnPoint(), m_active_enemies, m_enemyCount);
+            enemy_spawn = m_hold_spawn; // If a reserved spawn exists, set that as the enemy_spawn
+            m_hold_spawn = null;        // clear the reserve afterwards
+        }
+        else 
+        {
+            // Randomly sets enemy_type to any of the developer set enemy types
+            int spawn_rate_roll = Random.Range(0, m_max_spawn_rate);
+            int spawn_rate_threshold = 0;
 
-            m_hold_spawn = null;
-            return;
+            foreach (EnemyTemplate e in m_enemyTypes)
+            {
+                spawn_rate_threshold += e.GetSpawnRate();
+
+                if (spawn_rate_roll < spawn_rate_threshold)
+                {
+                    enemy_spawn = e;
+                    break;
+                }
+            }
         }
 
-        // Randomly spawns an enemy
-        int spawn_rate_roll = Random.Range(0, m_max_spawn_rate);
-        int spawn_rate_threshold = 0;
+        // Checks if there is enough space for the enemy spawns
+        int free_slots = m_enemyCount - m_active_enemies.Count;
+        int group_size = free_slots >= enemy_spawn.GetGroupSize() ? enemy_spawn.GetGroupSize() : free_slots;
 
-        foreach (EnemyTemplate e in m_enemyTypes)
+        int active_slots = m_activeEnemiesLimit - m_active_enemies.Count;
+        if (active_slots < group_size)
         {
-            spawn_rate_threshold += e.GetSpawnRate();
-
-            if (spawn_rate_roll < spawn_rate_threshold)
-            {
-                if (spawn_slots < e.GetGroupSize())
-                {
-                    m_hold_spawn = e;
-                }
-                else
-                {
-                    e.ActivateEnemy(RandomSpawnPoint(), m_active_enemies, m_enemyCount);
-                }
-
-                return;
-            }
+            // If there isn't enough space, store the spawn as a reserve
+            m_hold_spawn = enemy_spawn;
+        }
+        else
+        {
+            // Otherwise, the enemies will get spawned
+            enemy_spawn.ActivateEnemy(m_active_enemies, RandomSpawnPoint(), group_size);
         }
     }
 
