@@ -123,4 +123,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bomb_timer: 1
   skill_1_radius: 20
-  skill_1_power: 1000
+  skill_1_power: 500
