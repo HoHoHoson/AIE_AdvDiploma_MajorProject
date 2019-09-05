@@ -36,7 +36,7 @@ public class EnemyTemplate
             Agent agent_instance;
 
             agent_instance = Object.Instantiate(m_enemyPrefab, editor_tab.transform).GetComponentInChildren<Agent>();
-            agent_instance.SetBlackboard(blackboard);
+            agent_instance.InitialiseAgent(blackboard);
             agent_instance.gameObject.SetActive(false);
 
             m_inactive_enemies.Add(agent_instance);
@@ -84,7 +84,7 @@ public class EnemyTemplate
             Agent agent_instance = m_inactive_enemies[m_inactive_enemies.Count - 1];
             m_inactive_enemies.RemoveAt(m_inactive_enemies.Count - 1);
 
-            agent_instance.InstantiateStats();
+            agent_instance.SetStats();
             agent_instance.transform.position = m_group_nodes.transform.GetChild(i).position;
 
             agent_instance.gameObject.SetActive(true);
