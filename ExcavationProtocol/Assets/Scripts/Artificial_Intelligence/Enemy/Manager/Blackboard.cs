@@ -20,7 +20,10 @@ public class Blackboard : MonoBehaviour
 
     private Dictionary<Agent.EnemyType, EnemyTemplate> m_eMap = new Dictionary<Agent.EnemyType, EnemyTemplate>();
 
-    private void Start()
+    public int GetEnemyCount() { return m_enemyCount; }
+    public bool IsWaveOngoing() { return m_wave_ongoing; }
+
+    void Start()
     {
         foreach (EnemyTemplate e in m_enemyTypes)
         {
@@ -30,10 +33,9 @@ public class Blackboard : MonoBehaviour
 
         m_eMap = m_enemyTypes.ToDictionary(e => e.GetEnemyType());
         m_enemyCountReset = m_enemyCount;
-        //BeginWave(); // DEBUG - Remove this line when done
     }
 
-    public void Update()
+    void Update()
     {
         foreach (Agent a in m_active_enemies)
             a.UpdateAgent();
@@ -155,14 +157,5 @@ public class Blackboard : MonoBehaviour
         agent.gameObject.SetActive(false);
 
         m_eMap[agent.GetEnemyType()].DeactivateEnemy(agent);
-    }
-
-    public bool GetWaveOngoing()
-    {
-        return m_wave_ongoing;
-    }
-    public int GetEnemyNum()
-    {
-        return m_enemyCount;
     }
 }
