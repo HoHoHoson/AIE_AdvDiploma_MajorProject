@@ -30,8 +30,6 @@ public class Agent : MonoBehaviour
     protected Blackboard    m_blackboard;
     protected GameObject    m_target;
 
-    public void SetBlackboard(in Blackboard blackboard) { m_blackboard = blackboard; }
-
     public int GetDamage() { return m_damage; }
     public int GetSpeed() { return m_current_speed; }
     public EnemyType GetEnemyType() { return m_type; }
@@ -40,6 +38,18 @@ public class Agent : MonoBehaviour
     public ref GameObject GetTarget() { return ref m_target; }
 
     public void SetTarget(in GameObject value) { m_target = value; }
+
+    public virtual void InitialiseAgent(in Blackboard blackboard)
+    {
+        m_blackboard = blackboard;
+
+        if (m_blackboard == null)
+            Debug.Log("ERROR: BlackBoard is NULL.");
+        else
+            m_target = m_blackboard.m_gameManager.player_gameobject;
+
+        m_rigidbody = GetComponent<Rigidbody>();
+    }
 
     /// <summary>
     /// Updates the Agent by running the currently loaded behavior state.
@@ -50,11 +60,13 @@ public class Agent : MonoBehaviour
         m_state_machine.UpdateState(this);
     }
 
-    public virtual void InstantiateStats()
+    public virtual void SetStats()
     {
         m_current_health    = m_health;
         m_current_damage    = m_damage;
         m_current_speed     = m_speed;
+
+        m_rigidbody.isKinematic = false;
     }
 
     public void TakeDamage(int dmg) { m_current_health -= dmg; }

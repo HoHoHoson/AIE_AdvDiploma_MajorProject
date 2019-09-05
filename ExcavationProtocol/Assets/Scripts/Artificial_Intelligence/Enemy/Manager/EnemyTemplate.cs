@@ -9,7 +9,7 @@ public class EnemyTemplate
     [SerializeField] private int        m_spawnRate     = 100;
 
     [SerializeField]
-    private int         m_groupSize     = 1;
+    private int         m_maxGroupSize     = 1;
     private GameObject  m_group_nodes   = null;
     private Vector3     m_grid_extents  = Vector3.zero;
 
@@ -17,7 +17,7 @@ public class EnemyTemplate
 
     public Agent.EnemyType GetEnemyType() { return m_enemyPrefab.GetComponentInChildren<Agent>().GetEnemyType(); }
     public int GetSpawnRate() { return m_spawnRate; }
-    public int GetGroupSize() { return m_groupSize; }
+    public int GetGroupSize() { return m_maxGroupSize; }
 
     public void InstantiateEnemyPool(in Blackboard blackboard, int max_active)
     {
@@ -36,13 +36,13 @@ public class EnemyTemplate
             Agent agent_instance;
 
             agent_instance = Object.Instantiate(m_enemyPrefab, editor_tab.transform).GetComponentInChildren<Agent>();
-            agent_instance.SetBlackboard(blackboard);
+            agent_instance.InitialiseAgent(blackboard);
             agent_instance.gameObject.SetActive(false);
 
             m_inactive_enemies.Add(agent_instance);
         }
 
-        float grid_index = Mathf.Ceil(Mathf.Sqrt(m_groupSize)) * 0.5f;
+        float grid_index = Mathf.Ceil(Mathf.Sqrt(m_maxGroupSize)) * 0.5f;
 
         CapsuleCollider capsule = 
             Object.Instantiate(m_enemyPrefab, new Vector3(0, 100, 0), Quaternion.identity).GetComponentInChildren<CapsuleCollider>();
@@ -68,23 +68,19 @@ public class EnemyTemplate
         GameObject.Destroy(capsule.transform.root.gameObject);
     }
 
-    public bool ActivateEnemy(Vector3 spawn_point, in LinkedList<Agent> active_enemies, int enemy_count)
+    public bool ActivateEnemy(in LinkedList<Agent> active_enemies, Vector3 spawn_point, int spawn_count)
     {
         if (Physics.CheckBox(spawn_point, m_grid_extents, m_group_nodes.transform.rotation, 1 << 10))
-        {
             return false;
-        }
 
         m_group_nodes.transform.position = spawn_point;
 
-        int spawn_number = enemy_count < m_groupSize ? (m_groupSize - enemy_count) : m_groupSize;
-
-        for (int i = 0; i < spawn_number; ++ i)
+        for (int i = 0; i < spawn_count; ++i)
         {
             Agent agent_instance = m_inactive_enemies[m_inactive_enemies.Count - 1];
             m_inactive_enemies.RemoveAt(m_inactive_enemies.Count - 1);
 
-            agent_instance.InstantiateStats();
+            agent_instance.SetStats();
             agent_instance.transform.position = m_group_nodes.transform.GetChild(i).position;
 
             agent_instance.gameObject.SetActive(true);

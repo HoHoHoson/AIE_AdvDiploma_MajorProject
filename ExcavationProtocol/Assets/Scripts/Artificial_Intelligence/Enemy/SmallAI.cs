@@ -8,16 +8,16 @@ public class SmallAI : Agent
     [SerializeField] private float m_leapAngle              = 45;
     [SerializeField] private float m_leapForce              = 10;
 
-    void Start()
+    public override void InitialiseAgent(in Blackboard blackboard)
     {
-        m_type      = EnemyType.BASIC;
-        m_rigidbody = GetComponent<Rigidbody>();
-        m_target    = m_blackboard.m_gameManager.player_gameobject;
+        base.InitialiseAgent(blackboard);
 
-        InitiateStateMachine();
+        m_type = EnemyType.BASIC;
+
+        InitialiseStateMachine();
     }
 
-    private void InitiateStateMachine()
+    private void InitialiseStateMachine()
     {
         m_state_machine = new StateMachine();
 
@@ -28,7 +28,7 @@ public class SmallAI : Agent
         state = new SeekTargetState(this, m_blackboard, m_playerDetectionRange);
         // Leaps at the targets face when in range
         state.AddTransition(new Transition("LEAPAT",
-            new Condition[] { new DistanceCondition(this, m_leapRange, DistanceCondition.Comparator.LESS) }));
+            new Condition[] { new CompareCondition(this, m_leapRange, CompareCondition.Comparator.LESS) }));
         m_state_machine.AddState(state);
 
         // LEAP 4 FACE
