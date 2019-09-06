@@ -64,7 +64,7 @@ public class FPSControl : MonoBehaviour
 
     #region FPSgun
     public int gun_damage = 1;
-    public float fire_rate = 0.25f;
+    
     public float weapon_range = 50f;
     public float hit_force = 100f;
     public Transform gun_end;
@@ -240,7 +240,7 @@ public class FPSControl : MonoBehaviour
     /// <summary>
     /// Fires the gun with raycasts
     /// </summary>
-    public void GunFire(ref int current_en)
+    public void GunFire(ref int current_en, float fire_rate)
     {
         if (Time.time > next_fire)
         {
