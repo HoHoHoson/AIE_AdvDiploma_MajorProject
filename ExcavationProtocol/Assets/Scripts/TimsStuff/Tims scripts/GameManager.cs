@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     // scripts
     #region Scripts
     public UiTesting script_UI; // Ui
-    public FPSControl script_fps; // fps controller script
+    private FPSControl script_fps; // fps controller script
     public Blackboard script_bb; // blackboard script
     #endregion
 
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     public bool player_take_dmg = false, player_restore_hp = false;
 
-    public Transform camera_transform;
+    private Transform camera_transform;
     #endregion
 
     #region Animator
@@ -91,7 +91,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = player_gameobject.GetComponent<Animator>();
+        animator = player_gameobject.GetComponentInChildren<Animator>();
+        camera_transform = player_gameobject.GetComponentInChildren<Camera>().transform;
+        script_fps = player_gameobject.GetComponentInChildren<FPSControl>();
         player_hp_current = player_hp;
         player_energy_current = player_energy;
         num_of_enemies = script_bb.m_enemyCount;
@@ -260,7 +262,7 @@ public class GameManager : MonoBehaviour
     public void GameLoop()
     {
         num_of_enemies = script_bb.m_enemyCount;
-        if(script_bb.GetWaveOngoing() == false)
+        if(script_bb.IsWaveOngoing() == false)
         {
             wave_timer += Time.deltaTime;
             if(wave_timer >= time_to_next_wave)
@@ -270,7 +272,7 @@ public class GameManager : MonoBehaviour
                 script_bb.BeginWave();
             }
         }
-        if(script_bb.GetWaveOngoing() == true && wave_timer > 0)
+        if(script_bb.IsWaveOngoing() == true && wave_timer > 0)
         {
             wave_timer = 0;
         }

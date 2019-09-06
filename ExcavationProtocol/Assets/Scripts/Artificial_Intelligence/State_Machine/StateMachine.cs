@@ -40,8 +40,7 @@ public class StateMachine
             return;
         }
 
-        m_current_state.UpdateState(agent);
-        CanTransition(agent);
+        m_current_state.UpdateState();
     }
 
     /// <summary>
@@ -64,38 +63,32 @@ public class StateMachine
     private void ChangeState(in Agent agent, in State state)
     {
         if (m_current_state != null)
-            m_current_state.OnExit(agent);
+            m_current_state.ExitState();
 
         m_previous_state = m_current_state;
         m_current_state = state;
 
-        m_current_state.OnInitialise(agent);
+        m_current_state.InitialiseState();
     }
 
     /// <summary>
-    /// Checks all the transition conditions of the currently loaded state. Transitions to that state if the condition is triggered.
+    /// Checks if the requested Transition's state is valid. Transitions to that state if it is.
     /// </summary>
     /// <param name="agent">Reference the Agent that owns the StateMachine in order to make changes to it.</param>
     /// <returns>True if a state change was made, False otherwise.</returns>
-    private bool CanTransition(in Agent agent)
+    public bool StateTransition(in Agent agent, in Transition transition)
     {
-        foreach (Transition t in m_current_state.GetTransitions())
-            if (t.CheckConditions() == true)
-            {
-                State transition_state;
+        State transition_state;
 
-                if (m_states.TryGetValue(t.GetStateIndex(), out transition_state))
-                {
-                    ChangeState(agent, transition_state);
-                    return true;
-                }
-                else
-                {
-                    Debug.Log("ERROR: Transition condition was met but the state wasn't found.");
-                    return false;
-                }
-            }
-
-        return false;
+        if (m_states.TryGetValue(transition.GetStateIndex(), out transition_state))
+        {
+            ChangeState(agent, transition_state);
+            return true;
+        }
+        else
+        {
+            Debug.Log("ERROR: Transition condition was met but the state wasn't found.");
+            return false;
+        }        
     }
 }

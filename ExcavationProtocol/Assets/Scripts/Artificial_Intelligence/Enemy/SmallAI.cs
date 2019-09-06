@@ -2,50 +2,50 @@
 
 public class SmallAI : Agent
 {
-    [SerializeField]
-    private Transform   m_childedModel;
-    [SerializeField]
-    private float       m_leapAngle = 45, m_leapForce = 2;
+    [SerializeField] private float m_playerDetectionRange   = 10;
+    [SerializeField] private float m_leapRange              = 5;
+    [SerializeField] private float m_leapCooldown           = 2;
+    [SerializeField] private float m_leapAngle              = 45;
+    [SerializeField] private float m_leapForce              = 10;
 
-    void Start()
+    public override void InitialiseAgent(in Blackboard blackboard)
     {
-        m_health    = 3;
-        m_damage    = 5;
-        m_speed     = 300;
-        m_type      = EnemyType.BASIC;
-        m_rigidbody = GetComponent<Rigidbody>();
+        base.InitialiseAgent(blackboard);
 
+        m_type = EnemyType.BASIC;
+
+        InitialiseStateMachine();
+    }
+
+    private void InitialiseStateMachine()
+    {
         m_state_machine = new StateMachine();
 
-        // Got to make a proper target selecting function
-        m_target = GameObject.FindGameObjectWithTag("Player");
-
-        State state = new LeapAtState(m_leapAngle, m_leapForce);
-        state.AddTransition(new Transition("CHASETARGET",
-            new Condition[] { new DistanceCondition(transform, m_target.transform, 3, DistanceCondition.Comparator.GREATER) }));
+        State state = new IdleState(this); 
         m_state_machine.AddState(state);
 
-        state = new ChaseTargetState();
+        // Chases after the AI's set target
+        state = new SeekTargetState(this, m_blackboard, m_playerDetectionRange);
+        // Leaps at the targets face when in range
         state.AddTransition(new Transition("LEAPAT",
-            new Condition[] { new DistanceCondition(transform, m_target.transform, 3, DistanceCondition.Comparator.LESS) }));
+            new Condition[] { new CompareCondition(this, m_leapRange, CompareCondition.Comparator.LESS) }));
         m_state_machine.AddState(state);
 
-        m_state_machine.InitiateStateMachine(this, "CHASETARGET");
+        // LEAP 4 FACE
+        state = new LeapAtState(this, m_leapAngle, m_leapForce, m_leapCooldown);
+        // Goes back to seeking its target when out of range or after a cooldown
+        state.AddTransition(new Transition("SEEKTARGET",
+            new Condition[] { new BoolCondition((state as LeapAtState).IsCooldownOver) }));
+        m_state_machine.AddState(state);
+
+        m_state_machine.InitiateStateMachine(this, "SEEKTARGET");
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (m_blackboard == null)
-        {
-            Debug.Log("ERROR: AI Blackboard has not been set.");
-        }
-        else if (m_blackboard.m_gameManager == null)
-        {
-            Debug.Log("ERROR: AI Blackboard doesn't have an instance of a GameManager.");
-        }
-        else if (m_state_machine.GetCurrentState().GetIndex() == "LEAPAT" && collision.collider.GetComponent<FPSControl>())
-        {
-            m_blackboard.m_gameManager.PlayerTakenDamage(m_damage);
-        }
+        LeapAtState leap_state = m_state_machine.GetCurrentState() as LeapAtState;
+
+        if (leap_state != null)
+            leap_state.OnHit(collision.gameObject);
     }
 }

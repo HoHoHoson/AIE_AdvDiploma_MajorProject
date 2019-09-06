@@ -21,7 +21,7 @@ public class TestScript : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.green;
         if (cap != null)
             Gizmos.DrawCube(transform.position, cap.bounds.extents * 2);
     }

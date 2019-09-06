@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5195602405285776016}
   - component: {fileID: 1756074159694610943}
   - component: {fileID: 8948790195019761049}
-  - component: {fileID: 7617784608921285261}
-  m_Layer: 0
+  - component: {fileID: 6308152572760065165}
+  m_Layer: 9
   m_Name: Terrain_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5673689204336697456}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 75a892f940306a549a5bf45e867bd473, type: 3}
 --- !u!23 &8948790195019761049
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -78,8 +78,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7617784608921285261
-BoxCollider:
+--- !u!64 &6308152572760065165
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -88,6 +88,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 75a892f940306a549a5bf45e867bd473, type: 3}

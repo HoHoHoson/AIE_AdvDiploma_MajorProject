@@ -45,9 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 568990cd1a8f2d740994a9932fc7f969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_childedModel: {fileID: 2455372980087394999}
+  m_health: 3
+  m_damage: 5
+  m_speed: 815
+  m_playerDetectionRange: 15
+  m_leapRange: 4
+  m_leapCooldown: 2
   m_leapAngle: 45
-  m_leapForce: 2
+  m_leapForce: 10
 --- !u!54 &2455372979600114910
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -63,7 +68,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 32
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!1 &2455372980087394993
 GameObject:
   m_ObjectHideFlags: 0

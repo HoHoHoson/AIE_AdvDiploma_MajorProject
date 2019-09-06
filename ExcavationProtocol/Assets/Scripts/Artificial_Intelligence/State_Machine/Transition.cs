@@ -17,6 +17,12 @@ public class Transition
         m_conditions = new List<Condition>(conditions);
     }
 
+    public void InitiateConditions()
+    {
+        foreach (Condition c in m_conditions)
+            c.InitiateCondition();
+    }
+
     /// <summary>
     /// Checks to see if this transition's condition was met.
     /// </summary>
