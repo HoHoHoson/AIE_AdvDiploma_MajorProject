@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script_UI: {fileID: 3317138830722218635}
-  script_fps: {fileID: 0}
   script_bb: {fileID: 3317138830722218740}
   active_mines: 0
   mine_rep_cost: 1
@@ -57,12 +56,13 @@ MonoBehaviour:
   - {fileID: 0}
   player_take_dmg: 0
   player_restore_hp: 0
-  camera_transform: {fileID: 0}
   player_gameobject: {fileID: 0}
   player_hp: 100
   player_energy: 100
   player_hp_current: 0
   player_energy_current: 0
+  auto_gun: 1
+  fire_rate: 0.15
   wave_no: 0
   time_to_next_wave: 10
   num_of_enemies: 0
@@ -72,9 +72,9 @@ MonoBehaviour:
   cost_ammo: 1
   skill_1: 2
   skill_2: 2
-  skill_3: 50
-  skill_3_duration: 20
-  skill_3_dmg_reduction: 2
+  skill_3: 4
+  skill_3_duration: 0
+  skill_3_dmg_reduction: 0
   skill_timer_1: 0
   skill_timer_2: 0
   skill_timer_3: 0
@@ -121,10 +121,7 @@ MonoBehaviour:
   m_enemyTypes:
   - m_enemyPrefab: {fileID: 2455372979600114904, guid: 67aab124b094c634e8a7653f400f72a4,
       type: 3}
-    m_health: 3
-    m_damage: 1
-    m_speed: 500
-    m_spawnRate: 2
-    m_groupSize: 6
+    m_spawnRate: 15
+    m_maxGroupSize: 1
   m_enemyCount: 50
   m_activeEnemiesLimit: 20
