@@ -42,14 +42,17 @@ public class GameManager : MonoBehaviour
     // Energy
     public int player_energy = 150;
 
-    [HideInInspector]
-    public int player_hp_current, player_energy_current;
+    
+    protected int player_hp_current, player_energy_current;
 
     private int energy_gain_temp;
 
     // makes gun automatic
     public bool auto_gun;
     public float fire_rate = 0.25f;
+
+    public float interaction_cooldown = 0.25f;
+    private float interaction_timer;
     #endregion
 
     // Wave Variables
@@ -70,7 +73,7 @@ public class GameManager : MonoBehaviour
     [Header("Currency Values")]
     public int currency = 20;
     public int wave_reward = 5;
-    public int cost_HP, cost_ammo;
+    public int cost_per_hp, cost_per_ammo;
     #endregion
 
     // Player Ability Values
@@ -78,11 +81,7 @@ public class GameManager : MonoBehaviour
     [Header("Player Skill Values")]
     public float skill_1 = 20;
     public float skill_2 = 10;
-    public float skill_3 = 50;
-    public float skill_3_duration = 20;
-
-    [Tooltip("percent of damage reduced by skill 3 ( half = 2 )")]
-    public float skill_3_dmg_reduction = 2;
+    public float skill_3 = 20;
 
     [HideInInspector]
     public float skill_timer_1, skill_timer_2, skill_timer_3;
@@ -137,10 +136,6 @@ public class GameManager : MonoBehaviour
         {
             skill_timer_3 = skill_3;
         }
-        if (skill_timer_3 > skill_3_duration)
-        {
-            is_used = false;
-        }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -156,6 +151,7 @@ public class GameManager : MonoBehaviour
         {
             CompleteAction3();
         }
+
         if (auto_gun)
         {
             if (Input.GetMouseButton(0) && player_energy_current > 0)
@@ -187,11 +183,25 @@ public class GameManager : MonoBehaviour
                 Interaction(hit.transform.gameObject);
             }
         }
+
+        interaction_timer -= Time.deltaTime;
+        if (interaction_timer < 0)
+        {
+            interaction_timer = 0;
+        }
         GameLoop();
         script_UI.UpdateUI();
     }
 
+    public int GetPlayerHp()
+    {
+        return player_hp_current;
+    }
 
+    public int GetPlayerEnergy()
+    {
+        return player_energy_current;
+    }
 
     public void CompleteAction1()
     {
@@ -228,47 +238,57 @@ public class GameManager : MonoBehaviour
 
     public void Interaction(GameObject interactable)
     {
-        if (interactable.tag == "EnergyTerminal" && player_energy_current < player_energy && currency >= cost_ammo)
+        if (interactable.tag == "EnergyTerminal" && player_energy_current < player_energy && currency >= 1 && interaction_timer == 0)
         {
-            if (player_energy_current > player_energy - 10 && player_energy_current != player_energy)
+            if (player_energy_current > player_energy - cost_per_ammo && player_energy_current != player_energy)
             {
                 energy_gain_temp = player_energy - player_energy_current;
                 player_energy_current += energy_gain_temp;
-                currency -= cost_ammo;
+                currency -= 1;
             }
             else
             {
-                player_energy_current += 10;
-                currency -= cost_ammo;
+                player_energy_current += cost_per_ammo;
+                currency -= 1;
             }
+            interaction_timer = interaction_cooldown;
         }
-        else if (interactable.tag == "HealthTerminal" && player_hp_current < player_hp && currency >= cost_HP)
+        else if (interactable.tag == "HealthTerminal" && player_hp_current < player_hp && currency >= 1 && interaction_timer == 0)
         {
             if (player_hp_current < player_hp)
             {
-                player_hp_current += 20;
-                currency -= cost_HP;
+                player_hp_current += cost_per_hp;
+                currency -= 1;
             }
+            interaction_timer = interaction_cooldown;
         }
-        else if (interactable.tag == "Mine")
+        else if (interactable.tag == "Mine" && interaction_timer == 0)
         {
-            if(interactable.GetComponent<Mines>().GetActive() == true && currency >= mine_cost)
+            if(interactable.GetComponent<Mines>().GetActive() == true && currency > 1)
             {
                 interactable.GetComponent<Mines>().Activate(ref active_mines, mines_list);
-                currency -= mine_cost;
+                currency -= 1;
             }
             else if (interactable.GetComponent<Mines>().GetCurrentHp() < interactable.GetComponent<Mines>().mine_max_hp && currency > mine_rep_cost)
             {
                 interactable.GetComponent<Mines>().AddMineHP();
-                currency -= mine_rep_cost;
+                currency -= 1;
             }
+            interaction_timer = interaction_cooldown;
         }
     }
 
     public int PlayerTakenDamage(float damage)
     {
-        player_hp_current -= (int)damage;
-        return player_hp_current;   
+        if (player_hp_current > 0)
+        {
+            player_hp_current -= (int)damage;
+        }
+        else if (player_hp_current <= 0)
+        {
+            player_hp_current = 0;
+        }
+        return player_hp_current;
     }
 
     private IEnumerator OutOfAmmo()

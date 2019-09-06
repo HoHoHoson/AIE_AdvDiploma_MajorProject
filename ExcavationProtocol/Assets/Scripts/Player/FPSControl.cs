@@ -70,7 +70,7 @@ public class FPSControl : MonoBehaviour
     public Transform gun_end;
 
     private Camera fps_cam;
-    private WaitForSeconds shot_duration = new WaitForSeconds(0.07f);
+    private WaitForSeconds shot_duration = new WaitForSeconds(0.001f);
     private LineRenderer laser_line;
     private float next_fire;
 
@@ -92,7 +92,7 @@ public class FPSControl : MonoBehaviour
         laser_line = GetComponent<LineRenderer>();
         fps_cam = GetComponentInChildren<Camera>();
 
-        player_hp = script_gm.player_hp_current;
+        player_hp = script_gm.GetPlayerHp();
     }
 
     void Update()
