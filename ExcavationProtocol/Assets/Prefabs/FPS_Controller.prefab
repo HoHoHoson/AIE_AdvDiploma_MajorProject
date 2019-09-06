@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f6ef42b72b29840b0f3cd4b674a2c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  script_gm: {fileID: 0}
   playerCamera: {fileID: 3262474647881643129}
   playerSpeed: 600
   cameraSensitivity: 1
@@ -145,9 +146,11 @@ MonoBehaviour:
   minCameraPitch: -50
   jump_force_z: 1000
   jump_force_y: 300
+  jump_cooldown: 0.01
   skill_damage: 1
   bomb: {fileID: 1276317593273425800, guid: adb7f80dd6b0c77428e68f96bbdff15c, type: 3}
   g_throw_point: {fileID: 7037960682530485475}
+  frost_G: {fileID: 7999437011567384472, guid: 52275d03994b6924db376b3c07f7f2c3, type: 3}
   throw_force: 20
   skill_2_radius: 10
   skill_2_power: 500

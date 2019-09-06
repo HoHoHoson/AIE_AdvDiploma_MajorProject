@@ -46,6 +46,10 @@ public class GameManager : MonoBehaviour
     public int player_hp_current, player_energy_current;
 
     private int energy_gain_temp;
+
+    // makes gun automatic
+    public bool auto_gun;
+    public float fire_rate = 0.25f;
     #endregion
 
     // Wave Variables
@@ -152,14 +156,27 @@ public class GameManager : MonoBehaviour
         {
             CompleteAction3();
         }
-
-        if (Input.GetMouseButtonDown(0) && player_energy_current > 0)
+        if (auto_gun)
         {
-            script_fps.GunFire(ref player_energy_current);
+            if (Input.GetMouseButton(0) && player_energy_current > 0)
+            {
+                script_fps.GunFire(ref player_energy_current, fire_rate);
+            }
+            else if (Input.GetMouseButton(0) && player_energy_current <= 0)
+            {
+                StartCoroutine(OutOfAmmo());
+            }
         }
-        else if (Input.GetMouseButtonDown(0) && player_energy_current <= 0)
+        else
         {
-            StartCoroutine(OutOfAmmo());
+            if (Input.GetMouseButtonDown(0) && player_energy_current > 0)
+            {
+                script_fps.GunFire(ref player_energy_current, fire_rate);
+            }
+            else if (Input.GetMouseButtonDown(0) && player_energy_current <= 0)
+            {
+                StartCoroutine(OutOfAmmo());
+            }
         }
 
         if (Input.GetKey(KeyCode.E))
@@ -173,6 +190,8 @@ public class GameManager : MonoBehaviour
         GameLoop();
         script_UI.UpdateUI();
     }
+
+
 
     public void CompleteAction1()
     {

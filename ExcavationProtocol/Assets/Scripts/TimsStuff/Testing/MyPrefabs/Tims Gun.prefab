@@ -69,13 +69,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
+      propertyPath: frost_G
+      value: 
+      objectReference: {fileID: 7999437011567384472, guid: 52275d03994b6924db376b3c07f7f2c3,
+        type: 3}
+    - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
+        type: 3}
       propertyPath: skill_2_power
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
       propertyPath: fire_rate
-      value: 0.2
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
