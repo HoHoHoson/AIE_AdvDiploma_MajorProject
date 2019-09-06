@@ -28,6 +28,8 @@ public class EnemyTemplate
             Debug.Log("ERROR: EnemyTemplate Agent is NULL.");
             return;
         }
+        else
+            agent.InitialiseAgent(blackboard);
 
         GameObject editor_tab = new GameObject(agent.GetEnemyType().ToString());
 

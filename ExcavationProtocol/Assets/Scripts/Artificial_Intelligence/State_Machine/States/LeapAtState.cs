@@ -27,10 +27,10 @@ public class LeapAtState : State
 
     public override void UpdateState()
     {
+        base.UpdateState();
+
         if (m_timer < m_cooldown)
             m_timer += Time.deltaTime;
-
-        base.UpdateState();
     }
 
     public bool IsCooldownOver()

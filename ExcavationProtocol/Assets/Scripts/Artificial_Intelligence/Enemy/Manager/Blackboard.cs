@@ -37,9 +37,6 @@ public class Blackboard : MonoBehaviour
 
     void Update()
     {
-        foreach (Agent a in m_active_enemies)
-            a.UpdateAgent();
-
         if (m_wave_ongoing == true)
             ProgressWave();
     }
@@ -68,6 +65,9 @@ public class Blackboard : MonoBehaviour
             EndWave();
             return;
         }
+
+        foreach (Agent a in m_active_enemies)
+            a.UpdateAgent();
 
         // Checks and removes any dead enemies
         var iterator = m_active_enemies.First;

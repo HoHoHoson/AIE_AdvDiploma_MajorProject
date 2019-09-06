@@ -10,17 +10,13 @@ public class SmallAI : Agent
 
     public override void InitialiseAgent(in Blackboard blackboard)
     {
-        base.InitialiseAgent(blackboard);
-
         m_type = EnemyType.BASIC;
 
-        InitialiseStateMachine();
+        base.InitialiseAgent(blackboard);
     }
 
-    private void InitialiseStateMachine()
+    protected override void InitialiseStateMachine()
     {
-        m_state_machine = new StateMachine();
-
         State state = new IdleState(this); 
         m_state_machine.AddState(state);
 

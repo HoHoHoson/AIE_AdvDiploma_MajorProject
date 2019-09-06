@@ -49,6 +49,9 @@ public class Agent : MonoBehaviour
             m_target = m_blackboard.m_gameManager.player_gameobject;
 
         m_rigidbody = GetComponent<Rigidbody>();
+
+        m_state_machine = new StateMachine();
+        InitialiseStateMachine();
     }
 
     /// <summary>
@@ -68,6 +71,8 @@ public class Agent : MonoBehaviour
 
         m_rigidbody.isKinematic = false;
     }
+
+    protected virtual void InitialiseStateMachine() { Debug.Log("ERROR: No defined StateMachine behaviors for " + m_type + " AI."); }
 
     public void TakeDamage(int dmg) { m_current_health -= dmg; }
 
