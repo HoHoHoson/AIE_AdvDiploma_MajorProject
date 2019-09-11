@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
 {
     // scripts
     #region Scripts
-    public UiTesting script_UI; // Ui
+    public Ui script_UI; // Ui
     private FPSControl script_fps; // fps controller script
     public Blackboard script_bb; // blackboard script
     #endregion
@@ -24,6 +25,10 @@ public class GameManager : MonoBehaviour
     public bool player_take_dmg = false, player_restore_hp = false;
 
     private Transform camera_transform;
+
+    public bool pause_unpause = false;
+    public GameObject pause_menu;
+
     #endregion
 
     #region Animator
@@ -184,6 +189,11 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if (Input.GetKey(KeyCode.P))
+        {
+            ReloadScene();
+        }
+
         interaction_timer -= Time.deltaTime;
         if (interaction_timer < 0)
         {
@@ -264,12 +274,12 @@ public class GameManager : MonoBehaviour
         }
         else if (interactable.tag == "Mine" && interaction_timer == 0)
         {
-            if(interactable.GetComponent<Mines>().GetActive() == true && currency > 1)
+            if(interactable.GetComponent<Mines>().GetActive() == false && currency >= 1)
             {
                 interactable.GetComponent<Mines>().Activate(ref active_mines, mines_list);
                 currency -= 1;
             }
-            else if (interactable.GetComponent<Mines>().GetCurrentHp() < interactable.GetComponent<Mines>().mine_max_hp && currency > mine_rep_cost)
+            else if (interactable.GetComponent<Mines>().GetCurrentHp() < interactable.GetComponent<Mines>().mine_max_hp && currency >= mine_rep_cost)
             {
                 interactable.GetComponent<Mines>().AddMineHP();
                 currency -= 1;
@@ -320,5 +330,38 @@ public class GameManager : MonoBehaviour
     public void AddCurrency()
     {
         currency += wave_reward * (active_mines + 1);
+    }
+
+    public void Pause()
+    {
+        pause_unpause = !pause_unpause;
+        if (pause_unpause == true)
+        {
+            pause_menu.SetActive(true);
+        }
+        else
+        {
+            pause_menu.SetActive(false);
+        }
+    }
+
+    public void EndGame()
+    {
+
+    }
+
+    public void LoadAnotherScene(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void QuitGame()
+    {
+        Application.Quit();
     }
 }

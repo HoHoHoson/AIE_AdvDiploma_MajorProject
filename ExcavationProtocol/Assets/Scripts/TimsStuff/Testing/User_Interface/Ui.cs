@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class UiTesting : MonoBehaviour
+public class Ui : MonoBehaviour
 {
     public GameManager script_gamemanager;
 
@@ -81,6 +81,22 @@ public class UiTesting : MonoBehaviour
             hp_bar.fillRect.GetComponent<Image>().color = Color.Lerp(Color.yellow, Color.cyan, (hp - half_hp) / half_hp);
             hud.color = Color.Lerp(Color.yellow, Color.cyan, (hp - half_hp) / half_hp);
         }
-        
+    }
+
+
+    // Pause functions for Ui
+    public void Resume()
+    {
+        script_gamemanager.Pause();
+    }
+
+    public void Restart()
+    {
+        script_gamemanager.ReloadScene();
+    }
+
+    public void BackToMenu()
+    {
+        script_gamemanager.LoadAnotherScene(0);
     }
 }
