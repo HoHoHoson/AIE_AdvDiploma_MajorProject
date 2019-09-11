@@ -74,7 +74,7 @@ public class Agent : MonoBehaviour
 
     protected virtual void InitialiseStateMachine() { Debug.Log("ERROR: No defined StateMachine behaviors for " + m_type + " AI."); }
 
-    public void TakeDamage(int dmg) { m_current_health -= dmg; }
+    public virtual void TakeDamage(int dmg) { m_current_health -= dmg; }
 
-    public bool IsDead() { return m_current_health <= 0; }
+    public virtual bool IsDead() { return m_current_health <= 0; }
 }
