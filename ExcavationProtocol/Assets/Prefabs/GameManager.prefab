@@ -59,13 +59,13 @@ MonoBehaviour:
   pause_menu: {fileID: 0}
   game_over: {fileID: 0}
   game_play: {fileID: 0}
-  pause_unpause: 0
+  pause_unpause: 1
   dead_player: 0
   player_gameobject: {fileID: 0}
-  player_hp: 10
+  player_hp: 1000
   player_energy: 250
-  auto_gun: 0
-  fire_rate: 0.1
+  auto_gun: 1
+  fire_rate: 0.15
   interaction_cooldown: 0.25
   wave_no: 0
   time_to_next_wave: 10
