@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class FPSControl : MonoBehaviour
@@ -70,19 +69,14 @@ public class FPSControl : MonoBehaviour
     public Transform gun_end;
 
     private Camera fps_cam;
-    private WaitForSeconds shot_duration = new WaitForSeconds(0.07f);
+    private WaitForSeconds shot_duration = new WaitForSeconds(0.001f);
     private LineRenderer laser_line;
     private float next_fire;
-
-
-    bool unlocked_mouse;
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         animator = GetComponent<Animator>();
 
         m_player_rb = GetComponent<Rigidbody>();
@@ -92,30 +86,13 @@ public class FPSControl : MonoBehaviour
         laser_line = GetComponent<LineRenderer>();
         fps_cam = GetComponentInChildren<Camera>();
 
-        player_hp = script_gm.player_hp_current;
+        player_hp = script_gm.GetPlayerHp();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && GroundPlayer() == true)
             Jump();
-
-        if (Input.GetKeyDown(KeyCode.Escape) && unlocked_mouse == false)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            unlocked_mouse = true;
-        }
-        if (Input.GetKeyDown(KeyCode.Escape) && unlocked_mouse == true)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            unlocked_mouse = false;
-        }
-        if(Input.GetKey(KeyCode.P))
-        {
-            ReloadScene();
-        }
     }
 
     void LateUpdate()
@@ -139,12 +116,15 @@ public class FPSControl : MonoBehaviour
     /// </summary>
     void PlayerInputCamera()
     {
-        m_camera_yaw += Input.GetAxis("Mouse X") * cameraSensitivity;
-        m_camera_pitch -= Input.GetAxis("Mouse Y") * cameraSensitivity;
-        m_camera_pitch = Mathf.Clamp(m_camera_pitch, minCameraPitch, maxCameraPitch);
+        if (script_gm.pause_unpause == false && script_gm.dead_player == false)
+        {
+            m_camera_yaw += Input.GetAxis("Mouse X") * cameraSensitivity;
+            m_camera_pitch -= Input.GetAxis("Mouse Y") * cameraSensitivity;
+            m_camera_pitch = Mathf.Clamp(m_camera_pitch, minCameraPitch, maxCameraPitch);
 
-        playerCamera.localRotation = Quaternion.Euler(m_camera_pitch, 0, 0);
-        transform.rotation = Quaternion.Euler(0, m_camera_yaw, 0);
+            playerCamera.localRotation = Quaternion.Euler(m_camera_pitch, 0, 0);
+            transform.rotation = Quaternion.Euler(0, m_camera_yaw, 0);
+        }
     }
 
     /// <summary>
@@ -295,22 +275,7 @@ public class FPSControl : MonoBehaviour
         if (has_jumped == true && Time.time > jump_timer)
             has_jumped = false;
     }
-
-    void LoadAnotherScene(int index)
-    {
-        SceneManager.LoadScene(index);
-    }
-
-    void ReloadScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    void QuitGame()
-    {
-        Application.Quit();
-    }
-
+    
     public bool GetPlayerHP()
     {
         if (player_hp <= 0)

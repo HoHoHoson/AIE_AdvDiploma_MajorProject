@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class UiTesting : MonoBehaviour
+public class Ui : MonoBehaviour
 {
     public GameManager script_gamemanager;
 
@@ -13,6 +13,10 @@ public class UiTesting : MonoBehaviour
     public Text energy_value, max_energy_value;
 
     public Slider skill_1, skill_2, skill_3;
+
+    public Image hud;
+
+    protected float half_hp, low_hp;
 
     // resources
     public Text res_cost_text;
@@ -30,6 +34,8 @@ public class UiTesting : MonoBehaviour
         skill_2.maxValue = script_gamemanager.skill_2;
         skill_3.maxValue = script_gamemanager.skill_3;
 
+        half_hp = hp_bar.maxValue / 2;
+        low_hp = hp_bar.maxValue / 4;
     }
 
     // Update is called once per frame
@@ -40,11 +46,11 @@ public class UiTesting : MonoBehaviour
         
     public void UpdateUI()
     {
-        hp_bar.value = script_gamemanager.player_hp_current;
-        energy_bar.value = script_gamemanager.player_energy_current;
+        hp_bar.value = script_gamemanager.GetPlayerHp();
+        energy_bar.value = script_gamemanager.GetPlayerEnergy();
 
         wave_count.GetComponent<Text>().text = script_gamemanager.wave_no.ToString();
-        energy_value.GetComponent<Text>().text = script_gamemanager.player_energy_current.ToString();
+        energy_value.GetComponent<Text>().text = script_gamemanager.GetPlayerEnergy().ToString();
 
         max_energy_value.GetComponent<Text>().text = "/ " + script_gamemanager.player_energy.ToString();
 
@@ -55,5 +61,42 @@ public class UiTesting : MonoBehaviour
         skill_1.value = script_gamemanager.skill_timer_1;
         skill_2.value = script_gamemanager.skill_timer_2;
         skill_3.value = script_gamemanager.skill_timer_3;
+        HPColourChange(script_gamemanager.GetPlayerHp());
+    }
+
+    public void HPColourChange(int hp)
+    {
+        if (hp <= low_hp)
+        {
+            hp_bar.fillRect.GetComponent<Image>().color = Color.red;
+            hud.color = Color.red;
+        }
+        else if (hp <= half_hp)
+        {
+            hp_bar.fillRect.GetComponent<Image>().color = Color.Lerp(Color.red, Color.yellow, hp / half_hp);
+            hud.color = Color.Lerp(Color.red, Color.yellow, hp / half_hp);
+        }
+        else
+        {
+            hp_bar.fillRect.GetComponent<Image>().color = Color.Lerp(Color.yellow, Color.cyan, (hp - half_hp) / half_hp);
+            hud.color = Color.Lerp(Color.yellow, Color.cyan, (hp - half_hp) / half_hp);
+        }
+    }
+
+
+    // Pause functions for Ui
+    public void Resume()
+    {
+        script_gamemanager.Pause();
+    }
+
+    public void Restart()
+    {
+        script_gamemanager.ReloadScene();
+    }
+
+    public void BackToMenu()
+    {
+        script_gamemanager.LoadAnotherScene(0);
     }
 }

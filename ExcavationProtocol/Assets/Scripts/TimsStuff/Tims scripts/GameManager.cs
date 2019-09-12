@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
 {
     // scripts
     #region Scripts
-    public UiTesting script_UI; // Ui
+    public Ui script_UI; // Ui
     private FPSControl script_fps; // fps controller script
     public Blackboard script_bb; // blackboard script
     #endregion
@@ -24,6 +25,12 @@ public class GameManager : MonoBehaviour
     public bool player_take_dmg = false, player_restore_hp = false;
 
     private Transform camera_transform;
+
+    // Ui gameobjects to toggle them in pause and end state
+    public GameObject pause_menu, game_over, game_play;
+    
+    public bool pause_unpause = false;
+    public bool dead_player = false;
     #endregion
 
     #region Animator
@@ -42,14 +49,19 @@ public class GameManager : MonoBehaviour
     // Energy
     public int player_energy = 150;
 
-    [HideInInspector]
-    public int player_hp_current, player_energy_current;
+    
+    protected int player_hp_current, player_energy_current;
 
     private int energy_gain_temp;
 
     // makes gun automatic
     public bool auto_gun;
     public float fire_rate = 0.25f;
+
+    public float interaction_cooldown = 0.25f;
+    private float interaction_timer;
+    
+    bool unlocked_mouse;
     #endregion
 
     // Wave Variables
@@ -70,7 +82,7 @@ public class GameManager : MonoBehaviour
     [Header("Currency Values")]
     public int currency = 20;
     public int wave_reward = 5;
-    public int cost_HP, cost_ammo;
+    public int cost_per_hp, cost_per_ammo;
     #endregion
 
     // Player Ability Values
@@ -78,11 +90,7 @@ public class GameManager : MonoBehaviour
     [Header("Player Skill Values")]
     public float skill_1 = 20;
     public float skill_2 = 10;
-    public float skill_3 = 50;
-    public float skill_3_duration = 20;
-
-    [Tooltip("percent of damage reduced by skill 3 ( half = 2 )")]
-    public float skill_3_dmg_reduction = 2;
+    public float skill_3 = 20;
 
     [HideInInspector]
     public float skill_timer_1, skill_timer_2, skill_timer_3;
@@ -95,6 +103,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         animator = player_gameobject.GetComponentInChildren<Animator>();
         camera_transform = player_gameobject.GetComponentInChildren<Camera>().transform;
         script_fps = player_gameobject.GetComponentInChildren<FPSControl>();
@@ -102,6 +111,11 @@ public class GameManager : MonoBehaviour
         player_energy_current = player_energy;
         num_of_enemies = script_bb.m_enemyCount;
         player_hp_current = player_hp;
+
+        dead_player = false;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         skill_timer_1 = skill_1;
         skill_timer_2 = skill_2;
@@ -111,87 +125,123 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (active_1)
+        if(player_hp_current <= 0 && dead_player == false)
         {
-            skill_timer_1 += Time.deltaTime;
+            dead_player = true;
+            EndGame();
         }
-        if (skill_timer_1 > skill_1)
+        if (dead_player == false)
         {
-            skill_timer_1 = skill_1;
-        }
-
-        if (active_2)
-        {
-            skill_timer_2 += Time.deltaTime;
-        }
-        if (skill_timer_2 > skill_2)
-        {
-            skill_timer_2 = skill_2;
-        }
-
-        if (active_3)
-        {
-            skill_timer_3 += Time.deltaTime;
-        }
-        if (skill_timer_3 > skill_3)
-        {
-            skill_timer_3 = skill_3;
-        }
-        if (skill_timer_3 > skill_3_duration)
-        {
-            is_used = false;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            CompleteAction1();
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            CompleteAction2();
-        }
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            CompleteAction3();
-        }
-        if (auto_gun)
-        {
-            if (Input.GetMouseButton(0) && player_energy_current > 0)
+            if (active_1)
             {
-                script_fps.GunFire(ref player_energy_current, fire_rate);
+                skill_timer_1 += Time.deltaTime;
             }
-            else if (Input.GetMouseButton(0) && player_energy_current <= 0)
+            if (skill_timer_1 > skill_1)
             {
-                StartCoroutine(OutOfAmmo());
+                skill_timer_1 = skill_1;
             }
-        }
-        else
-        {
-            if (Input.GetMouseButtonDown(0) && player_energy_current > 0)
-            {
-                script_fps.GunFire(ref player_energy_current, fire_rate);
-            }
-            else if (Input.GetMouseButtonDown(0) && player_energy_current <= 0)
-            {
-                StartCoroutine(OutOfAmmo());
-            }
-        }
 
-        if (Input.GetKey(KeyCode.E))
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(camera_transform.position, camera_transform.forward, out hit, 5.0f))
+            if (active_2)
             {
-                Interaction(hit.transform.gameObject);
+                skill_timer_2 += Time.deltaTime;
             }
+            if (skill_timer_2 > skill_2)
+            {
+                skill_timer_2 = skill_2;
+            }
+
+            if (active_3)
+            {
+                skill_timer_3 += Time.deltaTime;
+            }
+            if (skill_timer_3 > skill_3)
+            {
+                skill_timer_3 = skill_3;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                CompleteAction1();
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                CompleteAction2();
+            }
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                CompleteAction3();
+            }
+
+            if (auto_gun)
+            {
+                if (Input.GetMouseButton(0) && player_energy_current > 0)
+                {
+                    script_fps.GunFire(ref player_energy_current, fire_rate);
+                }
+                else if (Input.GetMouseButton(0) && player_energy_current <= 0)
+                {
+                    StartCoroutine(OutOfAmmo());
+                }
+            }
+            else
+            {
+                if (Input.GetMouseButtonDown(0) && player_energy_current > 0)
+                {
+                    script_fps.GunFire(ref player_energy_current, fire_rate);
+                }
+                else if (Input.GetMouseButtonDown(0) && player_energy_current <= 0)
+                {
+                    StartCoroutine(OutOfAmmo());
+                }
+            }
+
+            if (Input.GetKey(KeyCode.E))
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(camera_transform.position, camera_transform.forward, out hit, 5.0f))
+                {
+                    Interaction(hit.transform.gameObject);
+                }
+            }
+
+            if (Input.GetKey(KeyCode.P))
+            {
+                ReloadScene();
+            }
+
+            interaction_timer -= Time.deltaTime;
+            if (interaction_timer < 0)
+            {
+                interaction_timer = 0;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (unlocked_mouse == false)
+                {
+                    Pause();
+                }
+                else if (unlocked_mouse == true)
+                {
+                    Pause();
+                }
+            }
+            GameLoop();
+            script_UI.UpdateUI();
         }
-        GameLoop();
-        script_UI.UpdateUI();
     }
 
+    public int GetPlayerHp()
+    {
+        return player_hp_current;
+    }
 
+    public int GetPlayerEnergy()
+    {
+        return player_energy_current;
+    }
 
     public void CompleteAction1()
     {
@@ -228,47 +278,57 @@ public class GameManager : MonoBehaviour
 
     public void Interaction(GameObject interactable)
     {
-        if (interactable.tag == "EnergyTerminal" && player_energy_current < player_energy && currency >= cost_ammo)
+        if (interactable.tag == "EnergyTerminal" && player_energy_current < player_energy && currency >= 1 && interaction_timer == 0)
         {
-            if (player_energy_current > player_energy - 10 && player_energy_current != player_energy)
+            if (player_energy_current > player_energy - cost_per_ammo && player_energy_current != player_energy)
             {
                 energy_gain_temp = player_energy - player_energy_current;
                 player_energy_current += energy_gain_temp;
-                currency -= cost_ammo;
+                currency -= 1;
             }
             else
             {
-                player_energy_current += 10;
-                currency -= cost_ammo;
+                player_energy_current += cost_per_ammo;
+                currency -= 1;
             }
+            interaction_timer = interaction_cooldown;
         }
-        else if (interactable.tag == "HealthTerminal" && player_hp_current < player_hp && currency >= cost_HP)
+        else if (interactable.tag == "HealthTerminal" && player_hp_current < player_hp && currency >= 1 && interaction_timer == 0)
         {
             if (player_hp_current < player_hp)
             {
-                player_hp_current += 20;
-                currency -= cost_HP;
+                player_hp_current += cost_per_hp;
+                currency -= 1;
             }
+            interaction_timer = interaction_cooldown;
         }
-        else if (interactable.tag == "Mine")
+        else if (interactable.tag == "Mine" && interaction_timer == 0)
         {
-            if(interactable.GetComponent<Mines>().GetActive() == true && currency >= mine_cost)
+            if(interactable.GetComponent<Mines>().GetActive() == false && currency >= 1)
             {
                 interactable.GetComponent<Mines>().Activate(ref active_mines, mines_list);
-                currency -= mine_cost;
+                currency -= 1;
             }
-            else if (interactable.GetComponent<Mines>().GetCurrentHp() < interactable.GetComponent<Mines>().mine_max_hp && currency > mine_rep_cost)
+            else if (interactable.GetComponent<Mines>().GetCurrentHp() < interactable.GetComponent<Mines>().mine_max_hp && currency >= mine_rep_cost)
             {
                 interactable.GetComponent<Mines>().AddMineHP();
-                currency -= mine_rep_cost;
+                currency -= 1;
             }
+            interaction_timer = interaction_cooldown;
         }
     }
 
     public int PlayerTakenDamage(float damage)
     {
-        player_hp_current -= (int)damage;
-        return player_hp_current;   
+        if (player_hp_current > 0)
+        {
+            player_hp_current -= (int)damage;
+        }
+        else if (player_hp_current <= 0)
+        {
+            player_hp_current = 0;
+        }
+        return player_hp_current;
     }
 
     private IEnumerator OutOfAmmo()
@@ -300,5 +360,61 @@ public class GameManager : MonoBehaviour
     public void AddCurrency()
     {
         currency += wave_reward * (active_mines + 1);
+    }
+
+    public void Pause()
+    {
+        pause_unpause = !pause_unpause;
+        if (pause_unpause == true)
+        {
+            pause_menu.SetActive(true);
+            game_play.SetActive(false);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            unlocked_mouse = true;
+            Time.timeScale = 0;
+        }
+        else
+        {
+            pause_menu.SetActive(false);
+            game_play.SetActive(true);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            unlocked_mouse = false;
+            Time.timeScale = 1;
+        }
+    }
+
+    public void EndGame()
+    {
+        if (dead_player == true)
+        {
+            game_over.SetActive(true);
+            game_play.SetActive(false);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            unlocked_mouse = true;
+            Time.timeScale = 0;
+        }
+    }
+
+    public void LoadAnotherScene(int index)
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        unlocked_mouse = true;
+        Time.timeScale = 1;
+        dead_player = false;
+        SceneManager.LoadScene(index);
+    }
+
+    public void ReloadScene()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        unlocked_mouse = false;
+        Time.timeScale = 1;
+        dead_player = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
