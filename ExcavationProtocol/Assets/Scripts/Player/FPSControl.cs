@@ -72,16 +72,11 @@ public class FPSControl : MonoBehaviour
     private WaitForSeconds shot_duration = new WaitForSeconds(0.001f);
     private LineRenderer laser_line;
     private float next_fire;
-
-
-    bool unlocked_mouse;
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         animator = GetComponent<Animator>();
 
         m_player_rb = GetComponent<Rigidbody>();
@@ -98,19 +93,6 @@ public class FPSControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && GroundPlayer() == true)
             Jump();
-
-        if (Input.GetKeyDown(KeyCode.Escape) && unlocked_mouse == false)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            unlocked_mouse = true;
-        }
-        if (Input.GetKeyDown(KeyCode.Escape) && unlocked_mouse == true)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            unlocked_mouse = false;
-        }
     }
 
     void LateUpdate()
@@ -134,12 +116,15 @@ public class FPSControl : MonoBehaviour
     /// </summary>
     void PlayerInputCamera()
     {
-        m_camera_yaw += Input.GetAxis("Mouse X") * cameraSensitivity;
-        m_camera_pitch -= Input.GetAxis("Mouse Y") * cameraSensitivity;
-        m_camera_pitch = Mathf.Clamp(m_camera_pitch, minCameraPitch, maxCameraPitch);
+        if (script_gm.pause_unpause == false && script_gm.dead_player == false)
+        {
+            m_camera_yaw += Input.GetAxis("Mouse X") * cameraSensitivity;
+            m_camera_pitch -= Input.GetAxis("Mouse Y") * cameraSensitivity;
+            m_camera_pitch = Mathf.Clamp(m_camera_pitch, minCameraPitch, maxCameraPitch);
 
-        playerCamera.localRotation = Quaternion.Euler(m_camera_pitch, 0, 0);
-        transform.rotation = Quaternion.Euler(0, m_camera_yaw, 0);
+            playerCamera.localRotation = Quaternion.Euler(m_camera_pitch, 0, 0);
+            transform.rotation = Quaternion.Euler(0, m_camera_yaw, 0);
+        }
     }
 
     /// <summary>

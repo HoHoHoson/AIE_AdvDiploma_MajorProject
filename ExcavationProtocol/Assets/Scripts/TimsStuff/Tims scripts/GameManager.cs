@@ -26,9 +26,11 @@ public class GameManager : MonoBehaviour
 
     private Transform camera_transform;
 
+    // Ui gameobjects to toggle them in pause and end state
+    public GameObject pause_menu, game_over, game_play;
+    
     public bool pause_unpause = false;
-    public GameObject pause_menu;
-
+    public bool dead_player = false;
     #endregion
 
     #region Animator
@@ -58,6 +60,8 @@ public class GameManager : MonoBehaviour
 
     public float interaction_cooldown = 0.25f;
     private float interaction_timer;
+    
+    bool unlocked_mouse;
     #endregion
 
     // Wave Variables
@@ -99,6 +103,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         animator = player_gameobject.GetComponentInChildren<Animator>();
         camera_transform = player_gameobject.GetComponentInChildren<Camera>().transform;
         script_fps = player_gameobject.GetComponentInChildren<FPSControl>();
@@ -106,6 +111,11 @@ public class GameManager : MonoBehaviour
         player_energy_current = player_energy;
         num_of_enemies = script_bb.m_enemyCount;
         player_hp_current = player_hp;
+
+        dead_player = false;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         skill_timer_1 = skill_1;
         skill_timer_2 = skill_2;
@@ -115,92 +125,112 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (active_1)
+        if(player_hp_current <= 0 && dead_player == false)
         {
-            skill_timer_1 += Time.deltaTime;
+            dead_player = true;
+            EndGame();
         }
-        if (skill_timer_1 > skill_1)
+        if (dead_player == false)
         {
-            skill_timer_1 = skill_1;
-        }
-
-        if (active_2)
-        {
-            skill_timer_2 += Time.deltaTime;
-        }
-        if (skill_timer_2 > skill_2)
-        {
-            skill_timer_2 = skill_2;
-        }
-
-        if (active_3)
-        {
-            skill_timer_3 += Time.deltaTime;
-        }
-        if (skill_timer_3 > skill_3)
-        {
-            skill_timer_3 = skill_3;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            CompleteAction1();
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            CompleteAction2();
-        }
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            CompleteAction3();
-        }
-
-        if (auto_gun)
-        {
-            if (Input.GetMouseButton(0) && player_energy_current > 0)
+            if (active_1)
             {
-                script_fps.GunFire(ref player_energy_current, fire_rate);
+                skill_timer_1 += Time.deltaTime;
             }
-            else if (Input.GetMouseButton(0) && player_energy_current <= 0)
+            if (skill_timer_1 > skill_1)
             {
-                StartCoroutine(OutOfAmmo());
+                skill_timer_1 = skill_1;
             }
-        }
-        else
-        {
-            if (Input.GetMouseButtonDown(0) && player_energy_current > 0)
-            {
-                script_fps.GunFire(ref player_energy_current, fire_rate);
-            }
-            else if (Input.GetMouseButtonDown(0) && player_energy_current <= 0)
-            {
-                StartCoroutine(OutOfAmmo());
-            }
-        }
 
-        if (Input.GetKey(KeyCode.E))
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(camera_transform.position, camera_transform.forward, out hit, 5.0f))
+            if (active_2)
             {
-                Interaction(hit.transform.gameObject);
+                skill_timer_2 += Time.deltaTime;
             }
-        }
+            if (skill_timer_2 > skill_2)
+            {
+                skill_timer_2 = skill_2;
+            }
 
-        if (Input.GetKey(KeyCode.P))
-        {
-            ReloadScene();
-        }
+            if (active_3)
+            {
+                skill_timer_3 += Time.deltaTime;
+            }
+            if (skill_timer_3 > skill_3)
+            {
+                skill_timer_3 = skill_3;
+            }
 
-        interaction_timer -= Time.deltaTime;
-        if (interaction_timer < 0)
-        {
-            interaction_timer = 0;
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                CompleteAction1();
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                CompleteAction2();
+            }
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                CompleteAction3();
+            }
+
+            if (auto_gun)
+            {
+                if (Input.GetMouseButton(0) && player_energy_current > 0)
+                {
+                    script_fps.GunFire(ref player_energy_current, fire_rate);
+                }
+                else if (Input.GetMouseButton(0) && player_energy_current <= 0)
+                {
+                    StartCoroutine(OutOfAmmo());
+                }
+            }
+            else
+            {
+                if (Input.GetMouseButtonDown(0) && player_energy_current > 0)
+                {
+                    script_fps.GunFire(ref player_energy_current, fire_rate);
+                }
+                else if (Input.GetMouseButtonDown(0) && player_energy_current <= 0)
+                {
+                    StartCoroutine(OutOfAmmo());
+                }
+            }
+
+            if (Input.GetKey(KeyCode.E))
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(camera_transform.position, camera_transform.forward, out hit, 5.0f))
+                {
+                    Interaction(hit.transform.gameObject);
+                }
+            }
+
+            if (Input.GetKey(KeyCode.P))
+            {
+                ReloadScene();
+            }
+
+            interaction_timer -= Time.deltaTime;
+            if (interaction_timer < 0)
+            {
+                interaction_timer = 0;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (unlocked_mouse == false)
+                {
+                    Pause();
+                }
+                else if (unlocked_mouse == true)
+                {
+                    Pause();
+                }
+            }
+            GameLoop();
+            script_UI.UpdateUI();
         }
-        GameLoop();
-        script_UI.UpdateUI();
     }
 
     public int GetPlayerHp()
@@ -338,30 +368,53 @@ public class GameManager : MonoBehaviour
         if (pause_unpause == true)
         {
             pause_menu.SetActive(true);
+            game_play.SetActive(false);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            unlocked_mouse = true;
+            Time.timeScale = 0;
         }
         else
         {
             pause_menu.SetActive(false);
+            game_play.SetActive(true);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            unlocked_mouse = false;
+            Time.timeScale = 1;
         }
     }
 
     public void EndGame()
     {
-
+        if (dead_player == true)
+        {
+            game_over.SetActive(true);
+            game_play.SetActive(false);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            unlocked_mouse = true;
+            Time.timeScale = 0;
+        }
     }
 
     public void LoadAnotherScene(int index)
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        unlocked_mouse = true;
+        Time.timeScale = 1;
+        dead_player = false;
         SceneManager.LoadScene(index);
     }
 
     public void ReloadScene()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        unlocked_mouse = false;
+        Time.timeScale = 1;
+        dead_player = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    void QuitGame()
-    {
-        Application.Quit();
     }
 }
