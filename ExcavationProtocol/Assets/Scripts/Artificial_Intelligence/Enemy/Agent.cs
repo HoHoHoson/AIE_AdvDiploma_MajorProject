@@ -22,7 +22,7 @@ public class Agent : MonoBehaviour
 
     protected int           m_current_health;
     protected int           m_current_damage;
-    protected int           m_current_speed;
+    protected float         m_current_speed;
 
     protected EnemyType     m_type;
     protected Rigidbody     m_rigidbody;
@@ -31,12 +31,13 @@ public class Agent : MonoBehaviour
     protected GameObject    m_target;
 
     public int GetDamage() { return m_damage; }
-    public int GetSpeed() { return m_current_speed; }
+    public float GetSpeed() { return m_current_speed; }
     public EnemyType GetEnemyType() { return m_type; }
     public ref Rigidbody GetRB() { return ref m_rigidbody; }
     public ref StateMachine GetStateMachine() { return ref m_state_machine; }
     public ref GameObject GetTarget() { return ref m_target; }
 
+    public void SetSpeed(float new_speed) { m_current_speed = new_speed; }
     public void SetTarget(in GameObject value) { m_target = value; }
 
     public virtual void InitialiseAgent(in Blackboard blackboard)
@@ -49,6 +50,9 @@ public class Agent : MonoBehaviour
             m_target = m_blackboard.m_gameManager.player_gameobject;
 
         m_rigidbody = GetComponent<Rigidbody>();
+
+        m_state_machine = new StateMachine();
+        InitialiseStateMachine();
     }
 
     /// <summary>
@@ -60,7 +64,7 @@ public class Agent : MonoBehaviour
         m_state_machine.UpdateState(this);
     }
 
-    public virtual void SetStats()
+    public virtual void ResetStats()
     {
         m_current_health    = m_health;
         m_current_damage    = m_damage;
@@ -69,7 +73,9 @@ public class Agent : MonoBehaviour
         m_rigidbody.isKinematic = false;
     }
 
-    public void TakeDamage(int dmg) { m_current_health -= dmg; }
+    protected virtual void InitialiseStateMachine() { Debug.Log("ERROR: No defined StateMachine behaviors for " + m_type + " AI."); }
 
-    public bool IsDead() { return m_current_health <= 0; }
+    public virtual void TakeDamage(int dmg) { m_current_health -= dmg; }
+
+    public virtual bool IsDead() { return m_current_health <= 0; }
 }

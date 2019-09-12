@@ -15,6 +15,8 @@ public class SeekTargetState : State
 
     public override void UpdateState()
     {
+        base.UpdateState();
+
         UpdateTarget();
 
         Vector3 target_direction = m_agent.GetTarget().transform.position - m_agent.transform.position;
@@ -27,8 +29,6 @@ public class SeekTargetState : State
         new_velocity.y = m_agent.GetRB().velocity.y;
 
         m_agent.GetRB().velocity = new_velocity;
-
-        base.UpdateState();
     }
 
     private void UpdateTarget()
@@ -41,7 +41,7 @@ public class SeekTargetState : State
 
         foreach (GameObject mine in m_blackboard.m_gameManager.mines_list)
         {
-            if (mine.activeInHierarchy == false)
+            if (mine.GetComponentInChildren<Mines>().GetActive() == false)
                 continue;
 
             if (closest_mine == null)

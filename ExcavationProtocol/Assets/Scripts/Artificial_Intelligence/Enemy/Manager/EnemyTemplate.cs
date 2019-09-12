@@ -28,6 +28,8 @@ public class EnemyTemplate
             Debug.Log("ERROR: EnemyTemplate Agent is NULL.");
             return;
         }
+        else
+            agent.InitialiseAgent(blackboard);
 
         GameObject editor_tab = new GameObject(agent.GetEnemyType().ToString());
 
@@ -80,7 +82,7 @@ public class EnemyTemplate
             Agent agent_instance = m_inactive_enemies[m_inactive_enemies.Count - 1];
             m_inactive_enemies.RemoveAt(m_inactive_enemies.Count - 1);
 
-            agent_instance.SetStats();
+            agent_instance.ResetStats();
             agent_instance.transform.position = m_group_nodes.transform.GetChild(i).position;
 
             agent_instance.gameObject.SetActive(true);

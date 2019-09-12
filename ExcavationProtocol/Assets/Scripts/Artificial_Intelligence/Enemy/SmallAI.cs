@@ -10,17 +10,13 @@ public class SmallAI : Agent
 
     public override void InitialiseAgent(in Blackboard blackboard)
     {
-        base.InitialiseAgent(blackboard);
-
         m_type = EnemyType.BASIC;
 
-        InitialiseStateMachine();
+        base.InitialiseAgent(blackboard);
     }
 
-    private void InitialiseStateMachine()
+    protected override void InitialiseStateMachine()
     {
-        m_state_machine = new StateMachine();
-
         State state = new IdleState(this); 
         m_state_machine.AddState(state);
 
@@ -43,9 +39,9 @@ public class SmallAI : Agent
 
     private void OnCollisionEnter(Collision collision)
     {
-        LeapAtState leap_state = m_state_machine.GetCurrentState() as LeapAtState;
+        State current = m_state_machine.GetCurrentState();
 
-        if (leap_state != null)
-            leap_state.OnHit(collision.gameObject);
+        if (current.GetIndex() == "LEAPAT")
+            (current as LeapAtState).OnHit(collision.gameObject);
     }
 }
