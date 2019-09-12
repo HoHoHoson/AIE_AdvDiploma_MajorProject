@@ -34,7 +34,10 @@ public class Player : MonoBehaviour
     private float jump_cooldown = 0.01f;
     private float jump_timer;
     private bool has_jumped;
+    #endregion
 
+
+    #region Skills
     public int skill_damage = 1;
 
     public GameObject bomb, g_throw_point, frost_G;
@@ -184,26 +187,9 @@ public class Player : MonoBehaviour
     /// </summary>
     public void SkillActive2()
     {
-        Vector3 explosionPos = new Vector3(transform.position.x, transform.position.y,transform.position.z);
-        Collider[] colliders = Physics.OverlapSphere(explosionPos, skill_2_radius);
-
-        foreach (Collider hit in colliders)
-        {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
-            if (rb == null)
-            {
-                rb = hit.GetComponentInParent<Rigidbody>();
-            }
-            if (rb != null && hit.transform.tag != "Player")
-            {
-                rb.AddExplosionForce(skill_2_power, explosionPos, skill_2_radius, 3.0f);
-                if (hit.GetComponent<Agent>() != null)
-                {
-                    hit.GetComponent<Agent>().TakeDamage(skill_damage);
-                }
-            }
-        }
-        m_player_rb.AddRelativeForce(0, jump_force_y, -jump_force_z, ForceMode.Acceleration);
+        GameObject expl = Instantiate(bomb);
+        expl.transform.position = g_throw_point.transform.position;
+        expl.GetComponent<Rigidbody>().AddForce(g_throw_point.transform.forward * throw_force, ForceMode.Impulse);
     }
 
     /// <summary>

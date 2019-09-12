@@ -206,10 +206,6 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            if (Input.GetKey(KeyCode.P))
-            {
-                ReloadScene();
-            }
 
             interaction_timer -= Time.deltaTime;
             if (interaction_timer < 0)
@@ -228,11 +224,20 @@ public class GameManager : MonoBehaviour
                     Pause();
                 }
             }
+
             GameLoop();
             script_UI.UpdateUI();
+
+            // temp
+            if (Input.GetKey(KeyCode.P))
+            {
+                ReloadScene();
+            }
         }
     }
 
+
+    // vvvvvvv Move to player script vvvvvv
     public int GetPlayerHp()
     {
         return player_hp_current;
@@ -337,6 +342,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         animator.SetBool("OutOfAmmo", false);
     }
+    // ^^^^^^                       ^^^^^^
+
+
+    // vvv keep vvv
 
     public void GameLoop()
     {
