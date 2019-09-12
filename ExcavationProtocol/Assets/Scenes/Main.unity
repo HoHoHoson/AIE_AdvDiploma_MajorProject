@@ -25088,6 +25088,21 @@ PrefabInstance:
       propertyPath: pause_unpause
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: skill_1
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: skill_2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: skill_3
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218633, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -28971,13 +28986,19 @@ PrefabInstance:
         type: 3}
       propertyPath: frost_G
       value: 
-      objectReference: {fileID: 7999437011567384472, guid: 52275d03994b6924db376b3c07f7f2c3,
+      objectReference: {fileID: 4824119629656354010, guid: b49be8e2f7eaf5e4ab387f0a88e8f40d,
         type: 3}
     - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
       propertyPath: throw_force
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
+        type: 3}
+      propertyPath: bomb
+      value: 
+      objectReference: {fileID: 6645922507881026577, guid: 6a7612ee3f7ea20469dfa2364813c01f,
+        type: 3}
     - target: {fileID: 7980817046700777752, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -46526,7 +46547,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &1836571342
 ParticleSystemRenderer:
   serializedVersion: 6
