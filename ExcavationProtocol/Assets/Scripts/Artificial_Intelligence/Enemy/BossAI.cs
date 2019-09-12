@@ -33,7 +33,7 @@ public class BossAI : Agent
     {
         State current = m_state_machine.GetCurrentState();
 
-        if (current.GetIndex() == "BEASTMODE")
+        if (current != null && current.GetIndex() == "BEASTMODE")
             (current as SpinnyWinnyState).OnHit(collision.gameObject);
     }
 }

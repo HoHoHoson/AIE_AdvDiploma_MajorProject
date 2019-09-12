@@ -41,7 +41,7 @@ public class SmallAI : Agent
     {
         State current = m_state_machine.GetCurrentState();
 
-        if (current.GetIndex() == "LEAPAT")
+        if (current != null && current.GetIndex() == "LEAPAT")
             (current as LeapAtState).OnHit(collision.gameObject);
     }
 }
