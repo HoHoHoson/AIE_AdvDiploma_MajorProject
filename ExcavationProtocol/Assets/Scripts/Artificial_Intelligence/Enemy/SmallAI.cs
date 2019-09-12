@@ -39,9 +39,9 @@ public class SmallAI : Agent
 
     private void OnCollisionEnter(Collision collision)
     {
-        LeapAtState leap_state = m_state_machine.GetCurrentState() as LeapAtState;
+        State current = m_state_machine.GetCurrentState();
 
-        if (leap_state != null)
-            leap_state.OnHit(collision.gameObject);
+        if (current.GetIndex() == "LEAPAT")
+            (current as LeapAtState).OnHit(collision.gameObject);
     }
 }

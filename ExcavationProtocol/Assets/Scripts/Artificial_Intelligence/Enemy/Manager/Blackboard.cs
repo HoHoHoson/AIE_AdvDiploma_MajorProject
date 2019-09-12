@@ -143,15 +143,9 @@ public class Blackboard : MonoBehaviour
         int group_size = free_slots >= enemy_spawn.GetGroupSize() ? enemy_spawn.GetGroupSize() : free_slots;
 
         int active_slots = m_activeEnemiesLimit - m_active_enemies.Count;
-        if (active_slots < group_size)
+        if (active_slots < group_size || enemy_spawn.ActivateEnemy(m_active_enemies, RandomSpawnPoint(), group_size) == false)
         {
-            // If there isn't enough space, store the spawn as a reserve
-            m_hold_spawn = enemy_spawn;
-        }
-        else
-        {
-            // Otherwise, the enemies will get spawned
-            enemy_spawn.ActivateEnemy(m_active_enemies, RandomSpawnPoint(), group_size);
+            m_hold_spawn = enemy_spawn; // If the enemy spawn fails for some reason, reserve the enemy spawn for next update
         }
     }
 
