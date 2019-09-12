@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
-public class FPSControl : MonoBehaviour
+public class Player : MonoBehaviour
 {
     #region Scripts
     public GameManager script_gm;
     #endregion
-
 
     #region PlayerMovement
     public Transform playerCamera;

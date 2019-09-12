@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
-    FPSControl script_fps;
+    Player script_fps;
     public float bomb_timer = 3f;
     bool has_exploded = false;
     public float skill_1_radius = 5.0f;
@@ -15,7 +15,7 @@ public class Grenade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        script_fps = FindObjectOfType<FPSControl>();
+        script_fps = FindObjectOfType<Player>();
         skill_damage = script_fps.skill_damage;
         countdown = bomb_timer;
     }

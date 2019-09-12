@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     // scripts
     #region Scripts
     public Ui script_UI; // Ui
-    private FPSControl script_fps; // fps controller script
+    private Player script_fps; // fps controller script
     public Blackboard script_bb; // blackboard script
     #endregion
 
@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         animator = player_gameobject.GetComponentInChildren<Animator>();
         camera_transform = player_gameobject.GetComponentInChildren<Camera>().transform;
-        script_fps = player_gameobject.GetComponentInChildren<FPSControl>();
+        script_fps = player_gameobject.GetComponentInChildren<Player>();
         player_hp_current = player_hp;
         player_energy_current = player_energy;
         num_of_enemies = script_bb.m_enemyCount;

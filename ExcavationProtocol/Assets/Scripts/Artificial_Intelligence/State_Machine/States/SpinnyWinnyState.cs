@@ -50,7 +50,7 @@ public class SpinnyWinnyState : State
             force = force.normalized * m_force;
             rb.AddForce(force, ForceMode.Impulse);
 
-            FPSControl player = hit.GetComponentInChildren<FPSControl>();
+            Player player = hit.GetComponentInChildren<Player>();
             if (player != null)
                 player.script_gm.PlayerTakenDamage(m_agent.GetDamage());
         }

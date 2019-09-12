@@ -31215,6 +31215,11 @@ PrefabInstance:
       propertyPath: player_gameobject
       value: 
       objectReference: {fileID: 933872205}
+    - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: pause_unpause
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218635, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: hp_bar

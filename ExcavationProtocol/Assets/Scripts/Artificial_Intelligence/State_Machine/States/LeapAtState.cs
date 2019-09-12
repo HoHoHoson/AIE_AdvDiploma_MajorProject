@@ -41,7 +41,7 @@ public class LeapAtState : State
     public void OnHit(in GameObject hit)
     {
         Mines       hit_mine    = hit.GetComponentInChildren<Mines>();
-        FPSControl  hit_fps     = hit.GetComponentInChildren<FPSControl>();
+        Player  hit_fps     = hit.GetComponentInChildren<Player>();
 
         if (hit_mine != null)
         {

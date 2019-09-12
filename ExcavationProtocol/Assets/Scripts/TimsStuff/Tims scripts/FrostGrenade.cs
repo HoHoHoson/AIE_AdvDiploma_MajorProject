@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FrostGrenade : MonoBehaviour
 {
-    FPSControl script_fps;
+    Player script_fps;
     public float bomb_timer = 3f;
     bool has_exploded = false;
     public float skill_3_radius = 5.0f;
@@ -15,7 +15,7 @@ public class FrostGrenade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        script_fps = FindObjectOfType<FPSControl>();
+        script_fps = FindObjectOfType<Player>();
        
         countdown = bomb_timer;
         frost_countdown = freeze_time + bomb_timer;

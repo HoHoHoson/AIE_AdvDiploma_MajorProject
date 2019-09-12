@@ -64,13 +64,13 @@ public class BoolCondition : Condition
             return true;
 
         Mines       target_mine;
-        FPSControl  target_fps;
+        Player  target_fps;
 
         if ((target_mine = m_target.GetComponentInChildren<Mines>()) != null)
         {
             m_bool_function = target_mine.GetActive;
         }
-        else if ((target_fps = m_target.GetComponentInChildren<FPSControl>()) != null)
+        else if ((target_fps = m_target.GetComponentInChildren<Player>()) != null)
         {
             m_bool_function = target_fps.GetPlayerHP;
         }

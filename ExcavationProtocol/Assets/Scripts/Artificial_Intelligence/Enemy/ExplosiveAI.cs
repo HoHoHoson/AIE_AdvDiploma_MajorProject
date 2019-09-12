@@ -70,7 +70,7 @@ public class ExplosiveAI : Agent
                 continue;
             }
 
-            FPSControl player = c.GetComponentInChildren<FPSControl>();
+            Player player = c.GetComponentInChildren<Player>();
             if (player != null)
                 m_blackboard.m_gameManager.PlayerTakenDamage(m_current_damage);
         }
