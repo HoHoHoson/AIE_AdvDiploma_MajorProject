@@ -2,7 +2,8 @@
 
 public class ExplosiveAI : Agent
 {
-    [SerializeField] private float m_explosiveRadius = 3;
+    [SerializeField] private float  m_explosiveRadius = 3;
+    [SerializeField] private int    m_friendlyFireDamage = 5;
 
     private bool m_friendly_fire = false;
 
@@ -41,7 +42,7 @@ public class ExplosiveAI : Agent
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Mine")
+        if (collision.gameObject == m_target)
         {
             m_friendly_fire = false;
             m_current_health = 0;
@@ -58,7 +59,7 @@ public class ExplosiveAI : Agent
             if (agent != null)
             {
                 if (m_friendly_fire)
-                    agent.TakeDamage(m_current_damage);
+                    agent.TakeDamage(m_friendlyFireDamage);
 
                 continue;
             }
