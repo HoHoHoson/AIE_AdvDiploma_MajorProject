@@ -26740,6 +26740,12 @@ PrefabInstance:
       propertyPath: script_gm
       value: 
       objectReference: {fileID: 841025466}
+    - target: {fileID: 161447437416827734, guid: 1cffc7320b358ff42992872e87e2aa5e,
+        type: 3}
+      propertyPath: land_mine
+      value: 
+      objectReference: {fileID: 877712556124901837, guid: 6bfd502cfabd4cb4dbc786efb6f77e37,
+        type: 3}
     - target: {fileID: 262854713188246283, guid: 1cffc7320b358ff42992872e87e2aa5e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26794,6 +26800,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 161447437416827733, guid: 1cffc7320b358ff42992872e87e2aa5e,
+        type: 3}
+      propertyPath: m_Mass
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cffc7320b358ff42992872e87e2aa5e, type: 3}
@@ -31175,11 +31186,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3317138830722218741, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: m_Name
-      value: GameManager
-      objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: mines_list.Array.data[0]
@@ -31219,6 +31225,11 @@ PrefabInstance:
         type: 3}
       propertyPath: pause_unpause
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218741, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: m_Name
+      value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218635, guid: 0133e389627041d4893d129376d359a0,
         type: 3}

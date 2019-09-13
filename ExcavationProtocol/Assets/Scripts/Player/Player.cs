@@ -36,11 +36,10 @@ public class Player : MonoBehaviour
     private bool has_jumped;
     #endregion
 
-
     #region Skills
     public int skill_damage = 1;
 
-    public GameObject bomb, g_throw_point, frost_G;
+    public GameObject bomb, land_mine, g_throw_point, frost_G;
 
     public float throw_force = 100;
 
@@ -187,7 +186,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public void SkillActive2()
     {
-        GameObject expl = Instantiate(bomb);
+        GameObject expl = Instantiate(land_mine);
         expl.transform.position = g_throw_point.transform.position;
         expl.GetComponent<Rigidbody>().AddForce(g_throw_point.transform.forward * throw_force, ForceMode.Impulse);
     }
