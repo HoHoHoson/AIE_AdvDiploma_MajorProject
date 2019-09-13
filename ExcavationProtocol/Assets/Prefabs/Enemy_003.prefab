@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2184166624699190975}
   - component: {fileID: 4654663485898027699}
   - component: {fileID: 755883495179552654}
+  - component: {fileID: 5985279181690634768}
   m_Layer: 10
   m_Name: Enemy_003
   m_TagString: Untagged
@@ -49,7 +50,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 32
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!136 &4654663485898027699
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -59,7 +60,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 3758284017529200002}
   m_Material: {fileID: 13400000, guid: 24c864790019939449e0ccea7a604016, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 1.7
   m_Height: 4.5
   m_Direction: 2
@@ -78,11 +79,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_health: 20
   m_damage: 15
-  m_speed: 500
+  m_speed: 650
   m_detectRange: 30
   m_movementMultiplierDuringAttack: 0.9
   m_attackRange: 8
-  m_knockbackForce: 40
+  m_knockbackForce: 5
+--- !u!135 &5985279181690634768
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3758284017529200002}
+  m_Material: {fileID: 13400000, guid: 24c864790019939449e0ccea7a604016, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.229678
+  m_Center: {x: 0, y: 1.9866936, z: -0.77498126}
 --- !u!1001 &4603086779495759418
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,14 +1,16 @@
 fileFormatVersion: 2
-guid: 933395ec7d8072c488af4ec2956474f5
+guid: 2b17b750bc1bfe84ab572cad4e2049eb
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
+    100000: BoxLow
+    100002: //RootNode
+    400000: BoxLow
+    400002: //RootNode
     2100000: lambert1
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: pCube3
+    2300000: BoxLow
+    3300000: BoxLow
+    4300000: BoxLow
   externalObjects: {}
   materials:
     importMaterials: 1
