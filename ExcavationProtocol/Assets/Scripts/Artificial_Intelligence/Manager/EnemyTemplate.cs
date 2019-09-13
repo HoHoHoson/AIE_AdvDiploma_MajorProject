@@ -31,13 +31,11 @@ public class EnemyTemplate
         else
             agent.InitialiseAgent(blackboard);
 
-        GameObject editor_tab = new GameObject(agent.GetEnemyType().ToString());
-
         for (int i = 0; i < max_active; ++i)
         {
             Agent agent_instance;
 
-            agent_instance = Object.Instantiate(m_enemyPrefab, editor_tab.transform).GetComponentInChildren<Agent>();
+            agent_instance = Object.Instantiate(m_enemyPrefab).GetComponentInChildren<Agent>();
             agent_instance.InitialiseAgent(blackboard);
             agent_instance.gameObject.SetActive(false);
 

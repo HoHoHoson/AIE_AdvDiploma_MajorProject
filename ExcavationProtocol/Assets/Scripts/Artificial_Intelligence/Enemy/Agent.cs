@@ -70,6 +70,7 @@ public class Agent : MonoBehaviour
         m_current_damage    = m_damage;
         m_current_speed     = m_speed;
 
+        m_rigidbody.velocity = Vector3.zero;
         m_rigidbody.isKinematic = false;
     }
 

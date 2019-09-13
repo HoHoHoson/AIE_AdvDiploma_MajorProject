@@ -413,12 +413,12 @@ PrefabInstance:
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_spawnPoints.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
@@ -462,7 +462,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_enemyTypes.Array.data[0].m_enemyPrefab
       value: 
-      objectReference: {fileID: 2455372979600114904, guid: 67aab124b094c634e8a7653f400f72a4,
+      objectReference: {fileID: 3758284017529200002, guid: 9ab478a472f05bc49bfba467a8f312b6,
         type: 3}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
@@ -559,7 +559,7 @@ PrefabInstance:
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_activeEnemiesLimit
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
@@ -1646,6 +1646,7 @@ GameObject:
   - component: {fileID: 1810444776}
   - component: {fileID: 1810444775}
   - component: {fileID: 1810444774}
+  - component: {fileID: 1810444777}
   m_Layer: 0
   m_Name: Test_Object
   m_TagString: Untagged
@@ -1665,7 +1666,7 @@ CapsuleCollider:
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
-  m_Direction: 1
+  m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1810444775
 MonoBehaviour:
@@ -1687,12 +1688,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810444773}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24, y: 1, z: 0}
+  m_LocalPosition: {x: 0.02, y: 2.64, z: 3.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1810444777
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810444773}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1878895848
 GameObject:
   m_ObjectHideFlags: 0
