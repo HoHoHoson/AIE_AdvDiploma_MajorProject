@@ -2,6 +2,7 @@
 
 public class ExplosiveAI : Agent
 {
+    [SerializeField] ParticleSystem m_exlodeSFX = null;
     [SerializeField] private float  m_explosiveRadius = 3;
     [SerializeField] private int    m_friendlyFireDamage = 5;
 
@@ -75,5 +76,8 @@ public class ExplosiveAI : Agent
             if (player != null)
                 m_blackboard.m_gameManager.PlayerTakenDamage(m_current_damage);
         }
+
+        GameObject sfx = Instantiate(m_exlodeSFX, transform.position, Quaternion.identity).gameObject;
+        Destroy(sfx, m_exlodeSFX.main.duration);
     }
 }
