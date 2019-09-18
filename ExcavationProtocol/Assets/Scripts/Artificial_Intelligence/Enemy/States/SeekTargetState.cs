@@ -23,7 +23,7 @@ public class SeekTargetState : State
         target_direction.y = 0;
         target_direction = target_direction.normalized;
 
-        //m_agent.transform.rotation = Quaternion.LookRotation(target_direction);
+        m_agent.transform.rotation = Quaternion.LookRotation(target_direction);
 
         Vector3 new_velocity = target_direction * m_agent.GetSpeed() * Time.deltaTime;
         new_velocity.y = m_agent.GetRB().velocity.y;
