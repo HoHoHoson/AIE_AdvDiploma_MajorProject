@@ -36,7 +36,6 @@ public class Player : MonoBehaviour
     private bool has_jumped;
     #endregion
 
-
     #region Skills
     public int skill_damage = 1;
 
