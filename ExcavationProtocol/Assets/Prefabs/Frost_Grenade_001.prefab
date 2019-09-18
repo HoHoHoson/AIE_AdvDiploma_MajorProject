@@ -105,9 +105,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce524fbaf3372c44b8f6b9511e0619f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frostsplosion: {fileID: 1409387212605755772, guid: b96e0f88d89c47f40ab70b787f0b5963,
+    type: 3}
   bomb_timer: 3
-  skill_3_radius: 5
-  freeze_time: 0
+  skill_3_radius: 20
+  freeze_time: 5
 --- !u!54 &5014056278543429593
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -123,4 +125,4 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3

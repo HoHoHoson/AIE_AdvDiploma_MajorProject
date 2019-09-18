@@ -150,12 +150,13 @@ MonoBehaviour:
   skill_damage: 1
   bomb: {fileID: 1276317593273425800, guid: adb7f80dd6b0c77428e68f96bbdff15c, type: 3}
   g_throw_point: {fileID: 7037960682530485475}
-  frost_G: {fileID: 7999437011567384472, guid: 52275d03994b6924db376b3c07f7f2c3, type: 3}
+  frost_G: {fileID: 4824119629656354010, guid: b49be8e2f7eaf5e4ab387f0a88e8f40d, type: 3}
   throw_force: 20
   skill_2_radius: 10
   skill_2_power: 500
+  m_bloodSFX: {fileID: 6952531192212141584, guid: 568b11857bcd24744937c24f9584480c,
+    type: 3}
   gun_damage: 1
-  fire_rate: 0.5
   weapon_range: 50
   hit_force: 1000
   gun_end: {fileID: 69362813}

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3742569117176842082}
   - component: {fileID: 3742569117176842083}
   - component: {fileID: 3742569117176842084}
+  - component: {fileID: 4468797534824346306}
   m_Layer: 10
   m_Name: Enemy_002
   m_TagString: Untagged
@@ -49,7 +50,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 32
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!136 &3742569117176842083
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -59,7 +60,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 3742569117176842085}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 1.9
   m_Direction: 2
@@ -76,9 +77,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe002ff626b27f4e946ade99e3c6a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_health: 3
-  m_damage: 5
-  m_speed: 500
+  m_health: 6
+  m_damage: 20
+  m_speed: 650
+  m_exlodeSFX: {fileID: 3724125835381649309, guid: 2295cb7964e208345abede024f1b65d7,
+    type: 3}
+  m_explosiveRadius: 15
+  m_friendlyFireDamage: 5
+--- !u!135 &4468797534824346306
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3742569117176842085}
+  m_Material: {fileID: 13400000, guid: 24c864790019939449e0ccea7a604016, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.80227387
+  m_Center: {x: 0, y: 0.70861304, z: -0.06916976}
 --- !u!1001 &3742569116523149495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -86,14 +104,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3742569117176842081}
     m_Modifications:
-    - target: {fileID: 100000, guid: 6411c95fbc0cf1549afc030e018520ec, type: 3}
-      propertyPath: m_Name
-      value: Enemy_002
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 6411c95fbc0cf1549afc030e018520ec, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6411c95fbc0cf1549afc030e018520ec, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0040825303
@@ -137,6 +147,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 6411c95fbc0cf1549afc030e018520ec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6411c95fbc0cf1549afc030e018520ec, type: 3}
+      propertyPath: m_Name
+      value: Enemy_002
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6411c95fbc0cf1549afc030e018520ec, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6411c95fbc0cf1549afc030e018520ec, type: 3}

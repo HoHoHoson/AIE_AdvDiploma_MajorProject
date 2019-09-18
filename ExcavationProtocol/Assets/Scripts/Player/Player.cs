@@ -58,7 +58,8 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Particle
-    
+
+    public ParticleSystem m_bloodSFX = null;
 
     #endregion
 
@@ -230,6 +231,9 @@ public class Player : MonoBehaviour
                 if (hit_target.transform.GetComponent<Agent>() != null)
                 {
                     hit_target.transform.GetComponent<Agent>().TakeDamage(gun_damage);
+
+                    GameObject sfx = Instantiate(m_bloodSFX.gameObject, hit_target.point, Quaternion.identity);
+                    Destroy(sfx, m_bloodSFX.main.duration);
                 }
             }
             else

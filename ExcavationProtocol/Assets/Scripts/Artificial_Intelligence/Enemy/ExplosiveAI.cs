@@ -2,7 +2,9 @@
 
 public class ExplosiveAI : Agent
 {
-    [SerializeField] private float m_explosiveRadius = 3;
+    [SerializeField] ParticleSystem m_exlodeSFX = null;
+    [SerializeField] private float  m_explosiveRadius = 3;
+    [SerializeField] private int    m_friendlyFireDamage = 5;
 
     private bool m_friendly_fire = false;
 
@@ -41,7 +43,7 @@ public class ExplosiveAI : Agent
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Mine")
+        if (collision.gameObject == m_target)
         {
             m_friendly_fire = false;
             m_current_health = 0;
@@ -58,7 +60,7 @@ public class ExplosiveAI : Agent
             if (agent != null)
             {
                 if (m_friendly_fire)
-                    agent.TakeDamage(m_current_damage);
+                    agent.TakeDamage(m_friendlyFireDamage);
 
                 continue;
             }
@@ -74,5 +76,8 @@ public class ExplosiveAI : Agent
             if (player != null)
                 m_blackboard.m_gameManager.PlayerTakenDamage(m_current_damage);
         }
+
+        GameObject sfx = Instantiate(m_exlodeSFX, transform.position, Quaternion.identity).gameObject;
+        Destroy(sfx, m_exlodeSFX.main.duration);
     }
 }

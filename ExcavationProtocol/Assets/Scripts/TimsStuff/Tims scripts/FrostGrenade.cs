@@ -5,6 +5,7 @@ using UnityEngine;
 public class FrostGrenade : MonoBehaviour
 {
     Player script_fps;
+    public ParticleSystem frostsplosion;
     public float bomb_timer = 3f;
     bool has_exploded = false;
     public float skill_3_radius = 5.0f;
@@ -16,7 +17,7 @@ public class FrostGrenade : MonoBehaviour
     void Start()
     {
         script_fps = FindObjectOfType<Player>();
-       
+
         countdown = bomb_timer;
         frost_countdown = freeze_time + bomb_timer;
     }
@@ -30,6 +31,9 @@ public class FrostGrenade : MonoBehaviour
         if (countdown <= 0f && !has_exploded)
         {
             FreezeExplosion();
+            Instantiate(frostsplosion, transform);
+            
+            has_exploded = true;
         }
 
         if (frost_countdown <= 0)
