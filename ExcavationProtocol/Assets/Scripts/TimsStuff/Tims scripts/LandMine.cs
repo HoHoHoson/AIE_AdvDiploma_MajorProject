@@ -51,7 +51,7 @@ public class LandMine : MonoBehaviour
             }
             if (hit.transform.tag == "Player" && rb != null)
             {
-                rb.AddExplosionForce(blast_power * 2, explosionPos, blast_radius, 3.0f);
+                rb.AddExplosionForce(blast_power * 2 * rb.mass, explosionPos, blast_radius, 3.0f);
             }
         }
         Destroy(gameObject);

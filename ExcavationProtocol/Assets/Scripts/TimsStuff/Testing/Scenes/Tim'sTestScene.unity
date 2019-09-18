@@ -26746,6 +26746,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 877712556124901837, guid: 6bfd502cfabd4cb4dbc786efb6f77e37,
         type: 3}
+    - target: {fileID: 161447437416827734, guid: 1cffc7320b358ff42992872e87e2aa5e,
+        type: 3}
+      propertyPath: frost_G
+      value: 
+      objectReference: {fileID: 4824119629656354010, guid: b49be8e2f7eaf5e4ab387f0a88e8f40d,
+        type: 3}
+    - target: {fileID: 161447437416827734, guid: 1cffc7320b358ff42992872e87e2aa5e,
+        type: 3}
+      propertyPath: bomb
+      value: 
+      objectReference: {fileID: 100000, guid: 322c790ff37b2d2419d8e3c2d8ab83b1, type: 3}
     - target: {fileID: 262854713188246283, guid: 1cffc7320b358ff42992872e87e2aa5e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -31186,6 +31197,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3317138830722218741, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: mines_list.Array.data[0]
@@ -31226,10 +31242,20 @@ PrefabInstance:
       propertyPath: pause_unpause
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3317138830722218741, guid: 0133e389627041d4893d129376d359a0,
+    - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
-      propertyPath: m_Name
-      value: GameManager
+      propertyPath: auto_gun
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: fire_rate
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: skill_2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218635, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
