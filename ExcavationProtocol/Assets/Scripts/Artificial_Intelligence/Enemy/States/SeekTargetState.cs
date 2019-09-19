@@ -5,6 +5,10 @@ public class SeekTargetState : State
     private Blackboard  m_blackboard;
     private float       m_player_detect_range;
 
+    private Vector3     m_normal = Vector3.up;
+
+    public void SetNormal(Vector3 normal) { m_normal = normal; }
+
     public SeekTargetState(in Agent agent, in Blackboard blackboard, float detect_range) : base(agent)
     {
         m_index                 = "SEEKTARGET";
@@ -26,11 +30,11 @@ public class SeekTargetState : State
         m_agent.transform.rotation = Quaternion.LookRotation(target_direction);
 
         Vector3 new_velocity = target_direction * m_agent.GetSpeed() * Time.deltaTime;
-        new_velocity.y = m_agent.GetRB().velocity.y;
+        new_velocity.y = -10;
 
         m_agent.GetRB().velocity = new_velocity;
     }
-    
+
     private void UpdateTarget()
     {
         if (PlayerInRange())

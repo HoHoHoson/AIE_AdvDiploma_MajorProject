@@ -50,6 +50,7 @@ public class Agent : MonoBehaviour
             m_target = m_blackboard.m_gameManager.player_gameobject;
 
         m_rigidbody = GetComponent<Rigidbody>();
+        m_rigidbody.useGravity = false;
 
         m_state_machine = new StateMachine();
         InitialiseStateMachine();
