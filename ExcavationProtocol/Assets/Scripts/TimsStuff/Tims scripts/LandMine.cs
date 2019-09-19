@@ -11,12 +11,15 @@ public class LandMine : MonoBehaviour
     float countdown;
     int blast_dmg;
 
+    bool has_det;
+
     // Start is called before the first frame update
     void Start()
     {
         script_player = FindObjectOfType<Player>();
         countdown = time_before_det;
         blast_dmg = script_player.skill_damage;
+        has_det = false;
     }
 
     // Update is called once per frame
@@ -25,6 +28,7 @@ public class LandMine : MonoBehaviour
         countdown -= Time.deltaTime;
         if (Input.GetMouseButton(1) && countdown <= 0)
         {
+            has_det = true;
             Explode();
         }
     }
@@ -43,15 +47,11 @@ public class LandMine : MonoBehaviour
             }
             if (rb != null)
             {
-                rb.AddExplosionForce(blast_power, explosionPos, blast_radius, 3.0f);
+                rb.AddExplosionForce(blast_power * rb.mass, explosionPos, blast_radius, 3.0f);
                 if (hit.GetComponentInParent<Agent>() != null)
                 {
                     hit.GetComponentInParent<Agent>().TakeDamage(blast_dmg);
                 }
-            }
-            if (hit.transform.tag == "Player" && rb != null)
-            {
-                rb.AddExplosionForce(blast_power * 2 * rb.mass, explosionPos, blast_radius, 3.0f);
             }
         }
         Destroy(gameObject);

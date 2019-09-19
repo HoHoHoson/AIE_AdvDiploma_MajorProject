@@ -7,7 +7,7 @@ public class Mines : MonoBehaviour
     int mine_hp = 100;
     bool is_active = false;
 
-    public int mine_hp_recover = 20;
+    public int mine_hp_recover = 50;
     public int mine_max_hp = 100;
 
     GameManager gamemanager;

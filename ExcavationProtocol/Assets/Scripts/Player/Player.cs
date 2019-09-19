@@ -41,10 +41,9 @@ public class Player : MonoBehaviour
 
     public GameObject bomb, land_mine, g_throw_point, frost_G;
 
-    public float throw_force = 100;
+    public float throw_force = 20, throw_force_2 = 10;
 
-    public float skill_2_radius = 5.0f;
-    public float skill_2_power = 10.0f;
+    protected bool skill_2_active = false;
 
     private int player_hp;
 
@@ -189,7 +188,7 @@ public class Player : MonoBehaviour
     {
         GameObject expl = Instantiate(land_mine);
         expl.transform.position = g_throw_point.transform.position;
-        expl.GetComponent<Rigidbody>().AddForce(g_throw_point.transform.forward * throw_force, ForceMode.Impulse);
+        expl.GetComponent<Rigidbody>().AddForce(g_throw_point.transform.forward * throw_force_2, ForceMode.Impulse);
     }
 
     /// <summary>
