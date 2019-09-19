@@ -1,0 +1,167 @@
+fileFormatVersion: 2
+guid: 48a9896674c48b54382a0a2e56618fb1
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: ArmLower_CTRL
+    100002: ArmLower_JNT
+    100004: ArmRail_CTRL
+    100006: ArmRail_JNT
+    100008: ArmUpper_CTRL
+    100010: ArmUpper_JNT
+    100012: Body_JNT
+    100014: BodyEnd_JNT
+    100016: CapsuleLower_CTRL
+    100018: CapsuleLower_JNT
+    100020: CapsuleLowerEnd_JNT
+    100022: CapsuleUpper_CTRL
+    100024: CapsuleUpper_JNT
+    100026: CapsuleUpperEnd_JNT
+    100028: Excavator
+    100030: //RootNode
+    100032: Laser_CTRL
+    100034: Laser_JNT
+    100036: LaserTipEnd_JNT
+    100038: Main_CTRL
+    100040: Main_JNT
+    100042: MegaLaser_CTRL
+    100044: MegaLaser_JNT
+    100046: MegaLaserEnd_JNT
+    100048: RingLower_CTRL
+    100050: RingLower_JNT
+    100052: RingLowerEnd_JNT
+    100054: RingMid_CTRL
+    100056: RingMid_JNT
+    100058: RingMidEnd_JNT
+    100060: RingMidLower_CTRL
+    100062: RingMidLower_JNT
+    100064: RingMidLowerEnd_JNT
+    100066: RingUpper_CTRL
+    100068: RingUpper_JNT
+    100070: RingUpperEnd_JNT
+    400000: ArmLower_CTRL
+    400002: ArmLower_JNT
+    400004: ArmRail_CTRL
+    400006: ArmRail_JNT
+    400008: ArmUpper_CTRL
+    400010: ArmUpper_JNT
+    400012: Body_JNT
+    400014: BodyEnd_JNT
+    400016: CapsuleLower_CTRL
+    400018: CapsuleLower_JNT
+    400020: CapsuleLowerEnd_JNT
+    400022: CapsuleUpper_CTRL
+    400024: CapsuleUpper_JNT
+    400026: CapsuleUpperEnd_JNT
+    400028: Excavator
+    400030: //RootNode
+    400032: Laser_CTRL
+    400034: Laser_JNT
+    400036: LaserTipEnd_JNT
+    400038: Main_CTRL
+    400040: Main_JNT
+    400042: MegaLaser_CTRL
+    400044: MegaLaser_JNT
+    400046: MegaLaserEnd_JNT
+    400048: RingLower_CTRL
+    400050: RingLower_JNT
+    400052: RingLowerEnd_JNT
+    400054: RingMid_CTRL
+    400056: RingMid_JNT
+    400058: RingMidEnd_JNT
+    400060: RingMidLower_CTRL
+    400062: RingMidLower_JNT
+    400064: RingMidLowerEnd_JNT
+    400066: RingUpper_CTRL
+    400068: RingUpper_JNT
+    400070: RingUpperEnd_JNT
+    2100000: lambert1
+    4300000: Excavator
+    9500000: //RootNode
+    13700000: Excavator
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

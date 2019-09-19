@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 625229879496408800}
   - component: {fileID: 4075992799714544893}
   - component: {fileID: 8420854049897034401}
-  - component: {fileID: 4618006568444678815}
+  - component: {fileID: 661150324419261725}
   m_Layer: 0
   m_Name: Land_Mine_001
   m_TagString: Untagged
@@ -78,7 +78,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4618006568444678815
+--- !u!65 &661150324419261725
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,5 +89,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.77459484, y: 0.16424766, z: 0.77459484}
-  m_Center: {x: 0, y: 0.08212383, z: 0}
+  m_Size: {x: 0.38729742, y: 0.08212383, z: 0.38729742}
+  m_Center: {x: 0, y: 0.041061915, z: 0}

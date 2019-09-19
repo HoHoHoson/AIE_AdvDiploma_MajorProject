@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7416801116879020161}
   - component: {fileID: 2695197971600055897}
   - component: {fileID: 8337721156383776093}
-  - component: {fileID: 1841640492665520500}
   - component: {fileID: 5707831408123572520}
+  - component: {fileID: 2675919026061720065}
   m_Layer: 0
   m_Name: Knockback_Grenade_001
   m_TagString: Untagged
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6645922507881026577}
-  m_Mesh: {fileID: 4300000, guid: 322c790ff37b2d2419d8e3c2d8ab83b1, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 0a9e3f098b4dd154b9e05b7ff263e502, type: 3}
 --- !u!23 &2695197971600055897
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -95,19 +95,6 @@ MonoBehaviour:
   bomb_timer: 3
   skill_1_radius: 20
   skill_1_power: 250
---- !u!135 &1841640492665520500
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6645922507881026577}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.07850982
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5707831408123572520
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -124,3 +111,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!135 &2675919026061720065
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6645922507881026577}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.07850982
+  m_Center: {x: -0.00050709024, y: 0.07850982, z: 0.0000000018626451}
