@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Ui : MonoBehaviour
 {
     public GameManager script_gamemanager;
+    public Mines script_mines;
 
     public Slider hp_bar, energy_bar;
     public Text wave_count, wave_enemiesleft;
@@ -21,6 +22,9 @@ public class Ui : MonoBehaviour
     // resources
     public Text res_cost_text;
 
+
+    public GameObject[] drills;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +66,7 @@ public class Ui : MonoBehaviour
         skill_2.value = script_gamemanager.skill_timer_2;
         skill_3.value = script_gamemanager.skill_timer_3;
         HPColourChange(script_gamemanager.GetPlayerHp());
+        UpdateMineUi();
     }
 
     public void HPColourChange(int hp)
@@ -98,5 +103,14 @@ public class Ui : MonoBehaviour
     public void BackToMenu()
     {
         script_gamemanager.LoadAnotherScene(0);
+    }
+
+    public void UpdateMineUi()
+    {
+        foreach (var mine in drills)
+        {
+            mine.transform.GetChild(0).LookAt(player.transform, transform.up);
+            mine.GetComponentInChildren<Slider>().value = mine.GetComponent<Mines>().GetCurrentHp();
+        }
     }
 }

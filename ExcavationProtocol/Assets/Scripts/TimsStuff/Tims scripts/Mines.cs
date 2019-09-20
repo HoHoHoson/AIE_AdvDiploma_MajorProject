@@ -7,7 +7,7 @@ public class Mines : MonoBehaviour
     int mine_hp = 100;
     bool is_active = false;
 
-    public int mine_hp_recover = 20;
+    public int mine_hp_recover = 50;
     public int mine_max_hp = 100;
 
     GameManager gamemanager;
@@ -15,7 +15,6 @@ public class Mines : MonoBehaviour
     void Start()
     {
         gamemanager = FindObjectOfType<GameManager>();
-        mine_hp = mine_max_hp;
     }
 
     void Update()
@@ -23,6 +22,11 @@ public class Mines : MonoBehaviour
         if (mine_hp <= 0 && is_active == true)
         {
             DeactivateMine(ref gamemanager.active_mines);
+        }
+
+        if(is_active == false)
+        {
+            mine_hp = 0;
         }
     }
 
