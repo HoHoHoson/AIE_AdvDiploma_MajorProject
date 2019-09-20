@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7037960682530485475}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.375, z: 0.676}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3262474647881643129}
@@ -149,11 +149,11 @@ MonoBehaviour:
   jump_cooldown: 0.01
   skill_damage: 1
   bomb: {fileID: 1276317593273425800, guid: adb7f80dd6b0c77428e68f96bbdff15c, type: 3}
+  land_mine: {fileID: 0}
   g_throw_point: {fileID: 7037960682530485475}
   frost_G: {fileID: 4824119629656354010, guid: b49be8e2f7eaf5e4ab387f0a88e8f40d, type: 3}
   throw_force: 20
-  skill_2_radius: 10
-  skill_2_power: 500
+  throw_force_2: 10
   m_bloodSFX: {fileID: 6952531192212141584, guid: 568b11857bcd24744937c24f9584480c,
     type: 3}
   gun_damage: 1
