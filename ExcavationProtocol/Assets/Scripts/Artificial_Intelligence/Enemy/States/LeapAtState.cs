@@ -62,6 +62,6 @@ public class LeapAtState : State
         leap_direction = leap_direction.normalized;
         leap_direction = Quaternion.AngleAxis(m_angle, Vector3.Cross(leap_direction, Vector3.up)) * leap_direction;
 
-        m_agent.GetRB().AddForce(leap_direction * m_force, ForceMode.Impulse);
+        m_agent.GetRigidbody().AddForce(leap_direction * m_force, ForceMode.Impulse);
     }
 }

@@ -6,13 +6,19 @@ public class TestScript : MonoBehaviour
 {
     private CapsuleCollider cap;
     private Vector3 normal = Vector3.up;
+    private int integer = 0;
     
+    public ref int GetInt() { return ref integer; }
+
     private void Start()
     {
         cap = GetComponent<CapsuleCollider>();
 
         Derived b = new Derived();
         TestFun(b);
+
+        GetInt() = 5;
+        Debug.Log(integer);
     }
 
     private void Update()
@@ -34,8 +40,10 @@ public class TestScript : MonoBehaviour
             normal = Vector3.up;
 
         Vector3 target_direction = Vector3.forward;
+        target_direction = Vector3.ProjectOnPlane(target_direction, normal);
+
         Quaternion target_rotation = 
-            Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Vector3.ProjectOnPlane(target_direction, normal), normal), Time.deltaTime * 7);
+            Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(target_direction, normal), Time.deltaTime * 7);
 
         transform.rotation = target_rotation;
 

@@ -5,10 +5,6 @@ public class SeekTargetState : State
     private Blackboard  m_blackboard;
     private float       m_player_detect_range;
 
-    private Vector3     m_normal = Vector3.up;
-
-    public void SetNormal(Vector3 normal) { m_normal = normal; }
-
     public SeekTargetState(in Agent agent, in Blackboard blackboard, float detect_range) : base(agent)
     {
         m_index                 = "SEEKTARGET";
@@ -22,17 +18,7 @@ public class SeekTargetState : State
         base.UpdateState();
 
         UpdateTarget();
-
-        Vector3 target_direction = m_agent.GetTarget().transform.position - m_agent.transform.position;
-        target_direction.y = 0;
-        target_direction = target_direction.normalized;
-
-        m_agent.transform.rotation = Quaternion.LookRotation(target_direction);
-
-        Vector3 new_velocity = target_direction * m_agent.GetSpeed() * Time.deltaTime;
-        new_velocity.y = -10;
-
-        m_agent.GetRB().velocity = new_velocity;
+        Seek();
     }
 
     private void UpdateTarget()
@@ -85,5 +71,42 @@ public class SeekTargetState : State
         }
 
         return false;
+    }
+
+    private void Seek()
+    {
+        Vector3 target_direction = m_agent.GetTarget().transform.position - m_agent.transform.position;
+        target_direction.y = 0;
+        target_direction = target_direction.normalized;
+
+        Vector3 normal = CalculateNormal();
+
+        m_agent.transform.rotation =
+            Quaternion.RotateTowards(m_agent.transform.rotation, Quaternion.LookRotation(Vector3.ProjectOnPlane(target_direction, normal)), Time.deltaTime * 180);
+
+        m_agent.GetRigidbody().velocity = (m_agent.transform.forward * m_agent.GetSpeed() * Time.deltaTime) + -normal * 10;
+        m_agent.GetRigidbody().angularVelocity = Vector3.zero;
+    }
+
+    private Vector3 CalculateNormal()
+    {
+        Vector3 normal = Vector3.up;
+
+        float   length_to_spheres   = (m_agent.GetCollider().height * 0.5f) - m_agent.GetCollider().radius;
+        Vector3 start_sphere_center = m_agent.transform.position + m_agent.transform.forward * length_to_spheres;
+        Vector3 end_sphere_center   = m_agent.transform.position + -m_agent.transform.forward * length_to_spheres;
+
+        // Offset Y axis due to the pivot not being centered
+        start_sphere_center.y += m_agent.GetCollider().radius;
+        end_sphere_center.y += m_agent.GetCollider().radius;
+
+        RaycastHit hit;
+        if (Physics.CapsuleCast(start_sphere_center, end_sphere_center, m_agent.GetCollider().radius - 0.075f, -m_agent.transform.up, out hit, 0.15f)
+           && Vector3.Angle(hit.normal, Vector3.up) <= m_agent.GetSlopeAngle())
+        {
+            normal = hit.normal;
+        }
+
+        return normal;
     }
 }
