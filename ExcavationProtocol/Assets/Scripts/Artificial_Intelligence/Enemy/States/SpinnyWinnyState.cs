@@ -32,7 +32,7 @@ public class SpinnyWinnyState : State
         direction.y = 0;
         direction = direction.normalized;
       
-        m_agent.GetRB().velocity = direction * m_agent.GetSpeed() * Time.deltaTime;
+        m_agent.GetRigidbody().velocity = direction * m_agent.GetSpeed() * Time.deltaTime;
         m_agent.transform.Rotate(Vector3.up * 720 * Time.deltaTime);
     }
 

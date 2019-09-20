@@ -25677,6 +25677,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218635, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
+      propertyPath: drills.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218635, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
       propertyPath: hp_bar
       value: 
       objectReference: {fileID: 733825573}
@@ -25730,6 +25735,26 @@ PrefabInstance:
       propertyPath: res_cost_text
       value: 
       objectReference: {fileID: 1248079808}
+    - target: {fileID: 3317138830722218635, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: drills.Array.data[0]
+      value: 
+      objectReference: {fileID: 1332397255}
+    - target: {fileID: 3317138830722218635, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: drills.Array.data[1]
+      value: 
+      objectReference: {fileID: 639244411}
+    - target: {fileID: 3317138830722218635, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: drills.Array.data[2]
+      value: 
+      objectReference: {fileID: 1527009524}
+    - target: {fileID: 3317138830722218635, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 790687588}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.size
@@ -25781,6 +25806,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_enemyTypes.Array.data[2].m_maxGroupSize
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: m_enemyCount
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0133e389627041d4893d129376d359a0, type: 3}
@@ -26691,6 +26721,20 @@ PrefabInstance:
     - target: {fileID: 3984272913826212253, guid: 4edcd9d792fdc8f4aad1cf79e6705952,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1854299252, guid: 4edcd9d792fdc8f4aad1cf79e6705952, type: 3}
+      propertyPath: mine_hp_recover
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976192697525282921, guid: 4edcd9d792fdc8f4aad1cf79e6705952,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976192697525282921, guid: 4edcd9d792fdc8f4aad1cf79e6705952,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -29586,6 +29630,12 @@ PrefabInstance:
       propertyPath: bomb
       value: 
       objectReference: {fileID: 6645922507881026577, guid: 6a7612ee3f7ea20469dfa2364813c01f,
+        type: 3}
+    - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
+        type: 3}
+      propertyPath: land_mine
+      value: 
+      objectReference: {fileID: 877712556124901837, guid: 6bfd502cfabd4cb4dbc786efb6f77e37,
         type: 3}
     - target: {fileID: 7980817046700777752, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
@@ -38261,6 +38311,20 @@ PrefabInstance:
     - target: {fileID: 3984272913826212253, guid: 4edcd9d792fdc8f4aad1cf79e6705952,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1854299252, guid: 4edcd9d792fdc8f4aad1cf79e6705952, type: 3}
+      propertyPath: mine_hp_recover
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976192697525282921, guid: 4edcd9d792fdc8f4aad1cf79e6705952,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976192697525282921, guid: 4edcd9d792fdc8f4aad1cf79e6705952,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -47256,6 +47320,20 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2cf39978800865949b681f6749bdb63f, type: 2}
+    - target: {fileID: 1854299252, guid: 4edcd9d792fdc8f4aad1cf79e6705952, type: 3}
+      propertyPath: mine_hp_recover
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976192697525282921, guid: 4edcd9d792fdc8f4aad1cf79e6705952,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976192697525282921, guid: 4edcd9d792fdc8f4aad1cf79e6705952,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4840997563750200115, guid: 4edcd9d792fdc8f4aad1cf79e6705952, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4edcd9d792fdc8f4aad1cf79e6705952, type: 3}
