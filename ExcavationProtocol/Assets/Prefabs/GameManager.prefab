@@ -59,11 +59,11 @@ MonoBehaviour:
   pause_menu: {fileID: 0}
   game_over: {fileID: 0}
   game_play: {fileID: 0}
-  pause_unpause: 1
+  pause_unpause: 0
   dead_player: 0
   player_gameobject: {fileID: 0}
   player_hp: 1000
-  player_energy: 250
+  player_energy: 100
   auto_gun: 1
   fire_rate: 0.15
   interaction_cooldown: 0.25
@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script_gamemanager: {fileID: 0}
+  script_mines: {fileID: 0}
   hp_bar: {fileID: 0}
   energy_bar: {fileID: 0}
   wave_count: {fileID: 0}
@@ -104,6 +105,11 @@ MonoBehaviour:
   skill_3: {fileID: 0}
   hud: {fileID: 0}
   res_cost_text: {fileID: 0}
+  drills:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &3317138830722218740
 MonoBehaviour:
   m_ObjectHideFlags: 0
