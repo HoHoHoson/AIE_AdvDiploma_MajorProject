@@ -20,20 +20,26 @@ public class Agent : MonoBehaviour
     [SerializeField] private int m_damage = 5;
     [SerializeField] private int m_speed  = 500;
 
-    protected int           m_current_health;
-    protected int           m_current_damage;
-    protected float         m_current_speed;
+    [SerializeField, Range(0, 90)]
+    private int m_maxSlopeAngle = 70;
 
-    protected EnemyType     m_type;
-    protected Rigidbody     m_rigidbody;
-    protected StateMachine  m_state_machine;
-    protected Blackboard    m_blackboard;
-    protected GameObject    m_target;
+    protected int               m_current_health;
+    protected int               m_current_damage;
+    protected float             m_current_speed;
 
+    protected EnemyType         m_type;
+    protected Rigidbody         m_rigidbody;
+    protected CapsuleCollider   m_collider;
+    protected StateMachine      m_state_machine;
+    protected Blackboard        m_blackboard;
+    protected GameObject        m_target;
+
+    public int GetSlopeAngle() { return m_maxSlopeAngle; }
     public int GetDamage() { return m_damage; }
     public float GetSpeed() { return m_current_speed; }
     public EnemyType GetEnemyType() { return m_type; }
-    public ref Rigidbody GetRB() { return ref m_rigidbody; }
+    public ref Rigidbody GetRigidbody() { return ref m_rigidbody; }
+    public ref CapsuleCollider GetCollider() { return ref m_collider; }
     public ref StateMachine GetStateMachine() { return ref m_state_machine; }
     public ref GameObject GetTarget() { return ref m_target; }
 
@@ -50,6 +56,9 @@ public class Agent : MonoBehaviour
             m_target = m_blackboard.m_gameManager.player_gameobject;
 
         m_rigidbody = GetComponent<Rigidbody>();
+        m_rigidbody.useGravity = false;
+
+        m_collider = GetComponent<CapsuleCollider>();
 
         m_state_machine = new StateMachine();
         InitialiseStateMachine();
