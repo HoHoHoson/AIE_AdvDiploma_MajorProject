@@ -11,7 +11,7 @@ public class LandMine : MonoBehaviour
     float countdown;
     int blast_dmg;
 
-    bool has_det;
+    bool has_det = false;
 
     // Start is called before the first frame update
     void Start()

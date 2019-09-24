@@ -25760,6 +25760,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 790687588}
+    - target: {fileID: 3317138830722218635, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: script_gamemanager
+      value: 
+      objectReference: {fileID: 1282185922}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.size
@@ -47320,11 +47325,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8389706959244704662, guid: 4edcd9d792fdc8f4aad1cf79e6705952,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2cf39978800865949b681f6749bdb63f, type: 2}
     - target: {fileID: 1854299252, guid: 4edcd9d792fdc8f4aad1cf79e6705952, type: 3}
       propertyPath: mine_hp_recover
       value: 50
@@ -47339,6 +47339,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8389706959244704662, guid: 4edcd9d792fdc8f4aad1cf79e6705952,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2cf39978800865949b681f6749bdb63f, type: 2}
     m_RemovedComponents:
     - {fileID: 4840997563750200115, guid: 4edcd9d792fdc8f4aad1cf79e6705952, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4edcd9d792fdc8f4aad1cf79e6705952, type: 3}

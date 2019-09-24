@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80b84c439563b0646aada38cb5ad4611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  script_gamemanager: {fileID: 0}
+  script_gamemanager: {fileID: 3317138830722218634}
   script_mines: {fileID: 0}
   hp_bar: {fileID: 0}
   energy_bar: {fileID: 0}

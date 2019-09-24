@@ -91,14 +91,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3742569117176842081}
     m_Modifications:
-    - target: {fileID: 100000, guid: 6411c95fbc0cf1549afc030e018520ec, type: 3}
-      propertyPath: m_Name
-      value: Enemy_002
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 6411c95fbc0cf1549afc030e018520ec, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6411c95fbc0cf1549afc030e018520ec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -142,6 +134,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 6411c95fbc0cf1549afc030e018520ec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6411c95fbc0cf1549afc030e018520ec, type: 3}
+      propertyPath: m_Name
+      value: Enemy_002
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6411c95fbc0cf1549afc030e018520ec, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6411c95fbc0cf1549afc030e018520ec, type: 3}
