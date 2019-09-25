@@ -62,6 +62,25 @@ ModelImporter:
     100112: weaponPistolWithRig:weaponSmallRightEnd_JNT
     100114: weaponPistolWithRig:weaponSmallUpper_JNT
     100116: weaponPistolWithRig:weaponSmallUpperEnd_JNT
+    100118: BarrelBottomLeft_JNT
+    100120: BarrelBottomRight_JNT
+    100122: BarrelEnd_JNT
+    100124: BarrelTopLeft_JNT
+    100126: BarrelTopRight_JNT
+    100128: Battery_JNT
+    100130: Group_JNT
+    100132: Input_JNT
+    100134: L_Panel_JNT
+    100136: Output_JNT
+    100138: PDA_JNT
+    100140: R_ArmBranch_JNT
+    100142: R_ArmRoot_JNT
+    100144: R_Panel_JNT
+    100146: Screen_JNT
+    100148: Trigger_JNT
+    100150: TriggerEnd_JNT
+    100152: Upper_JNT
+    100154: Weapon_JNT
     400000: ArmRoot_JNT
     400002: L_ArmShoulder_JNT
     400004: L_Elbow_JNT
@@ -121,7 +140,27 @@ ModelImporter:
     400112: weaponPistolWithRig:weaponSmallRightEnd_JNT
     400114: weaponPistolWithRig:weaponSmallUpper_JNT
     400116: weaponPistolWithRig:weaponSmallUpperEnd_JNT
+    400118: BarrelBottomLeft_JNT
+    400120: BarrelBottomRight_JNT
+    400122: BarrelEnd_JNT
+    400124: BarrelTopLeft_JNT
+    400126: BarrelTopRight_JNT
+    400128: Battery_JNT
+    400130: Group_JNT
+    400132: Input_JNT
+    400134: L_Panel_JNT
+    400136: Output_JNT
+    400138: PDA_JNT
+    400140: R_ArmBranch_JNT
+    400142: R_ArmRoot_JNT
+    400144: R_Panel_JNT
+    400146: Screen_JNT
+    400148: Trigger_JNT
+    400150: TriggerEnd_JNT
+    400152: Upper_JNT
+    400154: Weapon_JNT
     7400000: Shoot
+    7400002: shoot
     9500000: //RootNode
   externalObjects: {}
   materials:

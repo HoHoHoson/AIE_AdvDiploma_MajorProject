@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 
     #region Animator
 
-    private Animator animator;
+    public Animator animator;
 
     #endregion
 
@@ -245,10 +245,10 @@ public class Player : MonoBehaviour
     private IEnumerator ShotEffect()
     {
         laser_line.enabled = true;
-        animator.SetBool("Shooting", true);
+        
         yield return shot_duration;
         laser_line.enabled = false;
-        animator.SetBool("Shooting", false);
+
     }
     private void Jump()
     {

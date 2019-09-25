@@ -178,12 +178,15 @@ public class GameManager : MonoBehaviour
             {
                 if (Input.GetMouseButton(0) && player_energy_current > 0)
                 {
+                    script_fps.animator.SetBool("Shooting", true);
                     script_fps.GunFire(ref player_energy_current, fire_rate);
                 }
                 else if (Input.GetMouseButton(0) && player_energy_current <= 0)
                 {
                     StartCoroutine(OutOfAmmo());
                 }
+                else
+                    animator.SetBool("Shooting", false);
             }
             else
             {
