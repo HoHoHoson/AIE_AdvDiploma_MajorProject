@@ -22,15 +22,16 @@ public class LeapAtState : State
         base.InitialiseState();
 
         m_timer = 0;
+        m_agent.GetRigidbody().velocity = Vector3.zero;
         Leap();
     }
 
     public override void UpdateState()
     {
-        base.UpdateState();
+        m_timer += Time.deltaTime;
+        m_agent.GetRigidbody().AddForce(Physics.gravity, ForceMode.Acceleration);
 
-        if (m_timer < m_cooldown)
-            m_timer += Time.deltaTime;
+        TransitionCheck();
     }
 
     public bool IsCooldownOver()
@@ -40,7 +41,7 @@ public class LeapAtState : State
 
     public void OnHit(in GameObject hit)
     {
-        Mines       hit_mine    = hit.GetComponentInChildren<Mines>();
+        Mines   hit_mine    = hit.GetComponentInChildren<Mines>();
         Player  hit_fps     = hit.GetComponentInChildren<Player>();
 
         if (hit_mine != null)
@@ -55,6 +56,8 @@ public class LeapAtState : State
 
     private void Leap()
     {
+        Vector3 vel = m_agent.GetRigidbody().velocity;
+
         Vector3 leap_direction;
 
         leap_direction = m_agent.GetTarget().transform.position - m_agent.transform.position;

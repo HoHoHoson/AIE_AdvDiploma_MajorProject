@@ -15,10 +15,10 @@ public class SeekTargetState : State
 
     public override void UpdateState()
     {
-        base.UpdateState();
-
         UpdateTarget();
         Seek();
+
+        TransitionCheck();
     }
 
     private void UpdateTarget()
