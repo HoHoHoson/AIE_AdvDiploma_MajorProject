@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3e8f64c020052454cb7d6866d0e644a5
+guid: 4ed3cc1ca46b1c24dbd610f53cac2981
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -39,11 +39,11 @@ ModelImporter:
     100066: R_ThumbStart_JNT
     100068: R_ThumbTip_JNT
     100070: R_Wrist_JNT
-    100072: Screen_JNT
-    100074: Trigger_JNT
-    100076: TriggerEnd_JNT
-    100078: Upper_JNT
-    100080: //RootNode
+    100072: //RootNode
+    100074: Screen_JNT
+    100076: Trigger_JNT
+    100078: TriggerEnd_JNT
+    100080: Upper_JNT
     100082: Weapon_JNT
     400000: BarrelBottomLeft_JNT
     400002: BarrelBottomRight_JNT
@@ -81,13 +81,13 @@ ModelImporter:
     400066: R_ThumbStart_JNT
     400068: R_ThumbTip_JNT
     400070: R_Wrist_JNT
-    400072: Screen_JNT
-    400074: Trigger_JNT
-    400076: TriggerEnd_JNT
-    400078: Upper_JNT
-    400080: //RootNode
+    400072: //RootNode
+    400074: Screen_JNT
+    400076: Trigger_JNT
+    400078: TriggerEnd_JNT
+    400080: Upper_JNT
     400082: Weapon_JNT
-    7400000: walk
+    7400000: ready
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -118,10 +118,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: walk
-      takeName: walk
+      name: ready
+      takeName: ready
       firstFrame: 0
-      lastFrame: 24
+      lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
