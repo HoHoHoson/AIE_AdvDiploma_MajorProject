@@ -11,7 +11,7 @@ public class LandMine : MonoBehaviour
     float countdown;
     int blast_dmg;
 
-    bool has_det = false;
+   // bool has_det = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,6 @@ public class LandMine : MonoBehaviour
         script_player = FindObjectOfType<Player>();
         countdown = time_before_det;
         blast_dmg = script_player.skill_damage;
-        has_det = false;
     }
 
     // Update is called once per frame
@@ -28,7 +27,7 @@ public class LandMine : MonoBehaviour
         countdown -= Time.deltaTime;
         if (Input.GetMouseButton(1) && countdown <= 0)
         {
-            has_det = true;
+            //has_det = true;
             Explode();
         }
     }

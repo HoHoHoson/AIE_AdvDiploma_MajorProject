@@ -27,9 +27,11 @@ public class GameManager : MonoBehaviour
     private Transform camera_transform;
 
     // Ui gameobjects to toggle them in pause and end state
-    public GameObject pause_menu, game_over, game_play;
+    public GameObject pause_menu;
+    public GameObject game_over;
+    public GameObject game_play;
     
-    public bool pause_unpause = false;
+    public bool is_paused = false;
     public bool dead_player = false;
     #endregion
 
@@ -373,8 +375,8 @@ public class GameManager : MonoBehaviour
 
     public void Pause()
     {
-        pause_unpause = !pause_unpause;
-        if (pause_unpause == true)
+        is_paused = !is_paused;
+        if (is_paused == true)
         {
             pause_menu.SetActive(true);
             game_play.SetActive(false);

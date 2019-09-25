@@ -62,8 +62,8 @@ MonoBehaviour:
   pause_unpause: 0
   dead_player: 0
   player_gameobject: {fileID: 0}
-  player_hp: 1000
-  player_energy: 100
+  player_hp: 250
+  player_energy: 250
   auto_gun: 1
   fire_rate: 0.15
   interaction_cooldown: 0.25
@@ -74,9 +74,9 @@ MonoBehaviour:
   wave_reward: 5
   cost_per_hp: 20
   cost_per_ammo: 25
-  skill_1: 10
-  skill_2: 10
-  skill_3: 10
+  skill_1: 3
+  skill_2: 3
+  skill_3: 3
   skill_timer_1: 0
   skill_timer_2: 0
   skill_timer_3: 0
@@ -93,7 +93,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script_gamemanager: {fileID: 3317138830722218634}
-  script_mines: {fileID: 0}
   hp_bar: {fileID: 0}
   energy_bar: {fileID: 0}
   wave_count: {fileID: 0}
@@ -132,5 +131,9 @@ MonoBehaviour:
       type: 3}
     m_spawnRate: 2
     m_maxGroupSize: 1
-  m_enemyCount: 50
+  - m_enemyPrefab: {fileID: 3742569117176842085, guid: 8df34b66295a8e143be430b4a86081ed,
+      type: 3}
+    m_spawnRate: 2
+    m_maxGroupSize: 1
+  m_enemyCount: 15
   m_activeEnemiesLimit: 20
