@@ -5,7 +5,7 @@ using UnityEngine;
 public class Mines : MonoBehaviour
 {
     int mine_hp = 100;
-    bool is_active = false;
+    public bool is_active = true;
 
     public int mine_hp_recover = 50;
     public int mine_max_hp = 100;

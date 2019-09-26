@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
 
         m_player_rb = GetComponent<Rigidbody>();
         m_player_collider = GetComponent<CapsuleCollider>();

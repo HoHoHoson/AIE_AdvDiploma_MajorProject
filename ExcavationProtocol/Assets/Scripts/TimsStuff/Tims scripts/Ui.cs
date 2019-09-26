@@ -68,7 +68,7 @@ public class Ui : MonoBehaviour
         skill_3.value = script_gamemanager.skill_timer_3;
         HPColourChange(script_gamemanager.GetPlayerHp());
         UpdateMineUi();
-        UpdateScrollText(energy_bar.value.ToString());
+        UpdateScrollText("This it a pop up", false);
     }
 
     public void HPColourChange(int hp)
@@ -103,9 +103,17 @@ public class Ui : MonoBehaviour
     /// for scrolling text
     /// </summary>
     /// <param name="text"> Enter Text </param>
-    public void UpdateScrollText(string text)
+    /// <param name="fade"> Fade (True/False) </param>
+    /// <param name="scroll"> scroll (True/False) </param>
+    public void UpdateScrollText(string text, bool scroll)
     {
         Notifications.text = text;
-        //GUI.Label(new Rect(x_axis, 10, 0, 20), text);
+
+        if (scroll)
+        {
+
+        }
+
+        
     }
 }
