@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
 
         m_player_rb = GetComponent<Rigidbody>();
         m_player_collider = GetComponent<CapsuleCollider>();
@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
     /// </summary>
     void PlayerInputCamera()
     {
-        if (script_gm.pause_unpause == false && script_gm.dead_player == false)
+        if (script_gm.is_paused == false && script_gm.dead_player == false)
         {
             m_camera_yaw += Input.GetAxis("Mouse X") * cameraSensitivity;
             m_camera_pitch -= Input.GetAxis("Mouse Y") * cameraSensitivity;

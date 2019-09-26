@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class Ui : MonoBehaviour
 {
     public GameManager script_gamemanager;
-    public Mines script_mines;
 
     public Slider hp_bar, energy_bar;
     public Text wave_count, wave_enemiesleft;
@@ -22,6 +21,8 @@ public class Ui : MonoBehaviour
     // resources
     public Text res_cost_text;
 
+    public Text Notifications;
+    //float x_axis;
 
     public GameObject[] drills;
     public GameObject player;
@@ -67,6 +68,7 @@ public class Ui : MonoBehaviour
         skill_3.value = script_gamemanager.skill_timer_3;
         HPColourChange(script_gamemanager.GetPlayerHp());
         UpdateMineUi();
+        UpdateScrollText("This it a pop up", false);
     }
 
     public void HPColourChange(int hp)
@@ -88,23 +90,6 @@ public class Ui : MonoBehaviour
         }
     }
 
-
-    // Pause functions for Ui
-    public void Resume()
-    {
-        script_gamemanager.Pause();
-    }
-
-    public void Restart()
-    {
-        script_gamemanager.ReloadScene();
-    }
-
-    public void BackToMenu()
-    {
-        script_gamemanager.LoadAnotherScene(0);
-    }
-
     public void UpdateMineUi()
     {
         foreach (var mine in drills)
@@ -112,5 +97,23 @@ public class Ui : MonoBehaviour
             mine.transform.GetChild(0).LookAt(player.transform, transform.up);
             mine.GetComponentInChildren<Slider>().value = mine.GetComponent<Mines>().GetCurrentHp();
         }
+    }
+
+    /// <summary>
+    /// for scrolling text
+    /// </summary>
+    /// <param name="text"> Enter Text </param>
+    /// <param name="fade"> Fade (True/False) </param>
+    /// <param name="scroll"> scroll (True/False) </param>
+    public void UpdateScrollText(string text, bool scroll)
+    {
+        Notifications.text = text;
+
+        if (scroll)
+        {
+
+        }
+
+        
     }
 }
