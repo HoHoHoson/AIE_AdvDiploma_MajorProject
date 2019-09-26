@@ -275,8 +275,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Reload
-  m_Speed: 2
+  m_Name: weaponEmpty
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101152977654392574}
@@ -289,7 +289,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 0d311e50028bd894ba906449f6dec924, type: 3}
+  m_Motion: {fileID: 7400000, guid: 8b20721a345f32040b9f3e986b117acb, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
