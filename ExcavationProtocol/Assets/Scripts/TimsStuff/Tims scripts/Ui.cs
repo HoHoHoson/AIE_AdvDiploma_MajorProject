@@ -41,6 +41,11 @@ public class Ui : MonoBehaviour
 
         half_hp = hp_bar.maxValue / 2;
         low_hp = hp_bar.maxValue / 4;
+
+        foreach (var drill in drills)
+        {
+            drill.GetComponentInChildren<Slider>().maxValue = drill.GetComponent<Mines>().mine_max_hp;
+        }
     }
 
     // Update is called once per frame

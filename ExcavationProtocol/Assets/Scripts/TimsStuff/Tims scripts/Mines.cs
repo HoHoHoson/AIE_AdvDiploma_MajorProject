@@ -5,7 +5,7 @@ using UnityEngine;
 public class Mines : MonoBehaviour
 {
     int mine_hp = 100;
-    public bool is_active = true;
+    public bool is_active = false;
 
     public int mine_hp_recover = 50;
     public int mine_max_hp = 100;
@@ -15,6 +15,10 @@ public class Mines : MonoBehaviour
     void Start()
     {
         gamemanager = FindObjectOfType<GameManager>();
+        if(is_active == true)
+        {
+            mine_hp = mine_max_hp;
+        }
     }
 
     void Update()
