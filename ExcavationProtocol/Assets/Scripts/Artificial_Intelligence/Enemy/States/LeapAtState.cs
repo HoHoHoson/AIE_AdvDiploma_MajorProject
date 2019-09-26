@@ -6,7 +6,9 @@ public class LeapAtState : State
     private float m_force;
 
     private float m_cooldown;
-    private float m_timer;   
+    private float m_timer;
+
+    private Collider m_collider;
 
     public LeapAtState(in Agent agent, float angle, float force, float cooldown) : base(agent)
     {
@@ -15,24 +17,35 @@ public class LeapAtState : State
         m_angle     = angle;
         m_force     = force;
         m_cooldown  = cooldown;
+
+        m_collider = m_agent.GetComponentInChildren<Collider>();
     }
 
     public override void InitialiseState()
     {
         base.InitialiseState();
 
+        m_collider.material.bounciness = 1;
         m_timer = 0;
         Leap();
     }
 
     public override void UpdateState()
     {
-        base.UpdateState();
+        // SUBJECT TO CHANGE
+        m_timer += Time.deltaTime;
+        m_agent.GetRigidbody().AddForce(Physics.gravity, ForceMode.Acceleration);
+        // SUBJECT TO CHANGE
 
-        if (m_timer < m_cooldown)
-            m_timer += Time.deltaTime;
+        TransitionCheck();
     }
 
+    public override void ExitState()
+    {
+        m_collider.material.bounciness = 0;
+    }
+
+    // Need to implement a better transition condition. Maybe add an isGrounded check
     public bool IsCooldownOver()
     {
         return m_timer >= m_cooldown;
@@ -40,7 +53,7 @@ public class LeapAtState : State
 
     public void OnHit(in GameObject hit)
     {
-        Mines       hit_mine    = hit.GetComponentInChildren<Mines>();
+        Mines   hit_mine    = hit.GetComponentInChildren<Mines>();
         Player  hit_fps     = hit.GetComponentInChildren<Player>();
 
         if (hit_mine != null)
@@ -58,10 +71,14 @@ public class LeapAtState : State
         Vector3 leap_direction;
 
         leap_direction = m_agent.GetTarget().transform.position - m_agent.transform.position;
-        leap_direction.y = 0;
-        leap_direction = leap_direction.normalized;
         leap_direction = Quaternion.AngleAxis(m_angle, Vector3.Cross(leap_direction, Vector3.up)) * leap_direction;
 
-        m_agent.GetRigidbody().AddForce(leap_direction * m_force, ForceMode.Impulse);
+        Vector3 adjusted_velocity = m_agent.GetRigidbody().velocity;
+        adjusted_velocity.y = 0;
+        float angle = Vector3.Angle(adjusted_velocity, new Vector3(leap_direction.x, 0, leap_direction.z));
+        m_agent.GetRigidbody().velocity = Quaternion.Euler(0, angle, 0) * adjusted_velocity;
+
+        m_agent.GetRigidbody().AddForce(leap_direction.normalized * m_force, ForceMode.Impulse);
+        m_agent.GetRigidbody().AddRelativeTorque(-Vector3.right * m_force, ForceMode.Impulse);
     }
 }
