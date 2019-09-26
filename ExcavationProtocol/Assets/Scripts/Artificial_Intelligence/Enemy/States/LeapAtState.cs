@@ -71,12 +71,14 @@ public class LeapAtState : State
         Vector3 leap_direction;
 
         leap_direction = m_agent.GetTarget().transform.position - m_agent.transform.position;
-        leap_direction.y = 0;
-        leap_direction = leap_direction.normalized;
         leap_direction = Quaternion.AngleAxis(m_angle, Vector3.Cross(leap_direction, Vector3.up)) * leap_direction;
 
-        m_agent.GetRigidbody().AddForce(leap_direction * m_force, ForceMode.Impulse);
+        Vector3 adjusted_velocity = m_agent.GetRigidbody().velocity;
+        adjusted_velocity.y = 0;
+        float angle = Vector3.Angle(adjusted_velocity, new Vector3(leap_direction.x, 0, leap_direction.z));
+        m_agent.GetRigidbody().velocity = Quaternion.Euler(0, angle, 0) * adjusted_velocity;
 
+        m_agent.GetRigidbody().AddForce(leap_direction.normalized * m_force, ForceMode.Impulse);
         m_agent.GetRigidbody().AddRelativeTorque(-Vector3.right * m_force, ForceMode.Impulse);
     }
 }
