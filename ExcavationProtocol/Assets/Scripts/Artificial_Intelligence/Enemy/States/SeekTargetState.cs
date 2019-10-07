@@ -4,7 +4,7 @@ public class SeekTargetState : State
 {
     private float       m_grounding_force   = -1000f;
     private float       m_cast_offset       = 0.075f;
-    private float       m_degrees_per_sec   = 180f;
+    private float       m_degrees_per_sec   = 90f;
 
     private Blackboard  m_blackboard;
     private float       m_player_detect_range;
