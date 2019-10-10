@@ -6,8 +6,32 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class Player : MonoBehaviour
 {
+    // Variables 
     #region Scripts
     public GameManager script_gm;
+    #endregion
+
+    #region PlayerStats
+
+    [Header("Player Values")]
+
+    // Health
+    public int player_hp = 100;
+    // Energy
+    public int player_energy = 150;
+
+
+    protected int player_hp_current, player_energy_current;
+
+    private int energy_gain_temp;
+
+    // makes gun automatic
+    public bool auto_gun;
+    public float fire_rate = 0.25f;
+
+    public float interaction_cooldown = 0.25f;
+    private float interaction_timer;
+
     #endregion
 
     #region PlayerMovement
@@ -31,12 +55,14 @@ public class Player : MonoBehaviour
     private float m_camera_pitch = 0;
 
     [SerializeField]
-    private float jump_cooldown = 0.01f;
+    private readonly float jump_cooldown = 0.01f;
     private float jump_timer;
     private bool has_jumped;
     #endregion
 
     #region Skills
+
+    [Header("Player Skill Values")]
     public int skill_damage = 1;
 
     public GameObject bomb, land_mine, g_throw_point, frost_G;
@@ -45,8 +71,17 @@ public class Player : MonoBehaviour
 
     protected bool skill_2_active = false;
 
-    private int player_hp;
+    public float skill_1 = 20;
+    public float skill_2 = 10;
+    public float skill_3 = 20;
 
+    [HideInInspector]
+    public float skill_timer_1, skill_timer_2, skill_timer_3;
+
+    private bool active_1;
+    private bool active_2;
+    private bool active_3;
+    private readonly bool is_used;
 
     #endregion
 
@@ -63,6 +98,7 @@ public class Player : MonoBehaviour
     #endregion
 
     #region FPSgun
+
     public int gun_damage = 1;
     
     public float weapon_range = 50f;
@@ -70,10 +106,17 @@ public class Player : MonoBehaviour
     public Transform gun_end;
 
     private Camera fps_cam;
-    private WaitForSeconds shot_duration = new WaitForSeconds(0.001f);
+    private readonly WaitForSeconds shot_duration = new WaitForSeconds(0.001f);
     private LineRenderer laser_line;
     private float next_fire;
+
+    private Transform camera_transform;
+
     #endregion
+
+    // Functions
+
+    #region StartUpdate
 
     // Start is called before the first frame update
     void Start()
@@ -87,7 +130,15 @@ public class Player : MonoBehaviour
         laser_line = GetComponent<LineRenderer>();
         fps_cam = GetComponentInChildren<Camera>();
 
-        player_hp = script_gm.GetPlayerHp();
+        player_hp_current = player_hp;
+        player_energy_current = player_energy;
+        player_hp_current = player_hp;
+
+        camera_transform = fps_cam.transform;
+
+        skill_timer_1 = skill_1;
+        skill_timer_2 = skill_2;
+        skill_timer_3 = skill_3;
     }
 
     void Update()
@@ -112,6 +163,153 @@ public class Player : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region PlayerFunc
+
+    public int GetPlayerHp()
+    {
+        return player_hp_current;
+    }
+
+    public int GetPlayerEnergy()
+    {
+        return player_energy_current;
+    }
+
+    public void Inputs()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            CompleteAction1();
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            CompleteAction2();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            CompleteAction3();
+        }
+
+        if (auto_gun)
+        {
+            if (Input.GetMouseButton(0) && player_energy_current > 0)
+            {
+                animator.SetBool("Shooting", true);
+                GunFire(ref player_energy_current, fire_rate);
+            }
+            else if (Input.GetMouseButton(0) && player_energy_current <= 0)
+            {
+                StartCoroutine(OutOfAmmo());
+            }
+            else
+                animator.SetBool("Shooting", false);
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0) && player_energy_current > 0)
+            {
+                GunFire(ref player_energy_current, fire_rate);
+            }
+            else if (Input.GetMouseButtonDown(0) && player_energy_current <= 0)
+            {
+                StartCoroutine(OutOfAmmo());
+            }
+        }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            if (Physics.Raycast(camera_transform.position, camera_transform.forward, out RaycastHit hit, 5.0f))
+            {
+                Interaction(hit.transform.gameObject);
+            }
+        }
+
+        interaction_timer -= Time.deltaTime;
+        if (interaction_timer < 0)
+        {
+            interaction_timer = 0;
+        }
+
+    }
+
+    public void Interaction(GameObject interactable)
+    {
+        if (interactable.tag == "EnergyTerminal" && player_energy_current < player_energy && script_gm.currency >= 1 && interaction_timer == 0)
+        {
+            if (player_energy_current > player_energy - script_gm.cost_per_ammo && player_energy_current != player_energy)
+            {
+                energy_gain_temp = player_energy - player_energy_current;
+                player_energy_current += energy_gain_temp;
+                script_gm.currency -= 1;
+            }
+            else
+            {
+                player_energy_current += script_gm.cost_per_ammo;
+                script_gm.currency -= 1;
+            }
+            interaction_timer = interaction_cooldown;
+        }
+        else if (interactable.tag == "HealthTerminal" && player_hp_current < player_hp && script_gm.currency >= 1 && interaction_timer == 0)
+        {
+            if (player_hp_current < player_hp)
+            {
+                player_hp_current += script_gm.cost_per_hp;
+                script_gm.currency -= 1;
+            }
+            interaction_timer = interaction_cooldown;
+        }
+        else if (interactable.tag == "Mine" && interaction_timer == 0)
+        {
+            if (interactable.GetComponent<Mines>().GetActive() == false && script_gm.currency >= 1)
+            {
+                interactable.GetComponent<Mines>().Activate(ref script_gm.active_mines, script_gm.mines_list);
+                script_gm.currency -= 1;
+            }
+            else if (interactable.GetComponent<Mines>().GetCurrentHp() < interactable.GetComponent<Mines>().mine_max_hp && script_gm.currency >= script_gm.mine_rep_cost)
+            {
+                interactable.GetComponent<Mines>().AddMineHP();
+                script_gm.currency -= 1;
+            }
+            interaction_timer = interaction_cooldown;
+        }
+    }
+
+    public int PlayerTakenDamage(float damage)
+    {
+        if (player_hp_current > 0)
+        {
+            player_hp_current -= (int)damage;
+        }
+        else if (player_hp_current <= 0)
+        {
+            player_hp_current = 0;
+        }
+        return player_hp_current;
+    }
+
+    private IEnumerator OutOfAmmo()
+    {
+        animator.SetBool("OutOfAmmo", true);
+        yield return new WaitForSeconds(1);
+        animator.SetBool("OutOfAmmo", false);
+    }
+    
+    public bool IsPlayerDead()
+    {
+        if (player_hp <= 0)
+            return true;
+        else
+            return false;
+    }
+
+    #endregion
+
+    #region CameraFunc
+
     /// <summary>
     /// Handles the camera movement based on mouse movement input
     /// </summary>
@@ -128,6 +326,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region PlayerMovementFunc
+
     /// <summary>
     /// Keeps the player grounded.
     /// <para>Returns True/False depending on if the player is grounded or not.</para>
@@ -135,12 +337,11 @@ public class Player : MonoBehaviour
     /// <returns></returns>
     bool GroundPlayer(bool ground = false)
     {
-        RaycastHit hit;
 
         Vector3 spherecast_origin;
         spherecast_origin = transform.position + (m_player_collider.height * 0.5f - m_player_collider.radius) * -transform.up;
 
-        if (Physics.SphereCast(spherecast_origin, m_player_collider.radius - 0.075f, -transform.up, out hit, 0.2f, 1 << 9))
+        if (Physics.SphereCast(spherecast_origin, m_player_collider.radius - 0.075f, -transform.up, out RaycastHit hit, 0.2f, 1 << 9))
         {
             if (ground == true)
                 transform.position -= (hit.distance - 0.15f) * transform.up;
@@ -169,6 +370,22 @@ public class Player : MonoBehaviour
         m_player_rb.velocity = direction;
     }
 
+    private void Jump()
+    {
+        jump_timer = Time.time + jump_cooldown;
+        has_jumped = true;
+        m_player_rb.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (has_jumped == true && Time.time > jump_timer)
+            has_jumped = false;
+    }
+    
+    #endregion
+
+    #region SkillFunc
 
     /// <summary>
     /// Performs skill 1 ( Throws Grenade / Damages targets within a Radius with some knockback )
@@ -201,6 +418,73 @@ public class Player : MonoBehaviour
         expl.GetComponent<Rigidbody>().AddForce(g_throw_point.transform.forward * throw_force, ForceMode.Impulse);
     }
 
+    public void CompleteAction1()
+    {
+        if (skill_timer_1 < skill_1)
+            return;
+
+        active_1 = false;
+        skill_timer_1 = 0;
+        SkillActive1();
+        active_1 = true;
+    }
+
+    public void CompleteAction2()
+    {
+        if (skill_timer_2 < skill_2)
+            return;
+
+        active_2 = false;
+        skill_timer_2 = 0;
+        SkillActive2();
+        active_2 = true;
+    }
+
+    public void CompleteAction3()
+    {
+        if (skill_timer_3 < skill_3)
+            return;
+
+        active_3 = false;
+        skill_timer_3 = 0;
+        SkillActive3();
+        active_3 = true;
+    }
+
+
+    public void SkillTimers()
+    {
+        if (active_1)
+        {
+            skill_timer_1 += Time.deltaTime;
+        }
+        if (skill_timer_1 > skill_1)
+        {
+            skill_timer_1 = skill_1;
+        }
+
+        if (active_2)
+        {
+            skill_timer_2 += Time.deltaTime;
+        }
+        if (skill_timer_2 > skill_2)
+        {
+            skill_timer_2 = skill_2;
+        }
+
+        if (active_3)
+        {
+            skill_timer_3 += Time.deltaTime;
+        }
+        if (skill_timer_3 > skill_3)
+        {
+            skill_timer_3 = skill_3;
+        }
+    }
+    #endregion
+
+    #region GunFireFunc
+
     /// <summary>
     /// Fires the gun with raycasts
     /// </summary>
@@ -214,11 +498,9 @@ public class Player : MonoBehaviour
 
             Vector3 ray_origin = fps_cam.ScreenToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
 
-            RaycastHit hit_target;
-
             laser_line.SetPosition(0, gun_end.position);
 
-            if (Physics.Raycast(ray_origin, fps_cam.transform.forward, out hit_target, weapon_range))
+            if (Physics.Raycast(ray_origin, fps_cam.transform.forward, out RaycastHit hit_target, weapon_range))
             {
                 laser_line.SetPosition(1, hit_target.point);
 
@@ -250,24 +532,6 @@ public class Player : MonoBehaviour
         laser_line.enabled = false;
 
     }
-    private void Jump()
-    {
-        jump_timer = Time.time + jump_cooldown;
-        has_jumped = true;
-        m_player_rb.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
-    }
 
-    private void OnCollisionStay(Collision collision)
-    {
-        if (has_jumped == true && Time.time > jump_timer)
-            has_jumped = false;
-    }
-    
-    public bool GetPlayerHP()
-    {
-        if (player_hp <= 0)
-            return true;
-        else
-            return false;
-    }
+    #endregion
 }

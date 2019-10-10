@@ -52,7 +52,7 @@ public class SpinnyWinnyState : State
 
             Player player = hit.GetComponentInChildren<Player>();
             if (player != null)
-                player.script_gm.PlayerTakenDamage(m_agent.GetDamage());
+                player.PlayerTakenDamage(m_agent.GetDamage());
         }
     }
 }
