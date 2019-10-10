@@ -105,6 +105,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cliff_Rocks_001
       objectReference: {fileID: 0}
+    - target: {fileID: 1779640429720960322, guid: 2bbb4b774af5ae444b00e1b841aa1255,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 934721636800148460, guid: 2bbb4b774af5ae444b00e1b841aa1255,
         type: 3}
       propertyPath: m_LocalPosition.x
