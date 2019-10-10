@@ -40,7 +40,7 @@ public class LeapAtState : State
 
     public void OnHit(in GameObject hit)
     {
-        Mines       hit_mine    = hit.GetComponentInChildren<Mines>();
+        Mines   hit_mine    = hit.GetComponentInChildren<Mines>();
         Player  hit_fps     = hit.GetComponentInChildren<Player>();
 
         if (hit_mine != null)
@@ -49,7 +49,7 @@ public class LeapAtState : State
         }
         else if (hit_fps != null)
         {
-            hit_fps.script_gm.PlayerTakenDamage(m_agent.GetDamage());
+            hit_fps.PlayerTakenDamage(m_agent.GetDamage());
         }
     }
 

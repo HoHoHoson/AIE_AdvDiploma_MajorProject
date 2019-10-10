@@ -74,7 +74,7 @@ public class ExplosiveAI : Agent
 
             Player player = c.GetComponentInChildren<Player>();
             if (player != null)
-                m_blackboard.m_gameManager.PlayerTakenDamage(m_current_damage);
+                m_blackboard.m_gameManager.script_player.PlayerTakenDamage(m_current_damage);
         }
 
         GameObject sfx = Instantiate(m_exlodeSFX, transform.position, Quaternion.identity).gameObject;
