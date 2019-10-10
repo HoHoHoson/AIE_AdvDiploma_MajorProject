@@ -18,7 +18,7 @@ public class LeapAtState : State
         m_force     = force;
         m_cooldown  = cooldown;
 
-        m_collider = m_agent.GetComponentInChildren<Collider>();
+        m_collider  = m_agent.GetComponentInChildren<Collider>();
     }
 
     public override void InitialiseState()
@@ -73,12 +73,18 @@ public class LeapAtState : State
         leap_direction = m_agent.GetTarget().transform.position - m_agent.transform.position;
         leap_direction = Quaternion.AngleAxis(m_angle, Vector3.Cross(leap_direction, Vector3.up)) * leap_direction;
 
-        Vector3 adjusted_velocity = m_agent.GetRigidbody().velocity;
-        adjusted_velocity.y = 0;
-        float angle = Vector3.Angle(adjusted_velocity, new Vector3(leap_direction.x, 0, leap_direction.z));
-        m_agent.GetRigidbody().velocity = Quaternion.Euler(0, angle, 0) * adjusted_velocity;
+        Vector3 orthogonal_velocity = m_agent.GetRigidbody().velocity;
+        orthogonal_velocity.y = 0;
+        Vector3 orthogonal_leap = new Vector3(leap_direction.x, 0, leap_direction.z);
 
+        float velocity_angle_offset = Vector3.Angle(orthogonal_velocity, orthogonal_leap);
+        velocity_angle_offset *= Vector3.Dot(orthogonal_leap, new Vector3(orthogonal_velocity.z, 0, -orthogonal_velocity.x)) < 0 ? -1 : 1;
+
+        // Redirecting current velocity towards intended target
+        m_agent.GetRigidbody().velocity = Quaternion.Euler(0, velocity_angle_offset, 0) * m_agent.GetRigidbody().velocity;
+        // Applying leap force
         m_agent.GetRigidbody().AddForce(leap_direction.normalized * m_force, ForceMode.Impulse);
+        // Adds spin to the leap
         m_agent.GetRigidbody().AddRelativeTorque(-Vector3.right * m_force, ForceMode.Impulse);
     }
 }
