@@ -13,7 +13,6 @@ public class LandMine : MonoBehaviour
 
    // bool has_det = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         script_player = FindObjectOfType<Player>();
@@ -21,7 +20,6 @@ public class LandMine : MonoBehaviour
         blast_dmg = script_player.skill_damage;
     }
 
-    // Update is called once per frame
     void Update()
     {
         countdown -= Time.deltaTime;

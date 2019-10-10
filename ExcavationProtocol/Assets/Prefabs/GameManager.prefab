@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script_UI: {fileID: 3317138830722218635}
+  script_player: {fileID: 0}
   script_bb: {fileID: 3317138830722218740}
   active_mines: 0
   mine_rep_cost: 1
@@ -62,11 +63,6 @@ MonoBehaviour:
   is_paused: 0
   dead_player: 0
   player_gameobject: {fileID: 0}
-  player_hp: 250
-  player_energy: 250
-  auto_gun: 1
-  fire_rate: 0.15
-  interaction_cooldown: 0.25
   wave_no: 0
   time_to_next_wave: 10
   num_of_enemies: 0
@@ -74,12 +70,6 @@ MonoBehaviour:
   wave_reward: 5
   cost_per_hp: 20
   cost_per_ammo: 25
-  skill_1: 3
-  skill_2: 3
-  skill_3: 3
-  skill_timer_1: 0
-  skill_timer_2: 0
-  skill_timer_3: 0
 --- !u!114 &3317138830722218635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,6 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script_gamemanager: {fileID: 3317138830722218634}
+  script_player: {fileID: 0}
   hp_bar: {fileID: 0}
   energy_bar: {fileID: 0}
   wave_count: {fileID: 0}

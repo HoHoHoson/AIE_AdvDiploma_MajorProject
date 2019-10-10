@@ -6,41 +6,61 @@ using UnityEngine.UI;
 
 public class Ui : MonoBehaviour
 {
-    public GameManager script_gamemanager;
+    // Variables
 
+    #region Scripts
+
+    public GameManager script_gamemanager;
+    public Player script_player;
+
+    #endregion
+
+    #region PlayerStats
+
+    public GameObject player;
     public Slider hp_bar, energy_bar;
     public Text wave_count, wave_enemiesleft;
     public Text energy_value, max_energy_value;
 
     public Slider skill_1, skill_2, skill_3;
 
-    public Image hud;
+    #endregion
 
+    #region HUDVar
+    public Image hud;
     protected float half_hp, low_hp;
+    public Text Notifications;
 
     // resources
     public Text res_cost_text;
 
-    public Text Notifications;
-    //float x_axis;
+    #endregion
 
+    #region Drill
     public GameObject[] drills;
-    public GameObject player;
+    #endregion
+    // Functions
 
-    // Start is called before the first frame update
+    #region StartUpdate
+
     void Start()
     {
         script_gamemanager = GetComponent<GameManager>();
 
-        hp_bar.maxValue = script_gamemanager.player_hp;
-        energy_bar.maxValue = script_gamemanager.player_energy;
+        hp_bar.maxValue = script_player.player_hp;
+        energy_bar.maxValue = script_player.player_energy;
 
-        skill_1.maxValue = script_gamemanager.skill_1;
-        skill_2.maxValue = script_gamemanager.skill_2;
-        skill_3.maxValue = script_gamemanager.skill_3;
+        skill_1.maxValue = script_player.skill_1;
+        skill_2.maxValue = script_player.skill_2;
+        skill_3.maxValue = script_player.skill_3;
 
         half_hp = hp_bar.maxValue / 2;
         low_hp = hp_bar.maxValue / 4;
+
+        foreach (var drill in drills)
+        {
+            drill.GetComponentInChildren<Slider>().maxValue = drill.GetComponent<Mines>().mine_max_hp;
+        }
     }
 
     // Update is called once per frame
@@ -51,25 +71,29 @@ public class Ui : MonoBehaviour
         
     public void UpdateUI()
     {
-        hp_bar.value = script_gamemanager.GetPlayerHp();
-        energy_bar.value = script_gamemanager.GetPlayerEnergy();
+        hp_bar.value = script_player.GetPlayerHp();
+        energy_bar.value = script_player.GetPlayerEnergy();
 
         wave_count.GetComponent<Text>().text = script_gamemanager.wave_no.ToString();
-        energy_value.GetComponent<Text>().text = script_gamemanager.GetPlayerEnergy().ToString();
+        energy_value.GetComponent<Text>().text = script_player.GetPlayerEnergy().ToString();
 
-        max_energy_value.GetComponent<Text>().text = "/ " + script_gamemanager.player_energy.ToString();
+        max_energy_value.GetComponent<Text>().text = "/ " + script_player.player_energy.ToString();
 
         res_cost_text.GetComponent<Text>().text = script_gamemanager.currency.ToString();
 
         wave_enemiesleft.GetComponent<Text>().text = script_gamemanager.num_of_enemies.ToString();
 
-        skill_1.value = script_gamemanager.skill_timer_1;
-        skill_2.value = script_gamemanager.skill_timer_2;
-        skill_3.value = script_gamemanager.skill_timer_3;
-        HPColourChange(script_gamemanager.GetPlayerHp());
+        skill_1.value = script_player.skill_timer_1;
+        skill_2.value = script_player.skill_timer_2;
+        skill_3.value = script_player.skill_timer_3;
+        HPColourChange(script_player.GetPlayerHp());
         UpdateMineUi();
-        UpdateScrollText("This it a pop up", false);
+        UpdateScrollText("hello", false);
     }
+
+    #endregion
+
+    #region HUD
 
     public void HPColourChange(int hp)
     {
@@ -90,6 +114,10 @@ public class Ui : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region MinesUI
+
     public void UpdateMineUi()
     {
         foreach (var mine in drills)
@@ -98,6 +126,10 @@ public class Ui : MonoBehaviour
             mine.GetComponentInChildren<Slider>().value = mine.GetComponent<Mines>().GetCurrentHp();
         }
     }
+
+    #endregion
+
+    #region ScrollText
 
     /// <summary>
     /// for scrolling text
@@ -116,4 +148,5 @@ public class Ui : MonoBehaviour
 
         
     }
+    #endregion
 }

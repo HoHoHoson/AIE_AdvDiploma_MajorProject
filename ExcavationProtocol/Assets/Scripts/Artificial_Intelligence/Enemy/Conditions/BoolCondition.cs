@@ -72,7 +72,7 @@ public class BoolCondition : Condition
         }
         else if ((target_fps = m_target.GetComponentInChildren<Player>()) != null)
         {
-            m_bool_function = target_fps.GetPlayerHP;
+            m_bool_function = target_fps.IsPlayerDead;
         }
         else
         {
