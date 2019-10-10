@@ -1734,7 +1734,7 @@ PrefabInstance:
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
@@ -1776,7 +1776,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_enemyTypes.Array.data[2].m_enemyPrefab
       value: 
-      objectReference: {fileID: 3742569117176842085, guid: 8df34b66295a8e143be430b4a86081ed,
+      objectReference: {fileID: 3758284017529200002, guid: 9ab478a472f05bc49bfba467a8f312b6,
         type: 3}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
@@ -2085,6 +2085,36 @@ PrefabInstance:
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_activeEnemiesLimit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: m_enemyTypes.Array.data[1].m_countPerWave
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: m_enemyTypes.Array.data[1].m_activeEnemyLimit
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: m_enemyTypes.Array.data[1].m_spawnGroupSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: m_enemyTypes.Array.data[2].m_countPerWave
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: m_enemyTypes.Array.data[2].m_activeEnemyLimit
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: m_enemyTypes.Array.data[2].m_spawnGroupSize
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

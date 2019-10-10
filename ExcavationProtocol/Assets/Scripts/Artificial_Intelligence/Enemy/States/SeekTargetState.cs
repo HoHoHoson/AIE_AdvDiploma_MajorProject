@@ -29,6 +29,7 @@ public class SeekTargetState : State
 
     public override void ExitState()
     {
+        // Revert grounding force when exiting seek state
         Vector3 velocity = m_agent.GetRigidbody().velocity;
         velocity -= m_surface_normal * m_grounding_force * Time.deltaTime;
 
