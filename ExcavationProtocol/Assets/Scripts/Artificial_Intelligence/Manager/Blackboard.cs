@@ -18,7 +18,7 @@ public class Blackboard : MonoBehaviour
     void Start()
     {
         foreach (EnemyTemplate e in m_enemyTypes)
-            e.InstantiateEnemyPool(this, m_activeEnemiesLimit);
+            e.InstantiateEnemyPool(this);
 
         m_eMap = m_enemyTypes.ToDictionary(e => e.GetEnemyType());
     }
@@ -49,7 +49,7 @@ public class Blackboard : MonoBehaviour
     private void ProgressWave()
     {
         // EndWave when all enemies are dead
-        if (TotalActiveEnemyCount() <= 0)
+        if (TotalEnemyCount() <= 0)
         {
             EndWave();
             return;
@@ -57,23 +57,16 @@ public class Blackboard : MonoBehaviour
 
         foreach (EnemyTemplate e in m_enemyTypes)
         {
-            // Sort all active enemies into a list
+            List<Agent> active_enemies = e.GetEnemiesActive();
 
-            foreach (Agent a in e.GetActiveList())
-                a.UpdateAgent();
-
-            // Checks and removes any dead enemies
-            var iterator = e.GetActiveList().First;
-            while (iterator != null)
+            foreach (Agent a in active_enemies)
             {
-                var next_iterator = iterator.Next;
+                // Checks and removes any dead enemies
+                if (a.IsDead())
+                    e.DeactivateEnemy(a);
 
-                if (iterator.Value.IsDead())
-                {
-                    iterator.Value.SetActive(false);
-                }
-
-                iterator = next_iterator;
+                // Then updates the agent
+                a.UpdateAgent();
             }
 
             e.ActivateEnemy(RandomSpawnPoint());
@@ -95,12 +88,12 @@ public class Blackboard : MonoBehaviour
         return spawn_pos;
     }
 
-    private int TotalActiveEnemyCount()
+    private int TotalEnemyCount()
     {
         int total = 0;
 
         foreach (EnemyTemplate e in m_enemyTypes)
-            total += e.GetActiveList().Count;
+            total += e.GetEnemyCount();
 
         return total;
     }

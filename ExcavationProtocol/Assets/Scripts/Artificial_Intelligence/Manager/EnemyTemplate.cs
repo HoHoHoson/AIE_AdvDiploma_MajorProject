@@ -7,11 +7,11 @@ public class EnemyTemplate
 {
     [SerializeField] private GameObject m_enemyPrefab   = null;
 
-    [SerializeField] private int m_countPerWave     = 1;
-    [SerializeField] private int m_activeEnemyLimit = 10;
+    [SerializeField] private int m_spawnsPerWave     = 1;
+    [SerializeField] private int m_activeEnemiesLimit = 10;
     [SerializeField] private int m_spawnGroupSize   = 1;
 
-    private int         m_enemies_to_spawn  = 0;
+    private int         m_enemies_left  = 0;
     private List<Agent> m_enemy_pool        = new List<Agent>();
     private Blackboard  m_blackboard;
 
@@ -20,7 +20,8 @@ public class EnemyTemplate
 
     public Agent.EnemyType GetEnemyType() { return m_enemyPrefab.GetComponentInChildren<Agent>().GetEnemyType(); }
     public int GetGroupSize() { return m_spawnGroupSize; }
-    public List<Agent> GetEnemyList() { return m_enemy_pool; }
+    public int GetEnemyCount() { return m_enemies_left; }
+    public List<Agent> GetEnemyPool() { return m_enemy_pool; }
 
     public void InstantiateEnemyPool(in Blackboard blackboard)
     {
@@ -35,7 +36,7 @@ public class EnemyTemplate
         m_blackboard = blackboard;
         agent.InitialiseAgent(m_blackboard);
 
-        for (int i = 0; i < m_activeEnemyLimit; ++i)
+        for (int i = 0; i < m_activeEnemiesLimit; ++i)
             IncreaseEnemyPool();
 
         float grid_index = Mathf.Ceil(Mathf.Sqrt(m_spawnGroupSize)) * 0.5f;
@@ -68,27 +69,25 @@ public class EnemyTemplate
     {
         // Increase enemy spawn count here
 
-        m_enemies_to_spawn = m_countPerWave;
+        m_enemies_left = m_spawnsPerWave;
     }
 
     public void WaveEnding()
     {
-        m_enemies_to_spawn = 0;
-
         foreach (Agent a in m_enemy_pool)
             if (a.gameObject.activeSelf == true)
-                a.gameObject.SetActive(false);
+                DeactivateEnemy(a);
     }
 
     public bool ActivateEnemy(Vector3 spawn_point)
     {
         int active_count = GetActiveCount();
-        if (active_count > m_activeEnemyLimit || active_count > m_enemies_to_spawn)         // Checks if the spawn limit has been breached
+        if (active_count > m_activeEnemiesLimit || active_count > m_enemies_left)           // Checks if the spawn limit has been breached
         {
             Debug.Log("ERROR: Active enemies exceedes a limit.");                           // Errors if it occurs
             return false;                                                                   // then skips spawn function
         }
-        else if (active_count == m_activeEnemyLimit || active_count == m_enemies_to_spawn)  // Also checks if a cap has been reached
+        else if (active_count == m_activeEnemiesLimit || active_count == m_enemies_left)    // Also checks if a cap has been reached
             return false;                                                                   // skips spawn function if so
 
         //// This variable will store an enemy type and attempt to spawn it at the end of this function
@@ -118,9 +117,9 @@ public class EnemyTemplate
         //}
 
         // Checks if there is enough space for the enemy spawns
-        int free_slots = m_enemies_to_spawn - active_count;
+        int free_slots = m_enemies_left - active_count;
         int group_size = free_slots >= m_spawnGroupSize ? m_spawnGroupSize : free_slots;
-        int active_slots = m_countPerWave - active_count;
+        int active_slots = m_spawnsPerWave - active_count;
 
         if (active_slots < group_size || Physics.CheckBox(spawn_point, m_grid_extents, m_group_nodes.transform.rotation, 1 << 10))
             return false;
@@ -133,11 +132,26 @@ public class EnemyTemplate
 
             agent_instance.ResetStats();
             agent_instance.transform.position = m_group_nodes.transform.GetChild(i).position;
-
-            --m_enemies_to_spawn;
         }
 
         return true;
+    }
+
+    public void DeactivateEnemy(in Agent enemy)
+    {
+        enemy.gameObject.SetActive(false);
+        --m_enemies_left;
+    }
+
+    public List<Agent> GetEnemiesActive()
+    {
+        List<Agent> active_list = new List<Agent>();
+
+        foreach (Agent a in m_enemy_pool)
+            if (a.gameObject.activeSelf == true)
+                active_list.Add(a);
+
+        return active_list;
     }
 
     private Agent IncreaseEnemyPool()
