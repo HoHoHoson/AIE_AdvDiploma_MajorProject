@@ -32,7 +32,7 @@ public class State
     /// Update logic of this script to be called preferably each frame.
     /// </summary>
     /// <param name="agent">Reference the Agent that owns the StateMachine in order to make changes to it.</param>
-    public virtual void UpdateState() { TransitionCheck(); }
+    public virtual void UpdateState() { }
 
     /// <summary>
     /// Logic runs when this state gets unloaded.
@@ -50,7 +50,7 @@ public class State
         m_state_transitions.Add(new_transition);
     }
 
-    private void TransitionCheck()
+    protected void TransitionCheck()
     {
         foreach (Transition t in m_state_transitions)
             if (t.CheckConditions() == true)

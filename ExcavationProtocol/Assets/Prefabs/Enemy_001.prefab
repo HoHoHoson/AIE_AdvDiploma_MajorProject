@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 568990cd1a8f2d740994a9932fc7f969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_health: 3
+  m_health: 1
   m_damage: 5
-  m_speed: 815
+  m_speed: 300
   m_maxSlopeAngle: 90
   m_playerDetectionRange: 15
   m_leapRange: 4
@@ -70,7 +70,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 3
+  m_CollisionDetection: 0
 --- !u!136 &4065101492410919917
 CapsuleCollider:
   m_ObjectHideFlags: 0

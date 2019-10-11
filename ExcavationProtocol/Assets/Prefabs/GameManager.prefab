@@ -121,8 +121,8 @@ MonoBehaviour:
   m_enemyTypes:
   - m_enemyPrefab: {fileID: 2455372979600114904, guid: 67aab124b094c634e8a7653f400f72a4,
       type: 3}
-    m_spawnRate: 2
-    m_maxGroupSize: 1
+    m_spawnRate: 20
+    m_maxGroupSize: 30
   - m_enemyPrefab: {fileID: 3742569117176842085, guid: 8df34b66295a8e143be430b4a86081ed,
       type: 3}
     m_spawnRate: 2

@@ -256,7 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is_active: 1
   mine_hp_recover: 100
-  mine_max_hp: 200
+  mine_max_hp: 500
 --- !u!136 &8496259801393612215
 CapsuleCollider:
   m_ObjectHideFlags: 0

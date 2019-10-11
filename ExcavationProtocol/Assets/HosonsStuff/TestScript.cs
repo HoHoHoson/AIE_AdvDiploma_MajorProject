@@ -19,6 +19,12 @@ public class TestScript : MonoBehaviour
 
         GetInt() = 5;
         Debug.Log(integer);
+
+        Player player = FindObjectOfType<Player>();
+        Vector3 direction = player.transform.position - transform.position;
+        Debug.DrawRay(transform.position, Vector3.Cross(direction, Vector3.up) * 6, Color.red, 10);
+        direction.y = 0;
+        Debug.DrawRay(transform.position, Vector3.Cross(direction, Vector3.up).normalized * 5, Color.blue, 10);
     }
 
     private void Update()

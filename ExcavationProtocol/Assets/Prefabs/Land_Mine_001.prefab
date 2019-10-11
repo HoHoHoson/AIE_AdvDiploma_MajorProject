@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 625229879496408800}
   - component: {fileID: 4075992799714544893}
   - component: {fileID: 8420854049897034401}
-  - component: {fileID: 4618006568444678815}
   - component: {fileID: 1288552831393050142}
   - component: {fileID: 1073847237620005049}
+  - component: {fileID: 8880006058015216558}
   m_Layer: 0
   m_Name: Land_Mine_001
   m_TagString: Untagged
@@ -80,19 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &661150324419261725
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 877712556124901837}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.77459484, y: 0.16424766, z: 0.77459484}
-  m_Center: {x: 0, y: 0.08212383, z: 0}
 --- !u!54 &1288552831393050142
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108,7 +95,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &1073847237620005049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,3 +111,16 @@ MonoBehaviour:
   blast_radius: 20
   blast_power: 500
   time_before_det: 0.1
+--- !u!65 &8880006058015216558
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877712556124901837}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.38729742, y: 0.08212383, z: 0.38729742}
+  m_Center: {x: 0, y: 0.041061915, z: 0}
