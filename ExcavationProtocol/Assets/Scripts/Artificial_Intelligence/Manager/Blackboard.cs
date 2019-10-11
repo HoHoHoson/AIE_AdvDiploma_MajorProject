@@ -4,56 +4,67 @@ using UnityEngine;
 
 public class Blackboard : MonoBehaviour
 {
-    public GameManager          m_gameManager;
-    public Transform[]          m_spawnPoints;
-    public List<EnemyTemplate>  m_enemyTypes            = new List<EnemyTemplate>();
+    public GameManager m_gameManager;
 
+    [SerializeField] private Transform[]            m_spawnPoints;
+    [SerializeField] private List<EnemyTemplate>    m_enemyTypes = new List<EnemyTemplate>();
+    [SerializeField] private float                  m_intermissionTime = 5f;
+
+    private float               m_intermission_timer    = 0f;
+    private int                 m_waves_passed          = 0; 
     private bool                m_wave_ongoing          = false;
     private EnemyTemplate       m_hold_spawn            = null;
 
-    private Dictionary<Agent.EnemyType, EnemyTemplate> m_eMap = new Dictionary<Agent.EnemyType, EnemyTemplate>();
-
+    public int CurrentWave() { return m_waves_passed + 1; }
     public bool IsWaveOngoing() { return m_wave_ongoing; }
 
     void Start()
     {
         foreach (EnemyTemplate e in m_enemyTypes)
-            e.InstantiateEnemyPool(this);
-
-        m_eMap = m_enemyTypes.ToDictionary(e => e.GetEnemyType());
+            e.InitialiseEnemyTemplate(this);
     }
 
-    void Update()
+    public void UpdateBlackboard()
     {
         if (m_wave_ongoing == true)
             ProgressWave();
-    }
+        else
+        {
+            m_intermission_timer += Time.deltaTime;
 
-    public void BeginWave()
-    {
-        m_wave_ongoing = true;
-
-        foreach (EnemyTemplate e in m_enemyTypes)
-            e.WaveBeginning();
-    }
-
-    public void EndWave()
-    {
-        m_wave_ongoing = false;
-        m_gameManager.AddCurrency();
-
-        foreach (EnemyTemplate e in m_enemyTypes)
-            e.WaveEnding();
+            if (m_intermission_timer >= m_intermissionTime)
+                BeginWave();
+        }
     }
 
     public int TotalEnemyCount()
     {
         int total = 0;
 
-        foreach (EnemyTemplate e in m_enemyTypes)
+        foreach (EnemyTemplate e in ActiveEnemyTypes())
             total += e.GetEnemyCount();
 
         return total;
+    }
+
+    private void BeginWave()
+    {
+        m_wave_ongoing = true;
+        m_intermission_timer = 0;
+
+        foreach (EnemyTemplate e in ActiveEnemyTypes())
+            e.WaveBeginning();
+    }
+
+    private void EndWave()
+    {
+        m_wave_ongoing = false;
+        ++m_waves_passed;
+
+        m_gameManager.AddCurrency();
+
+        foreach (EnemyTemplate e in ActiveEnemyTypes())
+            e.WaveEnding();
     }
 
     private void ProgressWave()
@@ -65,7 +76,7 @@ public class Blackboard : MonoBehaviour
             return;
         }
 
-        foreach (EnemyTemplate e in m_enemyTypes)
+        foreach (EnemyTemplate e in ActiveEnemyTypes())
         {
             List<Agent> active_enemies = e.GetEnemiesActive();
 
@@ -96,5 +107,16 @@ public class Blackboard : MonoBehaviour
         spawn_pos = m_spawnPoints[Random.Range(0, m_spawnPoints.Length)].position;
 
         return spawn_pos;
+    }
+
+    private List<EnemyTemplate> ActiveEnemyTypes()
+    {
+        List<EnemyTemplate> active_types = new List<EnemyTemplate>();
+
+        foreach (EnemyTemplate e in m_enemyTypes)
+            if (e.IsActive())
+                active_types.Add(e);
+
+        return active_types;
     }
 }

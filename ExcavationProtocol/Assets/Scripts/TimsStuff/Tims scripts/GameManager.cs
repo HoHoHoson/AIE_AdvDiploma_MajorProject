@@ -50,9 +50,6 @@ public class GameManager : MonoBehaviour
 
     public int wave_no;
 
-    public float time_to_next_wave = 20;
-    private float wave_timer;
-
     [Tooltip("Max amount of enemies that need to be spawned.")]
     public int num_of_enemies;
     #endregion
@@ -116,38 +113,16 @@ public class GameManager : MonoBehaviour
 
             script_player.Inputs();
             script_player.SkillTimers();
-            GameLoop();
             script_UI.UpdateUI();
+            script_bb.UpdateBlackboard();
+            wave_no = script_bb.CurrentWave();
+            num_of_enemies = script_bb.TotalEnemyCount();
 
             // temp
             if (Input.GetKey(KeyCode.P))
             {
                 ReloadScene();
             }
-        }
-    }
-
-    #endregion
-
-    #region GamePlayFunc
-
-    public void GameLoop()
-    {
-        num_of_enemies = script_bb.TotalEnemyCount();
-        if(script_bb.IsWaveOngoing() == false)
-        {
-            wave_timer += Time.deltaTime;
-            if(wave_timer >= time_to_next_wave)
-            {
-                wave_no++;
-
-                script_bb.BeginWave();
-            }
-        }
-
-        if(script_bb.IsWaveOngoing() == true && wave_timer > 0)
-        {
-            wave_timer = 0;
         }
     }
 

@@ -8,13 +8,21 @@ public class EnemyTemplate
     [SerializeField] private GameObject m_enemyPrefab   = null;
 
     [SerializeField, Tooltip("How many of these enemies are spawned at the start of each wave.")]
-    private int m_spawnsPerWave = 1;
+    private float m_spawnsPerWave = 1f;
+    [SerializeField, Tooltip("Increases the spawn count for each wave passed by this amount.")]
+    private float m_spawnIncrement = 1f;
     [SerializeField, Tooltip("Max possible number of active enemies in the scene.")]
-    private int m_activeEnemiesLimit = 10;
+    private float m_activeEnemiesLimit = 10f;
+    [SerializeField, Tooltip("Increases the active limit count of enemies for each wave passed by this amount.")]
+    private float m_activeIncrement = 1f;
     [SerializeField, Tooltip("Number of enemies that are spawned in together when this type gets spawned.")]
     private int m_spawnGroupSize   = 1;
+    [SerializeField, Tooltip("Only spawns on every nth wave. Leave it empty if you want them on all waves.")]
+    private int[] m_onWaves; 
 
     private int         m_enemies_left  = 0;
+    private int         m_spawn_default;
+    private int         m_active_default;
     private List<Agent> m_enemy_pool        = new List<Agent>();
     private Blackboard  m_blackboard;
 
@@ -26,7 +34,7 @@ public class EnemyTemplate
     public int GetEnemyCount() { return m_enemies_left; }
     public List<Agent> GetEnemyPool() { return m_enemy_pool; }
 
-    public void InstantiateEnemyPool(in Blackboard blackboard)
+    public void InitialiseEnemyTemplate(in Blackboard blackboard)
     {
         Agent agent = m_enemyPrefab.GetComponentInChildren<Agent>();
 
@@ -37,6 +45,8 @@ public class EnemyTemplate
         }
 
         m_blackboard = blackboard;
+        m_spawn_default = (int)m_spawnsPerWave;
+        m_active_default = (int)m_activeEnemiesLimit;
         agent.InitialiseAgent(m_blackboard);
 
         for (int i = 0; i < m_activeEnemiesLimit; ++i)
@@ -72,7 +82,7 @@ public class EnemyTemplate
     {
         // Increase enemy spawn count here
 
-        m_enemies_left = m_spawnsPerWave;
+        m_enemies_left = (int)m_spawnsPerWave;
     }
 
     public void WaveEnding()
@@ -80,6 +90,10 @@ public class EnemyTemplate
         foreach (Agent a in m_enemy_pool)
             if (a.gameObject.activeSelf == true)
                 DeactivateEnemy(a);
+
+        int current_wave = m_blackboard.CurrentWave() - 1;
+        m_spawnsPerWave = m_spawn_default + m_spawnIncrement * current_wave;
+        m_activeEnemiesLimit = m_active_default + m_activeIncrement * current_wave;
     }
 
     public bool ActivateEnemy(Vector3 spawn_point)
@@ -122,7 +136,7 @@ public class EnemyTemplate
         // Checks if there is enough space for the enemy spawns
         int num_to_spawn = m_enemies_left - active_count;
         int group_size = num_to_spawn >= m_spawnGroupSize ? m_spawnGroupSize : num_to_spawn;
-        int active_slots = m_activeEnemiesLimit - active_count;
+        int active_slots = (int)m_activeEnemiesLimit - active_count;
 
         if (active_slots < group_size || Physics.CheckBox(spawn_point, m_grid_extents, m_group_nodes.transform.rotation, 1 << 10))
             return false;
@@ -155,6 +169,18 @@ public class EnemyTemplate
                 active_list.Add(a);
 
         return active_list;
+    }
+
+    public bool IsActive()
+    {
+        if (m_onWaves.Length == 0)
+            return true;
+
+        foreach (int i in m_onWaves)
+            if (m_blackboard.CurrentWave() % i == 0)
+                return true;
+
+        return false;
     }
 
     private Agent IncreaseEnemyPool()
