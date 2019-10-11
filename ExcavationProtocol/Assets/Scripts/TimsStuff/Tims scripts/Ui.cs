@@ -34,11 +34,14 @@ public class Ui : MonoBehaviour
     // resources
     public Text res_cost_text;
 
+    public Camera Helmet;
+
     #endregion
 
     #region Drill
     public GameObject[] drills;
     #endregion
+
     // Functions
 
     #region StartUpdate
@@ -61,12 +64,6 @@ public class Ui : MonoBehaviour
         {
             drill.GetComponentInChildren<Slider>().maxValue = drill.GetComponent<Mines>().mine_max_hp;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        UpdateUI();
     }
         
     public void UpdateUI()
