@@ -7,9 +7,12 @@ public class EnemyTemplate
 {
     [SerializeField] private GameObject m_enemyPrefab   = null;
 
-    [SerializeField] private int m_spawnsPerWave     = 1;
-    [SerializeField] private int m_activeEnemiesLimit = 10;
-    [SerializeField] private int m_spawnGroupSize   = 1;
+    [SerializeField, Tooltip("How many of these enemies are spawned at the start of each wave.")]
+    private int m_spawnsPerWave = 1;
+    [SerializeField, Tooltip("Max possible number of active enemies in the scene.")]
+    private int m_activeEnemiesLimit = 10;
+    [SerializeField, Tooltip("Number of enemies that are spawned in together when this type gets spawned.")]
+    private int m_spawnGroupSize   = 1;
 
     private int         m_enemies_left  = 0;
     private List<Agent> m_enemy_pool        = new List<Agent>();
@@ -117,9 +120,9 @@ public class EnemyTemplate
         //}
 
         // Checks if there is enough space for the enemy spawns
-        int free_slots = m_enemies_left - active_count;
-        int group_size = free_slots >= m_spawnGroupSize ? m_spawnGroupSize : free_slots;
-        int active_slots = m_spawnsPerWave - active_count;
+        int num_to_spawn = m_enemies_left - active_count;
+        int group_size = num_to_spawn >= m_spawnGroupSize ? m_spawnGroupSize : num_to_spawn;
+        int active_slots = m_activeEnemiesLimit - active_count;
 
         if (active_slots < group_size || Physics.CheckBox(spawn_point, m_grid_extents, m_group_nodes.transform.rotation, 1 << 10))
             return false;

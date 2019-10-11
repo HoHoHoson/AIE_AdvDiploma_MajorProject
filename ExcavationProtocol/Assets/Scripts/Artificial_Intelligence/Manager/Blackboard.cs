@@ -46,6 +46,16 @@ public class Blackboard : MonoBehaviour
             e.WaveEnding();
     }
 
+    public int TotalEnemyCount()
+    {
+        int total = 0;
+
+        foreach (EnemyTemplate e in m_enemyTypes)
+            total += e.GetEnemyCount();
+
+        return total;
+    }
+
     private void ProgressWave()
     {
         // EndWave when all enemies are dead
@@ -86,15 +96,5 @@ public class Blackboard : MonoBehaviour
         spawn_pos = m_spawnPoints[Random.Range(0, m_spawnPoints.Length)].position;
 
         return spawn_pos;
-    }
-
-    private int TotalEnemyCount()
-    {
-        int total = 0;
-
-        foreach (EnemyTemplate e in m_enemyTypes)
-            total += e.GetEnemyCount();
-
-        return total;
     }
 }

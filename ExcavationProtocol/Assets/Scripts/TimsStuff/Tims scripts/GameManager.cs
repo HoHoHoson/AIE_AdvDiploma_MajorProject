@@ -76,8 +76,6 @@ public class GameManager : MonoBehaviour
         
         script_player = player_gameobject.GetComponentInChildren<Player>();
 
-        num_of_enemies = script_bb.m_enemyCount;
-
         dead_player = false;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -135,7 +133,7 @@ public class GameManager : MonoBehaviour
 
     public void GameLoop()
     {
-        num_of_enemies = script_bb.m_enemyCount;
+        num_of_enemies = script_bb.TotalEnemyCount();
         if(script_bb.IsWaveOngoing() == false)
         {
             wave_timer += Time.deltaTime;
