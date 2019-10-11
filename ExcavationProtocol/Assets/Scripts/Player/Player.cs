@@ -36,7 +36,6 @@ public class Player : MonoBehaviour
 
     #region PlayerMovement
     public Transform playerCamera;
-    public Transform pivot1, pivot2;
 
     public float playerSpeed = 300;
 
@@ -146,9 +145,6 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && GroundPlayer() == true)
             Jump();
-
-        pivot1 = playerCamera;
-        pivot2 = playerCamera;
     }
 
     void LateUpdate()
