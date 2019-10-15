@@ -5,12 +5,17 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: polySurface6
+    100004: Barrel
     400000: //RootNode
     400002: polySurface6
+    400004: Barrel
     2100000: lambert1
     2300000: polySurface6
+    2300002: Barrel
     3300000: polySurface6
+    3300002: Barrel
     4300000: polySurface6
+    4300002: Barrel
   externalObjects: {}
   materials:
     importMaterials: 1

@@ -1,23 +1,14 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: db637819c92a6e741bda93555770d446
-=======
-guid: 6fb944d799931504f87bbc91bb8d1531
->>>>>>> master
+guid: 6a0e3955c1e392e45858f1b517727499
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-<<<<<<< HEAD
     2100000: lambert1
-    2100002: lambert2
-=======
-    2100000: lambert2
->>>>>>> master
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Glass
+    4300000: Terminal3
   externalObjects: {}
   materials:
     importMaterials: 1

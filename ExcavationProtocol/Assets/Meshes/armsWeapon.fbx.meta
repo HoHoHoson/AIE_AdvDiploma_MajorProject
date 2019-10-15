@@ -50,6 +50,56 @@ ModelImporter:
     100088: Upper_JNT
     100090: Weapon_JNT
     100092: weaponCombined
+    100094: R_Arm_IK
+    100096: R_Elbow_POLE
+    100098: R_MidEnd_CTRL
+    100100: R_MidMid_CTRL
+    100102: R_MidStart_CTRL
+    100104: R_MidTip_CTRL
+    100106: R_PinkyEnd_CTRL
+    100108: R_PinkyMid_CTRL
+    100110: R_PinkyStart_CTRL
+    100112: R_PinkyTip_CTRL
+    100114: R_PointerEnd_CTRL
+    100116: R_PointerMid_CTRL
+    100118: R_PointerStart_CTRL
+    100120: R_PointerTip_CTRL
+    100122: R_RingEnd_CTRL
+    100124: R_RingMid_CTRL
+    100126: R_RingStart_CTRL
+    100128: R_RingTip_CTRL
+    100130: R_ThumbEnd_CTRL
+    100132: R_ThumbStart_CTRL
+    100134: R_ThumbTip_CTRL
+    100136: weaponIdle_Barrel_CTRL
+    100138: weaponIdle_BarrelBottomLeft_CTRL
+    100140: weaponIdle_BarrelBottomRight_CTRL
+    100142: weaponIdle_BarrelTopLeft_CTRL
+    100144: weaponIdle_BarrelTopRight_CTRL
+    100146: weaponIdle_Battery_CTRL
+    100148: weaponIdle_Input__CTRL
+    100150: weaponIdle_L_Panel_CTRL
+    100152: weaponIdle_Main_CTRL
+    100154: weaponIdle_Output_CTRL
+    100156: weaponIdle_PDA_CTRL
+    100158: weaponIdle_R_Panel_CTRL
+    100160: weaponIdle_Screen_CTRL
+    100162: weaponIdle_Trigger_CTRL
+    100164: weaponIdle_Upper_CTRL
+    100166: Barrel_CTRL
+    100168: BarrelBottomLeft_CTRL
+    100170: BarrelBottomRight_CTRL
+    100172: BarrelTopLeft_CTRL
+    100174: BarrelTopRight_CTRL
+    100176: Battery_CTRL
+    100178: Input__CTRL
+    100180: L_Panel_CTRL
+    100182: Output_CTRL
+    100184: PDA_CTRL
+    100186: R_Panel_CTRL
+    100188: Screen_CTRL
+    100190: Trigger_CTRL
+    100192: Upper_CTRL
     400000: //RootNode
     400002: BarrelBottomLeft_JNT
     400004: BarrelBottomRight_JNT
@@ -97,6 +147,56 @@ ModelImporter:
     400088: Upper_JNT
     400090: Weapon_JNT
     400092: weaponCombined
+    400094: R_Arm_IK
+    400096: R_Elbow_POLE
+    400098: R_MidEnd_CTRL
+    400100: R_MidMid_CTRL
+    400102: R_MidStart_CTRL
+    400104: R_MidTip_CTRL
+    400106: R_PinkyEnd_CTRL
+    400108: R_PinkyMid_CTRL
+    400110: R_PinkyStart_CTRL
+    400112: R_PinkyTip_CTRL
+    400114: R_PointerEnd_CTRL
+    400116: R_PointerMid_CTRL
+    400118: R_PointerStart_CTRL
+    400120: R_PointerTip_CTRL
+    400122: R_RingEnd_CTRL
+    400124: R_RingMid_CTRL
+    400126: R_RingStart_CTRL
+    400128: R_RingTip_CTRL
+    400130: R_ThumbEnd_CTRL
+    400132: R_ThumbStart_CTRL
+    400134: R_ThumbTip_CTRL
+    400136: weaponIdle_Barrel_CTRL
+    400138: weaponIdle_BarrelBottomLeft_CTRL
+    400140: weaponIdle_BarrelBottomRight_CTRL
+    400142: weaponIdle_BarrelTopLeft_CTRL
+    400144: weaponIdle_BarrelTopRight_CTRL
+    400146: weaponIdle_Battery_CTRL
+    400148: weaponIdle_Input__CTRL
+    400150: weaponIdle_L_Panel_CTRL
+    400152: weaponIdle_Main_CTRL
+    400154: weaponIdle_Output_CTRL
+    400156: weaponIdle_PDA_CTRL
+    400158: weaponIdle_R_Panel_CTRL
+    400160: weaponIdle_Screen_CTRL
+    400162: weaponIdle_Trigger_CTRL
+    400164: weaponIdle_Upper_CTRL
+    400166: Barrel_CTRL
+    400168: BarrelBottomLeft_CTRL
+    400170: BarrelBottomRight_CTRL
+    400172: BarrelTopLeft_CTRL
+    400174: BarrelTopRight_CTRL
+    400176: Battery_CTRL
+    400178: Input__CTRL
+    400180: L_Panel_CTRL
+    400182: Output_CTRL
+    400184: PDA_CTRL
+    400186: R_Panel_CTRL
+    400188: Screen_CTRL
+    400190: Trigger_CTRL
+    400192: Upper_CTRL
     2100000: lambert1
     4300000: R_Arm_GEO
     4300002: weaponCombined
