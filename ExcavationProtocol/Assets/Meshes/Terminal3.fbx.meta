@@ -1,21 +1,14 @@
 fileFormatVersion: 2
-guid: 4c2c0364728c65b488b9bbfdf84b057c
+guid: 6a0e3955c1e392e45858f1b517727499
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: polySurface6
-    100004: Barrel
     400000: //RootNode
-    400002: polySurface6
-    400004: Barrel
     2100000: lambert1
-    2300000: polySurface6
-    2300002: Barrel
-    3300000: polySurface6
-    3300002: Barrel
-    4300000: polySurface6
-    4300002: Barrel
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Terminal3
   externalObjects: {}
   materials:
     importMaterials: 1

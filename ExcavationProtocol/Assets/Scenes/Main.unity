@@ -10604,7 +10604,7 @@ PrefabInstance:
     - target: {fileID: 8583610168080643163, guid: e84355d8a408fb94fa5aa83b9fa5abe6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.29
       objectReference: {fileID: 0}
     - target: {fileID: 8583610168080643163, guid: e84355d8a408fb94fa5aa83b9fa5abe6,
         type: 3}
@@ -10656,6 +10656,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b5400f7fb2c9bcd4692f69b37a6c4a30, type: 2}
+    - target: {fileID: 5034773138184210170, guid: e84355d8a408fb94fa5aa83b9fa5abe6,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 1d9a443db18851949a4cf126bdaae441, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e84355d8a408fb94fa5aa83b9fa5abe6, type: 3}
 --- !u!4 &394494133 stripped
@@ -11866,6 +11871,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1572419702}
     m_Modifications:
+    - target: {fileID: 5673689204336697456, guid: 14e41a98716a065469ece6819b839766,
+        type: 3}
+      propertyPath: m_Name
+      value: Terrain_002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673689204336697456, guid: 14e41a98716a065469ece6819b839766,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673689204336697456, guid: 14e41a98716a065469ece6819b839766,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5195602405285776016, guid: 14e41a98716a065469ece6819b839766,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11935,21 +11955,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5673689204336697456, guid: 14e41a98716a065469ece6819b839766,
-        type: 3}
-      propertyPath: m_Name
-      value: Terrain_002
-      objectReference: {fileID: 0}
-    - target: {fileID: 5673689204336697456, guid: 14e41a98716a065469ece6819b839766,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5673689204336697456, guid: 14e41a98716a065469ece6819b839766,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14e41a98716a065469ece6819b839766, type: 3}
@@ -14939,6 +14944,76 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1774508644266458877, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_Name
+      value: UICanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2185264974649838850, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 807854846025683312, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774508644546882221, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774508644546882221, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774508644546882221, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774508643636882356, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_Colors.m_ColorMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774508643636882356, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_Value
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774508644561472096, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774508644561472096, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774508644561472096, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774508644561472096, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774508644561472096, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703881383654213620, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3078859491729109023, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
         type: 3}
       propertyPath: m_Name
@@ -15103,76 +15178,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 900
-      objectReference: {fileID: 0}
-    - target: {fileID: 1774508644266458877, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_Name
-      value: UICanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 2185264974649838850, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 807854846025683312, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1774508644546882221, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 1774508644546882221, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_FontData.m_MinSize
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1774508644546882221, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1774508643636882356, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_Colors.m_ColorMultiplier
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1774508643636882356, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_Value
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1774508644561472096, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 1774508644561472096, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_FontData.m_MaxSize
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1774508644561472096, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_FontData.m_FontStyle
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1774508644561472096, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1774508644561472096, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_FontData.m_MinSize
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7703881383654213620, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1774508644266458753, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
         type: 3}
@@ -16766,7 +16771,7 @@ PrefabInstance:
     - target: {fileID: 1774508643838239011, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
         type: 3}
       propertyPath: m_FillAmount
-      value: 0.7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1774508643954831798, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
         type: 3}
@@ -16998,8 +17003,12 @@ PrefabInstance:
 
 
 
-        To disable this text, just uncheck the "Rate of fire stuff" text object text
-        box in the pause menu while in the scene
+
+
+
+        To disable this text, just uncheck the "Rate of fire stuff"
+
+        text object text box under the "Pause menu"
 
 
         Rate of fire stuff
@@ -17027,7 +17036,7 @@ PrefabInstance:
         300rpm = 0.2 semi automatic weapons clicking cap
 
 
-'
+        Jason has currently set the value to 600rpm (0.1)'
       objectReference: {fileID: 0}
     - target: {fileID: 5337873316369188718, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
         type: 3}
@@ -17047,6 +17056,21 @@ PrefabInstance:
     - target: {fileID: 5337873316369188718, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
         type: 3}
       propertyPath: m_FontData.m_Alignment
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5337873316369188718, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5337873316369188718, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774508643265124446, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -22193,6 +22217,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1572419702}
     m_Modifications:
+    - target: {fileID: 5673689204336697456, guid: 989a6eec5a32480498f76721ec951df6,
+        type: 3}
+      propertyPath: m_Name
+      value: Terrain_003
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673689204336697456, guid: 989a6eec5a32480498f76721ec951df6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673689204336697456, guid: 989a6eec5a32480498f76721ec951df6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5195602405285776016, guid: 989a6eec5a32480498f76721ec951df6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22247,21 +22286,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5673689204336697456, guid: 989a6eec5a32480498f76721ec951df6,
-        type: 3}
-      propertyPath: m_Name
-      value: Terrain_003
-      objectReference: {fileID: 0}
-    - target: {fileID: 5673689204336697456, guid: 989a6eec5a32480498f76721ec951df6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5673689204336697456, guid: 989a6eec5a32480498f76721ec951df6,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 989a6eec5a32480498f76721ec951df6, type: 3}
@@ -23047,6 +23071,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3317138830722218741, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: mines_list.Array.size
@@ -23097,11 +23126,6 @@ PrefabInstance:
       propertyPath: script_player
       value: 
       objectReference: {fileID: 790687591}
-    - target: {fileID: 3317138830722218741, guid: 0133e389627041d4893d129376d359a0,
-        type: 3}
-      propertyPath: m_Name
-      value: GameManager
-      objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218635, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: drills.Array.size
@@ -50713,6 +50737,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1572419702}
     m_Modifications:
+    - target: {fileID: 5673689204336697456, guid: 35f920dd33321b44386f72ed0d3b4835,
+        type: 3}
+      propertyPath: m_Name
+      value: Terrain_004
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673689204336697456, guid: 35f920dd33321b44386f72ed0d3b4835,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673689204336697456, guid: 35f920dd33321b44386f72ed0d3b4835,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8933300606816679107, guid: 35f920dd33321b44386f72ed0d3b4835,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948790195019761049, guid: 35f920dd33321b44386f72ed0d3b4835,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5195602405285776016, guid: 35f920dd33321b44386f72ed0d3b4835,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -50767,31 +50816,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5673689204336697456, guid: 35f920dd33321b44386f72ed0d3b4835,
-        type: 3}
-      propertyPath: m_Name
-      value: Terrain_004
-      objectReference: {fileID: 0}
-    - target: {fileID: 5673689204336697456, guid: 35f920dd33321b44386f72ed0d3b4835,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5673689204336697456, guid: 35f920dd33321b44386f72ed0d3b4835,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 8933300606816679107, guid: 35f920dd33321b44386f72ed0d3b4835,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8948790195019761049, guid: 35f920dd33321b44386f72ed0d3b4835,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35f920dd33321b44386f72ed0d3b4835, type: 3}
@@ -57313,7 +57337,7 @@ PrefabInstance:
     - target: {fileID: 6700979459413549909, guid: 3c3bc4203226dee4cae78773645ca0a5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.214
       objectReference: {fileID: 0}
     - target: {fileID: 6700979459413549909, guid: 3c3bc4203226dee4cae78773645ca0a5,
         type: 3}
@@ -57365,6 +57389,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a8f29f58aa2ff87489192944888d0098, type: 2}
+    - target: {fileID: 4942563134980608568, guid: 3c3bc4203226dee4cae78773645ca0a5,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 6a0e3955c1e392e45858f1b517727499, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c3bc4203226dee4cae78773645ca0a5, type: 3}
 --- !u!1 &1967828366
