@@ -4,87 +4,94 @@ using UnityEngine;
 
 public class Blackboard : MonoBehaviour
 {
-    public GameManager          m_gameManager;
-    public Transform[]          m_spawnPoints;
-    public List<EnemyTemplate>  m_enemyTypes            = new List<EnemyTemplate>();
-    public int                  m_enemyCount            = 50;
-    private int                 m_enemyCountReset;
+    public GameManager m_gameManager;
 
-    [SerializeField]
-    private int                 m_activeEnemiesLimit    = 20;
-    private LinkedList<Agent>   m_active_enemies        = new LinkedList<Agent>();
+    [SerializeField] private Transform[]            m_spawnPoints;
+    [SerializeField] private List<EnemyTemplate>    m_enemyTypes = new List<EnemyTemplate>();
+    [SerializeField] private float                  m_intermissionTime = 5f;
 
+    private float               m_intermission_timer    = 0f;
+    private int                 m_waves_passed          = 0; 
     private bool                m_wave_ongoing          = false;
-    private int                 m_max_spawn_rate        = 0;
     private EnemyTemplate       m_hold_spawn            = null;
 
-    private Dictionary<Agent.EnemyType, EnemyTemplate> m_eMap = new Dictionary<Agent.EnemyType, EnemyTemplate>();
-
-    public int GetEnemyCount() { return m_enemyCount; }
+    public int CurrentWave() { return m_waves_passed + 1; }
     public bool IsWaveOngoing() { return m_wave_ongoing; }
 
     void Start()
     {
         foreach (EnemyTemplate e in m_enemyTypes)
-        {
-            m_max_spawn_rate += e.GetSpawnRate();
-            e.InstantiateEnemyPool(this, m_activeEnemiesLimit);
-        }
-
-        m_eMap = m_enemyTypes.ToDictionary(e => e.GetEnemyType());
-        m_enemyCountReset = m_enemyCount;
+            e.InitialiseEnemyTemplate(this);
     }
 
-    void Update()
+    public void UpdateBlackboard()
     {
         if (m_wave_ongoing == true)
             ProgressWave();
+        else
+        {
+            m_intermission_timer += Time.deltaTime;
+
+            if (m_intermission_timer >= m_intermissionTime)
+                BeginWave();
+        }
     }
 
-    public void BeginWave()
+    public int TotalEnemyCount()
+    {
+        int total = 0;
+
+        foreach (EnemyTemplate e in ActiveEnemyTypes())
+            total += e.GetEnemyCount();
+
+        return total;
+    }
+
+    private void BeginWave()
     {
         m_wave_ongoing = true;
-        m_enemyCount = m_enemyCountReset;
+        m_intermission_timer = 0;
+
+        foreach (EnemyTemplate e in ActiveEnemyTypes())
+            e.WaveBeginning();
     }
 
-    public void EndWave()
+    private void EndWave()
     {
         m_wave_ongoing = false;
+        ++m_waves_passed;
+
         m_gameManager.AddCurrency();
-        while (m_active_enemies.Count > 0)
-        {
-            RemoveEnemy(m_active_enemies.Last.Value);
-        }
+
+        foreach (EnemyTemplate e in ActiveEnemyTypes())
+            e.WaveEnding();
     }
 
     private void ProgressWave()
     {
         // EndWave when all enemies are dead
-        if (m_enemyCount <= 0)
+        if (TotalEnemyCount() <= 0)
         {
             EndWave();
             return;
         }
 
-        foreach (Agent a in m_active_enemies)
-            a.UpdateAgent();
-
-        // Checks and removes any dead enemies
-        var iterator = m_active_enemies.First;
-        while (iterator != null)
+        foreach (EnemyTemplate e in ActiveEnemyTypes())
         {
-            var next_iterator = iterator.Next;
+            List<Agent> active_enemies = e.GetEnemiesActive();
 
-            if (iterator.Value.IsDead())
+            foreach (Agent a in active_enemies)
             {
-                RemoveEnemy(iterator.Value);
-                --m_enemyCount;
+                // Checks and removes any dead enemies
+                if (a.IsDead())
+                    e.DeactivateEnemy(a);
+
+                // Then updates the agent
+                a.UpdateAgent();
             }
 
-            iterator = next_iterator;
+            e.ActivateEnemy(RandomSpawnPoint());
         }
-
-        SpawnEnemy();
     }
 
     private Vector3 RandomSpawnPoint()
@@ -102,64 +109,14 @@ public class Blackboard : MonoBehaviour
         return spawn_pos;
     }
 
-    private void SpawnEnemy()
+    private List<EnemyTemplate> ActiveEnemyTypes()
     {
-        if (m_active_enemies.Count > m_activeEnemiesLimit || m_active_enemies.Count > m_enemyCount)         // Checks if the spawn limit has been breached
-        {                                                                                                   
-            Debug.Log("ERROR: Active enemies exceedes a limit.");                                           // Errors if it occurs
-            return;                                                                                         // then skips spawn function
-        }
-        else if (m_active_enemies.Count == m_activeEnemiesLimit || m_active_enemies.Count == m_enemyCount)  // Also checks if a cap has been reached
-            return;                                                                                         // skips spawn function if so
+        List<EnemyTemplate> active_types = new List<EnemyTemplate>();
 
-        // This variable will store an enemy type and attempt to spawn it at the end of this function
-        EnemyTemplate enemy_spawn = null;
+        foreach (EnemyTemplate e in m_enemyTypes)
+            if (e.IsActive())
+                active_types.Add(e);
 
-        if (m_hold_spawn != null) 
-        {
-            enemy_spawn = m_hold_spawn; // If a reserved spawn exists, set that as the enemy_spawn
-            m_hold_spawn = null;        // clear the reserve afterwards
-        }
-        else 
-        {
-            // Randomly sets enemy_type to any of the developer set enemy types
-            int spawn_rate_roll = Random.Range(0, m_max_spawn_rate);
-            int spawn_rate_threshold = 0;
-
-            foreach (EnemyTemplate e in m_enemyTypes)
-            {
-                spawn_rate_threshold += e.GetSpawnRate();
-
-                if (spawn_rate_roll < spawn_rate_threshold)
-                {
-                    enemy_spawn = e;
-                    break;
-                }
-            }
-        }
-
-        // Checks if there is enough space for the enemy spawns
-        int free_slots = m_enemyCount - m_active_enemies.Count;
-        int group_size = free_slots >= enemy_spawn.GetGroupSize() ? enemy_spawn.GetGroupSize() : free_slots;
-
-        int active_slots = m_activeEnemiesLimit - m_active_enemies.Count;
-        if (active_slots < group_size || enemy_spawn.ActivateEnemy(m_active_enemies, RandomSpawnPoint(), group_size) == false)
-        {
-            m_hold_spawn = enemy_spawn; // If the enemy spawn fails for some reason, reserve the enemy spawn for next update
-        }
-    }
-
-    private void RemoveEnemy(in Agent agent)
-    {
-        if (agent.gameObject.activeSelf == false)
-        {
-            Debug.Log("ERROR: Enemy is not active.");
-            return;
-        }
-
-        m_active_enemies.Remove(agent);
-        agent.gameObject.SetActive(false);
-
-        m_eMap[agent.GetEnemyType()].DeactivateEnemy(agent);
+        return active_types;
     }
 }

@@ -62,12 +62,6 @@ public class Ui : MonoBehaviour
             drill.GetComponentInChildren<Slider>().maxValue = drill.GetComponent<Mines>().mine_max_hp;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        UpdateUI();
-    }
         
     public void UpdateUI()
     {
