@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
+    public SoundSystem soundSystem;
+
     private CapsuleCollider cap;
     private Vector3 normal = Vector3.up;
     private int integer = 0;
@@ -54,6 +56,9 @@ public class TestScript : MonoBehaviour
         transform.rotation = target_rotation;
 
         GetComponent<Rigidbody>().velocity = transform.forward * 3 + -normal * 4;
+
+        if (Input.GetKeyDown(KeyCode.X))
+            soundSystem.PlayRandom();
     }
 
     void TestFun(in Base b)
