@@ -100,6 +100,48 @@ ModelImporter:
     100188: Screen_CTRL
     100190: Trigger_CTRL
     100192: Upper_CTRL
+    100194: L_Arm_CTRL
+    100196: L_Arm_GEO
+    100198: L_Arm_Rig
+    100200: L_ArmBranch_JNT
+    100202: L_ArmRoot_JNT
+    100204: L_ArmShoulder_JNT
+    100206: L_Elbow_JNT
+    100208: L_MidEnd_CTRL
+    100210: L_MidEnd_JNT
+    100212: L_MidMid_CTRL
+    100214: L_MidMid_JNT
+    100216: L_MidStart_CTRL
+    100218: L_MidStart_JNT
+    100220: L_MidTip_JNT
+    100222: L_PinkyEnd_CTRL
+    100224: L_PinkyEnd_JNT
+    100226: L_PinkyMid_CTRL
+    100228: L_PinkyMid_JNT
+    100230: L_PinkyStart_CTRL
+    100232: L_PinkyStart_JNT
+    100234: L_PinkyTip_JNT
+    100236: L_PointerEnd_CTRL
+    100238: L_PointerEnd_JNT
+    100240: L_PointerMid_CTRL
+    100242: L_PointerMid_JNT
+    100244: L_PointerStart_CTRL
+    100246: L_PointerStart_JNT
+    100248: L_PointerTip_JNT
+    100250: L_RingEnd_CTRL
+    100252: L_RingEnd_JNT
+    100254: L_RingMid_CTRL
+    100256: L_RingMid_JNT
+    100258: L_RingStart_CTRL
+    100260: L_RingStart_JNT
+    100262: L_RingTip_JNT
+    100264: L_ThumbEnd_CTRL
+    100266: L_ThumbEnd_JNT
+    100268: L_ThumbStart_CTRL
+    100270: L_ThumbStart_JNT
+    100272: L_ThumbTip_JNT
+    100274: L_Wrist_CTRL
+    100276: L_Wrist_JNT
     400000: //RootNode
     400002: BarrelBottomLeft_JNT
     400004: BarrelBottomRight_JNT
@@ -197,12 +239,56 @@ ModelImporter:
     400188: Screen_CTRL
     400190: Trigger_CTRL
     400192: Upper_CTRL
+    400194: L_Arm_CTRL
+    400196: L_Arm_GEO
+    400198: L_Arm_Rig
+    400200: L_ArmBranch_JNT
+    400202: L_ArmRoot_JNT
+    400204: L_ArmShoulder_JNT
+    400206: L_Elbow_JNT
+    400208: L_MidEnd_CTRL
+    400210: L_MidEnd_JNT
+    400212: L_MidMid_CTRL
+    400214: L_MidMid_JNT
+    400216: L_MidStart_CTRL
+    400218: L_MidStart_JNT
+    400220: L_MidTip_JNT
+    400222: L_PinkyEnd_CTRL
+    400224: L_PinkyEnd_JNT
+    400226: L_PinkyMid_CTRL
+    400228: L_PinkyMid_JNT
+    400230: L_PinkyStart_CTRL
+    400232: L_PinkyStart_JNT
+    400234: L_PinkyTip_JNT
+    400236: L_PointerEnd_CTRL
+    400238: L_PointerEnd_JNT
+    400240: L_PointerMid_CTRL
+    400242: L_PointerMid_JNT
+    400244: L_PointerStart_CTRL
+    400246: L_PointerStart_JNT
+    400248: L_PointerTip_JNT
+    400250: L_RingEnd_CTRL
+    400252: L_RingEnd_JNT
+    400254: L_RingMid_CTRL
+    400256: L_RingMid_JNT
+    400258: L_RingStart_CTRL
+    400260: L_RingStart_JNT
+    400262: L_RingTip_JNT
+    400264: L_ThumbEnd_CTRL
+    400266: L_ThumbEnd_JNT
+    400268: L_ThumbStart_CTRL
+    400270: L_ThumbStart_JNT
+    400272: L_ThumbTip_JNT
+    400274: L_Wrist_CTRL
+    400276: L_Wrist_JNT
     2100000: lambert1
     4300000: R_Arm_GEO
     4300002: weaponCombined
+    4300004: L_Arm_GEO
     9500000: //RootNode
     13700000: R_Arm_GEO
     13700002: weaponCombined
+    13700004: L_Arm_GEO
   externalObjects: {}
   materials:
     importMaterials: 1
