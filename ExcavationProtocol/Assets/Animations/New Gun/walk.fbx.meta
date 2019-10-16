@@ -45,6 +45,31 @@ ModelImporter:
     100078: Upper_JNT
     100080: //RootNode
     100082: Weapon_JNT
+    100084: L_Arm_Rig
+    100086: L_ArmBranch_JNT
+    100088: L_ArmRoot_JNT
+    100090: L_ArmShoulder_JNT
+    100092: L_Elbow_JNT
+    100094: L_MidEnd_JNT
+    100096: L_MidMid_JNT
+    100098: L_MidStart_JNT
+    100100: L_MidTip_JNT
+    100102: L_PinkyEnd_JNT
+    100104: L_PinkyMid_JNT
+    100106: L_PinkyStart_JNT
+    100108: L_PinkyTip_JNT
+    100110: L_PointerEnd_JNT
+    100112: L_PointerMid_JNT
+    100114: L_PointerStart_JNT
+    100116: L_PointerTip_JNT
+    100118: L_RingEnd_JNT
+    100120: L_RingMid_JNT
+    100122: L_RingStart_JNT
+    100124: L_RingTip_JNT
+    100126: L_ThumbEnd_JNT
+    100128: L_ThumbStart_JNT
+    100130: L_ThumbTip_JNT
+    100132: L_Wrist_JNT
     400000: BarrelBottomLeft_JNT
     400002: BarrelBottomRight_JNT
     400004: BarrelEnd_JNT
@@ -87,6 +112,31 @@ ModelImporter:
     400078: Upper_JNT
     400080: //RootNode
     400082: Weapon_JNT
+    400084: L_Arm_Rig
+    400086: L_ArmBranch_JNT
+    400088: L_ArmRoot_JNT
+    400090: L_ArmShoulder_JNT
+    400092: L_Elbow_JNT
+    400094: L_MidEnd_JNT
+    400096: L_MidMid_JNT
+    400098: L_MidStart_JNT
+    400100: L_MidTip_JNT
+    400102: L_PinkyEnd_JNT
+    400104: L_PinkyMid_JNT
+    400106: L_PinkyStart_JNT
+    400108: L_PinkyTip_JNT
+    400110: L_PointerEnd_JNT
+    400112: L_PointerMid_JNT
+    400114: L_PointerStart_JNT
+    400116: L_PointerTip_JNT
+    400118: L_RingEnd_JNT
+    400120: L_RingMid_JNT
+    400122: L_RingStart_JNT
+    400124: L_RingTip_JNT
+    400126: L_ThumbEnd_JNT
+    400128: L_ThumbStart_JNT
+    400130: L_ThumbTip_JNT
+    400132: L_Wrist_JNT
     7400000: walk
     9500000: //RootNode
   externalObjects: {}

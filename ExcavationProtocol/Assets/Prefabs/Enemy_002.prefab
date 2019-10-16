@@ -79,7 +79,7 @@ MonoBehaviour:
   m_health: 6
   m_damage: 20
   m_speed: 300
-  m_maxSlopeAngle: 90
+  m_maxSlopeAngle: 40
   m_exlodeSFX: {fileID: 3724125835381649309, guid: 2295cb7964e208345abede024f1b65d7,
     type: 3}
   m_explosiveRadius: 15
