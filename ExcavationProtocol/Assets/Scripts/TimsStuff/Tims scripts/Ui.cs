@@ -33,9 +33,7 @@ public class Ui : MonoBehaviour
 
     // resources
     public Text res_cost_text;
-
-    public Camera Helmet;
-
+    
     #endregion
 
     #region Drill
