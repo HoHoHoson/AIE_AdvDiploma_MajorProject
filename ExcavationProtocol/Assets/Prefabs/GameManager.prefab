@@ -64,7 +64,6 @@ MonoBehaviour:
   dead_player: 0
   player_gameobject: {fileID: 0}
   wave_no: 0
-  time_to_next_wave: 10
   num_of_enemies: 0
   currency: 30
   wave_reward: 5
@@ -84,6 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   script_gamemanager: {fileID: 3317138830722218634}
   script_player: {fileID: 0}
+  player: {fileID: 0}
   hp_bar: {fileID: 0}
   energy_bar: {fileID: 0}
   wave_count: {fileID: 0}
@@ -94,13 +94,13 @@ MonoBehaviour:
   skill_2: {fileID: 0}
   skill_3: {fileID: 0}
   hud: {fileID: 0}
-  res_cost_text: {fileID: 0}
   Notifications: {fileID: 0}
+  res_cost_text: {fileID: 0}
+  Helmet: {fileID: 0}
   drills:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  player: {fileID: 0}
 --- !u!114 &3317138830722218740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,11 +121,18 @@ MonoBehaviour:
   m_enemyTypes:
   - m_enemyPrefab: {fileID: 2455372979600114904, guid: 67aab124b094c634e8a7653f400f72a4,
       type: 3}
-    m_spawnRate: 20
-    m_maxGroupSize: 30
+    m_spawnsPerWave: 1
+    m_spawnIncrement: 1
+    m_activeEnemiesLimit: 10
+    m_activeIncrement: 1
+    m_spawnGroupSize: 1
+    m_onWaves: 
   - m_enemyPrefab: {fileID: 3742569117176842085, guid: 8df34b66295a8e143be430b4a86081ed,
       type: 3}
-    m_spawnRate: 2
-    m_maxGroupSize: 1
-  m_enemyCount: 15
-  m_activeEnemiesLimit: 20
+    m_spawnsPerWave: 1
+    m_spawnIncrement: 1
+    m_activeEnemiesLimit: 10
+    m_activeIncrement: 1
+    m_spawnGroupSize: 1
+    m_onWaves: 
+  m_intermissionTime: 5
