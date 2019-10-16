@@ -194,6 +194,21 @@ public class Player : MonoBehaviour
             CompleteAction3();
         }
 
+        if (Input.GetKeyDown(KeyCode.1))
+        {
+            CompleteAction1();
+        }
+
+        if (Input.GetKeyDown(KeyCode.2))
+        {
+            CompleteAction2();
+        }
+
+        if (Input.GetKeyDown(KeyCode.3))
+        {
+            CompleteAction3();
+        }
+
         if (auto_gun)
         {
             if (Input.GetMouseButton(0) && player_energy_current > 0)

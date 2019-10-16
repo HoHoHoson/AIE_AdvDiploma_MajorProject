@@ -17171,6 +17171,16 @@ PrefabInstance:
       propertyPath: m_FontData.m_MaxSize
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 6052576251885516599, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7123938182200551242, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a, type: 3}
 --- !u!114 &550937172 stripped
@@ -32741,7 +32751,7 @@ PrefabInstance:
     - target: {fileID: 5867143756466394368, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.2
+      value: -0.18
       objectReference: {fileID: 0}
     - target: {fileID: 5867143756466394368, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
@@ -32761,7 +32771,7 @@ PrefabInstance:
     - target: {fileID: 5867143756466394368, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.02
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5867143756466394368, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
