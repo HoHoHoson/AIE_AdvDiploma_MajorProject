@@ -1,21 +1,16 @@
 fileFormatVersion: 2
-guid: 530b0a8080cbd234292f61431b81398f
+guid: 9a94351d0ae57d143b8cfac45ca1c574
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: pCube1
-    100004: boxTall
+    100002: polySurface1
     400000: //RootNode
-    400002: pCube1
-    400004: boxTall
+    400002: polySurface1
     2100000: lambert1
-    2300000: pCube1
-    2300002: boxTall
-    3300000: pCube1
-    3300002: boxTall
-    4300000: pCube1
-    4300002: boxTall
+    2300000: polySurface1
+    3300000: polySurface1
+    4300000: polySurface1
   externalObjects: {}
   materials:
     importMaterials: 1
