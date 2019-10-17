@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scripts/TimsStuff/Testing/Scenes/MenuTesting.unity
-    guid: 22b31acfe8ce17b40ace0d2fafb1b6c6
-  - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: cfd97997921fa6241b8e29788f859b20
+  - enabled: 1
+    path: Assets/Scripts/TimsStuff/Testing/Scenes/MenuTesting.unity
+    guid: 22b31acfe8ce17b40ace0d2fafb1b6c6
   - enabled: 0
     path: Assets/Scripts/TimsStuff/Testing/Scenes/Tim'sTestScene.unity
     guid: 3c1df06d1155a8a41910a4875512d0a2
