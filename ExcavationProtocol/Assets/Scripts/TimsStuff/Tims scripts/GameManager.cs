@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     // Ui gameobjects to toggle them in pause and end state
     public GameObject pause_menu;
     public GameObject game_over;
-    public GameObject game_play;
+    public GameObject game_play, crosshair;
     
     public bool is_paused = false;
     public bool dead_player = false;
@@ -111,8 +111,11 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            script_player.Inputs();
-            script_player.SkillTimers();
+            if (is_paused == false)
+            {
+                script_player.Inputs();
+                script_player.SkillTimers();
+            }
             script_UI.UpdateUI();
             script_bb.UpdateBlackboard();
             wave_no = script_bb.CurrentWave();
