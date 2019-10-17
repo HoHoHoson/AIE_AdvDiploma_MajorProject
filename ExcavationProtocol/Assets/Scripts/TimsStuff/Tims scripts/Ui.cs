@@ -33,12 +33,13 @@ public class Ui : MonoBehaviour
 
     // resources
     public Text res_cost_text;
-
+    
     #endregion
 
     #region Drill
     public GameObject[] drills;
     #endregion
+
     // Functions
 
     #region StartUpdate
