@@ -8,11 +8,24 @@ public class SmallAI : Agent
     [SerializeField] private float m_leapAngle              = 45;
     [SerializeField] private float m_leapForce              = 10;
 
+    private Animator m_animator;
+
     public override void InitialiseAgent(in Blackboard blackboard)
     {
-        m_type = EnemyType.BASIC;
-
         base.InitialiseAgent(blackboard);
+
+        m_type = EnemyType.BASIC;
+        m_animator = GetComponent<Animator>();
+    }
+
+    public override void UpdateAgent()
+    {
+        base.UpdateAgent();
+
+        if (m_state_machine.GetCurrentState() is SeekTargetState)
+            m_animator.SetBool("Seek", true);
+        else
+            m_animator.SetBool("Seek", false);
     }
 
     protected override void InitialiseStateMachine()
