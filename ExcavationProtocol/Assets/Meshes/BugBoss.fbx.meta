@@ -1,0 +1,193 @@
+fileFormatVersion: 2
+guid: 8f280bd9f7bc96c49b52653cb9126a6c
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Bug_3_001
+    100002: //RootNode
+    100004: BugBoss_Connector_JNT
+    100006: BugBoss_Head_CTRL
+    100008: BugBoss_Head_JNT
+    100010: BugBoss_Main_CTRL
+    100012: BugBoss_Main_JNT
+    100014: BugBoss_Neck_JNT
+    100016: BugBoss_Root_CTRL
+    100018: BugBoss_Root_JNT
+    100020: L_BugBoss_Ball_CTRL
+    100022: L_BugBoss_Ball_JNT
+    100024: L_BugBoss_BallEnd_JNT
+    100026: L_BugBoss_EndEnd_JNT
+    100028: L_BugBoss_EndMid_JNT
+    100030: L_BugBoss_EndStart_JNT
+    100032: L_BugBoss_EndTip_JNT
+    100034: L_BugBoss_FrontEnd_JNT
+    100036: L_BugBoss_FrontMid_JNT
+    100038: L_BugBoss_FrontStart_JNT
+    100040: L_BugBoss_FrontTip_JNT
+    100042: L_BugBoss_MidEnd_JNT
+    100044: L_BugBoss_MidMid_JNT
+    100046: L_BugBoss_MidStart_JNT
+    100048: L_BugBoss_MidTip_JNT
+    100050: L_BugBoss_Pincer_CTRL
+    100052: L_BugBoss_Pincer_JNT
+    100054: L_BugBoss_PincerConnector_JNT
+    100056: L_BugBoss_PincerEnd_JNT
+    100058: L_BugBoss_Spine1_CTRL
+    100060: L_BugBoss_Spine1_JNT
+    100062: L_BugBoss_Spine2_CTRL
+    100064: L_BugBoss_Spine2_JNT
+    100066: R_BugBoss_EndEnd_JNT
+    100068: R_BugBoss_EndMid_JNT
+    100070: R_BugBoss_EndStart_JNT
+    100072: R_BugBoss_EndTip_JNT
+    100074: R_BugBoss_FrontEnd_JNT
+    100076: R_BugBoss_FrontMid_JNT
+    100078: R_BugBoss_FrontStart_JNT
+    100080: R_BugBoss_FrontTip_JNT
+    100082: R_BugBoss_MidEnd_JNT
+    100084: R_BugBoss_MidMid_JNT
+    100086: R_BugBoss_MidStart_JNT
+    100088: R_BugBoss_MidTip_JNT
+    100090: R_BugBoss_Pincer_CTRL
+    100092: R_BugBoss_Pincer_JNT
+    100094: R_BugBoss_PincerConnector_JNT
+    100096: R_BugBoss_PincerEnd_JNT
+    400000: Bug_3_001
+    400002: //RootNode
+    400004: BugBoss_Connector_JNT
+    400006: BugBoss_Head_CTRL
+    400008: BugBoss_Head_JNT
+    400010: BugBoss_Main_CTRL
+    400012: BugBoss_Main_JNT
+    400014: BugBoss_Neck_JNT
+    400016: BugBoss_Root_CTRL
+    400018: BugBoss_Root_JNT
+    400020: L_BugBoss_Ball_CTRL
+    400022: L_BugBoss_Ball_JNT
+    400024: L_BugBoss_BallEnd_JNT
+    400026: L_BugBoss_EndEnd_JNT
+    400028: L_BugBoss_EndMid_JNT
+    400030: L_BugBoss_EndStart_JNT
+    400032: L_BugBoss_EndTip_JNT
+    400034: L_BugBoss_FrontEnd_JNT
+    400036: L_BugBoss_FrontMid_JNT
+    400038: L_BugBoss_FrontStart_JNT
+    400040: L_BugBoss_FrontTip_JNT
+    400042: L_BugBoss_MidEnd_JNT
+    400044: L_BugBoss_MidMid_JNT
+    400046: L_BugBoss_MidStart_JNT
+    400048: L_BugBoss_MidTip_JNT
+    400050: L_BugBoss_Pincer_CTRL
+    400052: L_BugBoss_Pincer_JNT
+    400054: L_BugBoss_PincerConnector_JNT
+    400056: L_BugBoss_PincerEnd_JNT
+    400058: L_BugBoss_Spine1_CTRL
+    400060: L_BugBoss_Spine1_JNT
+    400062: L_BugBoss_Spine2_CTRL
+    400064: L_BugBoss_Spine2_JNT
+    400066: R_BugBoss_EndEnd_JNT
+    400068: R_BugBoss_EndMid_JNT
+    400070: R_BugBoss_EndStart_JNT
+    400072: R_BugBoss_EndTip_JNT
+    400074: R_BugBoss_FrontEnd_JNT
+    400076: R_BugBoss_FrontMid_JNT
+    400078: R_BugBoss_FrontStart_JNT
+    400080: R_BugBoss_FrontTip_JNT
+    400082: R_BugBoss_MidEnd_JNT
+    400084: R_BugBoss_MidMid_JNT
+    400086: R_BugBoss_MidStart_JNT
+    400088: R_BugBoss_MidTip_JNT
+    400090: R_BugBoss_Pincer_CTRL
+    400092: R_BugBoss_Pincer_JNT
+    400094: R_BugBoss_PincerConnector_JNT
+    400096: R_BugBoss_PincerEnd_JNT
+    2100000: lambert2
+    4300000: Bug_3_001
+    9500000: //RootNode
+    13700000: Bug_3_001
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
