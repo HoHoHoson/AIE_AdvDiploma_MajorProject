@@ -610,12 +610,6 @@ PrefabInstance:
       propertyPath: script_gm
       value: 
       objectReference: {fileID: 823865809}
-    - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
-        type: 3}
-      propertyPath: frost_G
-      value: 
-      objectReference: {fileID: 4824119629656354010, guid: b49be8e2f7eaf5e4ab387f0a88e8f40d,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5388f809bb20ac4db9d5ecadfedeea3, type: 3}
 --- !u!1 &609471113 stripped
@@ -1604,7 +1598,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d9e8348937eded469ecbad90e304a2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundSystem: {fileID: 1810444778}
 --- !u!4 &1810444776
 Transform:
   m_ObjectHideFlags: 0
