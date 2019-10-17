@@ -249,6 +249,27 @@ public class Player : MonoBehaviour
             interaction_timer = 0;
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        //if a key is pressed,
+        {
+            animator.SetBool("Jumping", true);
+            //set Jumping variable in the animator to true
+        }
+        else
+        {
+            animator.SetBool("Jumping", false);
+            //if not it remains false
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            animator.SetBool("Detonate", true);
+            //playsound detonate
+        }
+        else
+        {
+            animator.SetBool("Detonate", false);
+        }
     }
 
     public void Interaction(GameObject interactable)
@@ -377,7 +398,8 @@ public class Player : MonoBehaviour
         direction = direction.normalized;
         direction *= playerSpeed * Time.deltaTime;
 
-        animator.SetFloat("Speed", Input.GetAxisRaw("Vertical"));
+        float average_speed = (Math.Abs(Input.GetAxisRaw("Vertical")) + Math.Abs(Input.GetAxisRaw("Horizontal"))) / 2;
+        animator.SetFloat("Speed", average_speed);
 
         if (has_jumped == true)
             direction.y = m_player_rb.velocity.y;
