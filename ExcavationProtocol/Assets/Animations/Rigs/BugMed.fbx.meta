@@ -55,6 +55,7 @@ ModelImporter:
     100098: R_Med_Pincer_CTRL
     100100: R_Med_Pincer_JNT
     100102: R_Med_Pincer_Tip_JNT
+    100104: Med_bug_ball
     400000: //RootNode
     400002: L_Med_LegEnd_Tip_JNT
     400004: L_Med_LegEndEnd_JNT
@@ -107,10 +108,13 @@ ModelImporter:
     400098: R_Med_Pincer_CTRL
     400100: R_Med_Pincer_JNT
     400102: R_Med_Pincer_Tip_JNT
+    400104: Med_bug_ball
     2100000: lambert1
     4300000: Med_bug_001
+    4300002: Med_bug_ball
     9500000: //RootNode
     13700000: Med_bug_001
+    13700002: Med_bug_ball
   externalObjects:
   - first:
       type: UnityEngine:Material
