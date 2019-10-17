@@ -194,17 +194,17 @@ public class Player : MonoBehaviour
             CompleteAction3();
         }
 
-        if (Input.GetKeyDown(KeyCode.1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             CompleteAction1();
         }
 
-        if (Input.GetKeyDown(KeyCode.2))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             CompleteAction2();
         }
 
-        if (Input.GetKeyDown(KeyCode.3))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             CompleteAction3();
         }
