@@ -111,7 +111,12 @@ ModelImporter:
     4300000: Med_bug_001
     9500000: //RootNode
     13700000: Med_bug_001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: e045d65305d49ef4d8545d0f4e6fc967, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

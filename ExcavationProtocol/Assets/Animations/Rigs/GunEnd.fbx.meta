@@ -1,15 +1,16 @@
 fileFormatVersion: 2
-guid: 1e0160874127434469eb70ad37c7a319
+guid: 0120104f28752de4e95bb38858448bff
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: GunEnd 1
     400000: //RootNode
-    2100000: lambert3
-    2100002: lambert2
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: ArmsWithGunBlockout
+    400002: GunEnd 1
+    2100000: lambert1
+    2300000: GunEnd 1
+    3300000: GunEnd 1
+    4300000: GunEnd
   externalObjects: {}
   materials:
     importMaterials: 1
