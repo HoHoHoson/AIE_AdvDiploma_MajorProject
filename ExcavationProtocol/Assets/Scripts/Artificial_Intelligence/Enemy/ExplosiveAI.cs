@@ -29,7 +29,14 @@ public class ExplosiveAI : Agent
 
     protected override void InitialiseStateMachine()
     {
-        State state = new SeekTargetState(this, m_blackboard, 0);
+        State state = new LeapAtState(this, 60, 20, 4);
+        state.AddTransition(new Transition("SEEKTARGET",
+            new Condition[] { new BoolCondition((state as LeapAtState).IsCooldownOver) }));
+        m_state_machine.AddState(state);
+
+        state = new SeekTargetState(this, m_blackboard, 0);
+        state.AddTransition(new Transition("LEAPAT",
+            new Condition[] { new BoolCondition(GetCliffLeap) }));
         m_state_machine.AddState(state);
 
         m_state_machine.InitiateStateMachine(this, "SEEKTARGET");

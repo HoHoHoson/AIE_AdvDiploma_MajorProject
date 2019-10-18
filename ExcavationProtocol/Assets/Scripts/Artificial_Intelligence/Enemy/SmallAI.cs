@@ -37,7 +37,8 @@ public class SmallAI : Agent
         state = new SeekTargetState(this, m_blackboard, m_playerDetectionRange);
         // Leaps at the targets face when in range
         state.AddTransition(new Transition("LEAPAT",
-            new Condition[] { new CompareCondition(this, m_leapRange, CompareCondition.Comparator.LESS) }));
+            new Condition[] { new CompareCondition(this, m_leapRange, CompareCondition.Comparator.LESS),
+                              new BoolCondition(GetCliffLeap) }));
         m_state_machine.AddState(state);
 
         // LEAP 4 FACE
