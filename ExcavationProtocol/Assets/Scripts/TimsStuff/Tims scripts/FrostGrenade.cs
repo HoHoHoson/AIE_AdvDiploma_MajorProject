@@ -32,13 +32,20 @@ public class FrostGrenade : MonoBehaviour
         {
             FreezeExplosion();
             Instantiate(frostsplosion, transform);
-            
             has_exploded = true;
         }
 
         if (frost_countdown <= 0)
         {
             Unfreeze();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!has_exploded)
+        {
+            FreezeExplosion();
         }
     }
 
