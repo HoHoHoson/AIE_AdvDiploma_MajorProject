@@ -86,6 +86,9 @@ public class Blackboard : MonoBehaviour
                 if (a.IsDead())
                     e.DeactivateEnemy(a);
 
+                if (a.transform.position.y < -1)
+                    a.gameObject.SetActive(false);
+
                 // Then updates the agent
                 a.UpdateAgent();
             }
