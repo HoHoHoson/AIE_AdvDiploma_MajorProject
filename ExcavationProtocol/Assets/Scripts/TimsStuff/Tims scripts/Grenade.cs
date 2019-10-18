@@ -31,6 +31,14 @@ public class Grenade : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(!has_exploded)
+        {
+            Explode();
+        }
+    }
+
     public void Explode()
     {
         Vector3 explosionPos = transform.position;

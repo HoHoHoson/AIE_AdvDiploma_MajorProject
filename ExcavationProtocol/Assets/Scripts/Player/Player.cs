@@ -564,10 +564,8 @@ public class Player : MonoBehaviour
     private IEnumerator ShotEffect()
     {
         laser_line.enabled = true;
-        
         yield return shot_duration;
         laser_line.enabled = false;
-
     }
 
     #endregion
