@@ -28,6 +28,7 @@ public class Ui : MonoBehaviour
 
     #region HUDVar
     public Image hud;
+	public Image HPBack;
     protected float half_hp, low_hp;
     public Text Notifications;
 
@@ -96,17 +97,20 @@ public class Ui : MonoBehaviour
         {
             hp_bar.fillRect.GetComponent<Image>().color = Color.red;
             hud.color = Color.red;
-        }
+			HPBack.color = Color.red;
+		}
         else if (hp <= half_hp)
         {
             hp_bar.fillRect.GetComponent<Image>().color = Color.Lerp(Color.red, Color.yellow, hp / half_hp);
             hud.color = Color.Lerp(Color.red, Color.yellow, hp / half_hp);
-        }
+			HPBack.color = Color.Lerp(Color.red, Color.yellow, hp / half_hp);
+		}
         else
         {
             hp_bar.fillRect.GetComponent<Image>().color = Color.Lerp(Color.yellow, Color.cyan, (hp - half_hp) / half_hp);
             hud.color = Color.Lerp(Color.yellow, Color.cyan, (hp - half_hp) / half_hp);
-        }
+			HPBack.color = Color.Lerp(Color.yellow, Color.cyan, (hp - half_hp) / half_hp);
+		}
     }
 
     #endregion
