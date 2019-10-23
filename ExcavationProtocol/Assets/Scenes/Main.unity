@@ -11789,7 +11789,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b5400f7fb2c9bcd4692f69b37a6c4a30, type: 2}
+      objectReference: {fileID: 2100000, guid: 222facb409e86634e941ab6704bb7d20, type: 2}
     - target: {fileID: 5034773138184210170, guid: e84355d8a408fb94fa5aa83b9fa5abe6,
         type: 3}
       propertyPath: m_Mesh
@@ -25794,12 +25794,12 @@ PrefabInstance:
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.data[1].m_spawnIncrement
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.data[0].m_spawnIncrement
-      value: 40
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
@@ -25829,12 +25829,12 @@ PrefabInstance:
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.data[0].m_spawnsPerWave
-      value: 60
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.data[1].m_spawnsPerWave
-      value: 40
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
@@ -25844,12 +25844,12 @@ PrefabInstance:
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.data[0].m_activeIncrement
-      value: 60
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.data[1].m_activeEnemiesLimit
-      value: 20
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0133e389627041d4893d129376d359a0, type: 3}
@@ -55445,6 +55445,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 023ff98ae70db0548a5e4aa4230347aa, type: 2}
+    - target: {fileID: 8496259801393612215, guid: 4edcd9d792fdc8f4aad1cf79e6705952,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4840997563750200115, guid: 4edcd9d792fdc8f4aad1cf79e6705952, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4edcd9d792fdc8f4aad1cf79e6705952, type: 3}
@@ -62279,7 +62284,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a8f29f58aa2ff87489192944888d0098, type: 2}
+      objectReference: {fileID: 2100000, guid: bff16dd1132cd2d41b58a1525fdb34d0, type: 2}
     - target: {fileID: 4942563134980608568, guid: 3c3bc4203226dee4cae78773645ca0a5,
         type: 3}
       propertyPath: m_Mesh
