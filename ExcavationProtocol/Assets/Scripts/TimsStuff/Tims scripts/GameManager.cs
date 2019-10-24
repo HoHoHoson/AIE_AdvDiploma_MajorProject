@@ -149,7 +149,8 @@ public class GameManager : MonoBehaviour
         {
             pause_menu.SetActive(true);
             game_play.SetActive(false);
-            Cursor.lockState = CursorLockMode.None;
+			crosshair.SetActive(false);
+			Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             unlocked_mouse = true;
             Time.timeScale = 0;
@@ -158,7 +159,8 @@ public class GameManager : MonoBehaviour
         {
             pause_menu.SetActive(false);
             game_play.SetActive(true);
-            Cursor.lockState = CursorLockMode.Locked;
+			crosshair.SetActive(true);
+			Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             unlocked_mouse = false;
             Time.timeScale = 1;
@@ -171,7 +173,8 @@ public class GameManager : MonoBehaviour
         {
             game_over.SetActive(true);
             game_play.SetActive(false);
-            Cursor.lockState = CursorLockMode.None;
+			crosshair.SetActive(false);
+			Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             unlocked_mouse = true;
             Time.timeScale = 0;

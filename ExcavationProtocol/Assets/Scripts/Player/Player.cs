@@ -117,6 +117,7 @@ public class Player : MonoBehaviour
 
     private Transform camera_transform;
 
+	public Transform GunPivot, GunOffset;
     #endregion
 
     // Functions
@@ -136,9 +137,8 @@ public class Player : MonoBehaviour
         fps_cam = GetComponentInChildren<Camera>();
 
         player_hp_current = player_hp;
-        //player_energy_current = player_energy;
-        player_hp_current = player_hp;
-
+        player_energy_current = player_energy;
+        
 		camera_transform = fps_cam.transform;
         skill_timer_1 = skill_1;
         skill_timer_3 = skill_3;
@@ -201,15 +201,27 @@ public class Player : MonoBehaviour
             CompleteAction3();
         }
 
+		if (Input.GetMouseButton(1))
+		{
+			GunOffset.localPosition = new Vector3(GunPivot.localPosition.x - 0.1055f , 0,0);
+			fps_cam.fieldOfView = 30;
+		}
+		else
+		{
+			GunOffset.localPosition = new Vector3(GunPivot.localPosition.x, 0,0);
+			fps_cam.fieldOfView = 60;
+		}
+
 		if (player_energy_current <= 0)
 		{
 			animator.SetBool("Shooting", false);
-			//animator.SetBool("Reload", true);
+			animator.SetBool("Reload", true);
+			
 			player_energy_current = player_energy;
 		}
-		else if (animator.GetBool("OutOfAmmo") == false)
+		else if (animator.GetBool("Reload") == false && player_energy_current > 0)
 		{
-			if (Input.GetMouseButton(0) && player_energy_current != 0)
+			if (Input.GetMouseButton(0))
 			{
 				animator.SetBool("Shooting", true);
 				GunFire(ref player_energy_current, fire_rate);
@@ -220,7 +232,15 @@ public class Player : MonoBehaviour
 			}
 		}
 
-        if (Input.GetKey(KeyCode.E))
+		if (Input.GetKey(KeyCode.R))
+		{
+			animator.SetBool("Shooting", false);
+			animator.SetBool("Reload", true);
+
+			player_energy_current = player_energy;
+		}
+
+		if (Input.GetKey(KeyCode.E))
         {
             if (Physics.Raycast(camera_transform.position, camera_transform.forward, out RaycastHit hit, 5.0f))
             {
@@ -528,5 +548,9 @@ public class Player : MonoBehaviour
         laser_line.enabled = false;
     }
 
+	void ReloadComplete()
+	{
+		animator.SetBool("Reload", false);
+	}
     #endregion
 }

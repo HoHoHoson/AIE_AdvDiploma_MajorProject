@@ -386,6 +386,38 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &1859486631778332199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1752694511429500777}
+  m_Layer: 0
+  m_Name: GunOffset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1752694511429500777
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859486631778332199}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7131119243476541237}
+  - {fileID: 624573788}
+  m_Father: {fileID: 8614550032150692461}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2157290608645027833
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,8 +527,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7131119243476541237}
-  - {fileID: 624573788}
+  - {fileID: 1752694511429500777}
   m_Father: {fileID: 3262474647881643129}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -613,9 +644,11 @@ MonoBehaviour:
   player_energy: 1000
   auto_gun: 1
   fire_rate: 0.1
+  reload_time: 0
   interaction_cooldown: 0.25
   playerCamera: {fileID: 3262474647881643129}
   playerSpeed: 600
+  SprintMult: 2
   cameraSensitivity: 1
   maxCameraPitch: 50
   minCameraPitch: -50
@@ -642,6 +675,8 @@ MonoBehaviour:
   weapon_range: 50
   hit_force: 1000
   gun_end: {fileID: 624573790}
+  GunPivot: {fileID: 0}
+  GunOffset: {fileID: 0}
 --- !u!120 &366442169
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -847,11 +882,15 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 8614550032150692461}
+    m_TransformParent: {fileID: 1752694511429500777}
     m_Modifications:
+    - target: {fileID: 100000, guid: 0120104f28752de4e95bb38858448bff, type: 3}
+      propertyPath: m_Name
+      value: GunEnd (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0120104f28752de4e95bb38858448bff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0120104f28752de4e95bb38858448bff, type: 3}
       propertyPath: m_LocalPosition.y
@@ -863,7 +902,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0120104f28752de4e95bb38858448bff, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0120104f28752de4e95bb38858448bff, type: 3}
       propertyPath: m_LocalRotation.y
@@ -893,10 +932,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 0120104f28752de4e95bb38858448bff, type: 3}
-      propertyPath: m_Name
-      value: GunEnd (1)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0120104f28752de4e95bb38858448bff, type: 3}
 --- !u!4 &624573788 stripped
@@ -916,7 +951,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 8614550032150692461}
+    m_TransformParent: {fileID: 1752694511429500777}
     m_Modifications:
     - target: {fileID: 100000, guid: 653f11ebd0ed5274b883734c57de0118, type: 3}
       propertyPath: m_Name
@@ -936,15 +971,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 653f11ebd0ed5274b883734c57de0118, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 653f11ebd0ed5274b883734c57de0118, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 653f11ebd0ed5274b883734c57de0118, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 653f11ebd0ed5274b883734c57de0118, type: 3}
       propertyPath: m_LocalRotation.w
