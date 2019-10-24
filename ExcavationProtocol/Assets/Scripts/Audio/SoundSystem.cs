@@ -38,7 +38,7 @@ public class SoundSystem : MonoBehaviour
 
             case LoopMode.Loop:
                 {
-                    if (IsPlaying() == true)
+                    if (IsLooping() == true)
                         return;
 
                     m_loop_index = ((++m_loop_index % m_soundClips.Length) + m_soundClips.Length) % m_soundClips.Length;
@@ -51,7 +51,7 @@ public class SoundSystem : MonoBehaviour
 
             case LoopMode.ShuffleLoop:
                 {
-                    if (IsPlaying() == true)
+                    if (IsLooping() == true)
                         return;
 
                     m_loaded_clip = m_soundClips[Random.Range(0, m_soundClips.Length)];
@@ -87,9 +87,9 @@ public class SoundSystem : MonoBehaviour
             clip.GetAudio().Stop();
     }
 
-    private bool IsPlaying()
+    private bool IsLooping()
     {
-        return (m_loaded_clip != null && m_loaded_clip.audioClip.isPlaying);
+        return (m_loaded_clip != null && m_loaded_clip.GetAudio().isPlaying);
     }
 
     private bool IsEmpty()

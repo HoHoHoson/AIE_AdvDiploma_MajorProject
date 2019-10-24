@@ -109,6 +109,7 @@ public class Player : MonoBehaviour
     private readonly WaitForSeconds shot_duration = new WaitForSeconds(0.001f);
     private LineRenderer laser_line;
     private float next_fire;
+    private SoundSystem m_sound_system;
 
     private Transform camera_transform;
 
@@ -139,6 +140,8 @@ public class Player : MonoBehaviour
         skill_timer_1 = skill_1;
         skill_timer_2 = skill_2;
         skill_timer_3 = skill_3;
+
+        m_sound_system = GetComponent<SoundSystem>();
     }
 
     void Update()
@@ -510,6 +513,7 @@ public class Player : MonoBehaviour
             next_fire = Time.time + fire_rate;
             current_en--;
             StartCoroutine(ShotEffect());
+            m_sound_system.PlayClip(0);
 
             Vector3 ray_origin = fps_cam.ScreenToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
 
