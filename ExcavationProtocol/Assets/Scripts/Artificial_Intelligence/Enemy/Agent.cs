@@ -23,6 +23,11 @@ public class Agent : MonoBehaviour
     [SerializeField, Range(0, 90)]
     private int m_maxSlopeAngle = 70;
 
+    [Header("Leap Settings")]
+    [SerializeField] protected float m_leapCooldown = 2;
+    [SerializeField] protected float m_leapAngle = 45;
+    [SerializeField] protected float m_leapForce = 10;
+
     protected int               m_current_health;
     protected int               m_current_damage;
     protected float             m_current_speed;
