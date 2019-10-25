@@ -262,7 +262,7 @@ public class Player : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
+        { 
             animator.SetBool("Detonate", true);
             //playsound detonate
         }
@@ -338,9 +338,15 @@ public class Player : MonoBehaviour
     private void GunADS()
     {
         if (Input.GetMouseButton(1))
+        {
             ads_timer += Time.deltaTime;
+            animator.SetBool("Aiming", true);
+        }
         else
+        {
             ads_timer -= Time.deltaTime;
+            animator.SetBool("Aiming", false);
+        }
 
         ads_timer = Mathf.Clamp(ads_timer, 0, gun_ads_time);
 
