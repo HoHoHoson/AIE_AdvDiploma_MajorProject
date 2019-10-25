@@ -25,9 +25,9 @@ public class BoolCondition : Condition
             m_bool_mode = BoolMode.STATEMENT;
     }
 
-    public BoolCondition(in GameObject enemy)
+    public BoolCondition(in GameObject target)
     {
-        m_target = enemy;
+        m_target = target;
         m_bool_mode = BoolMode.TARGET;
     }
 

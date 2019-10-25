@@ -2,8 +2,11 @@
 
 public class SmallAI : Agent
 {
-    [SerializeField] private float m_playerSeekRadius   = 10;
-    [SerializeField] private float m_leapRadius         = 5;
+    [SerializeField] private float m_playerDetectionRange   = 10;
+    [SerializeField] private float m_leapRange              = 5;
+    [SerializeField] private float m_leapCooldown           = 2;
+    [SerializeField] private float m_leapAngle              = 45;
+    [SerializeField] private float m_leapForce              = 10;
 
     private Animator m_animator;
 
@@ -31,11 +34,10 @@ public class SmallAI : Agent
         m_state_machine.AddState(state);
 
         // Chases after the AI's set target
-        state = new SeekTargetState(this, m_blackboard, m_playerSeekRadius);
+        state = new SeekTargetState(this, m_blackboard, m_playerDetectionRange);
         // Leaps at the targets face when in range
         state.AddTransition(new Transition("LEAPAT",
-            new Condition[] { new CompareCondition(this, m_leapRadius, CompareCondition.Comparator.LESS),
-                              new BoolCondition(GetCliffLeap) }));
+            new Condition[] { new CompareCondition(this, m_leapRange, CompareCondition.Comparator.LESS) }));
         m_state_machine.AddState(state);
 
         // LEAP 4 FACE

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5034773138184210170}
   - component: {fileID: 7307390139806786055}
   - component: {fileID: 1607780283275379791}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Terminal_001
   m_TagString: EnergyTerminal
   m_Icon: {fileID: 0}
