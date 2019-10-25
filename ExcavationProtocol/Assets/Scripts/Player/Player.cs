@@ -109,11 +109,14 @@ public class Player : MonoBehaviour
     public float weapon_range = 50f;
     public float hit_force = 100f;
     public Transform gun_end;
+    public float gun_ads_time = 1;
 
     private Camera fps_cam;
     private readonly WaitForSeconds shot_duration = new WaitForSeconds(0.001f);
     private LineRenderer laser_line;
     private float next_fire;
+    private float ads_timer = 0;
+    private Vector3 orginal_gun_pos;
 
     private Transform camera_transform;
 
@@ -201,16 +204,8 @@ public class Player : MonoBehaviour
             CompleteAction3();
         }
 
-		if (Input.GetMouseButton(1))
-		{
-			GunOffset.localPosition = new Vector3(GunPivot.localPosition.x - 0.1055f , 0,0);
-			fps_cam.fieldOfView = 30;
-		}
-		else
-		{
-			GunOffset.localPosition = new Vector3(GunPivot.localPosition.x, 0,0);
-			fps_cam.fieldOfView = 60;
-		}
+        // Aim down sights function
+        GunADS();
 
 		if (player_energy_current <= 0)
 		{
@@ -317,6 +312,21 @@ public class Player : MonoBehaviour
             return true;
         else
             return false;
+    }
+
+    private void GunADS()
+    {
+        if (Input.GetMouseButton(1))
+            ads_timer += Time.deltaTime;
+        else
+            ads_timer -= Time.deltaTime;
+
+        ads_timer = Mathf.Clamp(ads_timer, 0, gun_ads_time);
+
+        float t = ads_timer / gun_ads_time;
+
+        GunOffset.localPosition = new Vector3(Mathf.Lerp(GunPivot.localPosition.x, GunPivot.localPosition.x - 0.1055f, t), 0, 0);
+        fps_cam.fieldOfView = Mathf.Lerp(60, 30, t);
     }
 
     #endregion
