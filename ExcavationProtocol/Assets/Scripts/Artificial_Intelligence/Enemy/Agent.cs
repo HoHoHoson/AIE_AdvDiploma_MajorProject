@@ -23,6 +23,11 @@ public class Agent : MonoBehaviour
     [SerializeField, Range(0, 90)]
     private int m_maxSlopeAngle = 70;
 
+    [Header("Leap Settings")]
+    [SerializeField] protected float m_leapCooldown = 2;
+    [SerializeField] protected float m_leapAngle = 45;
+    [SerializeField] protected float m_leapForce = 10;
+
     protected int               m_current_health;
     protected int               m_current_damage;
     protected float             m_current_speed;
@@ -34,6 +39,8 @@ public class Agent : MonoBehaviour
     protected Blackboard        m_blackboard;
     protected GameObject        m_target;
 
+    private bool                m_cliff_leap = false;
+
     public int GetSlopeAngle() { return m_maxSlopeAngle; }
     public int GetDamage() { return m_damage; }
     public float GetSpeed() { return m_current_speed; }
@@ -42,6 +49,7 @@ public class Agent : MonoBehaviour
     public ref CapsuleCollider GetCollider() { return ref m_collider; }
     public ref StateMachine GetStateMachine() { return ref m_state_machine; }
     public ref GameObject GetTarget() { return ref m_target; }
+    protected bool GetCliffLeap() { return m_cliff_leap; }
 
     public void SetSpeed(float new_speed) { m_current_speed = new_speed; }
     public void SetTarget(in GameObject value) { m_target = value; }
@@ -88,4 +96,15 @@ public class Agent : MonoBehaviour
     public virtual void TakeDamage(int dmg) { m_current_health -= dmg; }
 
     public virtual bool IsDead() { return m_current_health <= 0; }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "CliffBounds")
+            m_cliff_leap = true;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "CliffBounds")
+            m_cliff_leap = false;
+    }
 }

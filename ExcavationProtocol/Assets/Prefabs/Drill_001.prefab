@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: 8389706959244704662}
   - component: {fileID: 1854299252}
   - component: {fileID: 8496259801393612215}
+  - component: {fileID: 4936317888274370055}
   m_Layer: 0
   m_Name: Drill_001
   m_TagString: Mine
@@ -271,6 +272,20 @@ CapsuleCollider:
   m_Height: 19.207802
   m_Direction: 1
   m_Center: {x: 0, y: 5.3360996, z: 0}
+--- !u!64 &4936317888274370055
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3110612153371333922}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 48a9896674c48b54382a0a2e56618fb1, type: 3}
 --- !u!1 &5565091664009449080
 GameObject:
   m_ObjectHideFlags: 0

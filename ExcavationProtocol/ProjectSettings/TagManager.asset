@@ -8,6 +8,7 @@ TagManager:
   - HealthTerminal
   - Mine
   - Frost
+  - CliffBounds
   layers:
   - Default
   - TransparentFX
