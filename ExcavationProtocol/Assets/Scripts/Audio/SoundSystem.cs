@@ -66,12 +66,12 @@ public class SoundSystem : MonoBehaviour
         }
     }
 
-    public void PlayClip(int index = 0)
+    public SoundClip GetClip(int index = 0)
     {
         int wrapped_index = ((index % m_soundClips.Length) + m_soundClips.Length) % m_soundClips.Length;
         SoundClip sound_clip = m_soundClips[wrapped_index];
 
-        sound_clip.PlayAudio();
+        return sound_clip;
     }
 
     public void PlayRandom()

@@ -6,6 +6,8 @@ public class FrostGrenade : MonoBehaviour
 {
     Player script_fps;
     public ParticleSystem frostsplosion;
+    public AudioSource frostsoundem;
+
     public float bomb_timer = 3f;
     bool has_exploded = false;
     public float skill_3_radius = 5.0f;
@@ -31,7 +33,9 @@ public class FrostGrenade : MonoBehaviour
         if (countdown <= 0f && !has_exploded)
         {
             FreezeExplosion();
-            Instantiate(frostsplosion, transform);
+            ParticleSystem frost_area = Instantiate(frostsplosion, transform);
+            Instantiate(frostsoundem, frost_area.transform).Play();
+
             has_exploded = true;
         }
 

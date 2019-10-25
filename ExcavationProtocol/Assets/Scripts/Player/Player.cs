@@ -513,7 +513,8 @@ public class Player : MonoBehaviour
             next_fire = Time.time + fire_rate;
             current_en--;
             StartCoroutine(ShotEffect());
-            m_sound_system.PlayClip(0);
+
+            m_sound_system.GetClip(0).PlayAudio();
 
             Vector3 ray_origin = fps_cam.ScreenToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
 
