@@ -249,6 +249,27 @@ public class Player : MonoBehaviour
             interaction_timer = 0;
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        //if a key is pressed,
+        {
+            animator.SetBool("Jumping", true);
+            //set Jumping variable in the animator to true
+        }
+        else
+        {
+            animator.SetBool("Jumping", false);
+            //if not it remains false
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        { 
+            animator.SetBool("Detonate", true);
+            //playsound detonate
+        }
+        else
+        {
+            animator.SetBool("Detonate", false);
+        }
     }
 
     public void Interaction(GameObject interactable)
@@ -317,15 +338,25 @@ public class Player : MonoBehaviour
     private void GunADS()
     {
         if (Input.GetMouseButton(1))
+        {
             ads_timer += Time.deltaTime;
+            animator.SetBool("Aiming", true);
+        }
         else
+        {
             ads_timer -= Time.deltaTime;
+            animator.SetBool("Aiming", false);
+        }
 
         ads_timer = Mathf.Clamp(ads_timer, 0, gun_ads_time);
 
         float t = ads_timer / gun_ads_time;
+        //aim down sights values, think of counter strike
+        GunOffset.localPosition = new Vector3(
+            Mathf.Lerp(GunPivot.localPosition.x, GunPivot.localPosition.x - 0.1055f, t), // X value
+            Mathf.Lerp(0, -0.05f, t), // Y value
+            Mathf.Lerp(0, -0.1f, t)); // Z value
 
-        GunOffset.localPosition = new Vector3(Mathf.Lerp(GunPivot.localPosition.x, GunPivot.localPosition.x - 0.1055f, t), 0, 0);
         fps_cam.fieldOfView = Mathf.Lerp(60, 30, t);
     }
 
@@ -383,6 +414,9 @@ public class Player : MonoBehaviour
         Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         direction = transform.TransformDirection(direction);
         direction = direction.normalized;
+
+        float average_speed = (Math.Abs(Input.GetAxisRaw("Vertical")) + Math.Abs(Input.GetAxisRaw("Horizontal"))) / 2;
+        animator.SetFloat("Speed", average_speed);
 		if (is_sprinting == false)
 		{
 			direction *= playerSpeed * Time.deltaTime;
@@ -391,7 +425,6 @@ public class Player : MonoBehaviour
 		{
 			direction *= (playerSpeed * SprintMult) * Time.deltaTime;
 		}
-        animator.SetFloat("Speed", Input.GetAxisRaw("Vertical"));
 
         if (has_jumped == true)
             direction.y = m_player_rb.velocity.y;
