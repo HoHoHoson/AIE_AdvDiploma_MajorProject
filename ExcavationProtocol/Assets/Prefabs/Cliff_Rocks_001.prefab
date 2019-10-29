@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6452033258286630542}
   - component: {fileID: 3278371795243932887}
   - component: {fileID: 7712892564369366296}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cliff_Rocks_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
