@@ -466,6 +466,7 @@ GameObject:
   - component: {fileID: 8023661635665430853}
   - component: {fileID: 366442169}
   - component: {fileID: 950402033}
+  - component: {fileID: 7395005959737515461}
   m_Layer: 0
   m_Name: FPS_Controller
   m_TagString: Player
@@ -678,6 +679,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7395005959737515461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8023661635665430852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba878c36ad3b8e44af7457fc33d5827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_loopSetting: 0
+  m_soundClips:
+  - m_audioClip: {fileID: 6728728328571317040, guid: 911421f0ae561484598946628475aedc,
+      type: 3}
+    m_minDelay: 0
+    m_maxDelay: 0
 --- !u!1 &8948145744973601613
 GameObject:
   m_ObjectHideFlags: 0

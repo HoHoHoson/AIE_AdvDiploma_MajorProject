@@ -14,16 +14,22 @@ public class SoundSystem : MonoBehaviour
     [SerializeField] private LoopMode       m_loopSetting = 0;
     [SerializeField] private SoundClip[]    m_soundClips;
 
-    private SoundClip   m_loaded_clip;
-    private int         m_loop_index = -1;
+    private SoundClip       m_loaded_clip;
+    private int             m_loop_index = -1;
+
+    void Start()
+    {
+        if (IsEmpty())
+            return;
+
+        foreach (SoundClip sound_clip in m_soundClips)
+            sound_clip.InstantiateAudioSource(transform);
+    }
 
     void Update()
     {
-        if (m_soundClips.Length == 0)
-        {
-            Debug.Log("ERROR: SoundSystem contains no audio clips.");
+        if (IsEmpty())
             return;
-        }
 
         switch (m_loopSetting)
         {
@@ -32,24 +38,24 @@ public class SoundSystem : MonoBehaviour
 
             case LoopMode.Loop:
                 {
-                    if (IsPlaying() == true)
+                    if (IsLooping() == true)
                         return;
 
                     m_loop_index = ((++m_loop_index % m_soundClips.Length) + m_soundClips.Length) % m_soundClips.Length;
 
                     m_loaded_clip = m_soundClips[m_loop_index];
-                    PlayLoaded();
+                    m_loaded_clip.PlayAudio();
 
                     break;
                 }
 
             case LoopMode.ShuffleLoop:
                 {
-                    if (IsPlaying() == true)
+                    if (IsLooping() == true)
                         return;
 
                     m_loaded_clip = m_soundClips[Random.Range(0, m_soundClips.Length)];
-                    PlayLoaded();
+                    m_loaded_clip.PlayAudio();
 
                     break;
                 }
@@ -60,46 +66,40 @@ public class SoundSystem : MonoBehaviour
         }
     }
 
-    public void PlayClip(int index = 0)
+    public SoundClip GetClip(int index = 0)
     {
         int wrapped_index = ((index % m_soundClips.Length) + m_soundClips.Length) % m_soundClips.Length;
         SoundClip sound_clip = m_soundClips[wrapped_index];
 
-        sound_clip.audioClip.PlayDelayed(Random.Range(sound_clip.minDelay, sound_clip.maxDelay));
+        return sound_clip;
     }
 
     public void PlayRandom()
     {
         SoundClip random_clip = m_soundClips[Random.Range(0, m_soundClips.Length)];
 
-        random_clip.audioClip.PlayDelayed(Random.Range(random_clip.minDelay, random_clip.maxDelay));
+        random_clip.PlayAudio();
     }
 
-    private void PlayLoaded()
+    private void ClearAllPlaying()
     {
-        m_loaded_clip.audioClip.PlayDelayed(Random.Range(m_loaded_clip.minDelay, m_loaded_clip.maxDelay));
+        foreach (SoundClip clip in m_soundClips)
+            clip.GetAudioSource().Stop();
     }
 
-    private void ClearPlaying()
+    private bool IsLooping()
     {
-        if (m_loaded_clip == null)
-            return;
-
-        m_loaded_clip.audioClip.Stop();
-        m_loaded_clip = null;
+        return (m_loaded_clip != null && m_loaded_clip.GetAudioSource().isPlaying);
     }
 
-    private bool IsPlaying()
+    private bool IsEmpty()
     {
-        return (m_loaded_clip != null && m_loaded_clip.audioClip.isPlaying);
-    }
+        if (m_soundClips.Length == 0)
+        {
+            Debug.Log("ERROR: SoundSystem contains no audio clips.");
+            return true;
+        }
 
-    [System.Serializable]
-    private class SoundClip
-    {
-        public AudioSource audioClip;
-
-        public float minDelay = 0;
-        public float maxDelay = 0;
+        return false;
     }
 }
