@@ -392,6 +392,8 @@ public class Player : MonoBehaviour
     {
         jump_timer = Time.time + jump_cooldown;
         has_jumped = true;
+
+        m_sound_system.GetClip(1).GetAudioSource().PlayOneShot(m_sound_system.GetClip(1).GetAudioSource().clip);
         m_player_rb.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
     }
 

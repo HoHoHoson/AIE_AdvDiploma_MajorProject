@@ -84,12 +84,12 @@ public class SoundSystem : MonoBehaviour
     private void ClearAllPlaying()
     {
         foreach (SoundClip clip in m_soundClips)
-            clip.GetAudio().Stop();
+            clip.GetAudioSource().Stop();
     }
 
     private bool IsLooping()
     {
-        return (m_loaded_clip != null && m_loaded_clip.GetAudio().isPlaying);
+        return (m_loaded_clip != null && m_loaded_clip.GetAudioSource().isPlaying);
     }
 
     private bool IsEmpty()

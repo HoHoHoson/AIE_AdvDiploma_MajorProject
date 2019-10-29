@@ -11,7 +11,7 @@ public class SoundClip
 
     public float GetMinDelay() { return m_minDelay; }
     public float GetMaxDelay() { return m_maxDelay; }
-    public AudioSource GetAudio() { return m_instantiated_sound; }
+    public AudioSource GetAudioSource() { return m_instantiated_sound; }
 
     public void InstantiateAudioSource(Transform parent_transform)
     {
