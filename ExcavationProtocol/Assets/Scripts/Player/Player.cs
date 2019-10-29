@@ -29,6 +29,9 @@ public class Player : MonoBehaviour
     public bool auto_gun;
     public float fire_rate = 0.25f;
 
+	public float reload_time;	// Time Set Duration
+	private float reload_clock;	// clock (dTime)
+
     public float interaction_cooldown = 0.25f;
     private float interaction_timer;
 
@@ -38,6 +41,8 @@ public class Player : MonoBehaviour
     public Transform playerCamera;
 
     public float playerSpeed = 300;
+	private bool is_sprinting = false;
+	public float SprintMult = 2;
 
     public float cameraSensitivity = 1;
     public float maxCameraPitch = 50;
@@ -104,6 +109,7 @@ public class Player : MonoBehaviour
     public float weapon_range = 50f;
     public float hit_force = 100f;
     public Transform gun_end;
+    public float gun_ads_time = 1;
 
     private Camera fps_cam;
     private readonly WaitForSeconds shot_duration = new WaitForSeconds(0.001f);
@@ -113,6 +119,7 @@ public class Player : MonoBehaviour
 
     private Transform camera_transform;
 
+	public Transform GunPivot, GunOffset;
     #endregion
 
     // Functions
@@ -133,12 +140,9 @@ public class Player : MonoBehaviour
 
         player_hp_current = player_hp;
         player_energy_current = player_energy;
-        player_hp_current = player_hp;
-
-        camera_transform = fps_cam.transform;
-
+        
+		camera_transform = fps_cam.transform;
         skill_timer_1 = skill_1;
-        skill_timer_2 = skill_2;
         skill_timer_3 = skill_3;
 
         m_sound_system = GetComponent<SoundSystem>();
@@ -182,63 +186,57 @@ public class Player : MonoBehaviour
 
     public void Inputs()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Alpha1))
         {
             CompleteAction1();
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.Alpha2))
         {
-            CompleteAction2();
+			is_sprinting = true;
         }
+		else
+		{
+			is_sprinting = false;
+		}
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F)|| Input.GetKeyDown(KeyCode.Alpha3))
         {
             CompleteAction3();
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            CompleteAction1();
-        }
+        // Aim down sights function
+        GunADS();
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            CompleteAction2();
-        }
+		if (player_energy_current <= 0)
+		{
+			animator.SetBool("Shooting", false);
+			animator.SetBool("Reload", true);
+			
+			player_energy_current = player_energy;
+		}
+		else if (animator.GetBool("Reload") == false && player_energy_current > 0)
+		{
+			if (Input.GetMouseButton(0))
+			{
+				animator.SetBool("Shooting", true);
+				GunFire(ref player_energy_current, fire_rate);
+			}
+			else
+			{
+				animator.SetBool("Shooting", false);
+			}
+		}
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            CompleteAction3();
-        }
+		if (Input.GetKey(KeyCode.R))
+		{
+			animator.SetBool("Shooting", false);
+			animator.SetBool("Reload", true);
 
-        if (auto_gun)
-        {
-            if (Input.GetMouseButton(0) && player_energy_current > 0)
-            {
-                animator.SetBool("Shooting", true);
-                GunFire(ref player_energy_current, fire_rate);
-            }
-            else if (Input.GetMouseButton(0) && player_energy_current <= 0)
-            {
-                StartCoroutine(OutOfAmmo());
-            }
-            else
-                animator.SetBool("Shooting", false);
-        }
-        else
-        {
-            if (Input.GetMouseButtonDown(0) && player_energy_current > 0)
-            {
-                GunFire(ref player_energy_current, fire_rate);
-            }
-            else if (Input.GetMouseButtonDown(0) && player_energy_current <= 0)
-            {
-                StartCoroutine(OutOfAmmo());
-            }
-        }
+			player_energy_current = player_energy;
+		}
 
-        if (Input.GetKey(KeyCode.E))
+		if (Input.GetKey(KeyCode.E))
         {
             if (Physics.Raycast(camera_transform.position, camera_transform.forward, out RaycastHit hit, 5.0f))
             {
@@ -252,6 +250,27 @@ public class Player : MonoBehaviour
             interaction_timer = 0;
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        //if a key is pressed,
+        {
+            animator.SetBool("Jumping", true);
+            //set Jumping variable in the animator to true
+        }
+        else
+        {
+            animator.SetBool("Jumping", false);
+            //if not it remains false
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        { 
+            animator.SetBool("Detonate", true);
+            //playsound detonate
+        }
+        else
+        {
+            animator.SetBool("Detonate", false);
+        }
     }
 
     public void Interaction(GameObject interactable)
@@ -308,13 +327,6 @@ public class Player : MonoBehaviour
         }
         return player_hp_current;
     }
-
-    private IEnumerator OutOfAmmo()
-    {
-        animator.SetBool("OutOfAmmo", true);
-        yield return new WaitForSeconds(1);
-        animator.SetBool("OutOfAmmo", false);
-    }
     
     public bool IsPlayerDead()
     {
@@ -322,6 +334,31 @@ public class Player : MonoBehaviour
             return true;
         else
             return false;
+    }
+
+    private void GunADS()
+    {
+        if (Input.GetMouseButton(1))
+        {
+            ads_timer += Time.deltaTime;
+            animator.SetBool("Aiming", true);
+        }
+        else
+        {
+            ads_timer -= Time.deltaTime;
+            animator.SetBool("Aiming", false);
+        }
+
+        ads_timer = Mathf.Clamp(ads_timer, 0, gun_ads_time);
+
+        float t = ads_timer / gun_ads_time;
+        //aim down sights values, think of counter strike
+        GunOffset.localPosition = new Vector3(
+            Mathf.Lerp(GunPivot.localPosition.x, GunPivot.localPosition.x - 0.1055f, t), // X value
+            Mathf.Lerp(0, -0.05f, t), // Y value
+            Mathf.Lerp(0, -0.1f, t)); // Z value
+
+        fps_cam.fieldOfView = Mathf.Lerp(60, 30, t);
     }
 
     #endregion
@@ -378,9 +415,17 @@ public class Player : MonoBehaviour
         Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         direction = transform.TransformDirection(direction);
         direction = direction.normalized;
-        direction *= playerSpeed * Time.deltaTime;
 
-        animator.SetFloat("Speed", Input.GetAxisRaw("Vertical"));
+        float average_speed = (Math.Abs(Input.GetAxisRaw("Vertical")) + Math.Abs(Input.GetAxisRaw("Horizontal"))) / 2;
+        animator.SetFloat("Speed", average_speed);
+		if (is_sprinting == false)
+		{
+			direction *= playerSpeed * Time.deltaTime;
+		}
+		else
+		{
+			direction *= (playerSpeed * SprintMult) * Time.deltaTime;
+		}
 
         if (has_jumped == true)
             direction.y = m_player_rb.velocity.y;
@@ -421,12 +466,10 @@ public class Player : MonoBehaviour
     /// Performs skill 2 ( Places a Mine / allows the player to place and deternate a mine
     /// dealing damage to targets and knocking everything with a RB away from it )
     /// </summary>
-    public void SkillActive2()
-    {
-        GameObject expl = Instantiate(land_mine);
-        expl.transform.position = g_throw_point.transform.position;
-        expl.GetComponent<Rigidbody>().AddForce(g_throw_point.transform.forward * throw_force_2, ForceMode.Impulse);
-    }
+    //public void SkillActive2()
+    //{
+	//	
+    //}
 
     /// <summary>
     /// Performs skill 3 ( Throws frost Grenade / Freezes targets within a Radius )
@@ -449,18 +492,18 @@ public class Player : MonoBehaviour
         active_1 = true;
     }
 
-    public void CompleteAction2()
-    {
-        if (skill_timer_2 < skill_2)
-            return;
+	//public void CompleteAction2()
+	//{
+	//	//if (skill_timer_2 < skill_2)
+	//	//	return;
+	//	//
+	//	//active_2 = false;
+	//	//skill_timer_2 = 0;
+	//	SkillActive2();
+	//	//active_2 = true;
+	//}
 
-        active_2 = false;
-        skill_timer_2 = 0;
-        SkillActive2();
-        active_2 = true;
-    }
-
-    public void CompleteAction3()
+	public void CompleteAction3()
     {
         if (skill_timer_3 < skill_3)
             return;
@@ -483,14 +526,14 @@ public class Player : MonoBehaviour
             skill_timer_1 = skill_1;
         }
 
-        if (active_2)
-        {
-            skill_timer_2 += Time.deltaTime;
-        }
-        if (skill_timer_2 > skill_2)
-        {
-            skill_timer_2 = skill_2;
-        }
+        //if (active_2)
+        //{
+        //    skill_timer_2 += Time.deltaTime;
+        //}
+        //if (skill_timer_2 > skill_2)
+        //{
+        //    skill_timer_2 = skill_2;
+        //}
 
         if (active_3)
         {
@@ -553,5 +596,9 @@ public class Player : MonoBehaviour
         laser_line.enabled = false;
     }
 
+	void ReloadComplete()
+	{
+		animator.SetBool("Reload", false);
+	}
     #endregion
 }
