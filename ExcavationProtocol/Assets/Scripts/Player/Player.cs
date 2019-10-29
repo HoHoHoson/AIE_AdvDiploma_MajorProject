@@ -111,7 +111,10 @@ public class Player : MonoBehaviour
     public Transform gun_end;
     public float gun_ads_time = 1;
 
-    private Camera fps_cam;
+	private float ads_timer;
+
+
+	private Camera fps_cam;
     private readonly WaitForSeconds shot_duration = new WaitForSeconds(0.001f);
     private LineRenderer laser_line;
     private float next_fire;
