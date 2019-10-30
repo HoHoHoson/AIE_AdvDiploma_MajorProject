@@ -92,6 +92,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5470a48414b840e42b69a05066f42a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wubsplosion: {fileID: 3225822149907570760, guid: 9e2a9e3959e17c24faa41ed06e8b9162,
+    type: 3}
+  wubstep: {fileID: 3135335320873201124, guid: b283f62976c6c52479ffc3de39303ef9, type: 3}
   bomb_timer: 3
   skill_1_radius: 20
   skill_1_power: 250

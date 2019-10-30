@@ -94,6 +94,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frostsplosion: {fileID: 1409387212605755772, guid: b96e0f88d89c47f40ab70b787f0b5963,
     type: 3}
+  frostsoundem: {fileID: 5351042223795000882, guid: fcda325bc1aa43f4d819ec13df11052e,
+    type: 3}
   bomb_timer: 3
   skill_3_radius: 20
   freeze_time: 5

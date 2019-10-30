@@ -3,10 +3,13 @@
 public class ExplosiveAI : Agent
 {
     [SerializeField] ParticleSystem m_exlodeSFX = null;
+    [SerializeField] AudioSource m_explodeSound = null;
+
     [SerializeField] private float  m_explosiveRadius = 3;
     [SerializeField] private int    m_friendlyFireDamage = 5;
 
     private Animator m_animator;
+
     private bool m_friendly_fire = false;
 
     public override void InitialiseAgent(in Blackboard blackboard)
@@ -97,6 +100,8 @@ public class ExplosiveAI : Agent
         }
 
         GameObject sfx = Instantiate(m_exlodeSFX, transform.position, Quaternion.identity).gameObject;
-        Destroy(sfx, m_exlodeSFX.main.duration);
+        AudioSource audio = Instantiate(m_explodeSound, sfx.transform);
+
+        Destroy(sfx, audio.clip.length);
     }
 }

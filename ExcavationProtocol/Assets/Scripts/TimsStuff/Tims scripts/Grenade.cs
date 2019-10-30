@@ -5,6 +5,9 @@ using UnityEngine;
 public class Grenade : MonoBehaviour
 {
     Player script_fps;
+    public ParticleSystem wubsplosion;
+    public AudioSource wubstep;
+
     public float bomb_timer = 3f;
     bool has_exploded = false;
     public float skill_1_radius = 5.0f;
@@ -61,6 +64,10 @@ public class Grenade : MonoBehaviour
                 }
             }
         }
+
+        ParticleSystem wub_waves = Instantiate(wubsplosion, transform.position, Quaternion.identity);
+        Instantiate(wubstep, wub_waves.transform).Play();
+
         Destroy(gameObject);
     }
 }

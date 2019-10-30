@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2455372979600114910}
   - component: {fileID: 4065101492410919917}
   - component: {fileID: 2310843135276616893}
+  - component: {fileID: 5667981343209123949}
   m_Layer: 10
   m_Name: Enemy_001
   m_TagString: Untagged
@@ -105,6 +106,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5667981343209123949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2455372979600114904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba878c36ad3b8e44af7457fc33d5827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_loopSetting: 2
+  m_soundClips:
+  - m_audioClip: {fileID: 8487574729922286847, guid: 0c4805d7d5cb47843893ff5fe9ff964a,
+      type: 3}
+    m_minDelay: 0
+    m_maxDelay: 5
+  - m_audioClip: {fileID: 5730285832659380441, guid: 9378c808183380741b319b61a87e3a66,
+      type: 3}
+    m_minDelay: 0
+    m_maxDelay: 5
+  - m_audioClip: {fileID: 92982152815217596, guid: a81bc7eb5f6c42c47bcb30593b461c3e,
+      type: 3}
+    m_minDelay: 0
+    m_maxDelay: 5
+  - m_audioClip: {fileID: 6010767634328650986, guid: 47afd4adf62e79047b30f7b534464c63,
+      type: 3}
+    m_minDelay: 0
+    m_maxDelay: 5
 --- !u!1001 &6688256003978194255
 PrefabInstance:
   m_ObjectHideFlags: 0

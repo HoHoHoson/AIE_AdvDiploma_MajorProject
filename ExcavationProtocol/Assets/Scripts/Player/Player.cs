@@ -111,12 +111,14 @@ public class Player : MonoBehaviour
     public Transform gun_end;
     public float gun_ads_time = 1;
 
-    private Camera fps_cam;
+	private float ads_timer;
+
+
+	private Camera fps_cam;
     private readonly WaitForSeconds shot_duration = new WaitForSeconds(0.001f);
     private LineRenderer laser_line;
     private float next_fire;
-    private float ads_timer = 0;
-    private Vector3 orginal_gun_pos;
+    private SoundSystem m_sound_system;
 
     private Transform camera_transform;
 
@@ -145,6 +147,8 @@ public class Player : MonoBehaviour
 		camera_transform = fps_cam.transform;
         skill_timer_1 = skill_1;
         skill_timer_3 = skill_3;
+
+        m_sound_system = GetComponent<SoundSystem>();
     }
 
     void Update()
@@ -426,6 +430,8 @@ public class Player : MonoBehaviour
     {
         jump_timer = Time.time + jump_cooldown;
         has_jumped = true;
+
+        m_sound_system.GetClip(1).GetAudioSource().PlayOneShot(m_sound_system.GetClip(1).GetAudioSource().clip);
         m_player_rb.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
     }
 
@@ -551,6 +557,8 @@ public class Player : MonoBehaviour
             next_fire = Time.time + fire_rate;
             current_en--;
             StartCoroutine(ShotEffect());
+
+            m_sound_system.GetClip(0).PlayAudio();
 
             Vector3 ray_origin = fps_cam.ScreenToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
 
