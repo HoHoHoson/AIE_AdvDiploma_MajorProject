@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 30933977}
-  - component: {fileID: 30933975}
   - component: {fileID: 30933976}
   m_Layer: 0
   m_Name: Helmet
@@ -36,14 +35,6 @@ Transform:
   m_Father: {fileID: 3262474647881643129}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &30933975
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 30933974}
-  m_Enabled: 1
 --- !u!114 &30933976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -712,7 +703,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3262474647881643129}
   - component: {fileID: 2740824317319668686}
-  - component: {fileID: 7625372036528271880}
   m_Layer: 0
   m_Name: Player_Camera
   m_TagString: Untagged
@@ -780,14 +770,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7625372036528271880
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8948145744973601613}
-  m_Enabled: 1
 --- !u!1001 &7798361944711514254
 PrefabInstance:
   m_ObjectHideFlags: 0
