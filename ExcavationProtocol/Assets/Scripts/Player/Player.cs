@@ -239,7 +239,11 @@ public class Player : MonoBehaviour
 			player_energy_current = player_energy;
 		}
 
-		if (Input.GetKey(KeyCode.E))
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+        if (state.normalizedTime >= 1)
+            ReloadComplete();
+
+        if (Input.GetKey(KeyCode.E))
         {
             if (Physics.Raycast(camera_transform.position, camera_transform.forward, out RaycastHit hit, 5.0f))
             {
