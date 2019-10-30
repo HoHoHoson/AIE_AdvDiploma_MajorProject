@@ -260,16 +260,6 @@ public class Player : MonoBehaviour
             animator.SetBool("Jumping", false);
             //if not it remains false
         }
-
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        { 
-            animator.SetBool("Detonate", true);
-            //playsound detonate
-        }
-        else
-        {
-            animator.SetBool("Detonate", false);
-        }
     }
 
     public void Interaction(GameObject interactable)
@@ -487,6 +477,9 @@ public class Player : MonoBehaviour
         skill_timer_1 = 0;
         SkillActive1();
         active_1 = true;
+
+        animator.ResetTrigger("Throw");
+        animator.SetTrigger("Throw");
     }
 
 	//public void CompleteAction2()
@@ -509,6 +502,9 @@ public class Player : MonoBehaviour
         skill_timer_3 = 0;
         SkillActive3();
         active_3 = true;
+
+        animator.ResetTrigger("Throw");
+        animator.SetTrigger("Throw");
     }
 
 
