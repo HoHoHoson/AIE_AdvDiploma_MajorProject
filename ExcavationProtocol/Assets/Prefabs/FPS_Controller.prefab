@@ -585,7 +585,7 @@ MonoBehaviour:
   weapon_range: 100
   hit_force: 1000
   gun_end: {fileID: 8501807789408972079}
-  gun_ads_time: 0.1
+  gun_ads_time: 0.15
   GunPivot: {fileID: 8614550032150692461}
   GunOffset: {fileID: 8501807789408972083}
 --- !u!120 &366442169
@@ -790,11 +790,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: db637819c92a6e741bda93555770d446, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.152
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: db637819c92a6e741bda93555770d446, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.936
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: db637819c92a6e741bda93555770d446, type: 3}
       propertyPath: m_LocalRotation.x
