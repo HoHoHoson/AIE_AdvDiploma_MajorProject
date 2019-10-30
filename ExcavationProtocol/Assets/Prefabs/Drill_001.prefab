@@ -174,7 +174,6 @@ GameObject:
   - component: {fileID: 8638077222216571308}
   - component: {fileID: 8389706959244704662}
   - component: {fileID: 1854299252}
-  - component: {fileID: 5611967114709100238}
   - component: {fileID: 8496259801393612215}
   - component: {fileID: 4936317888274370055}
   m_Layer: 0
@@ -259,20 +258,6 @@ MonoBehaviour:
   is_active: 1
   mine_hp_recover: 100
   mine_max_hp: 500
---- !u!114 &5611967114709100238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3110612153371333922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eba878c36ad3b8e44af7457fc33d5827, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_loopSetting: 0
-  m_soundClips: []
 --- !u!136 &8496259801393612215
 CapsuleCollider:
   m_ObjectHideFlags: 0

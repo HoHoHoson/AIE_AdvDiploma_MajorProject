@@ -19,10 +19,10 @@ public class SmallAI : Agent
     {
         base.UpdateAgent();
 
-        if (m_state_machine.GetCurrentState() is SeekTargetState)
-            m_animator.SetBool("Seek", true);
+        if (m_state_machine.GetCurrentState() is LeapAtState)
+            m_animator.SetBool("Attack", true);
         else
-            m_animator.SetBool("Seek", false);
+            m_animator.SetBool("Attack", false);
     }
 
     protected override void InitialiseStateMachine()

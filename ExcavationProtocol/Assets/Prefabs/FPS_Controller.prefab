@@ -310,7 +310,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1012589103047491793}
   - component: {fileID: 152273974025367194}
-  - component: {fileID: 556824213486297538}
   m_Layer: 0
   m_Name: HelmCam
   m_TagString: Untagged
@@ -374,14 +373,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &556824213486297538
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2157290608645027833}
-  m_Enabled: 1
 --- !u!1 &5843524159236007210
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,7 +548,7 @@ MonoBehaviour:
   jump_force_z: 1000
   jump_force_y: 300
   skill_damage: 1
-  bomb: {fileID: 1276317593273425800, guid: adb7f80dd6b0c77428e68f96bbdff15c, type: 3}
+  bomb: {fileID: 6645922507881026577, guid: 6a7612ee3f7ea20469dfa2364813c01f, type: 3}
   land_mine: {fileID: 877712556124901837, guid: 6bfd502cfabd4cb4dbc786efb6f77e37,
     type: 3}
   g_throw_point: {fileID: 7037960682530485475}
@@ -693,6 +684,10 @@ MonoBehaviour:
       type: 3}
     m_minDelay: 0
     m_maxDelay: 0
+  - m_audioClip: {fileID: 6507965147430230924, guid: 6ef30b8921921c94fa66bb80c51c1242,
+      type: 3}
+    m_minDelay: 0
+    m_maxDelay: 0
 --- !u!1 &8948145744973601613
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3262474647881643129}
   - component: {fileID: 2740824317319668686}
+  - component: {fileID: 1667566224}
   m_Layer: 0
   m_Name: Player_Camera
   m_TagString: Untagged
@@ -770,6 +766,14 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!81 &1667566224
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8948145744973601613}
+  m_Enabled: 1
 --- !u!1001 &7798361944711514254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -912,8 +916,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9500000, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9, type: 3}
 --- !u!4 &8501807789408972083 stripped
 Transform:

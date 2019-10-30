@@ -20,16 +20,6 @@ public class ExplosiveAI : Agent
         m_animator = GetComponent<Animator>();
     }
 
-    public override void UpdateAgent()
-    {
-        base.UpdateAgent();
-
-        if (m_state_machine.GetCurrentState() is SeekTargetState)
-            m_animator.SetBool("Seek", true);
-        else
-            m_animator.SetBool("Seek", false);
-    }
-
     protected override void InitialiseStateMachine()
     {
         State state = new LeapAtState(this, m_leapAngle, m_leapForce, m_leapCooldown);
