@@ -38001,6 +38001,21 @@ PrefabInstance:
       propertyPath: script_gm
       value: 
       objectReference: {fileID: 494596714}
+    - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
+        type: 3}
+      propertyPath: weapon_range
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
+        type: 3}
+      propertyPath: maxCameraPitch
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
+        type: 3}
+      propertyPath: minCameraPitch
+      value: -70
+      objectReference: {fileID: 0}
     - target: {fileID: 7980817046700777752, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
       propertyPath: m_LocalPosition.x
