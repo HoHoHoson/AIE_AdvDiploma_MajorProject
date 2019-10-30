@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3317138830722218634}
   - component: {fileID: 3317138830722218635}
   - component: {fileID: 3317138830722218740}
+  - component: {fileID: 1878617261}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -48,18 +49,17 @@ MonoBehaviour:
   script_UI: {fileID: 3317138830722218635}
   script_player: {fileID: 0}
   script_bb: {fileID: 3317138830722218740}
-  active_mines: 0
+  active_mines: 1
   mine_rep_cost: 1
   mine_cost: 1
   mines_list:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   player_take_dmg: 0
   player_restore_hp: 0
   pause_menu: {fileID: 0}
   game_over: {fileID: 0}
   game_play: {fileID: 0}
+  crosshair: {fileID: 0}
   is_paused: 0
   dead_player: 0
   player_gameobject: {fileID: 0}
@@ -96,10 +96,7 @@ MonoBehaviour:
   hud: {fileID: 0}
   Notifications: {fileID: 0}
   res_cost_text: {fileID: 0}
-  Helmet: {fileID: 0}
   drills:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
 --- !u!114 &3317138830722218740
 MonoBehaviour:
@@ -118,21 +115,44 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   m_enemyTypes:
   - m_enemyPrefab: {fileID: 2455372979600114904, guid: 67aab124b094c634e8a7653f400f72a4,
       type: 3}
-    m_spawnsPerWave: 1
-    m_spawnIncrement: 1
-    m_activeEnemiesLimit: 10
-    m_activeIncrement: 1
-    m_spawnGroupSize: 1
+    m_spawnsPerWave: 20
+    m_spawnIncrement: 10
+    m_activeEnemiesLimit: 60
+    m_activeIncrement: 5
+    m_spawnGroupSize: 6
     m_onWaves: 
   - m_enemyPrefab: {fileID: 3742569117176842085, guid: 8df34b66295a8e143be430b4a86081ed,
       type: 3}
-    m_spawnsPerWave: 1
+    m_spawnsPerWave: 0.4
     m_spawnIncrement: 1
-    m_activeEnemiesLimit: 10
+    m_activeEnemiesLimit: 2
     m_activeIncrement: 1
     m_spawnGroupSize: 1
     m_onWaves: 
   m_intermissionTime: 5
+--- !u!114 &1878617261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3317138830722218741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba878c36ad3b8e44af7457fc33d5827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_loopSetting: 1
+  m_soundClips:
+  - audioClip: {fileID: 0}
+    minDelay: 0
+    maxDelay: 0
