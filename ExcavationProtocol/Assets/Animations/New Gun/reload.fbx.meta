@@ -171,7 +171,7 @@ ModelImporter:
       name: reload
       takeName: reload
       firstFrame: 0
-      lastFrame: 144
+      lastFrame: 80
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

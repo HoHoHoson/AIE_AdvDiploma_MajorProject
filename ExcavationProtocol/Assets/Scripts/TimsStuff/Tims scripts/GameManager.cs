@@ -101,14 +101,7 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (unlocked_mouse == false)
-                {
-                    Pause();
-                }
-                else if (unlocked_mouse == true)
-                {
-                    Pause();
-                }
+				Pause();
             }
 
             if (is_paused == false)
@@ -145,22 +138,21 @@ public class GameManager : MonoBehaviour
     public void Pause()
     {
         is_paused = !is_paused;
+
+        pause_menu.SetActive(is_paused);
+        game_play.SetActive(!is_paused);
+		crosshair.SetActive(!is_paused);
+        Cursor.visible = is_paused;
+        unlocked_mouse = is_paused;
+
         if (is_paused == true)
         {
-            pause_menu.SetActive(true);
-            game_play.SetActive(false);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            unlocked_mouse = true;
+			Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0;
         }
         else
         {
-            pause_menu.SetActive(false);
-            game_play.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            unlocked_mouse = false;
             Time.timeScale = 1;
         }
     }
@@ -171,7 +163,8 @@ public class GameManager : MonoBehaviour
         {
             game_over.SetActive(true);
             game_play.SetActive(false);
-            Cursor.lockState = CursorLockMode.None;
+			crosshair.SetActive(false);
+			Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             unlocked_mouse = true;
             Time.timeScale = 0;

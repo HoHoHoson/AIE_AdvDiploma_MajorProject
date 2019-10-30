@@ -239,7 +239,11 @@ public class Player : MonoBehaviour
 			player_energy_current = player_energy;
 		}
 
-		if (Input.GetKey(KeyCode.E))
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+        if (state.normalizedTime >= 1)
+            ReloadComplete();
+
+        if (Input.GetKey(KeyCode.E))
         {
             if (Physics.Raycast(camera_transform.position, camera_transform.forward, out RaycastHit hit, 5.0f))
             {
@@ -263,16 +267,6 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("Jumping", false);
             //if not it remains false
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        { 
-            animator.SetBool("Detonate", true);
-            //playsound detonate
-        }
-        else
-        {
-            animator.SetBool("Detonate", false);
         }
     }
 
@@ -358,8 +352,8 @@ public class Player : MonoBehaviour
         //aim down sights values, think of counter strike
         GunOffset.localPosition = new Vector3(
             Mathf.Lerp(GunPivot.localPosition.x, GunPivot.localPosition.x - 0.1055f, t), // X value
-            Mathf.Lerp(0, -0.05f, t), // Y value
-            Mathf.Lerp(0, -0.1f, t)); // Z value
+            Mathf.Lerp(0, 0f, t), // Y value
+            Mathf.Lerp(0, 0f, t)); // Z value
 
         fps_cam.fieldOfView = Mathf.Lerp(60, 30, t);
     }
@@ -493,6 +487,9 @@ public class Player : MonoBehaviour
         skill_timer_1 = 0;
         SkillActive1();
         active_1 = true;
+
+        animator.ResetTrigger("Throw");
+        animator.SetTrigger("Throw");
     }
 
 	//public void CompleteAction2()
@@ -515,6 +512,9 @@ public class Player : MonoBehaviour
         skill_timer_3 = 0;
         SkillActive3();
         active_3 = true;
+
+        animator.ResetTrigger("Throw");
+        animator.SetTrigger("Throw");
     }
 
 

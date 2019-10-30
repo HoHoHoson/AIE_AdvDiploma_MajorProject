@@ -1,0 +1,247 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: LArmsMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: L_Arm_Rig
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_Arm_CTRL
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_Arm_CTRL/L_Wrist_CTRL
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_Arm_CTRL/L_Wrist_CTRL/L_MidStart_CTRL
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_Arm_CTRL/L_Wrist_CTRL/L_MidStart_CTRL/L_MidMid_CTRL
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_Arm_CTRL/L_Wrist_CTRL/L_MidStart_CTRL/L_MidMid_CTRL/L_MidEnd_CTRL
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_Arm_CTRL/L_Wrist_CTRL/L_PinkyStart_CTRL
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_Arm_CTRL/L_Wrist_CTRL/L_PinkyStart_CTRL/L_PinkyMid_CTRL
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_Arm_CTRL/L_Wrist_CTRL/L_PinkyStart_CTRL/L_PinkyMid_CTRL/L_PinkyEnd_CTRL
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_Arm_CTRL/L_Wrist_CTRL/L_PointerStart_CTRL
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_Arm_CTRL/L_Wrist_CTRL/L_PointerStart_CTRL/L_PointerMid_CTRL
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_Arm_CTRL/L_Wrist_CTRL/L_PointerStart_CTRL/L_PointerMid_CTRL/L_PointerEnd_CTRL
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_Arm_CTRL/L_Wrist_CTRL/L_RingStart_CTRL
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_Arm_CTRL/L_Wrist_CTRL/L_RingStart_CTRL/L_RingMid_CTRL
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_Arm_CTRL/L_Wrist_CTRL/L_RingStart_CTRL/L_RingMid_CTRL/L_RingEnd_CTRL
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_Arm_CTRL/L_Wrist_CTRL/L_ThumbStart_CTRL
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_Arm_CTRL/L_Wrist_CTRL/L_ThumbStart_CTRL/L_ThumbEnd_CTRL
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_Arm_GEO
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_MidStart_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_MidStart_JNT/L_MidMid_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_MidStart_JNT/L_MidMid_JNT/L_MidEnd_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_MidStart_JNT/L_MidMid_JNT/L_MidEnd_JNT/L_MidTip_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_PinkyStart_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_PinkyStart_JNT/L_PinkyMid_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_PinkyStart_JNT/L_PinkyMid_JNT/L_PinkyEnd_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_PinkyStart_JNT/L_PinkyMid_JNT/L_PinkyEnd_JNT/L_PinkyTip_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_PointerStart_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_PointerStart_JNT/L_PointerMid_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_PointerStart_JNT/L_PointerMid_JNT/L_PointerEnd_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_PointerStart_JNT/L_PointerMid_JNT/L_PointerEnd_JNT/L_PointerTip_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_RingStart_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_RingStart_JNT/L_RingMid_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_RingStart_JNT/L_RingMid_JNT/L_RingEnd_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_RingStart_JNT/L_RingMid_JNT/L_RingEnd_JNT/L_RingTip_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_ThumbStart_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_ThumbStart_JNT/L_ThumbEnd_JNT
+    m_Weight: 1
+  - m_Path: L_Arm_Rig/L_ArmRoot_JNT/L_ArmBranch_JNT/L_ArmShoulder_JNT/L_Elbow_JNT/L_Wrist_JNT/L_ThumbStart_JNT/L_ThumbEnd_JNT/L_ThumbTip_JNT
+    m_Weight: 1
+  - m_Path: R_Arm_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/Main_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/Main_CTRL/Barrel_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/Main_CTRL/BarrelBottomLeft_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/Main_CTRL/BarrelBottomRight_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/Main_CTRL/BarrelTopLeft_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/Main_CTRL/BarrelTopRight_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/Main_CTRL/Battery_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/Main_CTRL/Input__CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/Main_CTRL/L_Panel_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/Main_CTRL/Output_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/Main_CTRL/PDA_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/Main_CTRL/R_Panel_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/Main_CTRL/Screen_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/Main_CTRL/Trigger_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/Main_CTRL/Upper_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/R_MidStart_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/R_MidStart_CTRL/R_MidMid_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/R_MidStart_CTRL/R_MidMid_CTRL/R_MidEnd_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/R_PinkyStart_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/R_PinkyStart_CTRL/R_PinkyMid_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/R_PinkyStart_CTRL/R_PinkyMid_CTRL/R_PinkyEnd_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/R_PointerStart_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/R_PointerStart_CTRL/R_PointerMid_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/R_PointerStart_CTRL/R_PointerMid_CTRL/R_PointerEnd_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/R_RingStart_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/R_RingStart_CTRL/R_RingMid_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/R_RingStart_CTRL/R_RingMid_CTRL/R_RingEnd_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/R_ThumbStart_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_CTRL/R_Wrist_CTRL/R_ThumbStart_CTRL/R_ThumbEnd_CTRL
+    m_Weight: 0
+  - m_Path: R_Arm_GEO
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_MidStart_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_MidStart_JNT/R_MidMid_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_MidStart_JNT/R_MidMid_JNT/R_MidEnd_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_MidStart_JNT/R_MidMid_JNT/R_MidEnd_JNT/R_MidTip_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_PinkyStart_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_PinkyStart_JNT/R_PinkyMid_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_PinkyStart_JNT/R_PinkyMid_JNT/R_PinkyEnd_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_PinkyStart_JNT/R_PinkyMid_JNT/R_PinkyEnd_JNT/R_PinkyTip_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_PointerStart_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_PointerStart_JNT/R_PointerMid_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_PointerStart_JNT/R_PointerMid_JNT/R_PointerEnd_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_PointerStart_JNT/R_PointerMid_JNT/R_PointerEnd_JNT/R_PointerTip_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_RingStart_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_RingStart_JNT/R_RingMid_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_RingStart_JNT/R_RingMid_JNT/R_RingEnd_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_RingStart_JNT/R_RingMid_JNT/R_RingEnd_JNT/R_RingTip_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_ThumbStart_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_ThumbStart_JNT/R_ThumbEnd_JNT
+    m_Weight: 0
+  - m_Path: R_ArmRoot_JNT/R_ArmBranch_JNT/R_ArmShoulder_JNT/R_Elbow_JNT/R_Wrist_JNT/R_ThumbStart_JNT/R_ThumbEnd_JNT/R_ThumbTip_JNT
+    m_Weight: 0
+  - m_Path: Weapon_JNT
+    m_Weight: 0
+  - m_Path: Weapon_JNT/Group_JNT
+    m_Weight: 0
+  - m_Path: Weapon_JNT/Group_JNT/BarrelBottomLeft_JNT
+    m_Weight: 0
+  - m_Path: Weapon_JNT/Group_JNT/BarrelBottomRight_JNT
+    m_Weight: 0
+  - m_Path: Weapon_JNT/Group_JNT/BarrelEnd_JNT
+    m_Weight: 0
+  - m_Path: Weapon_JNT/Group_JNT/BarrelTopLeft_JNT
+    m_Weight: 0
+  - m_Path: Weapon_JNT/Group_JNT/BarrelTopRight_JNT
+    m_Weight: 0
+  - m_Path: Weapon_JNT/Group_JNT/Battery_JNT
+    m_Weight: 0
+  - m_Path: Weapon_JNT/Group_JNT/Input_JNT
+    m_Weight: 0
+  - m_Path: Weapon_JNT/Group_JNT/L_Panel_JNT
+    m_Weight: 0
+  - m_Path: Weapon_JNT/Group_JNT/Output_JNT
+    m_Weight: 0
+  - m_Path: Weapon_JNT/Group_JNT/PDA_JNT
+    m_Weight: 0
+  - m_Path: Weapon_JNT/Group_JNT/R_Panel_JNT
+    m_Weight: 0
+  - m_Path: Weapon_JNT/Group_JNT/Screen_JNT
+    m_Weight: 0
+  - m_Path: Weapon_JNT/Group_JNT/Trigger_JNT
+    m_Weight: 0
+  - m_Path: Weapon_JNT/Group_JNT/Trigger_JNT/TriggerEnd_JNT
+    m_Weight: 0
+  - m_Path: Weapon_JNT/Group_JNT/Upper_JNT
+    m_Weight: 0
+  - m_Path: weaponCombined
+    m_Weight: 0
+  - m_Path: weaponCombined/GunEnd
+    m_Weight: 0
