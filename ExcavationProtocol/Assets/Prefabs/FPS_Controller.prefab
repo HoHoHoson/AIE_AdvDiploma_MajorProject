@@ -684,6 +684,10 @@ MonoBehaviour:
       type: 3}
     m_minDelay: 0
     m_maxDelay: 0
+  - m_audioClip: {fileID: 6507965147430230924, guid: 6ef30b8921921c94fa66bb80c51c1242,
+      type: 3}
+    m_minDelay: 0
+    m_maxDelay: 0
 --- !u!1 &8948145744973601613
 GameObject:
   m_ObjectHideFlags: 0
