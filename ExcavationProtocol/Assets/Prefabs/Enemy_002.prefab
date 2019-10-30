@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 901196181645246369}
   - component: {fileID: 901196181643952001}
   - component: {fileID: 901196181642820929}
+  - component: {fileID: 533079859368250465}
   m_Layer: 0
   m_Name: Med_bug_ball
   m_TagString: Untagged
@@ -26,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901196181644813185}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00023322857, y: 0.04806175, z: -0.04482327}
-  m_LocalScale: {x: 104.778336, y: 104.778336, z: 104.778336}
+  m_LocalPosition: {x: 0, y: 0.47, z: -0.45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 901196181645246371}
   m_RootOrder: 0
@@ -77,6 +78,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &533079859368250465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901196181644813185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4afc217ef895b524498078b36b46fe1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &901196181644813187
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 901196181644813187}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.0023322855, y: 0.5219024, z: -0.2781607}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 901196181645246369}
   m_Father: {fileID: 3742569117176842081}
@@ -168,6 +181,7 @@ GameObject:
   - component: {fileID: 3742569117176842083}
   - component: {fileID: 3742569117176842084}
   - component: {fileID: 1503597013948897669}
+  - component: {fileID: 9014543481234836936}
   m_Layer: 10
   m_Name: Enemy_002
   m_TagString: Untagged
@@ -218,9 +232,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1.9
+  m_Height: 1.2
   m_Direction: 2
-  m_Center: {x: 0, y: 0.5, z: -0.1}
+  m_Center: {x: 0, y: 0.5, z: 0.2}
 --- !u!114 &3742569117176842084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +279,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!135 &9014543481234836936
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3742569117176842085}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 1, z: -0.74}
 --- !u!1001 &5247554656684041121
 PrefabInstance:
   m_ObjectHideFlags: 0

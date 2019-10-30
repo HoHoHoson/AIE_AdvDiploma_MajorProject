@@ -45,22 +45,15 @@ public class ExplosiveAI : Agent
         m_state_machine.InitiateStateMachine(this, "SEEKTARGET");
     }
 
-    public override void TakeDamage(int dmg)
+    public void LocationalDamage(in RaycastHit hit, int damage)
     {
-        base.TakeDamage(dmg);
-
-        m_friendly_fire = true;
-    }
-
-    public override bool IsDead()
-    {
-        if (base.IsDead())
+        if (hit.collider.isTrigger == true)
         {
+            m_friendly_fire = true;
             Explode();
-            return true;
         }
         else
-            return false;
+            TakeDamage(damage);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -68,7 +61,7 @@ public class ExplosiveAI : Agent
         if (collision.gameObject == m_target)
         {
             m_friendly_fire = false;
-            m_current_health = 0;
+            Explode();
         }
     }
 
@@ -103,5 +96,7 @@ public class ExplosiveAI : Agent
         AudioSource audio = Instantiate(m_explodeSound, sfx.transform);
 
         Destroy(sfx, audio.clip.length);
+
+        m_current_health = 0;
     }
 }
