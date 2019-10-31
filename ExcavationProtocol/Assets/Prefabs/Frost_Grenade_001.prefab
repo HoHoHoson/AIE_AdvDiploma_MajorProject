@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce524fbaf3372c44b8f6b9511e0619f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frostsplosion: {fileID: 1409387212605755772, guid: b96e0f88d89c47f40ab70b787f0b5963,
+  frostsplosion: {fileID: 3337061134247927315, guid: 87f736ca09cfe0f409915d09e21aedce,
     type: 3}
   frostsoundem: {fileID: 5351042223795000882, guid: fcda325bc1aa43f4d819ec13df11052e,
     type: 3}

@@ -562,7 +562,7 @@ MonoBehaviour:
   skill_timer_2: 0
   skill_timer_3: 0
   animator: {fileID: 950402033}
-  m_bloodSFX: {fileID: 6952531192212141584, guid: 568b11857bcd24744937c24f9584480c,
+  m_bloodSFX: {fileID: 7242024033571974761, guid: 1503b75c7aa8f6b448edb6affb33da73,
     type: 3}
   gun_damage: 1
   weapon_range: 100
