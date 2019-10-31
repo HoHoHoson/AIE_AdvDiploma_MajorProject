@@ -99,12 +99,13 @@ public class Player : MonoBehaviour
     #region Particle
 
     public ParticleSystem m_bloodSFX = null;
+	public ParticleSystem m_laserFlash = null;
 
-    #endregion
+	#endregion
 
-    #region FPSgun
+	#region FPSgun
 
-    public int gun_damage = 1;
+	public int gun_damage = 1;
     
     public float weapon_range = 50f;
     public float hit_force = 100f;
@@ -213,9 +214,11 @@ public class Player : MonoBehaviour
 
 		if (player_energy_current <= 0)
 		{
+			animator.SetBool("Aiming", false);
 			animator.SetBool("Shooting", false);
 			animator.SetBool("Reload", true);
-			
+			m_laserFlash.Stop();
+
 			player_energy_current = player_energy;
 		}
 		else if (animator.GetBool("Reload") == false && player_energy_current > 0)
@@ -223,10 +226,12 @@ public class Player : MonoBehaviour
 			if (Input.GetMouseButton(0))
 			{
 				animator.SetBool("Shooting", true);
+				m_laserFlash.Play();
 				GunFire(ref player_energy_current, fire_rate);
 			}
 			else
 			{
+				m_laserFlash.Stop();
 				animator.SetBool("Shooting", false);
 			}
 		}
@@ -235,13 +240,10 @@ public class Player : MonoBehaviour
 		{
 			animator.SetBool("Shooting", false);
 			animator.SetBool("Reload", true);
+			m_laserFlash.Stop();
 
 			player_energy_current = player_energy;
 		}
-
-        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
-        if (state.normalizedTime >= 1)
-            ReloadComplete();
 
         if (Input.GetKey(KeyCode.E))
         {
@@ -258,15 +260,20 @@ public class Player : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
-        //if a key is pressed,
         {
-            animator.SetBool("Jumping", true);
-            //set Jumping variable in the animator to true
+            // Set Jumping variable in the animator to true
+			if (has_jumped == false)
+			{
+				animator.SetBool("Jumping", true);
+			}
         }
         else
         {
-            animator.SetBool("Jumping", false);
-            //if not it remains false
+            // If not it remains false
+			if (has_jumped == true)
+			{
+				animator.SetBool("Jumping", false);
+			}
         }
     }
 
@@ -296,20 +303,20 @@ public class Player : MonoBehaviour
             }
             interaction_timer = interaction_cooldown;
         }
-        else if (interactable.tag == "Mine" && interaction_timer == 0)
-        {
-            if (interactable.GetComponent<Mines>().GetActive() == false && script_gm.currency >= 1)
-            {
-                interactable.GetComponent<Mines>().Activate(ref script_gm.active_mines, script_gm.mines_list);
-                script_gm.currency -= 1;
-            }
-            else if (interactable.GetComponent<Mines>().GetCurrentHp() < interactable.GetComponent<Mines>().mine_max_hp && script_gm.currency >= script_gm.mine_rep_cost)
-            {
-                interactable.GetComponent<Mines>().AddMineHP();
-                script_gm.currency -= 1;
-            }
-            interaction_timer = interaction_cooldown;
-        }
+        //else if (interactable.tag == "Mine" && interaction_timer == 0)
+        //{
+        //    if (interactable.GetComponent<Mines>().GetActive() == false && script_gm.currency >= 1)
+        //    {
+        //        interactable.GetComponent<Mines>().Activate(ref script_gm.active_mines, script_gm.mines_list);
+        //        script_gm.currency -= 1;
+        //    }
+        //    else if (interactable.GetComponent<Mines>().GetCurrentHp() < interactable.GetComponent<Mines>().mine_max_hp && script_gm.currency >= script_gm.mine_rep_cost)
+        //    {
+        //        interactable.GetComponent<Mines>().AddMineHP();
+        //        script_gm.currency -= 1;
+        //    }
+        //    interaction_timer = interaction_cooldown;
+        //}
     }
 
     public int PlayerTakenDamage(float damage)
@@ -597,7 +604,7 @@ public class Player : MonoBehaviour
         laser_line.enabled = true;
         yield return shot_duration;
         laser_line.enabled = false;
-    }
+	}
 
 	void ReloadComplete()
 	{

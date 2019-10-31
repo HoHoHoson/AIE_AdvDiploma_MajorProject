@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Mines : MonoBehaviour
 {
-    int mine_hp = 100;
+    int mine_hp = 1000;
     public bool is_active = false;
 
     public int mine_hp_recover = 50;
@@ -25,7 +25,7 @@ public class Mines : MonoBehaviour
     {
         if (mine_hp <= 0 && is_active == true)
         {
-            DeactivateMine(ref gamemanager.active_mines);
+            DeactivateMine();
         }
 
         if(is_active == false)
@@ -34,14 +34,9 @@ public class Mines : MonoBehaviour
         }
     }
 
-    public void Activate(ref int active, GameObject[] list)
+    public void Activate()
     {
         is_active = true;
-        mine_hp = mine_hp_recover;
-        if (active < list.Length)
-        {
-            active++;
-        }
     }
 
     public void MinesTakeDamage(int damage)
@@ -57,13 +52,9 @@ public class Mines : MonoBehaviour
         mine_hp += mine_hp_recover;
     }
 
-    public void DeactivateMine(ref int active)
+    public void DeactivateMine()
     {
         is_active = false;
-        if (active > 0)
-        {
-            active--;
-        }
     }
 
     public bool GetActive()

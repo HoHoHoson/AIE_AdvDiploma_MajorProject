@@ -16,11 +16,7 @@ public class GameManager : MonoBehaviour
     #region Loop
 
     [Header("GameLoop Variables")]
-    public int active_mines = 1;
-    public int mine_rep_cost = 1;
-    public int mine_cost = 1;
-
-    public GameObject[] mines_list;
+    public GameObject Drill;
 
     public bool player_take_dmg = false, player_restore_hp = false;
 
@@ -77,14 +73,6 @@ public class GameManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-        foreach (GameObject mine in mines_list)
-        {
-            if(mine.GetComponent<Mines>().GetActive() == true && active_mines < 4)
-            {
-                active_mines++;
-            }
-        }
     }
 
     // Update is called once per frame
@@ -128,7 +116,7 @@ public class GameManager : MonoBehaviour
 
     public void AddCurrency()
     {
-        currency += wave_reward * (active_mines + 1);
+        currency += wave_reward * Drill.GetComponent<Mines>().GetCurrentHp();
     }
 
     #endregion
