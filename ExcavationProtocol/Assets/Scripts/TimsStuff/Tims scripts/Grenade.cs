@@ -66,7 +66,10 @@ public class Grenade : MonoBehaviour
         }
 
         ParticleSystem wub_waves = Instantiate(wubsplosion, transform.position, Quaternion.identity);
-        Instantiate(wubstep, wub_waves.transform).Play();
+        AudioSource wubwub = Instantiate(wubstep, wub_waves.transform);
+        wubwub.Play();
+
+        Destroy(wub_waves.gameObject, wubwub.clip.length);
 
         Destroy(gameObject);
     }
