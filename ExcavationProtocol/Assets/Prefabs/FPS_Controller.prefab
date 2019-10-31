@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 30933977}
-  - component: {fileID: 30933975}
   - component: {fileID: 30933976}
   m_Layer: 0
   m_Name: Helmet
@@ -36,14 +35,6 @@ Transform:
   m_Father: {fileID: 3262474647881643129}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &30933975
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 30933974}
-  m_Enabled: 1
 --- !u!114 &30933976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,7 +310,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1012589103047491793}
   - component: {fileID: 152273974025367194}
-  - component: {fileID: 556824213486297538}
   m_Layer: 0
   m_Name: HelmCam
   m_TagString: Untagged
@@ -383,14 +373,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &556824213486297538
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2157290608645027833}
-  m_Enabled: 1
 --- !u!1 &5843524159236007210
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,6 +448,7 @@ GameObject:
   - component: {fileID: 8023661635665430855}
   - component: {fileID: 8023661635665430853}
   - component: {fileID: 366442169}
+  - component: {fileID: 7395005959737515461}
   m_Layer: 0
   m_Name: FPS_Controller
   m_TagString: Player
@@ -565,7 +548,7 @@ MonoBehaviour:
   jump_force_z: 1000
   jump_force_y: 300
   skill_damage: 1
-  bomb: {fileID: 1276317593273425800, guid: adb7f80dd6b0c77428e68f96bbdff15c, type: 3}
+  bomb: {fileID: 6645922507881026577, guid: 6a7612ee3f7ea20469dfa2364813c01f, type: 3}
   land_mine: {fileID: 877712556124901837, guid: 6bfd502cfabd4cb4dbc786efb6f77e37,
     type: 3}
   g_throw_point: {fileID: 7037960682530485475}
@@ -585,7 +568,7 @@ MonoBehaviour:
   weapon_range: 100
   hit_force: 1000
   gun_end: {fileID: 8501807789408972079}
-  gun_ads_time: 0.15
+  gun_ads_time: 0.4
   GunPivot: {fileID: 8614550032150692461}
   GunOffset: {fileID: 8501807789408972083}
 --- !u!120 &366442169
@@ -683,6 +666,28 @@ LineRenderer:
     generateLightingData: 1
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &7395005959737515461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8023661635665430852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba878c36ad3b8e44af7457fc33d5827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_loopSetting: 0
+  m_soundClips:
+  - m_audioClip: {fileID: 6728728328571317040, guid: 911421f0ae561484598946628475aedc,
+      type: 3}
+    m_minDelay: 0
+    m_maxDelay: 0
+  - m_audioClip: {fileID: 6507965147430230924, guid: 6ef30b8921921c94fa66bb80c51c1242,
+      type: 3}
+    m_minDelay: 0
+    m_maxDelay: 0
 --- !u!1 &8948145744973601613
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,7 +698,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3262474647881643129}
   - component: {fileID: 2740824317319668686}
-  - component: {fileID: 7625372036528271880}
+  - component: {fileID: 1667566224}
+  - component: {fileID: 1667566225}
   m_Layer: 0
   m_Name: Player_Camera
   m_TagString: Untagged
@@ -757,11 +763,11 @@ Camera:
   m_HDR: 0
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7625372036528271880
+--- !u!81 &1667566224
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -769,6 +775,66 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8948145744973601613}
   m_Enabled: 1
+--- !u!114 &1667566225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8948145744973601613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 3262474647881643129}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1001 &7798361944711514254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -911,6 +977,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13700002, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 565ad28de636c484e88600585c25f0a1, type: 2}
+    - target: {fileID: 13700004, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 67400388835a5e24e94d567bcf232e4a, type: 2}
+    - target: {fileID: 13700000, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f19334cca3d691345a0dbeb12a66e8b6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9, type: 3}
 --- !u!4 &8501807789408972083 stripped
