@@ -352,7 +352,7 @@ public class Player : MonoBehaviour
         //aim down sights values, think of counter strike
         GunOffset.localPosition = new Vector3(
             Mathf.Lerp(GunPivot.localPosition.x, GunPivot.localPosition.x - 0.1055f, t), // X value
-            Mathf.Lerp(0, 0.02f, t), // Y value
+            Mathf.Lerp(0, 0.01f, t), // Y value
             Mathf.Lerp(0, -0.3f, t)); // Z value
 
         fps_cam.fieldOfView = Mathf.Lerp(60, 30, t);

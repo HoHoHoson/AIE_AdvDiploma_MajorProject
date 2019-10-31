@@ -166,6 +166,21 @@ ModelImporter:
     100320: prefix_R_ThumbEnd_CTRL
     100322: prefix_R_ThumbStart_CTRL
     100324: weaponCombinedSight
+    100326: prefix_Barrel_CTRL
+    100328: prefix_BarrelBottomLeft_CTRL
+    100330: prefix_BarrelBottomRight_CTRL
+    100332: prefix_BarrelTopLeft_CTRL
+    100334: prefix_BarrelTopRight_CTRL
+    100336: prefix_Battery_CTRL
+    100338: prefix_Input__CTRL
+    100340: prefix_L_Panel_CTRL
+    100342: prefix_Main_CTRL
+    100344: prefix_Output_CTRL
+    100346: prefix_PDA_CTRL
+    100348: prefix_R_Panel_CTRL
+    100350: prefix_Screen_CTRL
+    100352: prefix_Trigger_CTRL
+    100354: prefix_Upper_CTRL
     400000: //RootNode
     400002: Barrel_CTRL
     400004: BarrelBottomLeft_CTRL
@@ -329,8 +344,24 @@ ModelImporter:
     400320: prefix_R_ThumbEnd_CTRL
     400322: prefix_R_ThumbStart_CTRL
     400324: weaponCombinedSight
+    400326: prefix_Barrel_CTRL
+    400328: prefix_BarrelBottomLeft_CTRL
+    400330: prefix_BarrelBottomRight_CTRL
+    400332: prefix_BarrelTopLeft_CTRL
+    400334: prefix_BarrelTopRight_CTRL
+    400336: prefix_Battery_CTRL
+    400338: prefix_Input__CTRL
+    400340: prefix_L_Panel_CTRL
+    400342: prefix_Main_CTRL
+    400344: prefix_Output_CTRL
+    400346: prefix_PDA_CTRL
+    400348: prefix_R_Panel_CTRL
+    400350: prefix_Screen_CTRL
+    400352: prefix_Trigger_CTRL
+    400354: prefix_Upper_CTRL
     2100000: lambert1
     2100002: lambert2
+    2100004: gun_initialShadingGroup1
     2300000: GunEnd
     2300002: BatteryPart
     3300000: GunEnd
