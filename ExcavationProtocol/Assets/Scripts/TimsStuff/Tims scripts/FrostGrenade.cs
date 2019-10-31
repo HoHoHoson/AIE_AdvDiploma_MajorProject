@@ -30,14 +30,7 @@ public class FrostGrenade : MonoBehaviour
         countdown -= Time.deltaTime;
         frost_countdown -= Time.deltaTime;
 
-        if (countdown <= 0f && !has_exploded)
-        {
-            FreezeExplosion();
-            ParticleSystem frost_area = Instantiate(frostsplosion, transform);
-            Instantiate(frostsoundem, frost_area.transform).Play();
-
-            has_exploded = true;
-        }
+        transform.Rotate(0, Random.value * 360 * Time.deltaTime, 0);
 
         if (frost_countdown <= 0)
         {
@@ -50,6 +43,9 @@ public class FrostGrenade : MonoBehaviour
         if (!has_exploded)
         {
             FreezeExplosion();
+
+            ParticleSystem frost_area = Instantiate(frostsplosion, transform);
+            Instantiate(frostsoundem, frost_area.transform).Play();
         }
     }
 
