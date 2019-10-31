@@ -272,10 +272,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3742569117176842081}
     m_Modifications:
-    - target: {fileID: 100000, guid: cd30f54190db78d4593c7a3e836db542, type: 3}
-      propertyPath: m_Name
-      value: BugMed
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cd30f54190db78d4593c7a3e836db542, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -319,6 +315,10 @@ PrefabInstance:
     - target: {fileID: 400000, guid: cd30f54190db78d4593c7a3e836db542, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cd30f54190db78d4593c7a3e836db542, type: 3}
+      propertyPath: m_Name
+      value: BugMed
       objectReference: {fileID: 0}
     - target: {fileID: 13700002, guid: cd30f54190db78d4593c7a3e836db542, type: 3}
       propertyPath: m_Materials.Array.data[0]

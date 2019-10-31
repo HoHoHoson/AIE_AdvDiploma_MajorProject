@@ -37919,7 +37919,7 @@ PrefabInstance:
     - target: {fileID: 7980817046700777752, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.17
       objectReference: {fileID: 0}
     - target: {fileID: 7980817046700777752, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
@@ -37929,7 +37929,7 @@ PrefabInstance:
     - target: {fileID: 7980817046700777752, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29
+      value: 26.28
       objectReference: {fileID: 0}
     - target: {fileID: 7980817046700777752, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
@@ -37971,6 +37971,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1667566224, guid: e5388f809bb20ac4db9d5ecadfedeea3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8501807789411793941, guid: e5388f809bb20ac4db9d5ecadfedeea3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 67400388835a5e24e94d567bcf232e4a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5388f809bb20ac4db9d5ecadfedeea3, type: 3}
 --- !u!1 &1160990681
