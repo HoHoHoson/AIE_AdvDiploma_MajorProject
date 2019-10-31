@@ -684,6 +684,10 @@ MonoBehaviour:
       type: 3}
     m_minDelay: 0
     m_maxDelay: 0
+  - m_audioClip: {fileID: 6507965147430230924, guid: 6ef30b8921921c94fa66bb80c51c1242,
+      type: 3}
+    m_minDelay: 0
+    m_maxDelay: 0
 --- !u!1 &8948145744973601613
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,14 +977,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 13700004, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 67400388835a5e24e94d567bcf232e4a, type: 2}
     - target: {fileID: 13700002, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 565ad28de636c484e88600585c25f0a1, type: 2}
+    - target: {fileID: 13700004, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 67400388835a5e24e94d567bcf232e4a, type: 2}
     - target: {fileID: 13700000, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
