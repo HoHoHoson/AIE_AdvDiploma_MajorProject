@@ -98,6 +98,8 @@ public class Player : MonoBehaviour
 
     #region Particle
 
+    public Transform m_batteryEjectPoint;
+    public ParticleSystem m_batteryEject = null;
     public ParticleSystem m_bloodSFX = null;
 
     #endregion
@@ -149,6 +151,7 @@ public class Player : MonoBehaviour
         skill_timer_3 = skill_3;
 
         m_sound_system = GetComponent<SoundSystem>();
+        m_batteryEject = Instantiate(m_batteryEject, m_batteryEjectPoint);
     }
 
     void Update()
@@ -171,6 +174,11 @@ public class Player : MonoBehaviour
             if (Time.time > jump_timer && GroundPlayer())
                 has_jumped = false;
         }
+    }
+
+    public void PlayBatteryEject()
+    {
+        m_batteryEject.Play();
     }
 
     #endregion
@@ -238,10 +246,6 @@ public class Player : MonoBehaviour
 
 			player_energy_current = player_energy;
 		}
-
-        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
-        if (state.normalizedTime >= 1)
-            ReloadComplete();
 
         if (Input.GetKey(KeyCode.E))
         {

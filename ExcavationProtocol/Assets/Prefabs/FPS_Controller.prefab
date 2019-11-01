@@ -562,6 +562,9 @@ MonoBehaviour:
   skill_timer_2: 0
   skill_timer_3: 0
   animator: {fileID: 950402033}
+  m_batteryEjectPoint: {fileID: 0}
+  m_batteryEject: {fileID: 3364398369051335825, guid: 58e863631128f3542bd4bdbf72edbdf3,
+    type: 3}
   m_bloodSFX: {fileID: 6952531192212141584, guid: 568b11857bcd24744937c24f9584480c,
     type: 3}
   gun_damage: 1
@@ -842,6 +845,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 30933977}
     m_Modifications:
+    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
+      propertyPath: m_Name
+      value: Glass
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: db637819c92a6e741bda93555770d446, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -893,14 +904,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: db637819c92a6e741bda93555770d446, type: 3}
       propertyPath: m_LocalScale.y
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
-      propertyPath: m_Name
-      value: Glass
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
-      propertyPath: m_Layer
-      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: db637819c92a6e741bda93555770d446, type: 3}
       propertyPath: m_CastShadows
@@ -977,14 +980,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 13700002, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 565ad28de636c484e88600585c25f0a1, type: 2}
     - target: {fileID: 13700004, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 67400388835a5e24e94d567bcf232e4a, type: 2}
+    - target: {fileID: 13700002, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 565ad28de636c484e88600585c25f0a1, type: 2}
     - target: {fileID: 13700000, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
