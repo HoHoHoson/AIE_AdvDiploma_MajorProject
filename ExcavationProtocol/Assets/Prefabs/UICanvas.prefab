@@ -907,7 +907,7 @@ GameObject:
   - component: {fileID: 1774508644424032792}
   - component: {fileID: 1774508644424032791}
   m_Layer: 5
-  m_Name: Dot
+  m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -953,7 +953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.013349922, g: 0.9433962, b: 0.20043422, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
