@@ -428,7 +428,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7037960682530485475}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.375, z: 0.676}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3262474647881643129}
@@ -555,9 +555,9 @@ MonoBehaviour:
   frost_G: {fileID: 4824119629656354010, guid: b49be8e2f7eaf5e4ab387f0a88e8f40d, type: 3}
   throw_force: 20
   throw_force_2: 10
-  skill_1: 20
+  skill_1: 5
   skill_2: 10
-  skill_3: 20
+  skill_3: 5
   skill_timer_1: 0
   skill_timer_2: 0
   skill_timer_3: 0
@@ -568,7 +568,7 @@ MonoBehaviour:
   weapon_range: 100
   hit_force: 1000
   gun_end: {fileID: 8501807789408972079}
-  gun_ads_time: 0.4
+  gun_ads_time: 0.2
   GunPivot: {fileID: 8614550032150692461}
   GunOffset: {fileID: 8501807789408972083}
 --- !u!120 &366442169
@@ -747,7 +747,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.07
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -842,14 +842,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 30933977}
     m_Modifications:
-    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
-      propertyPath: m_Name
-      value: Glass
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: db637819c92a6e741bda93555770d446, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -901,6 +893,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: db637819c92a6e741bda93555770d446, type: 3}
       propertyPath: m_LocalScale.y
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
+      propertyPath: m_Name
+      value: Glass
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: db637819c92a6e741bda93555770d446, type: 3}
       propertyPath: m_CastShadows

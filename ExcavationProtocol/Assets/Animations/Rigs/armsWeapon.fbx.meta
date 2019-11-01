@@ -181,6 +181,7 @@ ModelImporter:
     100350: prefix_Screen_CTRL
     100352: prefix_Trigger_CTRL
     100354: prefix_Upper_CTRL
+    100356: ParticleBattery
     400000: //RootNode
     400002: Barrel_CTRL
     400004: BarrelBottomLeft_CTRL
@@ -359,19 +360,23 @@ ModelImporter:
     400350: prefix_Screen_CTRL
     400352: prefix_Trigger_CTRL
     400354: prefix_Upper_CTRL
+    400356: ParticleBattery
     2100000: lambert1
     2100002: lambert2
     2100004: gun_initialShadingGroup1
     2300000: GunEnd
     2300002: BatteryPart
+    2300004: ParticleBattery
     3300000: GunEnd
     3300002: BatteryPart
+    3300004: ParticleBattery
     4300000: R_Arm_GEO
     4300002: weaponCombined
     4300004: GunEnd
     4300006: L_Arm_GEO
     4300008: weaponCombinedSight
     4300010: BatteryPart
+    4300012: ParticleBattery
     9500000: //RootNode
     13700000: L_Arm_GEO
     13700002: R_Arm_GEO

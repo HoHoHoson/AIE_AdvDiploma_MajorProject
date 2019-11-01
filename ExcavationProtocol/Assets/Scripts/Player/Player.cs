@@ -353,7 +353,7 @@ public class Player : MonoBehaviour
         GunOffset.localPosition = new Vector3(
             Mathf.Lerp(GunPivot.localPosition.x, GunPivot.localPosition.x - 0.1055f, t), // X value
             Mathf.Lerp(0, 0.01f, t), // Y value
-            Mathf.Lerp(0, -0.3f, t)); // Z value
+            Mathf.Lerp(0, -0.25f, t)); // Z value
 
         fps_cam.fieldOfView = Mathf.Lerp(60, 30, t);
     }
