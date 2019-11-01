@@ -24,7 +24,9 @@ public class GameManager : MonoBehaviour
     public GameObject pause_menu;
     public GameObject game_over;
     public GameObject game_play, crosshair;
-    
+
+	public int deadEnemies;
+
     public bool is_paused = false;
     public bool dead_player = false;
     #endregion
@@ -53,7 +55,7 @@ public class GameManager : MonoBehaviour
     #region Currency
 
     [Header("Currency Values")]
-    public int currency = 20;
+    private int Score = 0;
     public int wave_reward = 5;
     public int cost_per_hp, cost_per_ammo;
 
@@ -114,11 +116,20 @@ public class GameManager : MonoBehaviour
 
     #region Currency
 
-    public void AddCurrency()
+    public void AddScore()
     {
-        currency += wave_reward * Drill.GetComponent<Mines>().GetCurrentHp();
+        Score += wave_reward * (Drill.GetComponent<Mines>().GetCurrentHp() / 10);
     }
 
+	public void AddScore(int add)
+	{
+		Score += add;
+	}
+
+	public int GetScore()
+	{
+		return Score;
+	}
     #endregion
 
     #region MenuFunc

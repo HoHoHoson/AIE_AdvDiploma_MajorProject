@@ -170,7 +170,10 @@ public class Player : MonoBehaviour
             PlayerInputMovement();
 
             if (Time.time > jump_timer && GroundPlayer())
+			{
                 has_jumped = false;
+				animator.SetBool("Jumping", false);
+			}
         }
     }
 
@@ -245,14 +248,6 @@ public class Player : MonoBehaviour
 			player_energy_current = player_energy;
 		}
 
-        if (Input.GetKey(KeyCode.E))
-        {
-            if (Physics.Raycast(camera_transform.position, camera_transform.forward, out RaycastHit hit, 5.0f))
-            {
-                Interaction(hit.transform.gameObject);
-            }
-        }
-
         interaction_timer -= Time.deltaTime;
         if (interaction_timer < 0)
         {
@@ -264,7 +259,6 @@ public class Player : MonoBehaviour
             // Set Jumping variable in the animator to true
 			if (has_jumped == false)
 			{
-				animator.SetBool("Jumping", true);
 			}
         }
         else
@@ -272,51 +266,8 @@ public class Player : MonoBehaviour
             // If not it remains false
 			if (has_jumped == true)
 			{
-				animator.SetBool("Jumping", false);
 			}
         }
-    }
-
-    public void Interaction(GameObject interactable)
-    {
-        if (interactable.tag == "EnergyTerminal" && player_energy_current < player_energy && script_gm.currency >= 1 && interaction_timer == 0)
-        {
-            if (player_energy_current > player_energy - script_gm.cost_per_ammo && player_energy_current != player_energy)
-            {
-                energy_gain_temp = player_energy - player_energy_current;
-                player_energy_current += energy_gain_temp;
-                script_gm.currency -= 1;
-            }
-            else
-            {
-                player_energy_current += script_gm.cost_per_ammo;
-                script_gm.currency -= 1;
-            }
-            interaction_timer = interaction_cooldown;
-        }
-        else if (interactable.tag == "HealthTerminal" && player_hp_current < player_hp && script_gm.currency >= 1 && interaction_timer == 0)
-        {
-            if (player_hp_current < player_hp)
-            {
-                player_hp_current += script_gm.cost_per_hp;
-                script_gm.currency -= 1;
-            }
-            interaction_timer = interaction_cooldown;
-        }
-        //else if (interactable.tag == "Mine" && interaction_timer == 0)
-        //{
-        //    if (interactable.GetComponent<Mines>().GetActive() == false && script_gm.currency >= 1)
-        //    {
-        //        interactable.GetComponent<Mines>().Activate(ref script_gm.active_mines, script_gm.mines_list);
-        //        script_gm.currency -= 1;
-        //    }
-        //    else if (interactable.GetComponent<Mines>().GetCurrentHp() < interactable.GetComponent<Mines>().mine_max_hp && script_gm.currency >= script_gm.mine_rep_cost)
-        //    {
-        //        interactable.GetComponent<Mines>().AddMineHP();
-        //        script_gm.currency -= 1;
-        //    }
-        //    interaction_timer = interaction_cooldown;
-        //}
     }
 
     public int PlayerTakenDamage(float damage)
@@ -439,18 +390,21 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        jump_timer = Time.time + jump_cooldown;
-        has_jumped = true;
-
-        m_sound_system.GetClip(1).GetAudioSource().PlayOneShot(m_sound_system.GetClip(1).GetAudioSource().clip);
+        jump_timer = Time.deltaTime + jump_cooldown;
+		has_jumped = true;
+		animator.SetBool("Jumping", true);
+		m_sound_system.GetClip(1).GetAudioSource().PlayOneShot(m_sound_system.GetClip(1).GetAudioSource().clip);
         m_player_rb.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
-        if (has_jumped == true && Time.time > jump_timer)
-            has_jumped = false;
-    }
+  //  private void OnCollisionEnter(Collision collision)
+  //  {
+		//if (has_jumped == true /*&& Time.deltaTime > jump_timer*/ && collision.gameObject.layer == LayerMask.GetMask("Ground"))
+		//{
+		//	has_jumped = false;
+		//	animator.SetBool("Jumping", false);
+		//}
+  //  }
     
     #endregion
 
