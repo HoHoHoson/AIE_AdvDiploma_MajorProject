@@ -3,7 +3,7 @@
 public class BossAI : Agent
 {
     [SerializeField] private float m_detectRange = 30f;
-    [SerializeField] private float m_attackRange = 1f;
+    [SerializeField] private float m_attackRange = 0f;
 
     private bool m_damage_frames = false;
 

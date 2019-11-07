@@ -32,12 +32,12 @@ public class LeapAtState : State
 
     public override void UpdateState()
     {
+        base.UpdateState();
+
         // SUBJECT TO CHANGE
         m_timer += Time.deltaTime;
         m_agent.GetRigidbody().AddForce(Physics.gravity, ForceMode.Acceleration);
         // SUBJECT TO CHANGE
-
-        TransitionCheck();
     }
 
     public override void ExitState()

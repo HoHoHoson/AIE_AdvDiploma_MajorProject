@@ -19,9 +19,8 @@ public class BossSweepState : State
     {
         base.InitialiseState();
 
-        m_animator.SetBool("Attack", true);
-
-        m_boss_agent.GetRigidbody().velocity = Vector3.zero;
+        m_animator.ResetTrigger("Attack");
+        m_animator.SetTrigger("Attack");
 
         GameObject target = m_agent.GetTarget();
 
@@ -38,24 +37,19 @@ public class BossSweepState : State
         }
     }
 
-    public override void ExitState()
+    public override void UpdateState()
     {
-        base.ExitState();
+        base.UpdateState();
 
-        m_animator.SetBool("Attack", false);
+        m_agent.GetRigidbody().velocity = Vector3.zero;
     }
 
     public bool AnimationEnded()
     {
         AnimatorStateInfo state_info = m_animator.GetCurrentAnimatorStateInfo(0);
-        if (state_info.IsName("SweepAttack"))
-        {
-            if (state_info.normalizedTime >= 1)
-                return true;
-        }
-        else
-            Debug.Log("ERROR: Boss not in SweepAttack State.");
+        if (state_info.IsName("SweepAttack") || m_animator.IsInTransition(0))
+            return false;
 
-        return false;
+        return true;
     }
 }
