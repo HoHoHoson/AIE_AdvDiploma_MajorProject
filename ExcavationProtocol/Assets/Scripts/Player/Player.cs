@@ -124,14 +124,15 @@ public class Player : MonoBehaviour
     private Transform camera_transform;
 
 	public Transform GunPivot, GunOffset;
-    #endregion
+	public float BulletBlast = 3;
+	#endregion
 
-    // Functions
+	// Functions
 
-    #region StartUpdate
+	#region StartUpdate
 
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
         animator = GetComponent<Animator>();
 
@@ -252,21 +253,6 @@ public class Player : MonoBehaviour
         if (interaction_timer < 0)
         {
             interaction_timer = 0;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // Set Jumping variable in the animator to true
-			if (has_jumped == false)
-			{
-			}
-        }
-        else
-        {
-            // If not it remains false
-			if (has_jumped == true)
-			{
-			}
         }
     }
 
@@ -540,7 +526,15 @@ public class Player : MonoBehaviour
 
                 if (hit_target.transform.GetComponent<Agent>() != null)
                 {
-                    hit_target.transform.GetComponent<Agent>().TakeDamage(gun_damage);
+					Collider[] colliders = Physics.OverlapSphere(hit_target.point, BulletBlast);
+
+					foreach(Collider hit in colliders)
+					{
+						if(hit.gameObject.layer == 10)
+						{
+							hit.transform.GetComponent<Agent>().TakeDamage(gun_damage);
+						}
+					}
 
                     GameObject sfx = Instantiate(m_bloodSFX.gameObject, hit_target.point, Quaternion.identity);
                     Destroy(sfx, m_bloodSFX.main.duration);

@@ -55,9 +55,8 @@ public class GameManager : MonoBehaviour
     #region Currency
 
     [Header("Currency Values")]
-    private int Score = 0;
+    private int Currency = 0;
     public int wave_reward = 5;
-    public int cost_per_hp, cost_per_ammo;
 
     #endregion
 
@@ -116,19 +115,20 @@ public class GameManager : MonoBehaviour
 
     #region Currency
 
-    public void AddScore()
+    public void AddCurrency()
     {
-        Score += wave_reward * (Drill.GetComponent<Mines>().GetCurrentHp() / 10);
+        Currency += wave_reward * (Drill.GetComponent<Mines>().GetCurrentHp() / 10);
+		Debug.Log(Currency);
     }
 
-	public void AddScore(int add)
+	public void AddCurrency(int add)
 	{
-		Score += add;
+		Currency += add;
 	}
 
-	public int GetScore()
+	public int GetCurrency()
 	{
-		return Score;
+		return Currency;
 	}
     #endregion
 

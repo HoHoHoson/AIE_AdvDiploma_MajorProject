@@ -61,7 +61,7 @@ public class Blackboard : MonoBehaviour
         m_wave_ongoing = false;
         ++m_waves_passed;
 
-        m_gameManager.AddScore();
+        m_gameManager.AddCurrency();
 
         foreach (EnemyTemplate e in ActiveEnemyTypes())
             e.WaveEnding();
@@ -85,17 +85,9 @@ public class Blackboard : MonoBehaviour
 				// Checks and removes any dead enemies
 				if (a.IsDead())
 				{
-					switch(a.GetEnemyType())
-					{
-						case Agent.EnemyType.BASIC:
-							m_gameManager.AddScore(1);
-							break;
-						case Agent.EnemyType.EXPLOSIVE:
-							m_gameManager.AddScore(2);
-							break;
-						case Agent.EnemyType.BOSS:
-							m_gameManager.AddScore(5);
-							break;
+					if (a.GetEnemyType() == Agent.EnemyType.BOSS)
+					{ 
+						m_gameManager.AddCurrency(10);
 					}
 					e.DeactivateEnemy(a);
 				}
