@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
@@ -98,13 +99,16 @@ public class Player : MonoBehaviour
 
     #region Particle
 
+    public Transform m_batteryEjectPoint;
+    public ParticleSystem m_batteryEject = null;
     public ParticleSystem m_bloodSFX = null;
+	public ParticleSystem m_laserFlash = null;
 
-    #endregion
+	#endregion
 
-    #region FPSgun
+	#region FPSgun
 
-    public int gun_damage = 1;
+	public int gun_damage = 1;
     
     public float weapon_range = 50f;
     public float hit_force = 100f;
@@ -123,14 +127,18 @@ public class Player : MonoBehaviour
     private Transform camera_transform;
 
 	public Transform GunPivot, GunOffset;
-    #endregion
+	public float BulletBlast = 3;
 
-    // Functions
+	public GameObject dot, crosshair;
 
-    #region StartUpdate
+	#endregion
 
-    // Start is called before the first frame update
-    void Start()
+	// Functions
+
+	#region StartUpdate
+
+	// Start is called before the first frame update
+	void Start()
     {
         animator = GetComponent<Animator>();
 
@@ -149,6 +157,7 @@ public class Player : MonoBehaviour
         skill_timer_3 = skill_3;
 
         m_sound_system = GetComponent<SoundSystem>();
+        m_batteryEject = Instantiate(m_batteryEject, m_batteryEjectPoint);
     }
 
     void Update()
@@ -169,8 +178,16 @@ public class Player : MonoBehaviour
             PlayerInputMovement();
 
             if (Time.time > jump_timer && GroundPlayer())
+			{
                 has_jumped = false;
+				animator.SetBool("Jumping", false);
+			}
         }
+    }
+
+    public void PlayBatteryEject()
+    {
+        m_batteryEject.Play();
     }
 
     #endregion
@@ -213,9 +230,11 @@ public class Player : MonoBehaviour
 
 		if (player_energy_current <= 0)
 		{
+			animator.SetBool("Aiming", false);
 			animator.SetBool("Shooting", false);
 			animator.SetBool("Reload", true);
-			
+			m_laserFlash.Stop();
+
 			player_energy_current = player_energy;
 		}
 		else if (animator.GetBool("Reload") == false && player_energy_current > 0)
@@ -223,10 +242,12 @@ public class Player : MonoBehaviour
 			if (Input.GetMouseButton(0))
 			{
 				animator.SetBool("Shooting", true);
+				m_laserFlash.Play();
 				GunFire(ref player_energy_current, fire_rate);
 			}
 			else
 			{
+				m_laserFlash.Stop();
 				animator.SetBool("Shooting", false);
 			}
 		}
@@ -235,80 +256,15 @@ public class Player : MonoBehaviour
 		{
 			animator.SetBool("Shooting", false);
 			animator.SetBool("Reload", true);
+			m_laserFlash.Stop();
 
 			player_energy_current = player_energy;
 		}
-
-        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
-        if (state.normalizedTime >= 1)
-            ReloadComplete();
-
-        if (Input.GetKey(KeyCode.E))
-        {
-            if (Physics.Raycast(camera_transform.position, camera_transform.forward, out RaycastHit hit, 5.0f))
-            {
-                Interaction(hit.transform.gameObject);
-            }
-        }
 
         interaction_timer -= Time.deltaTime;
         if (interaction_timer < 0)
         {
             interaction_timer = 0;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        //if a key is pressed,
-        {
-            animator.SetBool("Jumping", true);
-            //set Jumping variable in the animator to true
-        }
-        else
-        {
-            animator.SetBool("Jumping", false);
-            //if not it remains false
-        }
-    }
-
-    public void Interaction(GameObject interactable)
-    {
-        if (interactable.tag == "EnergyTerminal" && player_energy_current < player_energy && script_gm.currency >= 1 && interaction_timer == 0)
-        {
-            if (player_energy_current > player_energy - script_gm.cost_per_ammo && player_energy_current != player_energy)
-            {
-                energy_gain_temp = player_energy - player_energy_current;
-                player_energy_current += energy_gain_temp;
-                script_gm.currency -= 1;
-            }
-            else
-            {
-                player_energy_current += script_gm.cost_per_ammo;
-                script_gm.currency -= 1;
-            }
-            interaction_timer = interaction_cooldown;
-        }
-        else if (interactable.tag == "HealthTerminal" && player_hp_current < player_hp && script_gm.currency >= 1 && interaction_timer == 0)
-        {
-            if (player_hp_current < player_hp)
-            {
-                player_hp_current += script_gm.cost_per_hp;
-                script_gm.currency -= 1;
-            }
-            interaction_timer = interaction_cooldown;
-        }
-        else if (interactable.tag == "Mine" && interaction_timer == 0)
-        {
-            if (interactable.GetComponent<Mines>().GetActive() == false && script_gm.currency >= 1)
-            {
-                interactable.GetComponent<Mines>().Activate(ref script_gm.active_mines, script_gm.mines_list);
-                script_gm.currency -= 1;
-            }
-            else if (interactable.GetComponent<Mines>().GetCurrentHp() < interactable.GetComponent<Mines>().mine_max_hp && script_gm.currency >= script_gm.mine_rep_cost)
-            {
-                interactable.GetComponent<Mines>().AddMineHP();
-                script_gm.currency -= 1;
-            }
-            interaction_timer = interaction_cooldown;
         }
     }
 
@@ -339,11 +295,15 @@ public class Player : MonoBehaviour
         {
             ads_timer += Time.deltaTime;
             animator.SetBool("Aiming", true);
+			crosshair.SetActive(false);
+			dot.SetActive(true);
         }
         else
         {
             ads_timer -= Time.deltaTime;
             animator.SetBool("Aiming", false);
+			dot.SetActive(false);
+			crosshair.SetActive(true);
         }
 
         ads_timer = Mathf.Clamp(ads_timer, 0, gun_ads_time);
@@ -352,8 +312,8 @@ public class Player : MonoBehaviour
         //aim down sights values, think of counter strike
         GunOffset.localPosition = new Vector3(
             Mathf.Lerp(GunPivot.localPosition.x, GunPivot.localPosition.x - 0.1055f, t), // X value
-            Mathf.Lerp(0, 0f, t), // Y value
-            Mathf.Lerp(0, 0f, t)); // Z value
+            Mathf.Lerp(0, 0.01f, t), // Y value
+            Mathf.Lerp(0, -0.25f, t)); // Z value
 
         fps_cam.fieldOfView = Mathf.Lerp(60, 30, t);
     }
@@ -432,18 +392,21 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        jump_timer = Time.time + jump_cooldown;
-        has_jumped = true;
-
-        m_sound_system.GetClip(1).GetAudioSource().PlayOneShot(m_sound_system.GetClip(1).GetAudioSource().clip);
+        jump_timer = Time.deltaTime + jump_cooldown;
+		has_jumped = true;
+		animator.SetBool("Jumping", true);
+		m_sound_system.GetClip(1).GetAudioSource().PlayOneShot(m_sound_system.GetClip(1).GetAudioSource().clip);
         m_player_rb.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
-        if (has_jumped == true && Time.time > jump_timer)
-            has_jumped = false;
-    }
+  //  private void OnCollisionEnter(Collision collision)
+  //  {
+		//if (has_jumped == true /*&& Time.deltaTime > jump_timer*/ && collision.gameObject.layer == LayerMask.GetMask("Ground"))
+		//{
+		//	has_jumped = false;
+		//	animator.SetBool("Jumping", false);
+		//}
+  //  }
     
     #endregion
 
@@ -585,6 +548,15 @@ public class Player : MonoBehaviour
                         explosive_baddy.LocationalDamage(hit_target, gun_damage);
                     else
                         hit_agent.TakeDamage(gun_damage);
+					Collider[] colliders = Physics.OverlapSphere(hit_target.point, BulletBlast);
+
+					foreach(Collider hit in colliders)
+					{
+						if(hit.gameObject.layer == 10)
+						{
+							hit.transform.GetComponent<Agent>().TakeDamage(gun_damage);
+						}
+					}
 
                     GameObject sfx = Instantiate(m_bloodSFX.gameObject, hit_target.point, Quaternion.identity);
                     Destroy(sfx, m_bloodSFX.main.duration);
@@ -602,7 +574,7 @@ public class Player : MonoBehaviour
         laser_line.enabled = true;
         yield return shot_duration;
         laser_line.enabled = false;
-    }
+	}
 
 	void ReloadComplete()
 	{

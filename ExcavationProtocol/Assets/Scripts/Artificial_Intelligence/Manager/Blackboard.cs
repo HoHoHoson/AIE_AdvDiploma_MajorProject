@@ -82,10 +82,15 @@ public class Blackboard : MonoBehaviour
 
             foreach (Agent a in active_enemies)
             {
-                // Checks and removes any dead enemies
-                if (a.IsDead())
-                    e.DeactivateEnemy(a);
-
+				// Checks and removes any dead enemies
+				if (a.IsDead())
+				{
+					if (a.GetEnemyType() == Agent.EnemyType.BOSS)
+					{ 
+						m_gameManager.AddCurrency(10);
+					}
+					e.DeactivateEnemy(a);
+				}
                 if (a.transform.position.y < -10)
                     a.gameObject.SetActive(false);
 

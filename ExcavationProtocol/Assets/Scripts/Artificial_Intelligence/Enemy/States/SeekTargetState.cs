@@ -44,27 +44,26 @@ public class SeekTargetState : State
         GameObject closest_mine = null;
         float closest_distance_sqr = 0;
 
-        foreach (GameObject mine in m_blackboard.m_gameManager.mines_list)
+        
+        
+        if (m_blackboard.m_gameManager.Drill.GetComponentInChildren<Mines>().GetActive() == false)
+		{ }
+
+        if (closest_mine == null)
         {
-            if (mine.GetComponentInChildren<Mines>().GetActive() == false)
-                continue;
+            closest_mine = m_blackboard.m_gameManager.Drill;
+            closest_distance_sqr = (m_agent.transform.position - m_blackboard.m_gameManager.Drill.transform.position).sqrMagnitude;
 
-            if (closest_mine == null)
-            {
-                closest_mine = mine;
-                closest_distance_sqr = (m_agent.transform.position - mine.transform.position).sqrMagnitude;
-
-                continue;
-            }
-
-            float distance_sqr = (m_agent.transform.position - mine.transform.position).sqrMagnitude;
-
-            if (distance_sqr < closest_distance_sqr)
-            {
-                closest_mine = mine;
-                closest_distance_sqr = distance_sqr;
-            }
         }
+
+        float distance_sqr = (m_agent.transform.position - m_blackboard.m_gameManager.Drill.transform.position).sqrMagnitude;
+
+        if (distance_sqr < closest_distance_sqr)
+        {
+            closest_mine = m_blackboard.m_gameManager.Drill;
+            closest_distance_sqr = distance_sqr;
+        }
+        
 
         if (closest_mine != null)
             m_agent.SetTarget(closest_mine);

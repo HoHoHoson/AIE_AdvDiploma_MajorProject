@@ -74,7 +74,7 @@ public class Ui : MonoBehaviour
 
         max_energy_value.GetComponent<Text>().text = "/ " + script_player.player_energy.ToString();
 
-        res_cost_text.GetComponent<Text>().text = script_gamemanager.currency.ToString();
+        res_cost_text.GetComponent<Text>().text = script_gamemanager.GetCurrency().ToString();
 
         wave_enemiesleft.GetComponent<Text>().text = script_gamemanager.num_of_enemies.ToString();
 

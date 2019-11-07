@@ -121,6 +121,67 @@ ModelImporter:
     100230: Upper_JNT
     100232: Weapon_JNT
     100234: weaponCombined
+    100236: BatteryPart
+    100238: prefix_L_MidEnd_CTRL
+    100240: prefix_L_MidMid_CTRL
+    100242: prefix_L_MidStart_CTRL
+    100244: prefix_L_PinkyEnd_CTRL
+    100246: prefix_L_PinkyMid_CTRL
+    100248: prefix_L_PinkyStart_CTRL
+    100250: prefix_L_PointerEnd_CTRL
+    100252: prefix_L_PointerMid_CTRL
+    100254: prefix_L_PointerStart_CTRL
+    100256: prefix_L_RingEnd_CTRL
+    100258: prefix_L_RingMid_CTRL
+    100260: prefix_L_RingStart_CTRL
+    100262: prefix_L_ThumbEnd_CTRL
+    100264: prefix_L_ThumbStart_CTRL
+    100266: prefix_prefix_Barrel_CTRL
+    100268: prefix_prefix_BarrelBottomLeft_CTRL
+    100270: prefix_prefix_BarrelBottomRight_CTRL
+    100272: prefix_prefix_BarrelTopLeft_CTRL
+    100274: prefix_prefix_BarrelTopRight_CTRL
+    100276: prefix_prefix_Battery_CTRL
+    100278: prefix_prefix_Input__CTRL
+    100280: prefix_prefix_L_Panel_CTRL
+    100282: prefix_prefix_Main_CTRL
+    100284: prefix_prefix_Output_CTRL
+    100286: prefix_prefix_PDA_CTRL
+    100288: prefix_prefix_R_Panel_CTRL
+    100290: prefix_prefix_Screen_CTRL
+    100292: prefix_prefix_Trigger_CTRL
+    100294: prefix_prefix_Upper_CTRL
+    100296: prefix_R_MidEnd_CTRL
+    100298: prefix_R_MidMid_CTRL
+    100300: prefix_R_MidStart_CTRL
+    100302: prefix_R_PinkyEnd_CTRL
+    100304: prefix_R_PinkyMid_CTRL
+    100306: prefix_R_PinkyStart_CTRL
+    100308: prefix_R_PointerEnd_CTRL
+    100310: prefix_R_PointerMid_CTRL
+    100312: prefix_R_PointerStart_CTRL
+    100314: prefix_R_RingEnd_CTRL
+    100316: prefix_R_RingMid_CTRL
+    100318: prefix_R_RingStart_CTRL
+    100320: prefix_R_ThumbEnd_CTRL
+    100322: prefix_R_ThumbStart_CTRL
+    100324: weaponCombinedSight
+    100326: prefix_Barrel_CTRL
+    100328: prefix_BarrelBottomLeft_CTRL
+    100330: prefix_BarrelBottomRight_CTRL
+    100332: prefix_BarrelTopLeft_CTRL
+    100334: prefix_BarrelTopRight_CTRL
+    100336: prefix_Battery_CTRL
+    100338: prefix_Input__CTRL
+    100340: prefix_L_Panel_CTRL
+    100342: prefix_Main_CTRL
+    100344: prefix_Output_CTRL
+    100346: prefix_PDA_CTRL
+    100348: prefix_R_Panel_CTRL
+    100350: prefix_Screen_CTRL
+    100352: prefix_Trigger_CTRL
+    100354: prefix_Upper_CTRL
+    100356: ParticleBattery
     400000: //RootNode
     400002: Barrel_CTRL
     400004: BarrelBottomLeft_CTRL
@@ -239,17 +300,88 @@ ModelImporter:
     400230: Upper_JNT
     400232: Weapon_JNT
     400234: weaponCombined
+    400236: BatteryPart
+    400238: prefix_L_MidEnd_CTRL
+    400240: prefix_L_MidMid_CTRL
+    400242: prefix_L_MidStart_CTRL
+    400244: prefix_L_PinkyEnd_CTRL
+    400246: prefix_L_PinkyMid_CTRL
+    400248: prefix_L_PinkyStart_CTRL
+    400250: prefix_L_PointerEnd_CTRL
+    400252: prefix_L_PointerMid_CTRL
+    400254: prefix_L_PointerStart_CTRL
+    400256: prefix_L_RingEnd_CTRL
+    400258: prefix_L_RingMid_CTRL
+    400260: prefix_L_RingStart_CTRL
+    400262: prefix_L_ThumbEnd_CTRL
+    400264: prefix_L_ThumbStart_CTRL
+    400266: prefix_prefix_Barrel_CTRL
+    400268: prefix_prefix_BarrelBottomLeft_CTRL
+    400270: prefix_prefix_BarrelBottomRight_CTRL
+    400272: prefix_prefix_BarrelTopLeft_CTRL
+    400274: prefix_prefix_BarrelTopRight_CTRL
+    400276: prefix_prefix_Battery_CTRL
+    400278: prefix_prefix_Input__CTRL
+    400280: prefix_prefix_L_Panel_CTRL
+    400282: prefix_prefix_Main_CTRL
+    400284: prefix_prefix_Output_CTRL
+    400286: prefix_prefix_PDA_CTRL
+    400288: prefix_prefix_R_Panel_CTRL
+    400290: prefix_prefix_Screen_CTRL
+    400292: prefix_prefix_Trigger_CTRL
+    400294: prefix_prefix_Upper_CTRL
+    400296: prefix_R_MidEnd_CTRL
+    400298: prefix_R_MidMid_CTRL
+    400300: prefix_R_MidStart_CTRL
+    400302: prefix_R_PinkyEnd_CTRL
+    400304: prefix_R_PinkyMid_CTRL
+    400306: prefix_R_PinkyStart_CTRL
+    400308: prefix_R_PointerEnd_CTRL
+    400310: prefix_R_PointerMid_CTRL
+    400312: prefix_R_PointerStart_CTRL
+    400314: prefix_R_RingEnd_CTRL
+    400316: prefix_R_RingMid_CTRL
+    400318: prefix_R_RingStart_CTRL
+    400320: prefix_R_ThumbEnd_CTRL
+    400322: prefix_R_ThumbStart_CTRL
+    400324: weaponCombinedSight
+    400326: prefix_Barrel_CTRL
+    400328: prefix_BarrelBottomLeft_CTRL
+    400330: prefix_BarrelBottomRight_CTRL
+    400332: prefix_BarrelTopLeft_CTRL
+    400334: prefix_BarrelTopRight_CTRL
+    400336: prefix_Battery_CTRL
+    400338: prefix_Input__CTRL
+    400340: prefix_L_Panel_CTRL
+    400342: prefix_Main_CTRL
+    400344: prefix_Output_CTRL
+    400346: prefix_PDA_CTRL
+    400348: prefix_R_Panel_CTRL
+    400350: prefix_Screen_CTRL
+    400352: prefix_Trigger_CTRL
+    400354: prefix_Upper_CTRL
+    400356: ParticleBattery
     2100000: lambert1
+    2100002: lambert2
+    2100004: gun_initialShadingGroup1
     2300000: GunEnd
+    2300002: BatteryPart
+    2300004: ParticleBattery
     3300000: GunEnd
+    3300002: BatteryPart
+    3300004: ParticleBattery
     4300000: R_Arm_GEO
     4300002: weaponCombined
     4300004: GunEnd
     4300006: L_Arm_GEO
+    4300008: weaponCombinedSight
+    4300010: BatteryPart
+    4300012: ParticleBattery
     9500000: //RootNode
     13700000: L_Arm_GEO
     13700002: R_Arm_GEO
     13700004: weaponCombined
+    13700006: weaponCombinedSight
   externalObjects: {}
   materials:
     importMaterials: 1

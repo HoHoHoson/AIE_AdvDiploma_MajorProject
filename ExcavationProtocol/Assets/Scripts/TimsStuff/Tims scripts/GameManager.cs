@@ -16,11 +16,7 @@ public class GameManager : MonoBehaviour
     #region Loop
 
     [Header("GameLoop Variables")]
-    public int active_mines = 1;
-    public int mine_rep_cost = 1;
-    public int mine_cost = 1;
-
-    public GameObject[] mines_list;
+    public GameObject Drill;
 
     public bool player_take_dmg = false, player_restore_hp = false;
 
@@ -28,7 +24,9 @@ public class GameManager : MonoBehaviour
     public GameObject pause_menu;
     public GameObject game_over;
     public GameObject game_play, crosshair;
-    
+
+	public int deadEnemies;
+
     public bool is_paused = false;
     public bool dead_player = false;
     #endregion
@@ -57,9 +55,8 @@ public class GameManager : MonoBehaviour
     #region Currency
 
     [Header("Currency Values")]
-    public int currency = 20;
+    private int Currency = 0;
     public int wave_reward = 5;
-    public int cost_per_hp, cost_per_ammo;
 
     #endregion
 
@@ -77,14 +74,6 @@ public class GameManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-        foreach (GameObject mine in mines_list)
-        {
-            if(mine.GetComponent<Mines>().GetActive() == true && active_mines < 4)
-            {
-                active_mines++;
-            }
-        }
     }
 
     // Update is called once per frame
@@ -128,9 +117,19 @@ public class GameManager : MonoBehaviour
 
     public void AddCurrency()
     {
-        currency += wave_reward * (active_mines + 1);
+        Currency += wave_reward * (Drill.GetComponent<Mines>().GetCurrentHp() / 10);
+		Debug.Log(Currency);
     }
 
+	public void AddCurrency(int add)
+	{
+		Currency += add;
+	}
+
+	public int GetCurrency()
+	{
+		return Currency;
+	}
     #endregion
 
     #region MenuFunc
