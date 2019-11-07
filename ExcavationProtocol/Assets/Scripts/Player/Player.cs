@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
@@ -127,6 +128,9 @@ public class Player : MonoBehaviour
 
 	public Transform GunPivot, GunOffset;
 	public float BulletBlast = 3;
+
+	public GameObject dot, crosshair;
+
 	#endregion
 
 	// Functions
@@ -291,11 +295,15 @@ public class Player : MonoBehaviour
         {
             ads_timer += Time.deltaTime;
             animator.SetBool("Aiming", true);
+			crosshair.SetActive(false);
+			dot.SetActive(true);
         }
         else
         {
             ads_timer -= Time.deltaTime;
             animator.SetBool("Aiming", false);
+			dot.SetActive(false);
+			crosshair.SetActive(true);
         }
 
         ads_timer = Mathf.Clamp(ads_timer, 0, gun_ads_time);
