@@ -2,11 +2,13 @@
 
 public class ExplosiveAI : Agent
 {
+    [Header("Kapooya Man Settings")]
     [SerializeField] ParticleSystem m_exlodeSFX = null;
     [SerializeField] AudioSource m_explodeSound = null;
 
     [SerializeField] private float  m_explosiveRadius = 3;
     [SerializeField] private int    m_friendlyFireDamage = 5;
+    [SerializeField] private float  m_detectRange = 0;
 
     private Animator m_animator;
 
@@ -27,7 +29,7 @@ public class ExplosiveAI : Agent
             new Condition[] { new BoolCondition((state as LeapAtState).IsCooldownOver) }));
         m_state_machine.AddState(state);
 
-        state = new SeekTargetState(this, m_blackboard, 0);
+        state = new SeekTargetState(this, m_blackboard, m_detectRange);
         state.AddTransition(new Transition("LEAPAT",
             new Condition[] { new BoolCondition(GetCliffLeap) }));
         m_state_machine.AddState(state);

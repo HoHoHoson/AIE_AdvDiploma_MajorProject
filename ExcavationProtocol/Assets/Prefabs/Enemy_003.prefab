@@ -79,7 +79,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_health: 20
   m_damage: 15
-  m_speed: 650
+  m_minSpeed: 500
+  m_maxSpeed: 500
   m_maxSlopeAngle: 70
   m_leapCooldown: 2
   m_leapAngle: 45

@@ -2,10 +2,12 @@
 
 public class SmallAI : Agent
 {
-    [SerializeField] private float  m_playerSeekRadius  = 10;
     [SerializeField] private float  m_leapRadius        = 5;
     [SerializeField] private float  m_randomLeapChance  = 0.01f;
     [SerializeField] private int    m_tickRate          = 10;
+
+    [Header("Small Boi Settings")]
+    [SerializeField] private float  m_detectRange  = 10;
 
     private Animator m_animator;
 
@@ -62,7 +64,7 @@ public class SmallAI : Agent
         m_state_machine.AddState(state);
 
         // Chases after the AI's set target
-        state = new SeekTargetState(this, m_blackboard, m_playerSeekRadius);
+        state = new SeekTargetState(this, m_blackboard, m_detectRange);
         // Leaps at the targets face when in range
         state.AddTransition(new Transition("LEAPAT",
             new Condition[] { new BoolCondition(RandomLeapCheck),

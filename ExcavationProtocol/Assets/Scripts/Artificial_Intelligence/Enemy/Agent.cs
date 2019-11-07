@@ -18,7 +18,8 @@ public class Agent : MonoBehaviour
 
     [SerializeField] private int m_health = 3;
     [SerializeField] private int m_damage = 5;
-    [SerializeField] private int m_speed  = 500;
+    [SerializeField] private int m_minSpeed  = 500;
+    [SerializeField] private int m_maxSpeed = 500;
 
     [SerializeField, Range(0, 90)]
     private int m_maxSlopeAngle = 70;
@@ -85,7 +86,7 @@ public class Agent : MonoBehaviour
     {
         m_current_health    = m_health;
         m_current_damage    = m_damage;
-        m_current_speed     = m_speed;
+        m_current_speed     = Random.Range(m_minSpeed, m_maxSpeed);
 
         m_rigidbody.velocity = Vector3.zero;
         m_rigidbody.isKinematic = false;
