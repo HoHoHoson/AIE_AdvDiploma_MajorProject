@@ -2,8 +2,9 @@
 
 public class BossAI : Agent
 {
+    [Header("Boss Settings")]
     [SerializeField] private float m_detectRange = 30f;
-    [SerializeField] private float m_attackRange = 0f;
+    [SerializeField] private float m_attackRange = 4f;
 
     private bool m_damage_frames = false;
 
