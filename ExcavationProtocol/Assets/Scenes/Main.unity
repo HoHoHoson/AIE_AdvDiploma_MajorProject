@@ -4270,11 +4270,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UICanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 3357895834591920799, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1774508644266458753, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4427,6 +4422,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3357895834591920799, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a, type: 3}
@@ -33437,6 +33437,12 @@ PrefabInstance:
       propertyPath: dot
       value: 
       objectReference: {fileID: 1956474668}
+    - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
+        type: 3}
+      propertyPath: m_bloodSFX
+      value: 
+      objectReference: {fileID: 7242024033571974761, guid: 1503b75c7aa8f6b448edb6affb33da73,
+        type: 3}
     - target: {fileID: 7980817046700777752, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
       propertyPath: m_LocalPosition.x
