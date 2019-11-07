@@ -29,10 +29,10 @@ public class State
     }
 
     /// <summary>
-    /// Update logic of this script to be called preferably each frame.
+    /// Update logic of this script to be called, preferably each frame.
     /// </summary>
     /// <param name="agent">Reference the Agent that owns the StateMachine in order to make changes to it.</param>
-    public virtual void UpdateState() { }
+    public virtual void UpdateState() { TransitionCheck(); }
 
     /// <summary>
     /// Logic runs when this state gets unloaded.

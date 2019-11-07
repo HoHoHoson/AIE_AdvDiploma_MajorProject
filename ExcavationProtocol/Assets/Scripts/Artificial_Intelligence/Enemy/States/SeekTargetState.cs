@@ -21,10 +21,10 @@ public class SeekTargetState : State
 
     public override void UpdateState()
     {
+        base.UpdateState();
+
         UpdateTarget();
         Seek();
-
-        TransitionCheck();
     }
 
     public override void ExitState()

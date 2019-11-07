@@ -577,9 +577,14 @@ public class Player : MonoBehaviour
                     hit_target.rigidbody.AddForce(-hit_target.normal * hit_force);
                 }
 
-                if (hit_target.transform.GetComponent<Agent>() != null)
+                Agent hit_agent = hit_target.transform.GetComponent<Agent>();
+                if (hit_agent != null)
                 {
-                    hit_target.transform.GetComponent<Agent>().TakeDamage(gun_damage);
+                    ExplosiveAI explosive_baddy = hit_agent as ExplosiveAI;
+                    if (explosive_baddy != null)
+                        explosive_baddy.LocationalDamage(hit_target, gun_damage);
+                    else
+                        hit_agent.TakeDamage(gun_damage);
 
                     GameObject sfx = Instantiate(m_bloodSFX.gameObject, hit_target.point, Quaternion.identity);
                     Destroy(sfx, m_bloodSFX.main.duration);

@@ -6,9 +6,9 @@ public class Blackboard : MonoBehaviour
 {
     public GameManager m_gameManager;
 
+    [SerializeField] private float                  m_intermissionTime = 5f;
     [SerializeField] private Transform[]            m_spawnPoints;
     [SerializeField] private List<EnemyTemplate>    m_enemyTypes = new List<EnemyTemplate>();
-    [SerializeField] private float                  m_intermissionTime = 5f;
 
     private float               m_intermission_timer    = 0f;
     private int                 m_waves_passed          = 0; 

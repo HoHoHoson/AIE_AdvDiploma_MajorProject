@@ -89,7 +89,10 @@ public class SoundSystem : MonoBehaviour
 
     private bool IsLooping()
     {
-        return (m_loaded_clip != null && m_loaded_clip.GetAudioSource().isPlaying);
+        if (m_loaded_clip == null || m_loaded_clip.GetAudioSource() == null || m_loaded_clip.GetAudioSource().isPlaying == false)
+            return false;
+
+        return true;
     }
 
     private bool IsEmpty()

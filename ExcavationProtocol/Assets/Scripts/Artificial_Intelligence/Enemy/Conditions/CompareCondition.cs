@@ -62,11 +62,11 @@ public class CompareCondition : Condition
 
     private float SqrDistance()
     {
-        // Square distance between two objects, not factoring collider radii
-        float length = Vector3.SqrMagnitude(m_end.position - m_start.position);
-
         Collider start_collider = m_start.GetComponentInChildren<Collider>();
         Collider end_collider = m_end.GetComponentInChildren<Collider>();
+
+        // Square distance between two objects, not factoring collider radii
+        float length = Vector3.SqrMagnitude(end_collider.bounds.center - start_collider.bounds.center);
 
         if (start_collider != null)
         {
