@@ -533,8 +533,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script_gm: {fileID: 0}
-  player_hp: 500
-  player_energy: 100
+  player_hp: 100
+  player_energy: 25
   auto_gun: 0
   fire_rate: 0.15
   reload_time: 0
@@ -854,6 +854,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PS_LaserFlash
       objectReference: {fileID: 0}
+    - target: {fileID: 4343778352962724796, guid: 28448babec3bde34a99e974537744dbe,
+        type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343778352962724796, guid: 28448babec3bde34a99e974537744dbe,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2993845801106525571, guid: 28448babec3bde34a99e974537744dbe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -909,15 +919,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4343778352962724796, guid: 28448babec3bde34a99e974537744dbe,
-        type: 3}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4343778352962724796, guid: 28448babec3bde34a99e974537744dbe,
+    - target: {fileID: 2210846969804693258, guid: 28448babec3bde34a99e974537744dbe,
         type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210846969804693258, guid: 28448babec3bde34a99e974537744dbe,
+        type: 3}
+      propertyPath: looping
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4882241776495319350, guid: 28448babec3bde34a99e974537744dbe,
         type: 3}
@@ -925,16 +935,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4882241776495319350, guid: 28448babec3bde34a99e974537744dbe,
-        type: 3}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2210846969804693258, guid: 28448babec3bde34a99e974537744dbe,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2210846969804693258, guid: 28448babec3bde34a99e974537744dbe,
         type: 3}
       propertyPath: looping
       value: 1

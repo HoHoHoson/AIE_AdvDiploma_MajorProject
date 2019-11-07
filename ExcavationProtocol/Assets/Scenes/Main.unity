@@ -23593,6 +23593,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
+      propertyPath: m_enemyTypes.Array.data[2].m_onWaves.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
       propertyPath: m_spawnPoints.Array.data[0]
       value: 
       objectReference: {fileID: 530672958}
@@ -23650,7 +23655,7 @@ PrefabInstance:
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.data[2].m_spawnIncrement
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
@@ -23666,6 +23671,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_enemyTypes.Array.data[2].m_spawnGroupSize
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: m_enemyTypes.Array.data[2].m_onWaves.Array.data[0]
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0133e389627041d4893d129376d359a0, type: 3}
@@ -33461,7 +33471,7 @@ PrefabInstance:
     - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
       propertyPath: player_energy
-      value: 15
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
@@ -33479,6 +33489,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7242024033571974761, guid: 1503b75c7aa8f6b448edb6affb33da73,
         type: 3}
+    - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
+        type: 3}
+      propertyPath: player_hp
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7980817046700777752, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
       propertyPath: m_LocalPosition.x
