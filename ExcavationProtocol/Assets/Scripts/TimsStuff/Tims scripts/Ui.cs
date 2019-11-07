@@ -37,7 +37,7 @@ public class Ui : MonoBehaviour
     #endregion
 
     #region Drill
-    public GameObject[] drills;
+    public GameObject drill;
     #endregion
 
     // Functions
@@ -58,10 +58,9 @@ public class Ui : MonoBehaviour
         half_hp = hp_bar.maxValue / 2;
         low_hp = hp_bar.maxValue / 4;
 
-        foreach (var drill in drills)
-        {
-            drill.GetComponentInChildren<Slider>().maxValue = drill.GetComponent<Mines>().mine_max_hp;
-        }
+        
+        drill.GetComponentInChildren<Slider>().maxValue = drill.GetComponent<Mines>().mine_max_hp;
+        
     }
         
     public void UpdateUI()
@@ -115,11 +114,8 @@ public class Ui : MonoBehaviour
 
     public void UpdateMineUi()
     {
-        foreach (var mine in drills)
-        {
-            mine.transform.GetChild(0).LookAt(player.transform, transform.up);
-            mine.GetComponentInChildren<Slider>().value = mine.GetComponent<Mines>().GetCurrentHp();
-        }
+		drill.transform.GetChild(1).LookAt(player.transform, transform.up);
+		drill.GetComponentInChildren<Slider>().value = drill.GetComponent<Mines>().GetCurrentHp();
     }
 
     #endregion

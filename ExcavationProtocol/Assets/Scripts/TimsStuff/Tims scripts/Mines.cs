@@ -67,10 +67,6 @@ public class Mines : MonoBehaviour
     public void DeactivateMine()
     {
         is_active = false;
-        if (active > 0)
-        {
-            active--;
-        }
 
         GameObject broken_excavator = Instantiate(m_excavatorParts, transform.position, transform.rotation);
         for (int i = 0; i < broken_excavator.transform.childCount; ++i)

@@ -544,17 +544,16 @@ public class Player : MonoBehaviour
                 if (hit_agent != null)
                 {
                     ExplosiveAI explosive_baddy = hit_agent as ExplosiveAI;
-                    if (explosive_baddy != null)
-                        explosive_baddy.LocationalDamage(hit_target, gun_damage);
-                    else
-                        hit_agent.TakeDamage(gun_damage);
 					Collider[] colliders = Physics.OverlapSphere(hit_target.point, BulletBlast);
 
 					foreach(Collider hit in colliders)
 					{
 						if(hit.gameObject.layer == 10)
 						{
-							hit.transform.GetComponent<Agent>().TakeDamage(gun_damage);
+							if (explosive_baddy != null)
+								explosive_baddy.LocationalDamage(hit_target, gun_damage);
+							else
+								hit_agent.TakeDamage(gun_damage);
 						}
 					}
 

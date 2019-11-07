@@ -14,14 +14,18 @@ public class Blackboard : MonoBehaviour
     private int                 m_waves_passed          = 0; 
     private bool                m_wave_ongoing          = false;
     private EnemyTemplate       m_hold_spawn            = null;
+	[HideInInspector]
+	public GameObject			mine;
 
-    public int CurrentWave() { return m_waves_passed + 1; }
+	public int CurrentWave() { return m_waves_passed + 1; }
     public bool IsWaveOngoing() { return m_wave_ongoing; }
 
     void Start()
     {
         foreach (EnemyTemplate e in m_enemyTypes)
             e.InitialiseEnemyTemplate(this);
+
+		mine = GameObject.FindGameObjectWithTag("Mine");
     }
 
     public void UpdateBlackboard()
