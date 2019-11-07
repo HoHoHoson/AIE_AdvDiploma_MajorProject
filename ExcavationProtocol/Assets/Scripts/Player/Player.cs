@@ -130,6 +130,8 @@ public class Player : MonoBehaviour
 	public float BulletBlast = 3;
 
 	public GameObject dot, crosshair;
+	
+	public bool isrealoading = false;
 
 	#endregion
 
@@ -228,8 +230,9 @@ public class Player : MonoBehaviour
         // Aim down sights function
         GunADS();
 
-		if (player_energy_current <= 0)
+		if (player_energy_current <= 0 && isrealoading != true)
 		{
+			isrealoading = true;
 			animator.SetBool("Aiming", false);
 			animator.SetBool("Shooting", false);
 			animator.SetBool("Reload", true);
@@ -252,12 +255,12 @@ public class Player : MonoBehaviour
 			}
 		}
 
-		if (Input.GetKey(KeyCode.R))
+		if (Input.GetKey(KeyCode.R) && isrealoading != true)
 		{
+			isrealoading = true;
 			animator.SetBool("Shooting", false);
 			animator.SetBool("Reload", true);
 			m_laserFlash.Stop();
-
 			player_energy_current = player_energy;
 		}
 
@@ -577,6 +580,7 @@ public class Player : MonoBehaviour
 
 	void ReloadComplete()
 	{
+		isrealoading = false;
 		animator.SetBool("Reload", false);
 	}
     #endregion
