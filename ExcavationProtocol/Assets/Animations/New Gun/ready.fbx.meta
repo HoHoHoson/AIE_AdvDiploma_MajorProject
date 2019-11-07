@@ -171,7 +171,7 @@ ModelImporter:
       name: ready
       takeName: ready
       firstFrame: 0
-      lastFrame: 72
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

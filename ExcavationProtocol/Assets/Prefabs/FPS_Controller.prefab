@@ -428,7 +428,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7037960682530485475}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.375, z: 0.676}
+  m_LocalPosition: {x: 0, y: -0.22, z: 1.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3262474647881643129}
@@ -555,13 +555,16 @@ MonoBehaviour:
   frost_G: {fileID: 4824119629656354010, guid: b49be8e2f7eaf5e4ab387f0a88e8f40d, type: 3}
   throw_force: 20
   throw_force_2: 10
-  skill_1: 20
+  skill_1: 5
   skill_2: 10
-  skill_3: 20
+  skill_3: 5
   skill_timer_1: 0
   skill_timer_2: 0
   skill_timer_3: 0
   animator: {fileID: 950402033}
+  m_batteryEjectPoint: {fileID: 8501807789408971863}
+  m_batteryEject: {fileID: 3364398369051335825, guid: 58e863631128f3542bd4bdbf72edbdf3,
+    type: 3}
   m_bloodSFX: {fileID: 6952531192212141584, guid: 568b11857bcd24744937c24f9584480c,
     type: 3}
   gun_damage: 1
@@ -747,7 +750,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.07
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -1001,6 +1004,12 @@ Transform:
 --- !u!4 &8501807789408972079 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400028, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9,
+    type: 3}
+  m_PrefabInstance: {fileID: 8501807789408581555}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8501807789408971863 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400356, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9,
     type: 3}
   m_PrefabInstance: {fileID: 8501807789408581555}
   m_PrefabAsset: {fileID: 0}

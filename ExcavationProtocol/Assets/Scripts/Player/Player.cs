@@ -98,6 +98,8 @@ public class Player : MonoBehaviour
 
     #region Particle
 
+    public Transform m_batteryEjectPoint;
+    public ParticleSystem m_batteryEject = null;
     public ParticleSystem m_bloodSFX = null;
 	public ParticleSystem m_laserFlash = null;
 
@@ -151,6 +153,7 @@ public class Player : MonoBehaviour
         skill_timer_3 = skill_3;
 
         m_sound_system = GetComponent<SoundSystem>();
+        m_batteryEject = Instantiate(m_batteryEject, m_batteryEjectPoint);
     }
 
     void Update()
@@ -176,6 +179,11 @@ public class Player : MonoBehaviour
 				animator.SetBool("Jumping", false);
 			}
         }
+    }
+
+    public void PlayBatteryEject()
+    {
+        m_batteryEject.Play();
     }
 
     #endregion
@@ -296,8 +304,8 @@ public class Player : MonoBehaviour
         //aim down sights values, think of counter strike
         GunOffset.localPosition = new Vector3(
             Mathf.Lerp(GunPivot.localPosition.x, GunPivot.localPosition.x - 0.1055f, t), // X value
-            Mathf.Lerp(0, 0f, t), // Y value
-            Mathf.Lerp(0, 0f, t)); // Z value
+            Mathf.Lerp(0, 0.01f, t), // Y value
+            Mathf.Lerp(0, -0.25f, t)); // Z value
 
         fps_cam.fieldOfView = Mathf.Lerp(60, 30, t);
     }
