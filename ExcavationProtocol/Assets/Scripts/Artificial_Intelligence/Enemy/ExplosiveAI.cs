@@ -10,8 +10,6 @@ public class ExplosiveAI : Agent
     [SerializeField] private int    m_friendlyFireDamage = 5;
     [SerializeField] private float  m_detectRange = 0;
 
-    private Animator m_animator;
-
     private bool m_friendly_fire = false;
 
     public override void InitialiseAgent(in Blackboard blackboard)
@@ -19,7 +17,6 @@ public class ExplosiveAI : Agent
         base.InitialiseAgent(blackboard);
 
         m_type = EnemyType.EXPLOSIVE;
-        m_animator = GetComponent<Animator>();
     }
 
     protected override void InitialiseStateMachine()

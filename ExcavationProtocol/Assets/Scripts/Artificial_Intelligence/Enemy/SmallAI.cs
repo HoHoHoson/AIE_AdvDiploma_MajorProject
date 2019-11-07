@@ -9,8 +9,6 @@ public class SmallAI : Agent
     [Header("Small Boi Settings")]
     [SerializeField] private float  m_detectRange  = 10;
 
-    private Animator m_animator;
-
     private float m_tick_time;
     private float m_random_leap_timer = 0;
 
@@ -19,7 +17,6 @@ public class SmallAI : Agent
         base.InitialiseAgent(blackboard);
 
         m_type = EnemyType.BASIC;
-        m_animator = GetComponent<Animator>();
         m_tick_time = 1f / m_tickRate;
     }
 

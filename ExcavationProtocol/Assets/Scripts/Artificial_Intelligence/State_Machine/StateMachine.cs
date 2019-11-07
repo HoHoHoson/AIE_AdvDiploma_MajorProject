@@ -32,7 +32,7 @@ public class StateMachine
     /// <para>Should only be called by it's Agent's UpdateAgent().</para>
     /// </summary>
     /// <param name="agent">Reference the Agent that owns the StateMachine in order to make changes to it.</param>
-    public void UpdateState(in Agent agent)
+    public void UpdateStates(in Agent agent)
     {
         if (m_current_state == null)
         {
