@@ -33470,30 +33470,14 @@ PrefabInstance:
       objectReference: {fileID: 494596714}
     - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
-      propertyPath: player_energy
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
-        type: 3}
-      propertyPath: crosshair
-      value: 
-      objectReference: {fileID: 1834594300}
-    - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
-        type: 3}
       propertyPath: dot
       value: 
       objectReference: {fileID: 1956474668}
     - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
-      propertyPath: m_bloodSFX
+      propertyPath: crosshair
       value: 
-      objectReference: {fileID: 7242024033571974761, guid: 1503b75c7aa8f6b448edb6affb33da73,
-        type: 3}
-    - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
-        type: 3}
-      propertyPath: player_hp
-      value: 100
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1834594300}
     - target: {fileID: 7980817046700777752, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -33547,18 +33531,6 @@ PrefabInstance:
     - target: {fileID: 7980817046700777752, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 366442169, guid: e5388f809bb20ac4db9d5ecadfedeea3, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 366442169, guid: e5388f809bb20ac4db9d5ecadfedeea3, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 8ff2e7b46a791904d8ccca3e0571d346, type: 2}
-    - target: {fileID: 366442169, guid: e5388f809bb20ac4db9d5ecadfedeea3, type: 3}
-      propertyPath: m_Parameters.textureMode
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
