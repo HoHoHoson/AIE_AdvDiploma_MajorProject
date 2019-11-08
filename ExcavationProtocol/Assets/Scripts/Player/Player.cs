@@ -89,6 +89,9 @@ public class Player : MonoBehaviour
     private bool active_3;
     private readonly bool is_used;
 
+	public GameObject TurretPrefab;
+	public int turret_cost;
+
     #endregion
 
     #region Animator
@@ -222,10 +225,15 @@ public class Player : MonoBehaviour
 			is_sprinting = false;
 		}
 
-        if (Input.GetKeyDown(KeyCode.F)|| Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Alpha3))
         {
             CompleteAction3();
         }
+
+		if (Input.GetKeyDown(KeyCode.E))
+		{
+			DeployTurret();
+		}
 
         // Aim down sights function
         GunADS();
@@ -321,6 +329,15 @@ public class Player : MonoBehaviour
         fps_cam.fieldOfView = Mathf.Lerp(60, 30, t);
     }
 
+	void DeployTurret()
+	{
+		if(script_gm.GetCurrency() >= turret_cost)
+		{
+			script_gm.SubtractCurrency(turret_cost);
+
+			// turret does things
+		}
+	}
     #endregion
 
     #region CameraFunc
