@@ -32945,7 +32945,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1137900024}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -32961,6 +32961,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HelmetHud
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404706236310742986, guid: b62ec3b8d7f2f774b9df34b947de437e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3404706234788803779, guid: b62ec3b8d7f2f774b9df34b947de437e,
         type: 3}
@@ -33055,6 +33060,11 @@ PrefabInstance:
     - target: {fileID: 3404706235946147688, guid: b62ec3b8d7f2f774b9df34b947de437e,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404706235063234766, guid: b62ec3b8d7f2f774b9df34b947de437e,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -33532,6 +33542,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7798361944711613998, guid: e5388f809bb20ac4db9d5ecadfedeea3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5388f809bb20ac4db9d5ecadfedeea3, type: 3}
