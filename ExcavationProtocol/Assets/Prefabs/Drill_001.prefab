@@ -211,8 +211,8 @@ MonoBehaviour:
   m_excavatorParts: {fileID: 100000, guid: 684efe5a5f243dd4e95d60c13ad3af53, type: 3}
   m_excavatorMaterial: {fileID: 2100000, guid: 023ff98ae70db0548a5e4aa4230347aa, type: 2}
   is_active: 1
-  mine_hp_recover: 100
-  mine_max_hp: 500
+  mine_hp_recover: 50
+  mine_max_hp: 250
 --- !u!64 &4936317888274370055
 MeshCollider:
   m_ObjectHideFlags: 0

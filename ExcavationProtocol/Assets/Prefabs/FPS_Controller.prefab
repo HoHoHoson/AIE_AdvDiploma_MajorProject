@@ -533,8 +533,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script_gm: {fileID: 0}
-  player_hp: 500
-  player_energy: 100
+  player_hp: 100
+  player_energy: 25
   auto_gun: 0
   fire_rate: 0.15
   reload_time: 0
@@ -565,7 +565,7 @@ MonoBehaviour:
   m_batteryEjectPoint: {fileID: 8501807789408971863}
   m_batteryEject: {fileID: 3364398369051335825, guid: 58e863631128f3542bd4bdbf72edbdf3,
     type: 3}
-  m_bloodSFX: {fileID: 6952531192212141584, guid: 568b11857bcd24744937c24f9584480c,
+  m_bloodSFX: {fileID: 7242024033571974761, guid: 1503b75c7aa8f6b448edb6affb33da73,
     type: 3}
   m_laserFlash: {fileID: 4343778352237248124}
   gun_damage: 1
@@ -854,6 +854,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PS_LaserFlash
       objectReference: {fileID: 0}
+    - target: {fileID: 4343778352962724796, guid: 28448babec3bde34a99e974537744dbe,
+        type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343778352962724796, guid: 28448babec3bde34a99e974537744dbe,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2993845801106525571, guid: 28448babec3bde34a99e974537744dbe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -909,15 +919,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4343778352962724796, guid: 28448babec3bde34a99e974537744dbe,
-        type: 3}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4343778352962724796, guid: 28448babec3bde34a99e974537744dbe,
+    - target: {fileID: 2210846969804693258, guid: 28448babec3bde34a99e974537744dbe,
         type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210846969804693258, guid: 28448babec3bde34a99e974537744dbe,
+        type: 3}
+      propertyPath: looping
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4882241776495319350, guid: 28448babec3bde34a99e974537744dbe,
         type: 3}
@@ -925,16 +935,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4882241776495319350, guid: 28448babec3bde34a99e974537744dbe,
-        type: 3}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2210846969804693258, guid: 28448babec3bde34a99e974537744dbe,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2210846969804693258, guid: 28448babec3bde34a99e974537744dbe,
         type: 3}
       propertyPath: looping
       value: 1
@@ -954,6 +954,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 30933977}
     m_Modifications:
+    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
+      propertyPath: m_Name
+      value: Glass
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: db637819c92a6e741bda93555770d446, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1005,14 +1013,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: db637819c92a6e741bda93555770d446, type: 3}
       propertyPath: m_LocalScale.y
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
-      propertyPath: m_Name
-      value: Glass
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
-      propertyPath: m_Layer
-      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: db637819c92a6e741bda93555770d446, type: 3}
       propertyPath: m_CastShadows
