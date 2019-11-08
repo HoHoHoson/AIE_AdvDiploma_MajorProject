@@ -63,7 +63,7 @@ public class BoolCondition : Condition
         if (m_bool_function != null)
             return true;
 
-        Mines       target_mine;
+        Mines   target_mine;
         Player  target_fps;
 
         if ((target_mine = m_target.GetComponentInChildren<Mines>()) != null)

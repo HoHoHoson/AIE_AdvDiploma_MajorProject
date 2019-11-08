@@ -6,12 +6,6 @@ public class BossAI : Agent
     [SerializeField] private float m_detectRange = 30f;
     [SerializeField] private float m_attackRange = 4f;
 
-    private bool m_damage_frames = false;
-
-    public float GetAttackRange() { return m_attackRange; }
-    public bool IsDamaging() { return m_damage_frames; }
-    public void ToggleDamageFrames(bool ian) { m_damage_frames = !m_damage_frames; }
-
     public override void InitialiseAgent(in Blackboard blackboard)
     {
         base.InitialiseAgent(blackboard);
@@ -24,11 +18,18 @@ public class BossAI : Agent
         State state = new SeekTargetState(this, m_blackboard, m_detectRange);
         state.AddTransition(new Transition("BOSSSWEEP", 
             new Condition[] { new CompareCondition(this, m_attackRange, CompareCondition.Comparator.LESS) }));
+        state.AddTransition(new Transition("LEAPAT",
+            new Condition[] { new BoolCondition(GetCliffLeap) }));
         m_state_machine.AddState(state);
 
         state = new BossSweepState(this, GetComponent<Animator>());
         state.AddTransition(new Transition("SEEKTARGET",
             new Condition[] { new BoolCondition((state as BossSweepState).AnimationEnded) }));
+        m_state_machine.AddState(state);
+
+        state = new LeapAtState(this, m_leapAngle, m_leapForce, m_leapCooldown);
+        state.AddTransition(new Transition("SEEKTARGET",
+            new Condition[] { new BoolCondition((state as LeapAtState).IsCooldownOver) }));
         m_state_machine.AddState(state);
 
         m_state_machine.InitiateStateMachine(this, "SEEKTARGET");

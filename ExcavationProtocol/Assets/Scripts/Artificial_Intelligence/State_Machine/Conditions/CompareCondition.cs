@@ -66,7 +66,7 @@ public class CompareCondition : Condition
         Collider end_collider = m_end.GetComponentInChildren<Collider>();
 
         // Square distance between two objects, not factoring collider radii
-        float length = Vector3.SqrMagnitude(end_collider.bounds.center - start_collider.bounds.center);
+        float length = Vector3.SqrMagnitude(ColliderPivot(end_collider) - ColliderPivot(start_collider));
 
         if (start_collider != null)
         {
@@ -81,5 +81,17 @@ public class CompareCondition : Condition
         }
 
         return length;
+    }
+
+    private Vector3 ColliderPivot(Collider collider)
+    {
+        Transform go_transform = collider.transform;
+
+        Vector3 projected_pivot             = Vector3.ProjectOnPlane(go_transform.position, go_transform.up);
+        Vector3 projected_collider_center   = Vector3.ProjectOnPlane(collider.bounds.center, go_transform.up);
+
+        Vector3 distance_to_plane = go_transform.position - projected_pivot;
+
+        return projected_collider_center + distance_to_plane;
     }
 }
