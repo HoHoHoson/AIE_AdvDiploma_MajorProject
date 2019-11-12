@@ -18,11 +18,17 @@ public class Player : MonoBehaviour
 
     // Health
     public int player_hp = 100;
+
     // Energy
     public int player_energy = 150;
 
 
     protected int player_hp_current, player_energy_current;
+    public Renderer visor_renderer;
+    public Material visor_material;
+    public Color full_health_color = Color.blue;
+    public Color half_health_color = Color.yellow;
+    public Color no_health_color = Color.red;
 
     private int energy_gain_temp;
 
@@ -151,6 +157,11 @@ public class Player : MonoBehaviour
 
         player_hp_current = player_hp;
         player_energy_current = player_energy;
+
+        List<Material> m = new List<Material>();
+        visor_renderer.GetMaterials(m);
+        visor_material = m[0];
+        visor_material.SetColor("_EmissionColor", full_health_color);
         
 		camera_transform = fps_cam.transform;
         skill_timer_1 = skill_1;
@@ -273,6 +284,20 @@ public class Player : MonoBehaviour
         if (player_hp_current > 0)
         {
             player_hp_current -= (int)damage;
+
+            // Lerp color
+            Color lerped_color;
+            float ratio = player_hp_current / (float)player_hp;
+            if (player_hp_current < player_hp / 2)
+            {
+                lerped_color = Vector4.Lerp(no_health_color, half_health_color, ratio * 2.0f); // x2 because half or health total range
+            }
+            else
+            {
+                lerped_color = Vector4.Lerp(half_health_color, full_health_color, (ratio - 0.5f) * 2.0f ); // x2 because half or health total range
+            }
+
+            visor_material.SetColor("_EmissionColor", lerped_color);
         }
         else if (player_hp_current <= 0)
         {
