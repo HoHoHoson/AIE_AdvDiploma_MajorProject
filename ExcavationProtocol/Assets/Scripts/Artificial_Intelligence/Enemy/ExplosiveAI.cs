@@ -23,7 +23,7 @@ public class ExplosiveAI : Agent
     {
         State state = new LeapAtState(this, m_leapAngle, m_leapForce, m_leapCooldown);
         state.AddTransition(new Transition("SEEKTARGET",
-            new Condition[] { new BoolCondition((state as LeapAtState).IsCooldownOver) }));
+            new Condition[] { new BoolCondition((state as LeapAtState).LeapComplete) }));
         m_state_machine.AddState(state);
 
         state = new SeekTargetState(this, m_blackboard, m_detectRange);

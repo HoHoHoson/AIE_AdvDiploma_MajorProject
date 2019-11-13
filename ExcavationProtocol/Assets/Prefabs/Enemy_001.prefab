@@ -58,7 +58,7 @@ MonoBehaviour:
   m_leapForce: 10
   m_leapRadius: 5
   m_randomLeapChance: 0.01
-  m_tickRate: 10
+  m_tickRate: 5
   m_detectRange: 10
 --- !u!54 &2455372979600114910
 Rigidbody:

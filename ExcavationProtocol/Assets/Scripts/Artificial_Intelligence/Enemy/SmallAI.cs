@@ -4,7 +4,7 @@ public class SmallAI : Agent
 {
     [SerializeField] private float  m_leapRadius        = 5;
     [SerializeField] private float  m_randomLeapChance  = 0.01f;
-    [SerializeField] private int    m_tickRate          = 10;
+    [SerializeField] private int    m_tickRate          = 5;
 
     [Header("Small Boi Settings")]
     [SerializeField] private float  m_detectRange  = 10;
@@ -73,7 +73,7 @@ public class SmallAI : Agent
         state = new LeapAtState(this, m_leapAngle, m_leapForce, m_leapCooldown);
         // Goes back to seeking its target when out of range or after a cooldown
         state.AddTransition(new Transition("SEEKTARGET",
-            new Condition[] { new BoolCondition((state as LeapAtState).IsCooldownOver) }));
+            new Condition[] { new BoolCondition((state as LeapAtState).LeapComplete) }));
         m_state_machine.AddState(state);
 
         m_state_machine.InitiateStateMachine(this, "SEEKTARGET");
