@@ -76,36 +76,30 @@ public class SeekTargetState : State
 
         Vector3 target_direction = m_agent.GetTarget().transform.position - m_agent.transform.position;
         target_direction.y = 0;
-        target_direction = target_direction.normalized;
+        target_direction = Vector3.ProjectOnPlane(target_direction, m_surface_normal).normalized;
 
         m_agent.transform.rotation =
-            Quaternion.RotateTowards(m_agent.transform.rotation, 
-            Quaternion.LookRotation(Vector3.ProjectOnPlane(target_direction, m_surface_normal)), 
-            m_rotate_per_sec * Time.deltaTime);
+            Quaternion.RotateTowards(m_agent.transform.rotation, Quaternion.LookRotation(target_direction), m_rotate_per_sec * Time.deltaTime);
 
-        m_agent.GetRigidbody().velocity = (m_agent.transform.forward * m_agent.GetSpeed() + m_surface_normal * m_grounding_force) * Time.deltaTime;
+        m_agent.GetRigidbody().velocity = (target_direction * m_agent.GetSpeed() + m_surface_normal * m_grounding_force) * Time.deltaTime;
         m_agent.GetRigidbody().angularVelocity = Vector3.zero;
     }
 
     private void CalculateNormal()
     {
-        m_surface_normal = Vector3.up;
-
         float   length_to_spheres   = (m_agent.GetCollider().height * 0.5f) - m_agent.GetCollider().radius;
-        Vector3 start_sphere_center = m_agent.transform.position + m_agent.transform.forward * length_to_spheres;
-        Vector3 end_sphere_center   = m_agent.transform.position + -m_agent.transform.forward * length_to_spheres;
-
-        // Offset Y axis due to the pivot not being centered
-        start_sphere_center.y += m_agent.GetCollider().radius;
-        end_sphere_center.y += m_agent.GetCollider().radius;
+        Vector3 start_sphere_center = m_agent.GetCollider().bounds.center + m_agent.transform.forward * length_to_spheres;
+        Vector3 end_sphere_center   = m_agent.GetCollider().bounds.center + -m_agent.transform.forward * length_to_spheres;
 
         RaycastHit hit;
         if (Physics.CapsuleCast(start_sphere_center, end_sphere_center, 
             m_agent.GetCollider().radius - m_spherecast_offset, -m_agent.transform.up, out hit, m_spherecast_offset * 2)
-           && Vector3.Angle(hit.normal, Vector3.up) <= m_agent.GetSlopeAngle())
+            && (Vector3.Angle(Vector3.up, m_surface_normal)) < m_agent.GetSlopeAngle())
         {
-            m_surface_normal = hit.normal;
+            m_surface_normal = hit.normal;;
         }
+        else
+            m_surface_normal = Vector3.up;
     }
 
     private bool IsStuck()

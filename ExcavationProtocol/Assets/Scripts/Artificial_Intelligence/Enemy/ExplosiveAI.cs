@@ -3,7 +3,7 @@
 public class ExplosiveAI : Agent
 {
     [Header("Kapooya Man Settings")]
-    [SerializeField] ParticleSystem m_exlodeSFX = null;
+    [SerializeField] ParticleSystem m_explodeSFX = null;
     [SerializeField] AudioSource m_explodeSound = null;
 
     [SerializeField] private float  m_explosiveRadius = 3;
@@ -81,7 +81,7 @@ public class ExplosiveAI : Agent
                 m_blackboard.m_gameManager.script_player.PlayerTakenDamage(m_current_damage);
         }
 
-        GameObject sfx = Instantiate(m_exlodeSFX, transform.position, Quaternion.identity).gameObject;
+        GameObject sfx = Instantiate(m_explodeSFX, transform.position, Quaternion.identity).gameObject;
         AudioSource audio = Instantiate(m_explodeSound, sfx.transform);
 
         Destroy(sfx, audio.clip.length);

@@ -2158,6 +2158,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: UICanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 807854846025683312, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703881383654213620, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1774508644266458753, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2280,16 +2290,6 @@ PrefabInstance:
     - target: {fileID: 1832267000, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ReloadScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 7703881383654213620, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 807854846025683312, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 795180604, guid: d1f5f86fdf818dc4b8f5ae3fe2daa34a, type: 3}
       propertyPath: m_Name
@@ -2591,7 +2591,7 @@ Transform:
   m_GameObject: {fileID: 1878895848}
   m_LocalRotation: {x: -0.2338214, y: -0, z: -0, w: 0.9722796}
   m_LocalPosition: {x: -2.9251728, y: -1.1228487, z: 7.3159513}
-  m_LocalScale: {x: 1.3511868, y: 0.3, z: 7.58698}
+  m_LocalScale: {x: 3, y: 0.3, z: 20}
   m_Children: []
   m_Father: {fileID: 1454440948}
   m_RootOrder: 1
@@ -2990,7 +2990,7 @@ PrefabInstance:
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
@@ -3005,7 +3005,7 @@ PrefabInstance:
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.data[1].m_onWaves.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
@@ -3031,7 +3031,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_enemyTypes.Array.data[1].m_enemyPrefab
       value: 
-      objectReference: {fileID: 3742569117176842085, guid: 8df34b66295a8e143be430b4a86081ed,
+      objectReference: {fileID: 3758284017529200002, guid: 9ab478a472f05bc49bfba467a8f312b6,
         type: 3}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
@@ -3371,7 +3371,7 @@ PrefabInstance:
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.data[1].m_spawnGroupSize
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
@@ -3386,7 +3386,7 @@ PrefabInstance:
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.data[2].m_spawnGroupSize
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
@@ -3411,22 +3411,22 @@ PrefabInstance:
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.data[2].m_activeEnemiesLimit
-      value: 1
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.data[2].m_spawnIncrement
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.data[2].m_activeIncrement
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
       propertyPath: m_enemyTypes.Array.data[1].m_spawnIncrement
-      value: 0.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
         type: 3}
@@ -3437,6 +3437,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_enemyTypes.Array.data[2].m_onWaves.Array.data[0]
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: m_enemyTypes.Array.data[1].m_activeEnemiesLimit
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317138830722218740, guid: 0133e389627041d4893d129376d359a0,
+        type: 3}
+      propertyPath: m_enemyTypes.Array.data[1].m_activeIncrement
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0133e389627041d4893d129376d359a0, type: 3}

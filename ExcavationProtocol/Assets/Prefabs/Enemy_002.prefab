@@ -242,7 +242,7 @@ MonoBehaviour:
   m_leapCooldown: 2
   m_leapAngle: 45
   m_leapForce: 10
-  m_exlodeSFX: {fileID: 3724125835381649309, guid: 2295cb7964e208345abede024f1b65d7,
+  m_explodeSFX: {fileID: 3724125835381649309, guid: 2295cb7964e208345abede024f1b65d7,
     type: 3}
   m_explodeSound: {fileID: 579000056355111654, guid: e91a5974fa867ac44b45031edef6cdca,
     type: 3}
