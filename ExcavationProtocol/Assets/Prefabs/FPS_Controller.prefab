@@ -608,9 +608,9 @@ MonoBehaviour:
   player_energy: 25
   visor_renderer: {fileID: 1026872474171158254}
   visor_material: {fileID: 0}
-  full_health_color: {r: 0, g: 0.79024625, b: 1, a: 1}
-  half_health_color: {r: 1, g: 0.920817, b: 0, a: 1}
-  no_health_color: {r: 1, g: 0.018811034, b: 0, a: 1}
+  full_health_color: {r: 0.2688679, g: 0.803863, b: 1, a: 1}
+  half_health_color: {r: 1, g: 0.9433962, b: 0.2783019, a: 1}
+  no_health_color: {r: 1, g: 0.020942407, b: 0, a: 1}
   auto_gun: 0
   fire_rate: 0.15
   reload_time: 0
@@ -1133,10 +1133,6 @@ PrefabInstance:
     - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
       propertyPath: m_Layer
       value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: db637819c92a6e741bda93555770d446, type: 3}
       propertyPath: m_LocalPosition.x
