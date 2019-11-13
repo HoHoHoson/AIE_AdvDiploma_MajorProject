@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     #region Currency
 
     [Header("Currency Values")]
-    private int Currency = 0;
+    private int Currency = 1;
     public int wave_reward = 5;
 
     #endregion
