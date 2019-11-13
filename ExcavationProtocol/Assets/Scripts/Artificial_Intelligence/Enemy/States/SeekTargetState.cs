@@ -2,15 +2,18 @@
 
 public class SeekTargetState : State
 {
-    private float       m_grounding_force   = -1000f;
-    private float       m_cast_offset       = 0.075f;
-    private float       m_degrees_per_sec   = 90f;
-
     private Blackboard  m_blackboard;
-
     private float       m_player_detect_range;
 
-    private Vector3     m_surface_normal    = Vector3.up;
+    private float   m_grounding_force   = -1000f;
+    private float   m_spherecast_offset = 0.075f;
+    private float   m_rotate_per_sec    = 90f;
+    private Vector3 m_surface_normal    = Vector3.up;
+
+    private float   m_distance_threshold    = 0.01f;
+    private float   m_reset_time            = 5f;
+    private float   m_reset_timer           = 0;
+    private Vector3 m_previous_position     = Vector3.zero;
 
     public SeekTargetState(in Agent agent, in Blackboard blackboard, float detect_range) : base(agent)
     {
@@ -26,6 +29,9 @@ public class SeekTargetState : State
 
         UpdateTarget();
         Seek();
+
+        if (IsStuck())
+            m_agent.gameObject.SetActive(false);
     }
 
     public override void ExitState()
@@ -75,7 +81,7 @@ public class SeekTargetState : State
         m_agent.transform.rotation =
             Quaternion.RotateTowards(m_agent.transform.rotation, 
             Quaternion.LookRotation(Vector3.ProjectOnPlane(target_direction, m_surface_normal)), 
-            m_degrees_per_sec * Time.deltaTime);
+            m_rotate_per_sec * Time.deltaTime);
 
         m_agent.GetRigidbody().velocity = (m_agent.transform.forward * m_agent.GetSpeed() + m_surface_normal * m_grounding_force) * Time.deltaTime;
         m_agent.GetRigidbody().angularVelocity = Vector3.zero;
@@ -95,10 +101,33 @@ public class SeekTargetState : State
 
         RaycastHit hit;
         if (Physics.CapsuleCast(start_sphere_center, end_sphere_center, 
-            m_agent.GetCollider().radius - m_cast_offset, -m_agent.transform.up, out hit, m_cast_offset * 2)
+            m_agent.GetCollider().radius - m_spherecast_offset, -m_agent.transform.up, out hit, m_spherecast_offset * 2)
            && Vector3.Angle(hit.normal, Vector3.up) <= m_agent.GetSlopeAngle())
         {
             m_surface_normal = hit.normal;
         }
+    }
+
+    private bool IsStuck()
+    {
+        bool is_stuck = false;
+        Vector3 distance_delta = m_agent.transform.position - m_previous_position;
+
+        if (distance_delta.sqrMagnitude <= m_distance_threshold)
+        {
+            m_reset_timer += Time.deltaTime;
+
+            if (m_reset_timer >= m_reset_time)
+            {
+                m_reset_timer = 0;
+                is_stuck = true;
+            }
+        }
+        else
+            m_reset_timer = 0;
+
+        m_previous_position = m_agent.transform.position;
+
+        return is_stuck;
     }
 }
