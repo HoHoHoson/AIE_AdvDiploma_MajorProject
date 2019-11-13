@@ -16,9 +16,10 @@ public class Mines : MonoBehaviour
     public int mine_max_hp = 100;
 
     [Header("Explosion Settings")]
-    private float m_force = 100f;
-    private float m_radius = 10f;
-    private float m_upwardsModifier = 10f;
+    [SerializeField] private float m_force = 100f;
+    [SerializeField] private float m_radius = 10f;
+    [SerializeField] private float m_upwardsModifier = 10f;
+    [SerializeField] private AudioSource m_explosionSound;
 
     GameManager gamemanager;
 
@@ -79,6 +80,14 @@ public class Mines : MonoBehaviour
             Rigidbody rb = excavator_piece.AddComponent<Rigidbody>();
             rb.AddExplosionForce(m_force, broken_excavator.transform.position, m_radius, m_upwardsModifier, ForceMode.Impulse);
         }
+
+        if (m_explosionSound != null)
+        {
+            AudioSource audio = Instantiate(m_explosionSound, transform.position, Quaternion.identity);
+            Destroy(audio.gameObject, audio.clip.length);
+        }
+        else
+            Debug.Log("ERROR: Drill does not have an explosion sound.");
 
         gameObject.SetActive(false);
     }

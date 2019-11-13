@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 3984272913826212253}
   - component: {fileID: 1854299252}
   - component: {fileID: 4936317888274370055}
+  - component: {fileID: 4036814009578473167}
   m_Layer: 0
   m_Name: Drill_001
   m_TagString: Mine
@@ -213,6 +214,11 @@ MonoBehaviour:
   is_active: 1
   mine_hp_recover: 50
   mine_max_hp: 250
+  m_force: 100
+  m_radius: 10
+  m_upwardsModifier: 10
+  m_explosionSound: {fileID: 7367013322475803790, guid: 6c0a3a213f9d0034e99b919a7091838b,
+    type: 3}
 --- !u!64 &4936317888274370055
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -227,6 +233,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 48a9896674c48b54382a0a2e56618fb1, type: 3}
+--- !u!114 &4036814009578473167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3110612153371333922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba878c36ad3b8e44af7457fc33d5827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_loopSetting: 1
+  m_soundClips:
+  - m_audioClip: {fileID: 2076423727429167616, guid: 0b6fbdf40526aa94f88478ee5e0e6b82,
+      type: 3}
+    m_minDelay: 0
+    m_maxDelay: 0
 --- !u!1 &5565091664009449080
 GameObject:
   m_ObjectHideFlags: 0
