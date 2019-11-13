@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
         if(script_player.GetPlayerHp() <= 0 && dead_player == false)
         {
             dead_player = true;
-            EndGame();
+            GameOver();
         }
 
         
@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void EndGame()
+    public void GameOver()
     {
         if (dead_player == true)
         {
@@ -168,6 +168,11 @@ public class GameManager : MonoBehaviour
             unlocked_mouse = true;
             Time.timeScale = 0;
         }
+    }
+
+    public void ExitApplication()
+    {
+        Application.Quit();
     }
 
     public void LoadAnotherScene(int index)
