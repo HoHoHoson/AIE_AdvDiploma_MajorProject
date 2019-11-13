@@ -600,7 +600,12 @@ public class Player : MonoBehaviour
         laser_line.enabled = false;
 	}
 
-	void ReloadComplete()
+    void ReloadStart()
+    {
+        m_sound_system.GetClip(2).GetAudioSource().PlayOneShot(m_sound_system.GetClip(2).GetAudioSource().clip);
+    }
+
+    void ReloadComplete()
 	{
 		animator.SetBool("Reload", false);
 	}
