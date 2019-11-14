@@ -30,7 +30,7 @@ public class LeapAtState : State
     {
         base.InitialiseState();
 
-        m_collider.material.bounciness = 1;
+        m_collider.material.bounciness = 0.9f;
         m_cooldown_timer = m_cooldown;
 
         Leap();
@@ -66,8 +66,31 @@ public class LeapAtState : State
 
     public void OnHit(in GameObject hit)
     {
-        if (hit.layer == 9)
+        OnStay(hit);
+
+        if (m_attacked == true)
+            return;
+
+        m_attacked = true;
+
+        Mines   hit_mine    = hit.GetComponentInChildren<Mines>();
+        Player  hit_fps     = hit.GetComponentInChildren<Player>();
+
+        if (hit_mine != null)
         {
+            hit_mine.MinesTakeDamage(m_agent.GetDamage());
+        }
+        else if (hit_fps != null)
+        {
+            hit_fps.PlayerTakenDamage(m_agent.GetDamage());
+        }
+        else
+            m_attacked = false;
+    }
+
+    public void OnStay(in GameObject hit)
+    {
+        if (hit.layer == 9)
             if (m_cooldown_timer < 0)
             {
                 m_agent.GetRigidbody().velocity = Vector3.zero;
@@ -76,24 +99,6 @@ public class LeapAtState : State
                 m_cooldown_timer = 0;
                 m_can_transition = true;
             }
-        }
-        else if (m_attacked == false)
-        {
-            m_attacked = true;
-            Mines   hit_mine    = hit.GetComponentInChildren<Mines>();
-            Player  hit_fps     = hit.GetComponentInChildren<Player>();
-
-            if (hit_mine != null)
-            {
-                hit_mine.MinesTakeDamage(m_agent.GetDamage());
-            }
-            else if (hit_fps != null)
-            {
-                hit_fps.PlayerTakenDamage(m_agent.GetDamage());
-            }
-            else
-                m_attacked = false;
-        }
     }
 
     private void Leap()
