@@ -25,7 +25,6 @@ public class TestScript : MonoBehaviour
 
     private void Update()
     {
-
     }
 
     void TestFun(in Base b)

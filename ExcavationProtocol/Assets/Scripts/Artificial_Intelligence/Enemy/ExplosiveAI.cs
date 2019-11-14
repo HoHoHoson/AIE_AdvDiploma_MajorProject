@@ -2,13 +2,13 @@
 
 public class ExplosiveAI : Agent
 {
-    [SerializeField] ParticleSystem m_exlodeSFX = null;
+    [Header("Kapooya Man Settings")]
+    [SerializeField] ParticleSystem m_explodeSFX = null;
     [SerializeField] AudioSource m_explodeSound = null;
 
     [SerializeField] private float  m_explosiveRadius = 3;
     [SerializeField] private int    m_friendlyFireDamage = 5;
-
-    private Animator m_animator;
+    [SerializeField] private float  m_detectRange = 0;
 
     private bool m_friendly_fire = false;
 
@@ -17,17 +17,16 @@ public class ExplosiveAI : Agent
         base.InitialiseAgent(blackboard);
 
         m_type = EnemyType.EXPLOSIVE;
-        m_animator = GetComponent<Animator>();
     }
 
     protected override void InitialiseStateMachine()
     {
         State state = new LeapAtState(this, m_leapAngle, m_leapForce, m_leapCooldown);
         state.AddTransition(new Transition("SEEKTARGET",
-            new Condition[] { new BoolCondition((state as LeapAtState).IsCooldownOver) }));
+            new Condition[] { new BoolCondition((state as LeapAtState).LeapComplete) }));
         m_state_machine.AddState(state);
 
-        state = new SeekTargetState(this, m_blackboard, 0);
+        state = new SeekTargetState(this, m_blackboard, m_detectRange, m_rotationSpeed);
         state.AddTransition(new Transition("LEAPAT",
             new Condition[] { new BoolCondition(GetCliffLeap) }));
         m_state_machine.AddState(state);
@@ -82,7 +81,7 @@ public class ExplosiveAI : Agent
                 m_blackboard.m_gameManager.script_player.PlayerTakenDamage(m_current_damage);
         }
 
-        GameObject sfx = Instantiate(m_exlodeSFX, transform.position, Quaternion.identity).gameObject;
+        GameObject sfx = Instantiate(m_explodeSFX, transform.position, Quaternion.identity).gameObject;
         AudioSource audio = Instantiate(m_explodeSound, sfx.transform);
 
         Destroy(sfx, audio.clip.length);

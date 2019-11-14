@@ -18,7 +18,10 @@ public class Agent : MonoBehaviour
 
     [SerializeField] private int m_health = 3;
     [SerializeField] private int m_damage = 5;
-    [SerializeField] private int m_speed  = 500;
+    [SerializeField] private int m_minSpeed  = 500;
+    [SerializeField] private int m_maxSpeed = 500;
+
+    [SerializeField] protected float m_rotationSpeed = 90f;
 
     [SerializeField, Range(0, 90)]
     private int m_maxSlopeAngle = 70;
@@ -35,6 +38,7 @@ public class Agent : MonoBehaviour
     protected EnemyType         m_type;
     protected Rigidbody         m_rigidbody;
     protected CapsuleCollider   m_collider;
+    protected Animator          m_animator;
     protected StateMachine      m_state_machine;
     protected Blackboard        m_blackboard;
     protected GameObject        m_target;
@@ -67,6 +71,7 @@ public class Agent : MonoBehaviour
         m_rigidbody.useGravity = false;
 
         m_collider = GetComponent<CapsuleCollider>();
+        m_animator = GetComponent<Animator>();
 
         m_state_machine = new StateMachine();
         InitialiseStateMachine();
@@ -78,14 +83,22 @@ public class Agent : MonoBehaviour
     /// </summary>
     public virtual void UpdateAgent()
     {
-        m_state_machine.UpdateState(this);
+        if (m_rigidbody.isKinematic)
+        {
+            m_animator.SetFloat("SpeedMultiplier", 0);
+        }
+        else
+        {
+            m_animator.SetFloat("SpeedMultiplier", 1);
+            m_state_machine.UpdateStates(this);
+        }
     }
 
     public virtual void ResetStats()
     {
         m_current_health    = m_health;
         m_current_damage    = m_damage;
-        m_current_speed     = m_speed;
+        m_current_speed     = Random.Range(m_minSpeed, m_maxSpeed);
 
         m_rigidbody.velocity = Vector3.zero;
         m_rigidbody.isKinematic = false;
