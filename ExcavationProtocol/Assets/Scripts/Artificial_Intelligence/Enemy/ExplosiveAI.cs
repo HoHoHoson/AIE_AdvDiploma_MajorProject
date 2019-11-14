@@ -12,11 +12,20 @@ public class ExplosiveAI : Agent
 
     private bool m_friendly_fire = false;
 
+    public bool IsLit() { return m_animator.GetBool("FuseLit"); }
+
     public override void InitialiseAgent(in Blackboard blackboard)
     {
         base.InitialiseAgent(blackboard);
 
         m_type = EnemyType.EXPLOSIVE;
+    }
+
+    public override void ResetStats()
+    {
+        base.ResetStats();
+
+        m_animator.SetBool("FuseLit", false);
     }
 
     protected override void InitialiseStateMachine()
@@ -29,6 +38,13 @@ public class ExplosiveAI : Agent
         state = new SeekTargetState(this, m_blackboard, m_detectRange, m_rotationSpeed);
         state.AddTransition(new Transition("LEAPAT",
             new Condition[] { new BoolCondition(GetCliffLeap) }));
+        state.AddTransition(new Transition("IDLE",
+            new Condition[] { new BoolCondition(IsLit) }));
+        m_state_machine.AddState(state);
+
+        state = new IdleState(this);
+        state.AddTransition(new Transition("SEEKTARGET",
+            new Condition[] { new BoolCondition(IsLit, true) }));
         m_state_machine.AddState(state);
 
         m_state_machine.InitiateStateMachine(this, "SEEKTARGET");
@@ -50,7 +66,8 @@ public class ExplosiveAI : Agent
         if (collision.gameObject == m_target)
         {
             m_friendly_fire = false;
-            Explode();
+
+            m_animator.SetBool("FuseLit", true);
         }
     }
 

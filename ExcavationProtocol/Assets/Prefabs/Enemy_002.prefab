@@ -238,6 +238,7 @@ MonoBehaviour:
   m_damage: 20
   m_minSpeed: 500
   m_maxSpeed: 500
+  m_rotationSpeed: 90
   m_maxSlopeAngle: 40
   m_leapCooldown: 2
   m_leapAngle: 45
