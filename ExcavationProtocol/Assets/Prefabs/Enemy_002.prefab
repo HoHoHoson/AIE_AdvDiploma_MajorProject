@@ -245,7 +245,7 @@ MonoBehaviour:
     type: 3}
   m_explodeSound: {fileID: 579000056355111654, guid: e91a5974fa867ac44b45031edef6cdca,
     type: 3}
-  m_explosiveRadius: 15
+  m_explosiveRadius: 3
   m_friendlyFireDamage: 5
 --- !u!95 &1503597013948897669
 Animator:
