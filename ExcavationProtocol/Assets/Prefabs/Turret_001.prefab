@@ -214,7 +214,7 @@ MonoBehaviour:
   m_damage: 1
   turret_range: 20
   fire_rate: 0.15
-  max_ammo: 50
+  max_ammo: 100
   turret_center: {fileID: 5928166644000589971}
   End1: {fileID: 4343778352122363186}
   End2: {fileID: 4343778351658203049}
