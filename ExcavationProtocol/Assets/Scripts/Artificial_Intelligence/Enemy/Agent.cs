@@ -21,6 +21,8 @@ public class Agent : MonoBehaviour
     [SerializeField] private int m_minSpeed  = 500;
     [SerializeField] private int m_maxSpeed = 500;
 
+    [SerializeField] protected float m_rotationSpeed = 90f;
+
     [SerializeField, Range(0, 90)]
     private int m_maxSlopeAngle = 70;
 

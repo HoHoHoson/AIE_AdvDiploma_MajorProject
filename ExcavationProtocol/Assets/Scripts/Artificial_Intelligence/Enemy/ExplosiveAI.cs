@@ -26,7 +26,7 @@ public class ExplosiveAI : Agent
             new Condition[] { new BoolCondition((state as LeapAtState).LeapComplete) }));
         m_state_machine.AddState(state);
 
-        state = new SeekTargetState(this, m_blackboard, m_detectRange);
+        state = new SeekTargetState(this, m_blackboard, m_detectRange, m_rotationSpeed);
         state.AddTransition(new Transition("LEAPAT",
             new Condition[] { new BoolCondition(GetCliffLeap) }));
         m_state_machine.AddState(state);

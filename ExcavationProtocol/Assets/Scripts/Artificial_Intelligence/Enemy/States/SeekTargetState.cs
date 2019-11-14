@@ -6,6 +6,7 @@ public class SeekTargetState : State
     private float       m_player_detect_range;
 
     private float   m_grounding_force   = -1000f;
+    private float   m_gravity;
     private float   m_spherecast_offset = 0.075f;
     private float   m_rotate_per_sec    = 90f;
     private Vector3 m_surface_normal    = Vector3.up;
@@ -15,12 +16,20 @@ public class SeekTargetState : State
     private float   m_reset_timer           = 0;
     private Vector3 m_previous_position     = Vector3.zero;
 
-    public SeekTargetState(in Agent agent, in Blackboard blackboard, float detect_range) : base(agent)
+    public SeekTargetState(in Agent agent, in Blackboard blackboard, float detect_range, float rotate_rate) : base(agent)
     {
         m_index                 = "SEEKTARGET";
 
         m_blackboard            = blackboard;
         m_player_detect_range   = detect_range;
+        m_rotate_per_sec        = rotate_rate;
+    }
+
+    public override void InitialiseState()
+    {
+        base.InitialiseState();
+
+        m_gravity = m_agent.GetRigidbody().velocity.y;
     }
 
     public override void UpdateState()
@@ -72,7 +81,18 @@ public class SeekTargetState : State
 
     private void Seek()
     {
-        CalculateNormal();
+        Vector3 grounding_velocity;
+
+        if (CalculateNormal())
+        {
+            grounding_velocity = m_surface_normal * m_grounding_force;
+            m_gravity = 0;
+        }
+        else
+        {
+            grounding_velocity = m_surface_normal * m_gravity;
+            m_gravity += Physics.gravity.y;
+        }
 
         Vector3 target_direction = m_agent.GetTarget().transform.position - m_agent.transform.position;
         target_direction.y = 0;
@@ -81,11 +101,11 @@ public class SeekTargetState : State
         m_agent.transform.rotation =
             Quaternion.RotateTowards(m_agent.transform.rotation, Quaternion.LookRotation(target_direction), m_rotate_per_sec * Time.deltaTime);
 
-        m_agent.GetRigidbody().velocity = (target_direction * m_agent.GetSpeed() + m_surface_normal * m_grounding_force) * Time.deltaTime;
+        m_agent.GetRigidbody().velocity = (target_direction * m_agent.GetSpeed() + grounding_velocity) * Time.deltaTime;
         m_agent.GetRigidbody().angularVelocity = Vector3.zero;
     }
 
-    private void CalculateNormal()
+    private bool CalculateNormal()
     {
         float   length_to_spheres   = (m_agent.GetCollider().height * 0.5f) - m_agent.GetCollider().radius;
         Vector3 start_sphere_center = m_agent.GetCollider().bounds.center + m_agent.transform.forward * length_to_spheres;
@@ -94,12 +114,16 @@ public class SeekTargetState : State
         RaycastHit hit;
         if (Physics.CapsuleCast(start_sphere_center, end_sphere_center, 
             m_agent.GetCollider().radius - m_spherecast_offset, -m_agent.transform.up, out hit, m_spherecast_offset * 2)
-            && (Vector3.Angle(Vector3.up, m_surface_normal)) < m_agent.GetSlopeAngle())
+            && Vector3.Angle(Vector3.up, m_surface_normal) < m_agent.GetSlopeAngle())
         {
             m_surface_normal = hit.normal;;
+            Debug.Log(Vector3.Angle(Vector3.up, m_surface_normal));
+            return true;
         }
         else
             m_surface_normal = Vector3.up;
+
+        return false;
     }
 
     private bool IsStuck()

@@ -61,7 +61,7 @@ public class SmallAI : Agent
         m_state_machine.AddState(state);
 
         // Chases after the AI's set target
-        state = new SeekTargetState(this, m_blackboard, m_detectRange);
+        state = new SeekTargetState(this, m_blackboard, m_detectRange, m_rotationSpeed);
         // Leaps at the targets face when in range
         state.AddTransition(new Transition("LEAPAT",
             new Condition[] { new BoolCondition(RandomLeapCheck),

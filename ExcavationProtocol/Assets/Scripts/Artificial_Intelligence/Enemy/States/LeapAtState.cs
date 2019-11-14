@@ -20,6 +20,9 @@ public class LeapAtState : State
         m_force     = force;
         m_cooldown  = cooldown;
 
+        m_can_transition    = false;
+        m_attacked          = false;
+
         m_collider  = m_agent.GetComponentInChildren<Collider>();
     }
 
@@ -28,10 +31,7 @@ public class LeapAtState : State
         base.InitialiseState();
 
         m_collider.material.bounciness = 1;
-
-        m_can_transition    = false;
-        m_attacked          = false;
-        m_cooldown_timer    = m_cooldown;
+        m_cooldown_timer = m_cooldown;
 
         Leap();
     }
@@ -49,9 +49,6 @@ public class LeapAtState : State
             Vector3 target_euler = m_agent.transform.eulerAngles;
             target_euler.z = 0;
 
-            m_collider.material.bounciness = 0;
-            m_collider.material.frictionCombine = PhysicMaterialCombine.Maximum;
-
             m_agent.transform.rotation = 
                 Quaternion.Lerp(m_agent.transform.rotation, Quaternion.Euler(target_euler), m_cooldown_timer / m_reorientation_time);
 
@@ -62,17 +59,23 @@ public class LeapAtState : State
     public override void ExitState()
     {
         m_collider.material.bounciness = 0;
-        m_collider.material.frictionCombine = PhysicMaterialCombine.Minimum;
 
-        m_can_transition = false;
+        m_can_transition    = false;
+        m_attacked          = false;
     }
 
     public void OnHit(in GameObject hit)
     {
         if (hit.layer == 9)
         {
-            if (m_cooldown_timer <= 0)
+            if (m_cooldown_timer < 0)
+            {
+                m_agent.GetRigidbody().velocity = Vector3.zero;
+                m_agent.GetRigidbody().angularVelocity = Vector3.zero;
+
+                m_cooldown_timer = 0;
                 m_can_transition = true;
+            }
         }
         else if (m_attacked == false)
         {

@@ -15,7 +15,7 @@ public class BossAI : Agent
 
     protected override void InitialiseStateMachine()
     {
-        State state = new SeekTargetState(this, m_blackboard, m_detectRange);
+        State state = new SeekTargetState(this, m_blackboard, m_detectRange, m_rotationSpeed);
         state.AddTransition(new Transition("BOSSSWEEP", 
             new Condition[] { new CompareCondition(this, m_attackRange, CompareCondition.Comparator.LESS) }));
         state.AddTransition(new Transition("LEAPAT",
