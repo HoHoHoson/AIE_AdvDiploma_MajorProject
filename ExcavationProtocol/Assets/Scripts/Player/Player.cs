@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
     private readonly bool is_used;
 
 	public GameObject TurretPrefab;
-	public int turret_cost;
+	public int turret_cost = 100;
 
 	public GameObject turretDrop;
 	
@@ -465,7 +465,8 @@ public class Player : MonoBehaviour
 				if (hit.transform.gameObject.layer == 9)
 				{
 					GameObject trt = Instantiate(TurretPrefab);
-					trt.transform.position = new Vector3(turretDrop.transform.position.x, hit.transform.position.y * hit.normal.y, turretDrop.transform.position.z);
+					trt.transform.position = new Vector3(turretDrop.transform.position.x, hit.point.y, turretDrop.transform.position.z);
+					Debug.Log(hit.point.y);
 					script_gm.SubtractCurrency(turret_cost);
 				}
 			}

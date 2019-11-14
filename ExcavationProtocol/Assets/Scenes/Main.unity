@@ -19346,56 +19346,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 864170913462685693, guid: 7020a07db1447cf47a0da850014813ce,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 864170913462685693, guid: 7020a07db1447cf47a0da850014813ce,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.017457673
-      objectReference: {fileID: 0}
-    - target: {fileID: 864170913462685693, guid: 7020a07db1447cf47a0da850014813ce,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99984765
-      objectReference: {fileID: 0}
-    - target: {fileID: 864170913462685693, guid: 7020a07db1447cf47a0da850014813ce,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 2.0010002
-      objectReference: {fileID: 0}
-    - target: {fileID: 864170913462685685, guid: 7020a07db1447cf47a0da850014813ce,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 864170913462685677, guid: 7020a07db1447cf47a0da850014813ce,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1889391071245552954, guid: 7020a07db1447cf47a0da850014813ce,
-        type: 3}
-      propertyPath: turret_range
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1889391071245552954, guid: 7020a07db1447cf47a0da850014813ce,
-        type: 3}
-      propertyPath: fire_rate
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1889391071245552954, guid: 7020a07db1447cf47a0da850014813ce,
-        type: 3}
-      propertyPath: max_ammo
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3579220141768114759, guid: 7020a07db1447cf47a0da850014813ce,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7020a07db1447cf47a0da850014813ce, type: 3}
 --- !u!4 &633717167 stripped
@@ -35498,6 +35448,16 @@ PrefabInstance:
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 1834594300}
+    - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
+        type: 3}
+      propertyPath: turret_cost
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8023661635665430853, guid: e5388f809bb20ac4db9d5ecadfedeea3,
+        type: 3}
+      propertyPath: turret_place_dist
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7980817046700777752, guid: e5388f809bb20ac4db9d5ecadfedeea3,
         type: 3}
       propertyPath: m_LocalPosition.x

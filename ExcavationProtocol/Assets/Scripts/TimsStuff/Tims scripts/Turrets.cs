@@ -11,14 +11,15 @@ public class Turrets : MonoBehaviour
 	private float current_ammo;
 	
 	public GameObject turret_center;
-	public GameObject End1 = null, End2 = null;
+	public ParticleSystem End1 = null, End2 = null;
 
 	private GameObject Target = null;
 	private float prevDist;
 
 	float next_fire;
+	public float turnspeed = 1;
 
-    void Start()
+	void Start()
     {
 		current_ammo = max_ammo;
 
@@ -53,6 +54,11 @@ public class Turrets : MonoBehaviour
 				}
 			}
 		}
+
+		if (Target == null)
+		{
+			prevDist = turret_range;
+		}
 		return Target;
 	}
 
@@ -62,21 +68,31 @@ public class Turrets : MonoBehaviour
 
 		if (target != null && currentAmmo > 0)
 		{
-			turret_center.transform.LookAt(target.transform);
+
+			Vector3 direction = target.transform.position - transform.position;
+			Quaternion Rotate = Quaternion.LookRotation(direction);
+			Vector3 Rot = Quaternion.Lerp(turret_center.transform.rotation, Rotate, Time.deltaTime * turnspeed).eulerAngles;
+			turret_center.transform.rotation = Quaternion.Euler(0, Rot.y, 0);
+			
 
 			if (Time.time > next_fire)
 			{
 				next_fire = Time.time + fire_rate;
 
 
-				if(target.GetComponent<Agent>().IsDead() == true)
+				if(target.GetComponent<Agent>().IsDead() != true)
 				{
-					target = null;
+					target.GetComponent<Agent>().TakeDamage(m_damage);
+					End1.Play();
+					End2.Play();
+					currentAmmo -= 1;
 				}
 				else
 				{
-					target.GetComponent<Agent>().TakeDamage(m_damage);
-					currentAmmo -= 1;
+					target = null;
+					End1.Stop();
+					End2.Stop();
+					prevDist = turret_range;
 				}
 			}
 		}
