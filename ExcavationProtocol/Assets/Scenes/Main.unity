@@ -34812,6 +34812,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: HelmetHud
       objectReference: {fileID: 0}
+    - target: {fileID: 3404706235456647667, guid: b62ec3b8d7f2f774b9df34b947de437e,
+        type: 3}
+      propertyPath: m_Direction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404706235456647667, guid: b62ec3b8d7f2f774b9df34b947de437e,
+        type: 3}
+      propertyPath: m_Value
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3404706234788803779, guid: b62ec3b8d7f2f774b9df34b947de437e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -34887,6 +34897,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3404706235456647666, guid: b62ec3b8d7f2f774b9df34b947de437e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 375
+      objectReference: {fileID: 0}
     - target: {fileID: 3404706235124968927, guid: b62ec3b8d7f2f774b9df34b947de437e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -34895,7 +34910,7 @@ PrefabInstance:
     - target: {fileID: 3404706235456647665, guid: b62ec3b8d7f2f774b9df34b947de437e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3404706235124968926, guid: b62ec3b8d7f2f774b9df34b947de437e,
         type: 3}
@@ -34911,6 +34926,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404706236493379553, guid: b62ec3b8d7f2f774b9df34b947de437e,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1662105478731963428, guid: b62ec3b8d7f2f774b9df34b947de437e,
         type: 3}
