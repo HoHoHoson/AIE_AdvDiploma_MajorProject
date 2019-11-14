@@ -27,17 +27,22 @@ public class Ui : MonoBehaviour
     #endregion
 
     #region HUDVar
-    public Image hud;
     protected float half_hp, low_hp;
     public Text Notifications;
 
     // resources
     public Text res_cost_text;
-    
-    #endregion
 
-    #region Drill
-    public GameObject drill;
+	#endregion
+	
+	#region EndGameStats
+	int endWaveNo, timeMin, timeSec, endResources, endEnemyKillCount;
+	float timeMs;
+	public Text endWaveNoText, timeMinText, timeSecText, endResourcesText, endEnemyKillCountText;
+	#endregion
+
+	#region Drill
+	public GameObject drill;
     #endregion
 
     // Functions
@@ -67,44 +72,86 @@ public class Ui : MonoBehaviour
     {
         hp_bar.value = script_player.GetPlayerHp();
         energy_bar.value = script_player.GetPlayerEnergy();
-
         wave_count.GetComponent<Text>().text = script_gamemanager.wave_no.ToString();
         energy_value.GetComponent<Text>().text = script_player.GetPlayerEnergy().ToString();
-
         max_energy_value.GetComponent<Text>().text = "/ " + script_player.player_energy.ToString();
-
         res_cost_text.GetComponent<Text>().text = script_gamemanager.GetCurrency().ToString();
-
         wave_enemiesleft.GetComponent<Text>().text = script_gamemanager.num_of_enemies.ToString();
+
+		endWaveNo = script_gamemanager.wave_no;
+		endResources = script_gamemanager.GetCurrency();
+
+		endWaveNoText.GetComponent<Text>().text = endWaveNo.ToString();
+		endResourcesText.GetComponent<Text>().text = endResources.ToString();
+
+		if (timeMin <= 9)
+		{
+			timeMinText.GetComponent<Text>().text = "0" + timeMin + ":";
+		}
+		else
+		{
+			timeMinText.GetComponent<Text>().text = "" + timeMin + ":";
+		}
+
+		if(timeSec <= 9)
+		{
+			timeSecText.GetComponent<Text>().text = "0" + timeSec;
+		}
+		else
+		{
+			timeSecText.GetComponent<Text>().text = "" + timeSec;
+		}
 
         skill_1.value = script_player.skill_timer_1;
         skill_2.value = script_player.skill_timer_2;
         skill_3.value = script_player.skill_timer_3;
         HPColourChange(script_player.GetPlayerHp());
+		UpdateTimer(ref timeMin, ref timeSec, ref timeMs);
         UpdateMineUi();
         UpdateScrollText("hello", false);
     }
 
-    #endregion
+	#endregion
 
-    #region HUD
+	#region Timer
 
-    public void HPColourChange(int hp)
+	public void UpdateTimer(ref int min, ref int sec, ref float ms)
+	{
+		if (script_gamemanager.dead_player == false)
+		{
+			ms += Time.deltaTime * 10;
+
+			if (ms >= 9)
+			{
+				ms = 0;
+				sec++;
+			}
+
+			if (sec >= 59)
+			{
+				sec = 0;
+				min++;
+			}
+		}
+	}
+
+	#endregion
+
+	#region HUD
+
+	public void HPColourChange(int hp)
     {
         if (hp <= low_hp)
         {
             hp_bar.fillRect.GetComponent<Image>().color = Color.red;
-            hud.color = Color.red;
         }
         else if (hp <= half_hp)
         {
             hp_bar.fillRect.GetComponent<Image>().color = Color.Lerp(Color.red, Color.yellow, hp / half_hp);
-            hud.color = Color.Lerp(Color.red, Color.yellow, hp / half_hp);
         }
         else
         {
             hp_bar.fillRect.GetComponent<Image>().color = Color.Lerp(Color.yellow, Color.cyan, (hp - half_hp) / half_hp);
-            hud.color = Color.Lerp(Color.yellow, Color.cyan, (hp - half_hp) / half_hp);
         }
     }
 
@@ -126,7 +173,6 @@ public class Ui : MonoBehaviour
     /// for scrolling text
     /// </summary>
     /// <param name="text"> Enter Text </param>
-    /// <param name="fade"> Fade (True/False) </param>
     /// <param name="scroll"> scroll (True/False) </param>
     public void UpdateScrollText(string text, bool scroll)
     {
