@@ -2,13 +2,15 @@
 
 public class LeapAtState : State
 {
-    private float m_angle;
-    private float m_force;
+    private Collider    m_collider;
+    private float       m_angle;
+    private float       m_force;
+    private float       m_cooldown;
 
-    private float m_cooldown;
-    private float m_timer;
-
-    private Collider m_collider;
+    private bool    m_can_transition;
+    private bool    m_attacked;
+    private float   m_cooldown_timer;
+    private float   m_reorientation_time = 0.3f;
 
     public LeapAtState(in Agent agent, float angle, float force, float cooldown) : base(agent)
     {
@@ -18,6 +20,9 @@ public class LeapAtState : State
         m_force     = force;
         m_cooldown  = cooldown;
 
+        m_can_transition    = false;
+        m_attacked          = false;
+
         m_collider  = m_agent.GetComponentInChildren<Collider>();
     }
 
@@ -26,7 +31,8 @@ public class LeapAtState : State
         base.InitialiseState();
 
         m_collider.material.bounciness = 1;
-        m_timer = 0;
+        m_cooldown_timer = m_cooldown;
+
         Leap();
     }
 
@@ -34,35 +40,59 @@ public class LeapAtState : State
     {
         base.UpdateState();
 
-        // SUBJECT TO CHANGE
-        m_timer += Time.deltaTime;
         m_agent.GetRigidbody().AddForce(Physics.gravity, ForceMode.Acceleration);
-        // SUBJECT TO CHANGE
+
+        if (!m_can_transition)
+            m_cooldown_timer -= Time.deltaTime;
+        else
+        {
+            Vector3 target_euler = m_agent.transform.eulerAngles;
+            target_euler.z = 0;
+
+            m_agent.transform.rotation = 
+                Quaternion.Lerp(m_agent.transform.rotation, Quaternion.Euler(target_euler), m_cooldown_timer / m_reorientation_time);
+
+            m_cooldown_timer += Time.deltaTime;
+        }
     }
 
     public override void ExitState()
     {
         m_collider.material.bounciness = 0;
-    }
 
-    // Need to implement a better transition condition. Maybe add an isGrounded check
-    public bool IsCooldownOver()
-    {
-        return m_timer >= m_cooldown;
+        m_can_transition    = false;
+        m_attacked          = false;
     }
 
     public void OnHit(in GameObject hit)
     {
-        Mines   hit_mine    = hit.GetComponentInChildren<Mines>();
-        Player  hit_fps     = hit.GetComponentInChildren<Player>();
+        if (hit.layer == 9)
+        {
+            if (m_cooldown_timer < 0)
+            {
+                m_agent.GetRigidbody().velocity = Vector3.zero;
+                m_agent.GetRigidbody().angularVelocity = Vector3.zero;
 
-        if (hit_mine != null)
-        {
-            hit_mine.MinesTakeDamage(m_agent.GetDamage());
+                m_cooldown_timer = 0;
+                m_can_transition = true;
+            }
         }
-        else if (hit_fps != null)
+        else if (m_attacked == false)
         {
-            hit_fps.PlayerTakenDamage(m_agent.GetDamage());
+            m_attacked = true;
+            Mines   hit_mine    = hit.GetComponentInChildren<Mines>();
+            Player  hit_fps     = hit.GetComponentInChildren<Player>();
+
+            if (hit_mine != null)
+            {
+                hit_mine.MinesTakeDamage(m_agent.GetDamage());
+            }
+            else if (hit_fps != null)
+            {
+                hit_fps.PlayerTakenDamage(m_agent.GetDamage());
+            }
+            else
+                m_attacked = false;
         }
     }
 
@@ -86,5 +116,10 @@ public class LeapAtState : State
         m_agent.GetRigidbody().AddForce(leap_direction.normalized * m_force, ForceMode.Impulse);
         // Adds spin to the leap
         m_agent.GetRigidbody().AddRelativeTorque(-Vector3.right * m_force, ForceMode.Impulse);
+    }
+
+    public bool LeapComplete()
+    {
+        return m_can_transition && m_cooldown_timer >= m_reorientation_time;
     }
 }

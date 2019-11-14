@@ -2,12 +2,12 @@
 
 public class SmallAI : Agent
 {
-    [SerializeField] private float  m_playerSeekRadius  = 10;
     [SerializeField] private float  m_leapRadius        = 5;
     [SerializeField] private float  m_randomLeapChance  = 0.01f;
-    [SerializeField] private int    m_tickRate          = 10;
+    [SerializeField] private int    m_tickRate          = 5;
 
-    private Animator m_animator;
+    [Header("Small Boi Settings")]
+    [SerializeField] private float  m_detectRange  = 10;
 
     private float m_tick_time;
     private float m_random_leap_timer = 0;
@@ -17,7 +17,6 @@ public class SmallAI : Agent
         base.InitialiseAgent(blackboard);
 
         m_type = EnemyType.BASIC;
-        m_animator = GetComponent<Animator>();
         m_tick_time = 1f / m_tickRate;
     }
 
@@ -62,7 +61,7 @@ public class SmallAI : Agent
         m_state_machine.AddState(state);
 
         // Chases after the AI's set target
-        state = new SeekTargetState(this, m_blackboard, m_playerSeekRadius);
+        state = new SeekTargetState(this, m_blackboard, m_detectRange, m_rotationSpeed);
         // Leaps at the targets face when in range
         state.AddTransition(new Transition("LEAPAT",
             new Condition[] { new BoolCondition(RandomLeapCheck),
@@ -74,7 +73,7 @@ public class SmallAI : Agent
         state = new LeapAtState(this, m_leapAngle, m_leapForce, m_leapCooldown);
         // Goes back to seeking its target when out of range or after a cooldown
         state.AddTransition(new Transition("SEEKTARGET",
-            new Condition[] { new BoolCondition((state as LeapAtState).IsCooldownOver) }));
+            new Condition[] { new BoolCondition((state as LeapAtState).LeapComplete) }));
         m_state_machine.AddState(state);
 
         m_state_machine.InitiateStateMachine(this, "SEEKTARGET");

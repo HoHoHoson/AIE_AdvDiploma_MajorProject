@@ -10,15 +10,17 @@ public class Blackboard : MonoBehaviour
     [SerializeField] private Transform[]            m_spawnPoints;
     [SerializeField] private List<EnemyTemplate>    m_enemyTypes = new List<EnemyTemplate>();
 
-    private float               m_intermission_timer    = 0f;
-    private int                 m_waves_passed          = 0; 
-    private bool                m_wave_ongoing          = false;
-    private EnemyTemplate       m_hold_spawn            = null;
-	[HideInInspector]
-	public GameObject			mine;
+    private float           m_intermission_timer    = 0f;
+    private int             m_waves_passed          = 0; 
+    private bool            m_wave_ongoing          = false;
+    private EnemyTemplate   m_hold_spawn            = null;
+
+    [HideInInspector] public GameObject	mine = null;
+    private int m_enemy_death_count;
 
 	public int CurrentWave() { return m_waves_passed + 1; }
     public bool IsWaveOngoing() { return m_wave_ongoing; }
+    public int GetEnemyDeathCount() { return m_enemy_death_count; }
 
     void Start()
     {
@@ -93,6 +95,8 @@ public class Blackboard : MonoBehaviour
 					{ 
 						m_gameManager.AddCurrency(10);
 					}
+
+                    ++m_enemy_death_count;
 					e.DeactivateEnemy(a);
 				}
                 if (a.transform.position.y < -10)

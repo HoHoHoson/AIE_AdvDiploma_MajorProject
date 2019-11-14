@@ -476,8 +476,10 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Performs skill 1 ( Throws Grenade / Damages targets within a Radius with some knockback )
     /// </summary>
-    public void SkillActive1()
+    IEnumerator SkillActive1()
     {
+        yield return new WaitForSeconds(0.5f);
+
         GameObject expl = Instantiate(bomb);
         expl.transform.position = g_throw_point.transform.position;
         expl.GetComponent<Rigidbody>().AddForce(g_throw_point.transform.forward * throw_force, ForceMode.Impulse);
@@ -495,8 +497,10 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Performs skill 3 ( Throws frost Grenade / Freezes targets within a Radius )
     /// </summary>
-    public void SkillActive3()
+    IEnumerator SkillActive3()
     {
+        yield return new WaitForSeconds(0.5f);
+
         GameObject expl = Instantiate(frost_G);
         expl.transform.position = g_throw_point.transform.position;
         expl.GetComponent<Rigidbody>().AddForce(g_throw_point.transform.forward * throw_force, ForceMode.Impulse);
@@ -509,7 +513,7 @@ public class Player : MonoBehaviour
 
         active_1 = false;
         skill_timer_1 = 0;
-        SkillActive1();
+        StartCoroutine(SkillActive1());
         active_1 = true;
 
         animator.ResetTrigger("Throw");
@@ -533,7 +537,7 @@ public class Player : MonoBehaviour
 
         active_3 = false;
         skill_timer_3 = 0;
-        SkillActive3();
+        StartCoroutine(SkillActive3());
         active_3 = true;
 
         animator.ResetTrigger("Throw");

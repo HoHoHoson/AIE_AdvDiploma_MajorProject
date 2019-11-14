@@ -2919,9 +2919,13 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "Designer/Producer\r\nWilliam Brazil\r\n\r\nProgrammers\r\nTim Langford\r\nHoson
-    Zhong\r\n\r\nArtists\r\nJason Chan\r\nGeorgia Perry\r\r\r\n\nSpecial Thanks\r\nAdam
-    Clarke\nCam Herold\r\r\nMurray Lorden\nSam Mummery\nDexter Prapun\r"
+  m_text: "<b>Designer/Producer</b>\r\nWilliam Brazil\r\n<sup>text</sup>\r\n<b>Programmers</b>\r\nHoson
+    Zhong\r\n<sup>text</sup>\r\nTim Langford\r\n<sup>UI Programming UI</sup>\r\n\r\n<b>Artists</b>\r\nGeorgia
+    Perry\r\n<sup>Enemy Animation, Materials, Textures, Environment Modeling, UI Art,
+    Props, Level layout</sup>\r\nJason Chan\r\n<sup>Character/ Enemy Animation, Props,
+    UI</sup>\r\n\r\nPlay Testers and Quality Assurance\r\nName\r\nName\r\nName\r\nName\r\nName\r\n<b>Special
+    Thanks</b>\r\nAdam Clarke\r\nCam Herold\r\nDexter Prapun\r\nMurray Lorden\r\n<sup>Sound
+    Effects, Music</sup>\r\nSam Mummery\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -2955,7 +2959,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_textAlignment: 257
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
@@ -2967,7 +2971,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 146
+  m_firstOverflowCharacterIndex: 233
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -2990,12 +2994,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 618855406}
-    characterCount: 199
+    characterCount: 446
     spriteCount: 0
-    spaceCount: 27
-    wordCount: 26
+    spaceCount: 61
+    wordCount: 60
     linkCount: 0
-    lineCount: 17
+    lineCount: 28
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
