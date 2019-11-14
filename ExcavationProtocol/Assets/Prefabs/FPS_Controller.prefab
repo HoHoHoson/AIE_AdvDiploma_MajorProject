@@ -302,6 +302,36 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1729040280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1729040281}
+  m_Layer: 0
+  m_Name: turretDrop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1729040281
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729040280}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7980817046700777752}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2117461527
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,6 +569,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3262474647881643129}
+  - {fileID: 1729040281}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -637,6 +668,11 @@ MonoBehaviour:
   skill_timer_1: 0
   skill_timer_2: 0
   skill_timer_3: 0
+  TurretPrefab: {fileID: 864170913462784975, guid: 7020a07db1447cf47a0da850014813ce,
+    type: 3}
+  turret_cost: 1
+  turretDrop: {fileID: 1729040280}
+  turret_place_dist: 10
   animator: {fileID: 950402033}
   m_batteryEjectPoint: {fileID: 8501807789408971863}
   m_batteryEject: {fileID: 3364398369051335825, guid: 58e863631128f3542bd4bdbf72edbdf3,
@@ -654,6 +690,7 @@ MonoBehaviour:
   BulletBlast: 1.5
   dot: {fileID: 0}
   crosshair: {fileID: 0}
+  isrealoading: 0
 --- !u!120 &366442169
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1194,6 +1231,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
+      propertyPath: m_Name
+      value: Glass
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: db637819c92a6e741bda93555770d446, type: 3}
       propertyPath: m_CastShadows
       value: 0
@@ -1289,15 +1334,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8501807789408581555}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &8501807789408971863 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400356, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9,
-    type: 3}
-  m_PrefabInstance: {fileID: 8501807789408581555}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8501807789408972079 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400028, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9,
+    type: 3}
+  m_PrefabInstance: {fileID: 8501807789408581555}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8501807789408971863 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400356, guid: 8a0e0ef3cc66cb54bb1ff121398d2ea9,
     type: 3}
   m_PrefabInstance: {fileID: 8501807789408581555}
   m_PrefabAsset: {fileID: 0}

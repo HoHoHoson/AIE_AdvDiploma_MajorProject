@@ -73,6 +73,7 @@ public class Mines : MonoBehaviour
         for (int i = 0; i < broken_excavator.transform.childCount; ++i)
         {
             GameObject excavator_piece = broken_excavator.transform.GetChild(i).gameObject;
+            excavator_piece.layer = 9;
 
             excavator_piece.GetComponent<Renderer>().material = m_excavatorMaterial;
             excavator_piece.AddComponent<MeshCollider>().convex = true;

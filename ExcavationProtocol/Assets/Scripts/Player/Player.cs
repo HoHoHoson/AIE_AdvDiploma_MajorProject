@@ -95,6 +95,13 @@ public class Player : MonoBehaviour
     private bool active_3;
     private readonly bool is_used;
 
+	public GameObject TurretPrefab;
+	public int turret_cost = 100;
+
+	public GameObject turretDrop;
+	
+	public float turret_place_dist = 10;
+
     #endregion
 
     #region Animator
@@ -136,6 +143,8 @@ public class Player : MonoBehaviour
 	public float BulletBlast = 3;
 
 	public GameObject dot, crosshair;
+	
+	public bool isrealoading = false;
 
 	#endregion
 
@@ -231,16 +240,22 @@ public class Player : MonoBehaviour
 			is_sprinting = false;
 		}
 
-        if (Input.GetKeyDown(KeyCode.F)|| Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Alpha3))
         {
             CompleteAction3();
         }
 
+		if (Input.GetKeyDown(KeyCode.E))
+		{
+			DeployTurret();
+		}
+
         // Aim down sights function
         GunADS();
 
-		if (player_energy_current <= 0)
+		if (player_energy_current <= 0 && isrealoading != true)
 		{
+			isrealoading = true;
 			animator.SetBool("Aiming", false);
 			animator.SetBool("Shooting", false);
 			animator.SetBool("Reload", true);
@@ -263,12 +278,12 @@ public class Player : MonoBehaviour
 			}
 		}
 
-		if (Input.GetKey(KeyCode.R))
+		if (Input.GetKey(KeyCode.R) && isrealoading != true)
 		{
+			isrealoading = true;
 			animator.SetBool("Shooting", false);
 			animator.SetBool("Reload", true);
 			m_laserFlash.Stop();
-
 			player_energy_current = player_energy;
 		}
 
@@ -437,6 +452,27 @@ public class Player : MonoBehaviour
 
     #region SkillFunc
 
+	/// <summary>
+	/// places the turret on the ground and takes the currency away
+	/// </summary>
+	void DeployTurret()
+	{
+		if(script_gm.GetCurrency() >= turret_cost)
+		{
+			Vector3 rayOr = turretDrop.transform.position;
+			if (Physics.Raycast(rayOr, -turretDrop.transform.up, out RaycastHit hit, 5))
+			{
+				if (hit.transform.gameObject.layer == 9)
+				{
+					GameObject trt = Instantiate(TurretPrefab);
+					trt.transform.position = new Vector3(turretDrop.transform.position.x, hit.point.y, turretDrop.transform.position.z);
+					Debug.Log(hit.point.y);
+					script_gm.SubtractCurrency(turret_cost);
+				}
+			}
+		}
+	}
+
     /// <summary>
     /// Performs skill 1 ( Throws Grenade / Damages targets within a Radius with some knockback )
     /// </summary>
@@ -490,7 +526,6 @@ public class Player : MonoBehaviour
 	//	SkillActive2();
 	//	//active_2 = true;
 	//}
-
 	public void CompleteAction3()
     {
         if (skill_timer_3 < skill_3)
@@ -504,7 +539,6 @@ public class Player : MonoBehaviour
         animator.ResetTrigger("Throw");
         animator.SetTrigger("Throw");
     }
-
 
     public void SkillTimers()
     {
@@ -607,6 +641,7 @@ public class Player : MonoBehaviour
 
     void ReloadComplete()
 	{
+		isrealoading = false;
 		animator.SetBool("Reload", false);
 	}
     #endregion
