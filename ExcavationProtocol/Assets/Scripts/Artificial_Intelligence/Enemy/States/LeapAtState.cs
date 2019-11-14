@@ -30,7 +30,7 @@ public class LeapAtState : State
     {
         base.InitialiseState();
 
-        m_collider.material.bounciness = 0.9f;
+        m_collider.material.bounciness = 1f;
         m_cooldown_timer = m_cooldown;
 
         Leap();

@@ -78,32 +78,4 @@ public class SmallAI : Agent
 
         m_state_machine.InitiateStateMachine(this, "SEEKTARGET");
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (m_state_machine == null)
-            return;
-
-        State current = m_state_machine.GetCurrentState();
-
-        if (current != null && (current.GetIndex() == "LEAPAT"))
-        {
-            (current as LeapAtState).OnHit(collision.gameObject);
-            return;
-        }
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (m_state_machine == null)
-            return;
-
-        State current = m_state_machine.GetCurrentState();
-
-        if (current != null && (current.GetIndex() == "LEAPAT"))
-        {
-            (current as LeapAtState).OnStay(collision.gameObject);
-            return;
-        }
-    }
 }
