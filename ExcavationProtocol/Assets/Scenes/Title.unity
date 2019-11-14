@@ -687,7 +687,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 180
+          m_FloatArgument: -180
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -8347,7 +8347,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: -180
+          m_FloatArgument: 180
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -11096,7 +11096,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -800, y: -600}
+  m_AnchoredPosition: {x: 150, y: -600}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1827403697
@@ -11172,7 +11172,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: -600}
+  m_AnchoredPosition: {x: -800, y: -600}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1850676774
@@ -12133,13 +12133,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983239792}
-  m_LocalRotation: {x: -0.034678817, y: -0.7479294, z: -0.039197274, w: 0.661712}
-  m_LocalPosition: {x: 0, y: -0.7, z: 1}
+  m_LocalRotation: {x: -0.044592094, y: -0.7474038, z: -0.04796705, w: 0.6611341}
+  m_LocalPosition: {x: 0, y: -0.809, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: -6.0000005, y: -97, z: 0}
+  m_LocalEulerAnglesHint: {x: -7.5080004, y: -97.022, z: 0.187}
 --- !u!114 &1983239796
 MonoBehaviour:
   m_ObjectHideFlags: 0
