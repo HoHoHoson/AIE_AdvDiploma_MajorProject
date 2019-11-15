@@ -374,7 +374,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.56
   m_Range: 100
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -411,6 +411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1012589103047491793}
   - component: {fileID: 152273974025367194}
+  - component: {fileID: 2108782243}
   m_Layer: 0
   m_Name: HelmCam
   m_TagString: Untagged
@@ -470,10 +471,70 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &2108782243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2157290608645027833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 3262474647881643129}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &5843524159236007210
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,8 +700,8 @@ MonoBehaviour:
   player_energy: 25
   visor_renderer: {fileID: 1026872474171158254}
   visor_material: {fileID: 0}
-  full_health_color: {r: 0.2688679, g: 0.803863, b: 1, a: 1}
-  half_health_color: {r: 1, g: 0.9433962, b: 0.2783019, a: 1}
+  full_health_color: {r: 0.3255162, g: 0.6186467, b: 0.7264151, a: 1}
+  half_health_color: {r: 0.9245283, g: 0.87575173, b: 0.28346387, a: 1}
   no_health_color: {r: 1, g: 0.020942407, b: 0, a: 1}
   auto_gun: 0
   fire_rate: 0.15
@@ -648,7 +709,7 @@ MonoBehaviour:
   interaction_cooldown: 0.25
   playerCamera: {fileID: 3262474647881643129}
   playerSpeed: 600
-  SprintMult: 2
+  SprintMult: 1.25
   cameraSensitivity: 1
   maxCameraPitch: 70
   minCameraPitch: -70
@@ -670,7 +731,7 @@ MonoBehaviour:
   skill_timer_3: 0
   TurretPrefab: {fileID: 864170913462784975, guid: 7020a07db1447cf47a0da850014813ce,
     type: 3}
-  turret_cost: 50
+  turret_cost: 100
   turretDrop: {fileID: 1729040280}
   turret_place_dist: 5
   animator: {fileID: 950402033}
@@ -906,7 +967,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8948145744973601613}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
@@ -971,6 +1032,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Visor_001
       objectReference: {fileID: 0}
+    - target: {fileID: 5953948950693695489, guid: cf59473fd3a5dcf4b8029fb2e0a5fbf8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 5931561883556890472, guid: cf59473fd3a5dcf4b8029fb2e0a5fbf8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -979,12 +1045,12 @@ PrefabInstance:
     - target: {fileID: 5931561883556890472, guid: cf59473fd3a5dcf4b8029fb2e0a5fbf8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.014
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 5931561883556890472, guid: cf59473fd3a5dcf4b8029fb2e0a5fbf8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.075
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5931561883556890472, guid: cf59473fd3a5dcf4b8029fb2e0a5fbf8,
         type: 3}
@@ -1029,17 +1095,12 @@ PrefabInstance:
     - target: {fileID: 5931561883556890472, guid: cf59473fd3a5dcf4b8029fb2e0a5fbf8,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.22
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5931561883556890472, guid: cf59473fd3a5dcf4b8029fb2e0a5fbf8,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 5931561883556890472, guid: cf59473fd3a5dcf4b8029fb2e0a5fbf8,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf59473fd3a5dcf4b8029fb2e0a5fbf8, type: 3}

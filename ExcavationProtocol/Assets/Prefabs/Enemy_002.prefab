@@ -236,16 +236,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_health: 6
   m_damage: 20
-  m_minSpeed: 500
-  m_maxSpeed: 500
+  m_minSpeed: 325
+  m_maxSpeed: 375
   m_rotationSpeed: 90
   m_maxSlopeAngle: 40
   m_leapCooldown: 2
   m_leapAngle: 45
-  m_leapForce: 10
+  m_leapForce: 5
   m_explodeSFX: {fileID: 3724125835381649309, guid: 2295cb7964e208345abede024f1b65d7,
     type: 3}
-  m_explodeSound: {fileID: 579000056355111654, guid: e91a5974fa867ac44b45031edef6cdca,
+  m_explodeSound: {fileID: 5812758284178924088, guid: 907ab58b2cb20f54b8b4a164bfe15830,
     type: 3}
   m_explosiveRadius: 3
   m_friendlyFireDamage: 5
