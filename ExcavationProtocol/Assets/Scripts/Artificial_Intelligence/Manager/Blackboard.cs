@@ -8,6 +8,7 @@ public class Blackboard : MonoBehaviour
 
     [SerializeField] private float                  m_intermissionTime = 5f;
     [SerializeField] private Transform[]            m_spawnPoints;
+    [SerializeField] private ParticleSystem         m_deathParticle;
     [SerializeField] private List<EnemyTemplate>    m_enemyTypes = new List<EnemyTemplate>();
 
     private float           m_intermission_timer    = 0f;
@@ -91,10 +92,29 @@ public class Blackboard : MonoBehaviour
 				// Checks and removes any dead enemies
 				if (a.IsDead())
 				{
-					if (a.GetEnemyType() == Agent.EnemyType.BOSS)
-					{ 
-						m_gameManager.AddCurrency(10);
-					}
+                    ParticleSystem death_particle = Instantiate(m_deathParticle, a.GetCollider().bounds.center, a.transform.rotation);
+                    Destroy(death_particle, death_particle.main.duration);
+
+                    switch (a.GetEnemyType())
+                    {
+                        case Agent.EnemyType.BASIC:
+                            {
+                                break;
+                            }
+                        case Agent.EnemyType.EXPLOSIVE:
+                            {
+                                death_particle.transform.localScale = new Vector3(3, 3, 3);
+
+                                break;
+                            }
+                        case Agent.EnemyType.BOSS:
+                            {
+                                death_particle.transform.localScale = new Vector3(6, 6, 6);
+                                m_gameManager.AddCurrency(10);
+
+                                break;
+                            }
+                    }
 
                     ++m_enemy_death_count;
 					e.DeactivateEnemy(a);

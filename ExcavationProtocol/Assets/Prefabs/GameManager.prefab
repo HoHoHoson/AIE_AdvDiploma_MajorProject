@@ -116,6 +116,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  m_deathParticle: {fileID: 7242024033571974761, guid: 1503b75c7aa8f6b448edb6affb33da73,
+    type: 3}
   m_enemyTypes:
   - m_enemyPrefab: {fileID: 2455372979600114904, guid: 67aab124b094c634e8a7653f400f72a4,
       type: 3}
