@@ -53,7 +53,8 @@ public class Player : MonoBehaviour
 	private bool is_sprinting = false;
 	public float SprintMult = 2;
 
-    public float cameraSensitivity = 1;
+    public float cameraSensitivity = 100;
+	private float ADSdif = 0.3f;
     public float maxCameraPitch = 50;
     public float minCameraPitch = -50;
 
@@ -131,7 +132,7 @@ public class Player : MonoBehaviour
     public float gun_ads_time = 1;
 
 	private float ads_timer;
-
+	private bool b_ADS = false;
 
 	private Camera fps_cam;
     private readonly WaitForSeconds shot_duration = new WaitForSeconds(0.001f);
@@ -177,6 +178,9 @@ public class Player : MonoBehaviour
 		camera_transform = fps_cam.transform;
         skill_timer_1 = skill_1;
         skill_timer_3 = skill_3;
+
+		cameraSensitivity = PlayerPrefs.GetFloat("mouseSen");
+		ADSdif = PlayerPrefs.GetFloat("ADSsen");
 
         m_sound_system = GetComponent<SoundSystem>();
         m_batteryEject = Instantiate(m_batteryEject, m_batteryEjectPoint);
@@ -339,6 +343,7 @@ public class Player : MonoBehaviour
             animator.SetBool("Aiming", true);
 			crosshair.SetActive(false);
 			dot.SetActive(true);
+			b_ADS = true;
         }
         else
         {
@@ -346,6 +351,7 @@ public class Player : MonoBehaviour
             animator.SetBool("Aiming", false);
 			dot.SetActive(false);
 			crosshair.SetActive(true);
+			b_ADS = false;
         }
 
         ads_timer = Mathf.Clamp(ads_timer, 0, gun_ads_time);
@@ -371,8 +377,16 @@ public class Player : MonoBehaviour
     {
         if (script_gm.is_paused == false && script_gm.dead_player == false)
         {
-            m_camera_yaw += Input.GetAxis("Mouse X") * cameraSensitivity;
-            m_camera_pitch -= Input.GetAxis("Mouse Y") * cameraSensitivity;
+			if (b_ADS == true)
+			{
+				m_camera_yaw += Input.GetAxis("Mouse X") * (cameraSensitivity * ADSdif);
+				m_camera_pitch -= Input.GetAxis("Mouse Y") * (cameraSensitivity * ADSdif);
+			}
+			else
+			{
+				m_camera_yaw += Input.GetAxis("Mouse X") * cameraSensitivity;
+				m_camera_pitch -= Input.GetAxis("Mouse Y") * cameraSensitivity;
+			}
             m_camera_pitch = Mathf.Clamp(m_camera_pitch, minCameraPitch, maxCameraPitch);
 
             playerCamera.localRotation = Quaternion.Euler(m_camera_pitch, 0, 0);

@@ -47,7 +47,5 @@ public class MainMenuController : MonoBehaviour
                 rotating = false;
             }
         }
-        
     }
-
 }

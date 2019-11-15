@@ -18,7 +18,7 @@ public class Ui : MonoBehaviour
 
     #region PlayerStats
 
-    public GameObject player;
+    public GameObject player, hp_bar_gameObject;
     public Slider hp_bar, energy_bar;
     public Text wave_count, wave_enemiesleft;
     public Text energy_value, max_energy_value;
@@ -65,6 +65,14 @@ public class Ui : MonoBehaviour
         half_hp = hp_bar.maxValue / 2;
         low_hp = hp_bar.maxValue / 4;
 
+		if (PlayerPrefs.GetInt("HPValBool") == 1)
+		{
+			hp_bar_gameObject.SetActive(true);
+		}
+		else
+		{
+			hp_bar_gameObject.SetActive(false);
+		}
         
         drill.GetComponentInChildren<Slider>().maxValue = drill.GetComponent<Mines>().mine_max_hp;
         

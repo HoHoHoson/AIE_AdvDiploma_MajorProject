@@ -2508,9 +2508,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
-          type: 3}
-        m_MethodName: ExitApplication
+      - m_Target: {fileID: 1812924543}
+        m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10671,9 +10670,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3317138830722218634, guid: 0133e389627041d4893d129376d359a0,
-          type: 3}
-        m_MethodName: LoadAnotherScene
+      - m_Target: {fileID: 1812924543}
+        m_MethodName: LoadScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12086,6 +12084,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1812924541}
   - component: {fileID: 1812924542}
+  - component: {fileID: 1812924543}
   m_Layer: 0
   m_Name: Menu_Pivot
   m_TagString: Untagged
@@ -12124,6 +12123,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ea3095eafb6e740af1e3ddc1eac864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1812924543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812924540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01a44ebfcb52ba40a59b864b38a472b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music_slider: {fileID: 0}
+  SFX_slider: {fileID: 0}
+  master_slider: {fileID: 0}
+  Sensitivity: {fileID: 1250821003}
+  ADSSensitivity: {fileID: 1860868789}
+  mute_toggle: {fileID: 0}
+  Hp_toggle: {fileID: 623017937}
 --- !u!1 &1827403695
 GameObject:
   m_ObjectHideFlags: 0
