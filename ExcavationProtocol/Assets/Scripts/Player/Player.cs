@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
 
 
     protected int player_hp_current, player_energy_current;
+	public Transform visor_transform;
+	private Transform visor_defaultPos, visor_zoomPos;
     public Renderer visor_renderer;
     public Material visor_material;
     public Color full_health_color = Color.blue;
@@ -513,10 +515,9 @@ public class Player : MonoBehaviour
 
         active_1 = false;
         skill_timer_1 = 0;
+        animator.ResetTrigger("Throw");
         StartCoroutine(SkillActive1());
         active_1 = true;
-
-        animator.ResetTrigger("Throw");
         animator.SetTrigger("Throw");
     }
 
@@ -537,10 +538,9 @@ public class Player : MonoBehaviour
 
         active_3 = false;
         skill_timer_3 = 0;
+        animator.ResetTrigger("Throw");
         StartCoroutine(SkillActive3());
         active_3 = true;
-
-        animator.ResetTrigger("Throw");
         animator.SetTrigger("Throw");
     }
 

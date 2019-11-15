@@ -12,6 +12,7 @@ public class Ui : MonoBehaviour
 
     public GameManager script_gamemanager;
     public Player script_player;
+	public Blackboard script_blackboard;
 
     #endregion
 
@@ -52,12 +53,13 @@ public class Ui : MonoBehaviour
     void Start()
     {
         script_gamemanager = GetComponent<GameManager>();
+		script_blackboard = GetComponent<Blackboard>();
 
-        hp_bar.maxValue = script_player.player_hp;
+		hp_bar.maxValue = script_player.player_hp;
         energy_bar.maxValue = script_player.player_energy;
 
         skill_1.maxValue = script_player.skill_1;
-        skill_2.maxValue = script_player.skill_2;
+        skill_2.maxValue = script_player.turret_cost;
         skill_3.maxValue = script_player.skill_3;
 
         half_hp = hp_bar.maxValue / 2;
@@ -80,9 +82,11 @@ public class Ui : MonoBehaviour
 
 		endWaveNo = script_gamemanager.wave_no;
 		endResources = script_gamemanager.GetCurrency();
+		endEnemyKillCount = script_blackboard.GetEnemyDeathCount();
 
 		endWaveNoText.GetComponent<Text>().text = endWaveNo.ToString();
 		endResourcesText.GetComponent<Text>().text = endResources.ToString();
+		endEnemyKillCountText.GetComponent<Text>().text = endEnemyKillCount.ToString();
 
 		if (timeMin <= 9)
 		{
@@ -103,7 +107,7 @@ public class Ui : MonoBehaviour
 		}
 
         skill_1.value = script_player.skill_timer_1;
-        skill_2.value = script_player.skill_timer_2;
+        skill_2.value = script_gamemanager.GetCurrency();
         skill_3.value = script_player.skill_timer_3;
         HPColourChange(script_player.GetPlayerHp());
 		UpdateTimer(ref timeMin, ref timeSec, ref timeMs);

@@ -79,7 +79,6 @@ public class Turrets : MonoBehaviour
 			{
 				next_fire = Time.time + fire_rate;
 
-
 				if(target.GetComponent<Agent>().IsDead() != true)
 				{
 					target.GetComponent<Agent>().TakeDamage(m_damage);
