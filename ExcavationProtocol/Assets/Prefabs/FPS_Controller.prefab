@@ -648,7 +648,7 @@ MonoBehaviour:
   interaction_cooldown: 0.25
   playerCamera: {fileID: 3262474647881643129}
   playerSpeed: 600
-  SprintMult: 2
+  SprintMult: 1.25
   cameraSensitivity: 1
   maxCameraPitch: 70
   minCameraPitch: -70
