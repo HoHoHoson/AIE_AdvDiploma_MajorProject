@@ -213,7 +213,7 @@ MonoBehaviour:
   m_excavatorMaterial: {fileID: 2100000, guid: 023ff98ae70db0548a5e4aa4230347aa, type: 2}
   is_active: 1
   mine_hp_recover: 50
-  mine_max_hp: 250
+  mine_max_hp: 500
   m_force: 100
   m_radius: 10
   m_upwardsModifier: 10

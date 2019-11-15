@@ -4894,8 +4894,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "<b>Designer/Producer</b>\r\nWilliam Brazil\r\n\n<b>Programmers</b>\r\nHoson
     Zhong\r\nTim Langford\r\n\r\n<b>Artists</b>\r\nGeorgia Perry\nJason Chan\r\n\r\n<b>Play
-    Testers and Quality Assurance\r</b>\nName\r\nName\r\nName\r\n\n<b>Special Thanks</b>\r\nAdam
-    Clarke\r\nCam Herold\r\nDexter Prapun\r\nMurray Lorden\r\nSam Mummery\r\n"
+    Testers and Quality Assurance\r</b>\nTahnee D'Cruz\nJames Kemeny\nTyler Ratcliffe\nTahnee
+    D'Cruz (Again)\n\n<b>Special Thanks</b>\r\nAdam Clarke\r\nCam Herold\r\nDexter
+    Prapun\r\nMurray Lorden\r\nSam Mummery\r\nJames Kemeny"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -4941,7 +4942,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 157
+  m_firstOverflowCharacterIndex: 165
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -4964,12 +4965,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 618855406}
-    characterCount: 254
+    characterCount: 313
     spriteCount: 0
-    spaceCount: 37
-    wordCount: 34
+    spaceCount: 44
+    wordCount: 42
     linkCount: 0
-    lineCount: 22
+    lineCount: 24
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
