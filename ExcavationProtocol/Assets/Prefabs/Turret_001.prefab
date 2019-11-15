@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 864170913462685679}
   - component: {fileID: 864170913472307227}
   - component: {fileID: 1889391071245552954}
+  - component: {fileID: 3212864416201001602}
   m_Layer: 0
   m_Name: Turret_001
   m_TagString: Untagged
@@ -219,6 +220,36 @@ MonoBehaviour:
   End1: {fileID: 4343778352122363186}
   End2: {fileID: 4343778351658203049}
   turnspeed: 10
+--- !u!114 &3212864416201001602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864170913462784975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba878c36ad3b8e44af7457fc33d5827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_loopSetting: 0
+  m_soundClips:
+  - m_audioClip: {fileID: 1145306609998581623, guid: 36542b125ce37ca4cb8dc2b619828c48,
+      type: 3}
+    m_minDelay: 0
+    m_maxDelay: 0
+  - m_audioClip: {fileID: 4329911704271159316, guid: 8a2eac8527d5f304582a5f457901d1bb,
+      type: 3}
+    m_minDelay: 0
+    m_maxDelay: 0
+  - m_audioClip: {fileID: 8121093489987955638, guid: fccd06a2d9bfeab44a4fe76e3f01094a,
+      type: 3}
+    m_minDelay: 0
+    m_maxDelay: 0
+  - m_audioClip: {fileID: 3198881412478405629, guid: f290243f9dae80846bdc57b22faf656b,
+      type: 3}
+    m_minDelay: 0
+    m_maxDelay: 0
 --- !u!1 &864170913462784977
 GameObject:
   m_ObjectHideFlags: 0

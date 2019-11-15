@@ -12,6 +12,7 @@ public class Turrets : MonoBehaviour
 	
 	public GameObject turret_center;
 	public ParticleSystem End1 = null, End2 = null;
+    private SoundSystem m_sound_system;
 
 	private GameObject Target = null;
 	private float prevDist;
@@ -24,6 +25,7 @@ public class Turrets : MonoBehaviour
 		current_ammo = max_ammo;
 
 		prevDist = turret_range;
+        m_sound_system = GetComponent<SoundSystem>();
     }
 	
     void Update()
@@ -85,6 +87,7 @@ public class Turrets : MonoBehaviour
 					target.GetComponent<Agent>().TakeDamage(m_damage);
 					End1.Play();
 					End2.Play();
+                    m_sound_system.PlayRandom();
 					currentAmmo -= 1;
 				}
 				else
