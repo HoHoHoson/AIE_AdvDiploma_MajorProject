@@ -49,26 +49,21 @@ MonoBehaviour:
   script_UI: {fileID: 3317138830722218635}
   script_player: {fileID: 0}
   script_bb: {fileID: 3317138830722218740}
-  active_mines: 1
-  mine_rep_cost: 1
-  mine_cost: 1
-  mines_list:
-  - {fileID: 0}
+  Drill: {fileID: 0}
   player_take_dmg: 0
   player_restore_hp: 0
   pause_menu: {fileID: 0}
   game_over: {fileID: 0}
   game_play: {fileID: 0}
   crosshair: {fileID: 0}
+  deadEnemies: 0
   is_paused: 0
   dead_player: 0
   player_gameobject: {fileID: 0}
   wave_no: 0
   num_of_enemies: 0
-  currency: 30
-  wave_reward: 5
-  cost_per_hp: 20
-  cost_per_ammo: 25
+  Currency: 100
+  wave_reward: 4
 --- !u!114 &3317138830722218635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,8 +91,7 @@ MonoBehaviour:
   hud: {fileID: 0}
   Notifications: {fileID: 0}
   res_cost_text: {fileID: 0}
-  drills:
-  - {fileID: 0}
+  drill: {fileID: 0}
 --- !u!114 &3317138830722218740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_gameManager: {fileID: 3317138830722218634}
+  m_intermissionTime: 5
   m_spawnPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -125,8 +120,8 @@ MonoBehaviour:
   - m_enemyPrefab: {fileID: 2455372979600114904, guid: 67aab124b094c634e8a7653f400f72a4,
       type: 3}
     m_spawnsPerWave: 20
-    m_spawnIncrement: 10
-    m_activeEnemiesLimit: 60
+    m_spawnIncrement: 30
+    m_activeEnemiesLimit: 80
     m_activeIncrement: 5
     m_spawnGroupSize: 6
     m_onWaves: 
@@ -138,7 +133,15 @@ MonoBehaviour:
     m_activeIncrement: 1
     m_spawnGroupSize: 1
     m_onWaves: 
-  m_intermissionTime: 5
+  - m_enemyPrefab: {fileID: 3758284017529200002, guid: 9ab478a472f05bc49bfba467a8f312b6,
+      type: 3}
+    m_spawnsPerWave: 1
+    m_spawnIncrement: 0.2
+    m_activeEnemiesLimit: 2
+    m_activeIncrement: 1
+    m_spawnGroupSize: 1
+    m_onWaves: 05000000
+  mine: {fileID: 0}
 --- !u!114 &1878617261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_loopSetting: 1
   m_soundClips:
-  - m_audioClip: {fileID: 5093414444200871731, guid: af1b44a1e867a2c40868518c9a9ab1d6,
+  - m_audioClip: {fileID: 5929165750962741808, guid: ca456fa1434f8ef4096df4a73e8b682a,
       type: 3}
     m_minDelay: 0
     m_maxDelay: 0

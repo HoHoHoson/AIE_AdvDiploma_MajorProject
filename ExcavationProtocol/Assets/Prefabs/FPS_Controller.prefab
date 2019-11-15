@@ -670,7 +670,7 @@ MonoBehaviour:
   skill_timer_3: 0
   TurretPrefab: {fileID: 864170913462784975, guid: 7020a07db1447cf47a0da850014813ce,
     type: 3}
-  turret_cost: 50
+  turret_cost: 100
   turretDrop: {fileID: 1729040280}
   turret_place_dist: 5
   animator: {fileID: 950402033}
