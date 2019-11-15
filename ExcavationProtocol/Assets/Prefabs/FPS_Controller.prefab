@@ -374,7 +374,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.56
+  m_Intensity: 1
   m_Range: 100
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1193,22 +1193,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2210846969804693258, guid: 28448babec3bde34a99e974537744dbe,
+    - target: {fileID: 4882241776495319350, guid: 28448babec3bde34a99e974537744dbe,
         type: 3}
       propertyPath: looping
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2210846969804693258, guid: 28448babec3bde34a99e974537744dbe,
+    - target: {fileID: 4882241776495319350, guid: 28448babec3bde34a99e974537744dbe,
         type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4882241776495319350, guid: 28448babec3bde34a99e974537744dbe,
+    - target: {fileID: 2210846969804693258, guid: 28448babec3bde34a99e974537744dbe,
         type: 3}
       propertyPath: looping
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4882241776495319350, guid: 28448babec3bde34a99e974537744dbe,
+    - target: {fileID: 2210846969804693258, guid: 28448babec3bde34a99e974537744dbe,
         type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -1228,14 +1228,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 30933977}
     m_Modifications:
-    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
-      propertyPath: m_Name
-      value: Glass
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: db637819c92a6e741bda93555770d446, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1291,6 +1283,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: db637819c92a6e741bda93555770d446, type: 3}
       propertyPath: m_LocalScale.z
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
+      propertyPath: m_Name
+      value: Glass
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: db637819c92a6e741bda93555770d446, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: db637819c92a6e741bda93555770d446, type: 3}
       propertyPath: m_CastShadows
