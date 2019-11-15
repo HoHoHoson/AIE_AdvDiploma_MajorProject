@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
 	// volume ints
-	float SFX, Music, MasterVol;
+	float SFX = 100, Music = 100, MasterVol = 100;
 	bool MuteAll = false;
 
 	// Sensitivity
-	float mouseSen, ADSSen, maxSen = 100;
+	float mouseSen = 1, ADSSen = 0.5f, maxSen = 100;
 
 	// Hpbaron ( off by default )
 	bool HpBarON = false;
@@ -21,7 +21,7 @@ public class MenuManager : MonoBehaviour
 
 	// Sound sliders
 	[Header("Sounds")]
-	public Slider music_slider = null, SFX_slider = null, master_slider = null;
+	public Slider music_slider, SFX_slider, master_slider;
 
 	[Header("Mouse Sensitivity")]
 	public Slider Sensitivity, ADSSensitivity;
@@ -37,6 +37,15 @@ public class MenuManager : MonoBehaviour
 		SFX_slider.maxValue = 100;
 		master_slider.maxValue = 100;
 		ADSSensitivity.maxValue = 1;
+
+		music_slider.value = Music;
+		SFX_slider.value = SFX;
+		master_slider.value = MasterVol;
+		Sensitivity.value = mouseSen;
+		ADSSensitivity.value = ADSSen;
+
+		mute_toggle.isOn = MuteAll;
+	 	Hp_toggle.isOn = HpBarON;
 	}
 
 	private void Update()
