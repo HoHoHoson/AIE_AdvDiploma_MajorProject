@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 3742569117176842084}
   - component: {fileID: 1503597013948897669}
   - component: {fileID: 9014543481234836936}
+  - component: {fileID: 257587745012824844}
   m_Layer: 10
   m_Name: Enemy_002
   m_TagString: Untagged
@@ -243,9 +244,9 @@ MonoBehaviour:
   m_leapCooldown: 2
   m_leapAngle: 45
   m_leapForce: 5
-  m_explodeSFX: {fileID: 3724125835381649309, guid: 2295cb7964e208345abede024f1b65d7,
+  m_explodeSFX: {fileID: 3724125835381649299, guid: 2295cb7964e208345abede024f1b65d7,
     type: 3}
-  m_explodeSound: {fileID: 5812758284178924088, guid: 907ab58b2cb20f54b8b4a164bfe15830,
+  m_explodeSound: {fileID: 579000056355111654, guid: e91a5974fa867ac44b45031edef6cdca,
     type: 3}
   m_explosiveRadius: 3
   m_friendlyFireDamage: 5
@@ -282,6 +283,24 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 1, z: -0.74}
+--- !u!114 &257587745012824844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3742569117176842085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba878c36ad3b8e44af7457fc33d5827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_loopSetting: 0
+  m_soundClips:
+  - m_audioClip: {fileID: 1031512187876299125, guid: 560fe589c2e87674e82b9c20283d2edb,
+      type: 3}
+    m_minDelay: 0
+    m_maxDelay: 0
 --- !u!1001 &5247554656684041121
 PrefabInstance:
   m_ObjectHideFlags: 0

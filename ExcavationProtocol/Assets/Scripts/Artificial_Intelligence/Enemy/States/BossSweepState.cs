@@ -21,6 +21,7 @@ public class BossSweepState : State
 
         m_animator.ResetTrigger("Attack");
         m_animator.SetTrigger("Attack");
+        m_boss_agent.PlayAttackSound();
 
         GameObject target = m_agent.GetTarget();
 

@@ -3,13 +3,14 @@
 public class ExplosiveAI : Agent
 {
     [Header("Kapooya Man Settings")]
-    [SerializeField] ParticleSystem m_explodeSFX = null;
+    [SerializeField] GameObject m_explodeSFX = null;
     [SerializeField] AudioSource m_explodeSound = null;
 
     [SerializeField] private float  m_explosiveRadius = 3;
     [SerializeField] private int    m_friendlyFireDamage = 5;
     [SerializeField] private float  m_detectRange = 0;
 
+    private SoundSystem m_sound_system;
     private bool m_friendly_fire = false;
 
     public bool IsLit() { return m_animator.GetBool("FuseLit"); }
@@ -19,6 +20,7 @@ public class ExplosiveAI : Agent
         base.InitialiseAgent(blackboard);
 
         m_type = EnemyType.EXPLOSIVE;
+        m_sound_system = GetComponent<SoundSystem>();
     }
 
     public override void ResetStats()
@@ -48,6 +50,16 @@ public class ExplosiveAI : Agent
         m_state_machine.AddState(state);
 
         m_state_machine.InitiateStateMachine(this, "SEEKTARGET");
+    }
+
+    public override void UpdateAgent()
+    {
+        base.UpdateAgent();
+
+        if (IsLit() && m_sound_system.GetClip(0).GetAudioSource().isPlaying == false)
+            m_sound_system.GetClip(0).PlayAudio();
+        else if (!IsLit())
+            m_sound_system.GetClip(0).GetAudioSource().Stop();
     }
 
     public void LocationalDamage(in RaycastHit hit, int damage)

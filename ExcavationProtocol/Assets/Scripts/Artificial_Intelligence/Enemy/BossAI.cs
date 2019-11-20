@@ -6,11 +6,20 @@ public class BossAI : Agent
     [SerializeField] private float m_detectRange = 30f;
     [SerializeField] private float m_attackRange = 4f;
 
+    private SoundSystem m_sound_system;
+
+    public void PlayAttackSound()
+    {
+        m_sound_system.GetClip(0).PlayAudio();
+    }
+
     public override void InitialiseAgent(in Blackboard blackboard)
     {
         base.InitialiseAgent(blackboard);
 
         m_type = EnemyType.BOSS;
+
+        m_sound_system = GetComponent<SoundSystem>();
     }
 
     protected override void InitialiseStateMachine()
