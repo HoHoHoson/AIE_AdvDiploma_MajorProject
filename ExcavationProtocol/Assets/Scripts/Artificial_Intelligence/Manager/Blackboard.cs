@@ -93,7 +93,7 @@ public class Blackboard : MonoBehaviour
 				if (a.IsDead())
 				{
                     ParticleSystem death_particle = Instantiate(m_deathParticle, a.GetCollider().bounds.center, a.transform.rotation);
-                    Destroy(death_particle, death_particle.main.duration);
+                    Destroy(death_particle.gameObject, death_particle.main.duration);
 
                     switch (a.GetEnemyType())
                     {
