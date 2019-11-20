@@ -6,6 +6,7 @@ public class Mines : MonoBehaviour
 {
     [SerializeField] private GameObject m_excavatorParts;
     [SerializeField] private Material m_excavatorMaterial;
+    [SerializeField] private ParticleSystem m_drillDust;
 
     private Animator m_animator;
 
@@ -27,6 +28,7 @@ public class Mines : MonoBehaviour
     {
         gamemanager = FindObjectOfType<GameManager>();
         m_animator = GetComponent<Animator>();
+        m_drillDust = Instantiate(m_drillDust, transform);
 
         if(is_active == true)
         {
@@ -68,6 +70,7 @@ public class Mines : MonoBehaviour
     public void DeactivateMine()
     {
         is_active = false;
+        m_drillDust.Stop();
 
         GameObject broken_excavator = Instantiate(m_excavatorParts, transform.position, transform.rotation);
         for (int i = 0; i < broken_excavator.transform.childCount; ++i)
