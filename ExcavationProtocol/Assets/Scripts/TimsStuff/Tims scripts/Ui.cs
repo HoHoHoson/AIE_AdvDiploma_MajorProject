@@ -12,7 +12,7 @@ public class Ui : MonoBehaviour
 
     public GameManager script_gamemanager;
     public Player script_player;
-	public Blackboard script_blackboard;
+	private Blackboard script_blackboard;
 
     #endregion
 
@@ -89,7 +89,7 @@ public class Ui : MonoBehaviour
         wave_enemiesleft.GetComponent<Text>().text = script_gamemanager.num_of_enemies.ToString();
 
 		endWaveNo = script_gamemanager.wave_no;
-		endResources = script_gamemanager.GetCurrency();
+		endResources = script_gamemanager.GetTotalCurrency();
 		endEnemyKillCount = script_blackboard.GetEnemyDeathCount();
 
 		endWaveNoText.GetComponent<Text>().text = endWaveNo.ToString();
