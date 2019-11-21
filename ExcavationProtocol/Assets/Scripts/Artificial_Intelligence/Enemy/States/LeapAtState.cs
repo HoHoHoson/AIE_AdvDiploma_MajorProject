@@ -30,7 +30,7 @@ public class LeapAtState : State
     {
         base.InitialiseState();
 
-        m_collider.material.bounciness = 1f;
+        m_collider.material.bounciness = 1;
         m_cooldown_timer = m_cooldown;
 
         Leap();
@@ -106,7 +106,7 @@ public class LeapAtState : State
         Vector3 leap_direction;
 
         leap_direction = m_agent.GetTarget().transform.position - m_agent.transform.position;
-        leap_direction = Quaternion.AngleAxis(m_angle, Vector3.Cross(leap_direction, Vector3.up)) * leap_direction;
+        leap_direction = Quaternion.AngleAxis(m_angle, Vector3.Cross(leap_direction, Vector3.up)) * leap_direction.normalized;
 
         Vector3 orthogonal_velocity = m_agent.GetRigidbody().velocity;
         orthogonal_velocity.y = 0;
@@ -117,9 +117,8 @@ public class LeapAtState : State
 
         // Redirecting current velocity towards intended target
         m_agent.GetRigidbody().velocity = Quaternion.Euler(0, velocity_angle_offset, 0) * m_agent.GetRigidbody().velocity;
-        m_agent.GetRigidbody().angularVelocity = Vector3.zero;
         // Applying leap force
-        m_agent.GetRigidbody().AddForce(leap_direction.normalized * m_force, ForceMode.Impulse);
+        m_agent.GetRigidbody().AddForce(leap_direction * 10, ForceMode.Impulse);
         // Adds spin to the leap
         m_agent.GetRigidbody().AddRelativeTorque(-Vector3.right * m_force, ForceMode.Impulse);
     }

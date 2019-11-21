@@ -55,8 +55,8 @@ MonoBehaviour:
   m_rotationSpeed: 270
   m_maxSlopeAngle: 70
   m_leapCooldown: 2
-  m_leapAngle: 45
-  m_leapForce: 5
+  m_leapAngle: 30
+  m_leapForce: 20
   m_leapRadius: 5
   m_randomLeapChance: 0.01
   m_tickRate: 5

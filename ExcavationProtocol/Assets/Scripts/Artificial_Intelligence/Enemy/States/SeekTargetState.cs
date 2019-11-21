@@ -11,7 +11,7 @@ public class SeekTargetState : State
     private float   m_rotate_per_sec    = 90f;
     private Vector3 m_surface_normal    = Vector3.up;
 
-    private float   m_distance_threshold    = 0.02f;
+    private float   m_distance_threshold    = 0.01f;
     private float   m_reset_time            = 5f;
     private float   m_reset_timer           = 0;
     private Vector3 m_previous_position     = Vector3.zero;
@@ -85,7 +85,7 @@ public class SeekTargetState : State
 
         if (CalculateNormal())
         {
-            grounding_velocity = m_surface_normal * m_grounding_force;
+            grounding_velocity = Vector3.zero; // m_surface_normal * m_grounding_force;
             m_gravity = 0;
         }
         else
