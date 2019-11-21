@@ -29,6 +29,11 @@ public class GameManager : MonoBehaviour
 
     public bool is_paused = false;
     public bool dead_player = false;
+
+	float volume;
+
+	AudioSource[] sounds;
+
     #endregion
 
     #region Animator
@@ -75,6 +80,12 @@ public class GameManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+		volume = PlayerPrefs.GetFloat("Sound");
+
+		
+
+		
     }
 
     // Update is called once per frame
@@ -104,8 +115,15 @@ public class GameManager : MonoBehaviour
             wave_no = script_bb.CurrentWave();
             num_of_enemies = script_bb.TotalEnemyCount();
 
-            // temp
-            if (Input.GetKey(KeyCode.P))
+			sounds = FindObjectsOfType<AudioSource>();
+
+			foreach(var sound in sounds)
+			{
+				sound.volume = volume / 100;
+			}
+
+			// temp
+			if (Input.GetKey(KeyCode.P))
             {
                 ReloadScene();
             }
