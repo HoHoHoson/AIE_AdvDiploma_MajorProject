@@ -117,6 +117,7 @@ public class LeapAtState : State
 
         // Redirecting current velocity towards intended target
         m_agent.GetRigidbody().velocity = Quaternion.Euler(0, velocity_angle_offset, 0) * m_agent.GetRigidbody().velocity;
+        m_agent.GetRigidbody().angularVelocity = Vector3.zero;
         // Applying leap force
         m_agent.GetRigidbody().AddForce(leap_direction.normalized * m_force, ForceMode.Impulse);
         // Adds spin to the leap

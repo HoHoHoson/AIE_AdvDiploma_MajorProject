@@ -466,7 +466,6 @@ public class Player : MonoBehaviour
 				{
 					GameObject trt = Instantiate(TurretPrefab);
 					trt.transform.position = new Vector3(turretDrop.transform.position.x, hit.point.y, turretDrop.transform.position.z);
-					Debug.Log(hit.point.y);
 					script_gm.SubtractCurrency(turret_cost);
 				}
 			}

@@ -11,7 +11,7 @@ public class SeekTargetState : State
     private float   m_rotate_per_sec    = 90f;
     private Vector3 m_surface_normal    = Vector3.up;
 
-    private float   m_distance_threshold    = 0.01f;
+    private float   m_distance_threshold    = 0.02f;
     private float   m_reset_time            = 5f;
     private float   m_reset_timer           = 0;
     private Vector3 m_previous_position     = Vector3.zero;
@@ -117,7 +117,6 @@ public class SeekTargetState : State
             && Vector3.Angle(Vector3.up, m_surface_normal) < m_agent.GetSlopeAngle())
         {
             m_surface_normal = hit.normal;;
-            Debug.Log(Vector3.Angle(Vector3.up, m_surface_normal));
             return true;
         }
         else
