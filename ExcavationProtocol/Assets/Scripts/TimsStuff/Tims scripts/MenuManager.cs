@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
 	// volume ints
-	float SFX = 100, Music = 100, MasterVol = 100;
+	float MasterVol = 100;
 	bool MuteAll = false;
 
 	// Sensitivity
-	float mouseSen = 1, ADSSen = 0.5f, maxSen = 100;
+	float mouseSen = 1, ADSSen = 0.5f, maxSen = 10;
 
 	// Hpbaron ( off by default )
 	bool HpBarON = false;
@@ -21,7 +21,7 @@ public class MenuManager : MonoBehaviour
 
 	// Sound sliders
 	[Header("Sounds")]
-	public Slider music_slider, SFX_slider, master_slider;
+	public Slider master_slider;
 
 	[Header("Mouse Sensitivity")]
 	public Slider Sensitivity, ADSSensitivity;
@@ -33,13 +33,8 @@ public class MenuManager : MonoBehaviour
 	private void Start()
 	{
 		Sensitivity.maxValue = maxSen;
-		music_slider.maxValue = 100;
-		SFX_slider.maxValue = 100;
 		master_slider.maxValue = 100;
 		ADSSensitivity.maxValue = 1;
-
-		music_slider.value = Music;
-		SFX_slider.value = SFX;
 		master_slider.value = MasterVol;
 		Sensitivity.value = mouseSen;
 		ADSSensitivity.value = ADSSen;
@@ -53,9 +48,6 @@ public class MenuManager : MonoBehaviour
 		mouseSen = Sensitivity.value;
 		ADSSen = ADSSensitivity.value;
 
-		MasterVol = master_slider.value;
-		Music = music_slider.value;
-		SFX = SFX_slider.value;
 
 		HpBarON = Hp_toggle.isOn;
 		if (HpBarON == true)
@@ -67,8 +59,17 @@ public class MenuManager : MonoBehaviour
 			toggleHpVal = 0;
 		}
 
-		MuteAll = mute_toggle;
+		MuteAll = mute_toggle.isOn;
 
+		if (MuteAll == true)
+		{
+			MasterVol = 0;
+		}
+		else
+		{
+			MasterVol = master_slider.value;
+		}
+		
 
 		SavePlayerPrefs();
 	}
@@ -78,18 +79,20 @@ public class MenuManager : MonoBehaviour
 		PlayerPrefs.SetFloat("MouseSen", mouseSen);
 		PlayerPrefs.SetFloat("ADSSen", ADSSen);
 
-		PlayerPrefs.SetInt("HPValBool", toggleHpVal);
+		PlayerPrefs.SetFloat("Sound", MasterVol);
 
-		PlayerPrefs.Save();
+		PlayerPrefs.SetInt("HPValBool", toggleHpVal);
 	}
 
 	public void LoadScene(int scene_index)
     {
+		PlayerPrefs.Save();
         SceneManager.LoadScene(scene_index);
     }
 
     public void Quit()
     {
+		PlayerPrefs.DeleteAll();
         Application.Quit();
     }
 }
