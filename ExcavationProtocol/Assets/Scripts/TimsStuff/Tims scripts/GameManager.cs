@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Currency Values")]
     public int Currency = 100;
+	private int totalCurrency;
     public int wave_reward = 5;
 
     #endregion
@@ -118,11 +119,13 @@ public class GameManager : MonoBehaviour
     public void AddCurrency()
     {
         Currency += wave_reward * (Drill.GetComponent<Mines>().GetCurrentHp() / 10);
+		totalCurrency += Currency;
     }
 
 	public void AddCurrency(int add)
 	{
 		Currency += add;
+		totalCurrency += Currency;
 	}
 
 	public void SubtractCurrency(int sub)
@@ -133,6 +136,11 @@ public class GameManager : MonoBehaviour
 	public int GetCurrency()
 	{
 		return Currency;
+	}
+
+	public int GetTotalCurrency()
+	{
+		return totalCurrency;
 	}
     #endregion
 
