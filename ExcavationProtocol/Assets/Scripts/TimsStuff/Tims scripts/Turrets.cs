@@ -88,7 +88,7 @@ public class Turrets : MonoBehaviour
 					End1.Play();
 					End2.Play();
                     m_sound_system.PlayRandom();
-					// currentAmmo -= 1;
+					currentAmmo -= 1;
 				}
 				else
 				{

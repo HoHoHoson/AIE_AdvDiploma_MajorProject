@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class CompareCondition : Condition
+public class DistanceCondition : Condition
 {
     public enum Comparator
     {
@@ -15,7 +15,7 @@ public class CompareCondition : Condition
     private Comparator  m_comparator;
     private float       m_sqr_threshold;
 
-    public CompareCondition(in Transform start, in Transform end, float threshold, Comparator comparator)
+    public DistanceCondition(in Transform start, in Transform end, float threshold, Comparator comparator)
     {
         m_start = start;
         m_end   = end;
@@ -24,7 +24,7 @@ public class CompareCondition : Condition
         m_sqr_threshold = threshold * threshold;
     }
 
-    public CompareCondition(in Agent agent, float threshold, Comparator comparator)
+    public DistanceCondition(in Agent agent, float threshold, Comparator comparator)
     {
         m_agent = agent;
 

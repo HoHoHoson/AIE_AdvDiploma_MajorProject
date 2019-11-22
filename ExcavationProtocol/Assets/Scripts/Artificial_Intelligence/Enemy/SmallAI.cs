@@ -65,7 +65,7 @@ public class SmallAI : Agent
         // Leaps at the targets face when in range
         state.AddTransition(new Transition("LEAPAT",
             new Condition[] { new BoolCondition(RandomLeapCheck),
-                              new CompareCondition(this, m_leapRadius, CompareCondition.Comparator.LESS),
+                              new DistanceCondition(this, m_leapRadius, DistanceCondition.Comparator.LESS),
                               new BoolCondition(GetCliffLeap) }));
         m_state_machine.AddState(state);
 

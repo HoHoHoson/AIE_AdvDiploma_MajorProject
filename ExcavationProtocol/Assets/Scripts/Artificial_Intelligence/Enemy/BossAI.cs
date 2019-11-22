@@ -26,7 +26,7 @@ public class BossAI : Agent
     {
         State state = new SeekTargetState(this, m_blackboard, m_detectRange, m_rotationSpeed);
         state.AddTransition(new Transition("BOSSSWEEP", 
-            new Condition[] { new CompareCondition(this, m_attackRange, CompareCondition.Comparator.LESS) }));
+            new Condition[] { new DistanceCondition(this, m_attackRange, DistanceCondition.Comparator.LESS) }));
         state.AddTransition(new Transition("LEAPAT",
             new Condition[] { new BoolCondition(GetCliffLeap) }));
         m_state_machine.AddState(state);
