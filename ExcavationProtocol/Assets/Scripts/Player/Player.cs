@@ -189,7 +189,7 @@ public class Player : MonoBehaviour
 	public GameObject dot, crosshair;
 	
 	// check for reloads
-	public bool isrealoading = false;
+	public bool is_reloading = false;
 
 	#endregion
 
@@ -324,7 +324,7 @@ public class Player : MonoBehaviour
         GunADS();
 
 		// Handling animations between reloading and shooting, also deals with shooting
-		if (player_energy_current <= 0 && isrealoading != true)
+		if (player_energy_current <= 0 && is_reloading != true)
 		{
 			is_reloading = true;
 			animator.SetBool("Aiming", false);
@@ -350,7 +350,7 @@ public class Player : MonoBehaviour
 		}
 
 		// Reloading with R
-		if (Input.GetKey(KeyCode.R) && isrealoading != true)
+		if (Input.GetKey(KeyCode.R) && is_reloading != true)
 		{
 			is_reloading = true;
 			animator.SetBool("Shooting", false);
