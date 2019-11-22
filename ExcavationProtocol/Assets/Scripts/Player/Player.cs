@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
 
 	public GameObject dot, crosshair;
 	
-	public bool isrealoading = false;
+	public bool is_reloading = false;
 
 	#endregion
 
@@ -258,9 +258,9 @@ public class Player : MonoBehaviour
         // Aim down sights function
         GunADS();
 
-		if (player_energy_current <= 0 && isrealoading != true)
+		if (player_energy_current <= 0 && is_reloading != true)
 		{
-			isrealoading = true;
+			is_reloading = true;
 			animator.SetBool("Aiming", false);
 			animator.SetBool("Shooting", false);
 			animator.SetBool("Reload", true);
@@ -270,7 +270,7 @@ public class Player : MonoBehaviour
 		}
 		else if (animator.GetBool("Reload") == false && player_energy_current > 0)
 		{
-			if (Input.GetMouseButton(0))
+			if (Input.GetMouseButton(0) && animator.IsInTransition(0) == false)
 			{
 				animator.SetBool("Shooting", true);
 				m_laserFlash.Play();
@@ -283,13 +283,12 @@ public class Player : MonoBehaviour
 			}
 		}
 
-		if (Input.GetKey(KeyCode.R) && isrealoading != true)
+		if (Input.GetKey(KeyCode.R) && player_energy_current != player_energy && is_reloading != true)
 		{
-			isrealoading = true;
+			is_reloading = true;
 			animator.SetBool("Shooting", false);
 			animator.SetBool("Reload", true);
 			m_laserFlash.Stop();
-			player_energy_current = player_energy;
 		}
 
         interaction_timer -= Time.deltaTime;
@@ -336,7 +335,7 @@ public class Player : MonoBehaviour
 
     private void GunADS()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && !is_reloading)
         {
             ads_timer += Time.deltaTime;
             animator.SetBool("Aiming", true);
@@ -657,8 +656,10 @@ public class Player : MonoBehaviour
 
     void ReloadComplete()
 	{
-		isrealoading = false;
+		is_reloading = false;
 		animator.SetBool("Reload", false);
-	}
+
+        player_energy_current = player_energy;
+    }
     #endregion
 }
