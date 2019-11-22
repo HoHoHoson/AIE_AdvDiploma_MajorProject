@@ -15,59 +15,69 @@ public class Player : MonoBehaviour
     #region PlayerStats
 
     [Header("Player Values")]
-
-    // Health
+	// Health
     public int player_hp = 100;
 
     // Energy
     public int player_energy = 150;
 
-
+	// values of the energy and hp for UI and Player stats
     protected int player_hp_current, player_energy_current;
+
+	// Visor variables
 	public Transform visor_transform;
 	private Transform visor_defaultPos, visor_zoomPos;
     public Renderer visor_renderer;
     public Material visor_material;
+
+	// Hud Colour change
     public Color full_health_color = Color.blue;
     public Color half_health_color = Color.yellow;
     public Color no_health_color = Color.red;
 
-    private int energy_gain_temp;
-
-    // makes gun automatic
-    public bool auto_gun;
+	// Guns Fire Rate
     public float fire_rate = 0.25f;
 
+	// Reload Timers
 	public float reload_time;	// Time Set Duration
 	private float reload_clock;	// clock (dTime)
 
+	// Variables for cooldowns
     public float interaction_cooldown = 0.25f;
     private float interaction_timer;
-
     #endregion
 
     #region PlayerMovement
+	// Getting the camera that is on the player
     public Transform playerCamera;
 
+	// Players Movement speed
     public float playerSpeed = 300;
+	
+	// Sprinting variables
 	private bool is_sprinting = false;
 	public float SprintMult = 2;
 
+	// Camera sensitivity when aiming normally
     public float cameraSensitivity = 100;
+
+	// Percentage of normal aim when in the ADS state
 	private float ADSdif = 0.3f;
+
+	// Clamps the camera when looking up and down
     public float maxCameraPitch = 50;
     public float minCameraPitch = -50;
 
-    public float jump_force_z = 100, jump_force_y=10;
-    private Vector3 jump_back;
-
+	// Player components
     private Rigidbody m_player_rb;
     private CapsuleCollider m_player_collider;
     private float m_player_offset = 0;
 
+	// Camera pitch and yaw for camera rotation
     private float m_camera_yaw = 0;
     private float m_camera_pitch = 0;
 
+	// Jumpping variables
     [SerializeField]
     private readonly float jump_cooldown = 0.01f;
     private float jump_timer;
@@ -76,44 +86,52 @@ public class Player : MonoBehaviour
 
     #region Skills
 
+	// Skill 1 damage
     [Header("Player Skill Values")]
     public int skill_damage = 1;
 
-    public GameObject bomb, land_mine, g_throw_point, frost_G;
+	// prefab grab and the point where you throw from
+    public GameObject bomb, turret, g_throw_point, frost_G;
 
+	// throw forces when throwing the grenades
     public float throw_force = 20, throw_force_2 = 10;
 
+	// checks if skill 2 is active
     protected bool skill_2_active = false;
 
+	// Skill Timers
     public float skill_1 = 20;
     public float skill_2 = 10;
     public float skill_3 = 20;
 
+	// skill timers
     [HideInInspector]
     public float skill_timer_1, skill_timer_2, skill_timer_3;
 
+	// if the ability is ready or active
     private bool active_1;
     private bool active_2;
     private bool active_3;
     private readonly bool is_used;
 
+	// Turret Prefabs
 	public GameObject TurretPrefab;
 	public int turret_cost = 100;
-
 	public GameObject turretDrop;
-	
 	public float turret_place_dist = 10;
 
     #endregion
 
     #region Animator
 
+	// Grabs the animator
     public Animator animator;
 
     #endregion
 
     #region Particle
 
+	// particles for the gun and bugs when hit
     public Transform m_batteryEjectPoint;
     public ParticleSystem m_batteryEject = null;
     public ParticleSystem m_bloodSFX = null;
@@ -122,41 +140,67 @@ public class Player : MonoBehaviour
 	#endregion
 
 	#region FPSgun
-
+	// damage that the gun shot does
 	public int gun_damage = 1;
     
+	// gun range
     public float weapon_range = 50f;
+	
+	// force added to the hit target if they have a rigidbody
     public float hit_force = 100f;
+
+	// fire point
     public Transform gun_end;
+
+	// time that it takes for the gun to ADS
     public float gun_ads_time = 1;
 
+	// timer counting the time to ADS
 	private float ads_timer;
+
+	// is ADS'ing
 	private bool b_ADS = false;
 
+	// Grabs the fps cam
 	private Camera fps_cam;
+
+	// how long you see the line renderer
     private readonly WaitForSeconds shot_duration = new WaitForSeconds(0.001f);
+
+	// takes in the line renderer
     private LineRenderer laser_line;
+
+	// time to next fire
     private float next_fire;
+
+	// takes in the sound system
     private SoundSystem m_sound_system;
 
+	// gets the camera transform
     private Transform camera_transform;
 
+	// for the gun ADS calculations
 	public Transform GunPivot, GunOffset;
+
+	// on hit blast radius when the gun shoots an enemy
 	public float BulletBlast = 3;
 
+	// gets crosshair for the UI
 	public GameObject dot, crosshair;
 	
-	public bool is_reloading = false;
+	// check for reloads
+	public bool isrealoading = false;
 
 	#endregion
 
-	// Functions
 
+	// Functions
 	#region StartUpdate
 
 	// Start is called before the first frame update
 	void Start()
     {
+		// initialising variables
         animator = GetComponent<Animator>();
 
         m_player_rb = GetComponent<Rigidbody>();
@@ -178,8 +222,12 @@ public class Player : MonoBehaviour
         skill_timer_1 = skill_1;
         skill_timer_3 = skill_3;
 
-		cameraSensitivity = PlayerPrefs.GetFloat("MouseSen");
-		ADSdif = PlayerPrefs.GetFloat("ADSSen");
+		// if the mouse sensitivity is not 0 it changes to the stats provided by the start menu else uses defaults
+		if (PlayerPrefs.GetFloat("MouseSen") != 0)
+		{
+			cameraSensitivity = PlayerPrefs.GetFloat("MouseSen");
+			ADSdif = PlayerPrefs.GetFloat("ADSSen");
+		}
 
         m_sound_system = GetComponent<SoundSystem>();
         m_batteryEject = Instantiate(m_batteryEject, m_batteryEjectPoint);
@@ -187,6 +235,7 @@ public class Player : MonoBehaviour
 
 	void Update()
     {
+		// jumps if grounded and space is pressed
         if (Input.GetKeyDown(KeyCode.Space) && GroundPlayer() == true)
             Jump();
     }
@@ -198,6 +247,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+		// animations and inputs when the player jumps
         if (has_jumped == true || GroundPlayer(true))
         {
             PlayerInputMovement();
@@ -205,11 +255,15 @@ public class Player : MonoBehaviour
             if (Time.time > jump_timer && GroundPlayer())
 			{
                 has_jumped = false;
+				// for animator
 				animator.SetBool("Jumping", false);
 			}
         }
     }
 
+	/// <summary>
+	/// For ejecting the battery ( Animation )
+	/// </summary>
     public void PlayBatteryEject()
     {
         m_batteryEject.Play();
@@ -219,16 +273,27 @@ public class Player : MonoBehaviour
 
     #region PlayerFunc
 
+	/// <summary>
+	/// Gets Current Hp
+	/// </summary>
+	/// <returns> Players current Hp </returns>
     public int GetPlayerHp()
     {
         return player_hp_current;
     }
 
+	/// <summary>
+	/// Gets Current Energy
+	/// </summary>
+	/// <returns> Players Current Energy </returns>
     public int GetPlayerEnergy()
     {
         return player_energy_current;
     }
 
+	/// <summary>
+	/// Deals with all of the inputs that the player does
+	/// </summary>
     public void Inputs()
     {
         if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Alpha1))
@@ -258,7 +323,8 @@ public class Player : MonoBehaviour
         // Aim down sights function
         GunADS();
 
-		if (player_energy_current <= 0 && is_reloading != true)
+		// Handling animations between reloading and shooting, also deals with shooting
+		if (player_energy_current <= 0 && isrealoading != true)
 		{
 			is_reloading = true;
 			animator.SetBool("Aiming", false);
@@ -283,7 +349,8 @@ public class Player : MonoBehaviour
 			}
 		}
 
-		if (Input.GetKey(KeyCode.R) && player_energy_current != player_energy && is_reloading != true)
+		// Reloading with R
+		if (Input.GetKey(KeyCode.R) && isrealoading != true)
 		{
 			is_reloading = true;
 			animator.SetBool("Shooting", false);
@@ -298,6 +365,11 @@ public class Player : MonoBehaviour
         }
     }
 
+	/// <summary>
+	/// Player taking Damage
+	/// </summary>
+	/// <param name="damage"> Damage Taken </param>
+	/// <returns> Players Current Hp </returns>
     public int PlayerTakenDamage(float damage)
     {
         if (player_hp_current > 0)
@@ -307,6 +379,7 @@ public class Player : MonoBehaviour
             // Lerp color
             Color lerped_color;
             float ratio = player_hp_current / (float)player_hp;
+			// Changing the colour of the hud based on the Players HP
             if (player_hp_current < player_hp / 2)
             {
                 lerped_color = Vector4.Lerp(no_health_color, half_health_color, ratio * 2.0f); // x2 because half or health total range
@@ -325,6 +398,10 @@ public class Player : MonoBehaviour
         return player_hp_current;
     }
     
+	/// <summary>
+	/// Checks If The Player Is Dead
+	/// </summary>
+	/// <returns> if player is dead </returns>
     public bool IsPlayerDead()
     {
         if (player_hp <= 0)
@@ -333,6 +410,9 @@ public class Player : MonoBehaviour
             return false;
     }
 
+	/// <summary>
+	/// Gun Scoping with right click
+	/// </summary>
     private void GunADS()
     {
         if (Input.GetMouseButton(1) && !is_reloading)
@@ -400,7 +480,7 @@ public class Player : MonoBehaviour
     /// Keeps the player grounded.
     /// <para>Returns True/False depending on if the player is grounded or not.</para>
     /// </summary>
-    /// <returns></returns>
+    /// <returns> If Grounded </returns>
     bool GroundPlayer(bool ground = false)
     {
 
@@ -444,6 +524,9 @@ public class Player : MonoBehaviour
         m_player_rb.velocity = direction;
     }
 
+	/// <summary>
+	/// makes the player Jump
+	/// </summary>
     private void Jump()
     {
         jump_timer = Time.deltaTime + jump_cooldown;
@@ -452,15 +535,6 @@ public class Player : MonoBehaviour
 		m_sound_system.GetClip(1).GetAudioSource().PlayOneShot(m_sound_system.GetClip(1).GetAudioSource().clip);
         m_player_rb.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
     }
-
-  //  private void OnCollisionEnter(Collision collision)
-  //  {
-		//if (has_jumped == true /*&& Time.deltaTime > jump_timer*/ && collision.gameObject.layer == LayerMask.GetMask("Ground"))
-		//{
-		//	has_jumped = false;
-		//	animator.SetBool("Jumping", false);
-		//}
-  //  }
     
     #endregion
 
@@ -499,15 +573,6 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// Performs skill 2 ( Places a Mine / allows the player to place and deternate a mine
-    /// dealing damage to targets and knocking everything with a RB away from it )
-    /// </summary>
-    //public void SkillActive2()
-    //{
-	//	
-    //}
-
-    /// <summary>
     /// Performs skill 3 ( Throws frost Grenade / Freezes targets within a Radius )
     /// </summary>
     IEnumerator SkillActive3()
@@ -519,6 +584,9 @@ public class Player : MonoBehaviour
         expl.GetComponent<Rigidbody>().AddForce(g_throw_point.transform.forward * throw_force, ForceMode.Impulse);
     }
 
+	/// <summary>
+	/// Completes the skill animatons and other things that happens
+	/// </summary>
     public void CompleteAction1()
     {
         if (skill_timer_1 < skill_1)
@@ -532,16 +600,9 @@ public class Player : MonoBehaviour
         animator.SetTrigger("Throw");
     }
 
-	//public void CompleteAction2()
-	//{
-	//	//if (skill_timer_2 < skill_2)
-	//	//	return;
-	//	//
-	//	//active_2 = false;
-	//	//skill_timer_2 = 0;
-	//	SkillActive2();
-	//	//active_2 = true;
-	//}
+	/// <summary>
+	/// Completes the skill animatons and other things that happens
+	/// </summary>
 	public void CompleteAction3()
     {
         if (skill_timer_3 < skill_3)
@@ -555,6 +616,9 @@ public class Player : MonoBehaviour
         animator.SetTrigger("Throw");
     }
 
+	/// <summary>
+	/// Skill timers for cooldowns and stuff
+	/// </summary>
     public void SkillTimers()
     {
         if (active_1)
@@ -566,15 +630,7 @@ public class Player : MonoBehaviour
             skill_timer_1 = skill_1;
         }
 
-        //if (active_2)
-        //{
-        //    skill_timer_2 += Time.deltaTime;
-        //}
-        //if (skill_timer_2 > skill_2)
-        //{
-        //    skill_timer_2 = skill_2;
-        //}
-
+        
         if (active_3)
         {
             skill_timer_3 += Time.deltaTime;
@@ -601,29 +657,37 @@ public class Player : MonoBehaviour
 
             m_sound_system.GetClip(0).PlayAudio();
 
+			// creates ray origin at the center of the screen
             Vector3 ray_origin = fps_cam.ScreenToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
-
+			
+			// line start position ( from gun to end point )
             laser_line.SetPosition(0, gun_end.position);
 
+			// gets the raycast things from origin to the cameras forward with range of weapon_range(50)
             if (Physics.Raycast(ray_origin, fps_cam.transform.forward, out RaycastHit hit_target, weapon_range))
             {
+				// sets end of line to be hit point ( max weapon range for finish )
                 laser_line.SetPosition(1, hit_target.point);
 
+				// knocks back object hit if it has a rigid body
                 if (hit_target.rigidbody != null)
                 {
                     hit_target.rigidbody.AddForce(-hit_target.normal * hit_force);
                 }
 
+				// if enemy then take damage
                 Agent hit_agent = hit_target.transform.GetComponent<Agent>();
                 if (hit_agent != null)
                 {
                     ExplosiveAI explosive_baddy = hit_agent as ExplosiveAI;
+					// explosive bullets
 					Collider[] colliders = Physics.OverlapSphere(hit_target.point, BulletBlast);
 
 					foreach(Collider hit in colliders)
 					{
 						if(hit.gameObject.layer == 10)
 						{
+							// if explosive enemies weak spot
 							if (explosive_baddy != null)
 								explosive_baddy.LocationalDamage(hit_target, gun_damage);
 							else
@@ -642,6 +706,10 @@ public class Player : MonoBehaviour
         }
     }
 
+	/// <summary>
+	/// enables and disables line renderer to act as a gun fire
+	/// </summary>
+	/// <returns> how long the shot lasts for </returns>
     private IEnumerator ShotEffect()
     {
         laser_line.enabled = true;
@@ -649,11 +717,17 @@ public class Player : MonoBehaviour
         laser_line.enabled = false;
 	}
 
+	/// <summary>
+	/// starts the reload sound
+	/// </summary>
     void ReloadStart()
     {
         m_sound_system.GetClip(2).GetAudioSource().PlayOneShot(m_sound_system.GetClip(2).GetAudioSource().clip);
     }
 
+	/// <summary>
+	/// resets the reload on completion through events
+	/// </summary>
     void ReloadComplete()
 	{
 		is_reloading = false;
